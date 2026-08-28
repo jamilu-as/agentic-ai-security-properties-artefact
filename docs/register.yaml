@@ -143,6 +143,32 @@ positions:
     marker: "OpenRouter"
     status: open
 
+  - id: P18
+    item: "O2 benchmark-coverage audit re-derived against the 2026 landscape - not just the A2ASecBench row patched"
+    lands_in: [dissertation/03_threat_surface_model.md]
+    marker: "coverage"
+    status: open
+  - id: P19
+    item: "RQ3 framework AMENDED for composed controls - forces do not compose linearly across a stack either"
+    lands_in: [dissertation/06_viability_framework.md]
+    marker: "compose"
+    status: open
+  - id: P20
+    item: "Integration test: vary RQ1 actor profile with RQ2 data fixed; report whether any ISO 31000 treatment flips"
+    lands_in: [dissertation/06_viability_framework.md]
+    marker: "applicability gate"
+    status: open
+  - id: P21
+    item: "Paper 1 Table 2's illustrative cells replaced with measured values; the paper's own caveat that they are 'not validated outcomes' addressed"
+    lands_in: [dissertation/06_viability_framework.md]
+    marker: "measured"
+    status: open
+  - id: P22
+    item: "W1->W2 link stated: which defence axes the derived surface identifies as candidates for the properties at risk"
+    lands_in: [dissertation/04_methods.md]
+    marker: "threat surface"
+    status: open
+
 # Prior art that must be cited defensively. check_citations.py verifies each key appears.
 prior_art:
   - {id: A1,  key: "2606.15057", why: "AutoDojo - direct antecedent, supplies the harness"}

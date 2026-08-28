@@ -10,13 +10,48 @@ The binding constraint is **neither money nor build effort — it is wall-clock 
 
 ## 1. What is being built
 
+### 1.0 The thesis, not just the study
+
+**One argument in three movements.** Capabilities compose non-linearly, so the threat surface cannot be enumerated (RQ1). Defences fail non-additively under adaptive attack, so defence-in-depth cannot be priced by summing its parts (RQ2). Therefore treatment must be decided per composed configuration against a profiled adversary (RQ3).
+
+The composition reframe of RQ2 tightens this rather than loosening it: the same phenomenon — composition defeating additive reasoning — appears on the threat side and the defence side, and RQ3 is where that fact becomes a decision.
+
+Encoded machine-readably in `docs/thesis_spine.yaml` and verified by `make coherence`, which fails if any artefact is produced but never consumed downstream. An unconsumed artefact is a chapter that could be deleted without the argument noticing.
+
+**Four workstreams.**
+
+| | Workstream | Deliverables | Depends on |
+|---|---|---|---|
+| **W1** | RQ1 — threat surface | O1 derivation model · **O2 coverage audit, re-derived against the 2026 landscape** | — |
+| **W2** | RQ2 — composition study | O3 factorial · O4 correlated-failure result | W1 (which axes are candidates) |
+| **W3** | RQ3 — viability | O5 framework **amended for composed controls** · O6 treatment decisions on measured values | W1 (actor profile), W2 (measurements) |
+| **WI** | Integration | The applicability gate demonstrated, not asserted | all three |
+
+**The integration test, which is the thesis-level claim no single chapter can make:** holding the measured RQ2 data fixed and varying only the RQ1 threat-actor profile should flip at least one ISO 31000 treatment decision. If no profile change flips any treatment, the gate is inert on this dataset and the composition is decorative — report that plainly, it is a finding about the framework. Paper 1 §5 asserts this composition on invented values; demonstrating it on measured values is what the paper does not deliver.
+
+### 1.1 W1 — RQ1, and what was nearly lost
+
+O1 ports from Paper 1 §§2–3. **O2 does not exist yet in any form.** The proposal committed to characterising benchmark coverage for every property in the model, and A2ASecBench being wrong is not one row to patch — it is evidence the whole coverage column needs re-deriving against a landscape that turned over: CIMemories, MCP-SafetyBench, AgentRedBench, WASP, SeClaw, FORTIS, A2ASecBench, and the August skill-attack cluster all post-date the literature review.
+
+The coverage audit is a rubric-eligible artefact in its own right ("new... methodology") and it is what makes RQ1 a contribution rather than a restatement.
+
+### 1.2 W3 — RQ3, and what "slot the values in" was hiding
+
+Populating Paper 1's Table 2 with measured values fixes its central weakness but is not the whole of O5/O6. Three further pieces:
+
+- **Amend the framework for composition.** Paper 1 §4.2 argues "three forces, not a filter" for a single control. If failures correlate across a stack while defender cost compounds, the forces do not compose linearly across a *stack* either. That is an extension to the instrument, not an application of it.
+- **Test the decision rule**, not just report inputs — does it return different treatments for the same control in different contexts, on measured data.
+- **Sensitivity across actor profiles** — the integration test above.
+
+### 1.3 W2 — RQ2, the composition study
+
 **RQ2 (revised):** Do current security controls maintain their claimed security properties **when composed** and evaluated against adversarially optimised attack conditions?
 
 **Claim under test:** an adaptive attacker induces *correlated* failure across defence axes, making defence-in-depth sub-additive. Refuted if the interaction terms between defence-presence indicators are indistinguishable from zero after BH correction.
 
 **Why it is worth doing:** every adaptive evaluation in this literature tests defences individually — Nasr et al. (12, individually), AutoDojo (9, individually), arXiv:2606.26479 (*"One defense, one attack family"*), Zhang et al. 2607.24392 (names stacking as its first open question). Deployment guidance, including Microsoft's Zero Trust guidance on indirect prompt injection, prescribes layering. The deployed configuration is the unevaluated one.
 
-### 1.1 Design
+### 1.4 Design
 
 **Harness:** fork of AutoDojo (MIT), which vendors AgentDojo. Apply the metric and implementation fixes published in arXiv:2510.05244 before any baseline is recorded.
 
@@ -46,7 +81,7 @@ Eight combinations: none, three singles, three pairs, one triple.
 
 **Sample:** a stratified subsample of AgentDojo's 629 security tests, **n fixed in the pre-registration before any results are seen** — target 200, balanced across the four suites. This is the single most important pre-registration commitment; choosing n after seeing data is the fastest way to lose the statistics.
 
-### 1.2 Measured outputs
+### 1.5 Measured outputs
 
 1. **Failure-correlation matrix** across axes — the headline figure.
 2. **Security-gain-per-defender-cost curve** — ASR reduction against added LLM calls, tokens and latency per task. Anchors: arXiv:2606.26479 reports defended runs needing ~15× more LLM calls; 2607.24392 reports SmoothLLM at +400% latency; RR carries a documented utility tax (38.5% false refusal on OR-Bench, per Confirm Labs).
@@ -54,7 +89,7 @@ Eight combinations: none, three singles, three pairs, one triple.
 4. **Convergence curves** at sampled query budgets, per the submitted protocol.
 5. **The harness extension itself** — composition configuration layer, RR integration, analysis pipeline.
 
-### 1.3 Statistics
+### 1.6 Statistics
 
 Per-attempt binary success; logistic model with a presence indicator per defence and their interactions:
 
@@ -62,7 +97,7 @@ Per-attempt binary success; logistic model with a presence indicator per defence
 
 Independent failure ⇒ interaction terms ≈ 0. Positive interactions ⇒ correlated failure ⇒ sub-additive composition. Bootstrap CIs on the correlation matrix as primary. Benjamini-Hochberg at FDR 0.10, retained from the proposal. Iteration budget enters as a reported parameter, not a hidden one: convergence curves are reported at rounds 1–5 for both arms and beyond five for the local arm. The proposal already committed to reporting ASR *as a function of* iteration budget, so a declared cap is methodologically clean — provided it is fixed in the pre-registration before any R2 data and the curve is shown at the cap. Power recomputed for this design and reported; the proposal's 0.84 is explicitly withdrawn. The Levene within/cross-axis variance comparison is retained but **labelled exploratory**.
 
-### 1.4 Budget
+### 1.7 Budget
 
 Estimates to be recalibrated after the first completed cell.
 
@@ -175,26 +210,31 @@ One R2 batch round per day drives the critical path. Writing runs alongside from
 
 One closed-weight R2 batch round per day. The local arm starts on Day 3 and runs continuously at full adaptive depth — it is the arm that carries the deep convergence curves.
 
-| Day | Runs | Writing |
+| Day | W2 runs | W1 / W3 / writing |
 |---|---|---|
 | 3 · Sun 30 | R1 lands; R2 round 1 out; **local arm starts** | **Ch4 Methods** — design, harness, defence selection, DEC revisions (register P1–P8) |
-| 4 · Mon 31 | R2 round 2 | **Ch1 Introduction** (incl. Research Outputs subsection) + **Ch3** threat surface model, ported from Paper 1 §§1–3 |
+| 4 · Mon 31 | R2 round 2 | **W1: O1 + O2.** Ch3 threat surface model ported from Paper 1 §§2–3, **and the coverage audit re-derived against the 2026 landscape**. Ch1 Introduction with the Research Outputs subsection. |
 | 5 · Tue 1 | R2 round 3 | **Ch2** literature review condensation + "since literature review" |
-| 6 · Wed 2 | R2 round 4 | **Ch6 prose** — the viability framework text, with value slots left open |
-| 7 · Thu 3 | R2 round 5; local arm completes | **DATA FREEZE end of day** |
+| 6 · Wed 2 | R2 round 4 | **W3: O5 amendment.** Ch6 framework prose *including the composition amendment*, value slots left open. Feed W1's actor profile into the applicability gate. |
+| 7 · Thu 3 | R2 round 5; local arm completes | **DATA FREEZE end of day.** W1→W2 link written into Ch4: which axes the derived surface identifies as candidates. |
 
 **Gate (Day 7):** R2 complete to the pre-registered cap on the closed-weight arm and to convergence on the local arm. If the closed-weight arm is materially incomplete, freeze anyway and report at the depth achieved — the curve is the deliverable, not the cap.
 
 ### Day 8 · Fri 4 September · Analysis
 
 - Fit the logistic model; bootstrap CIs; BH correction; recompute power.
-- Produce the five outputs of §1.2 as figures and tables.
+- Produce the five outputs of §1.5 as figures and tables.
 - Convergence curves for both arms.
 
-### Days 9–10 · Sat 5 – Sun 6 September · The chapters carrying 50 marks
+### Days 9–10 · Sat 5 – Sun 6 September · The chapters carrying 50 marks, and the integration
 
-- **Ch5 Results and Discussion.** Results sub-sections and Discussion sub-sections separately headed — the rubric marks them as distinct criteria worth 35 and 15, and blended prose evidences neither.
-- **Ch6 completed** — measured values slotted into the framework, replacing Paper 1 Table 2's illustrative cells.
+**Day 9 — Ch5 Results and Discussion.** Results sub-sections and Discussion sub-sections separately headed — the rubric marks them as distinct criteria worth 35 and 15, and blended prose evidences neither. Task-specification bucket entered as a covariate (register P16).
+
+**Day 10 — Ch6 completed, and the integration test run.**
+- Measured values slotted into the framework, replacing Paper 1 Table 2's illustrative cells.
+- **O6: apply the decision rule** to both deployment contexts and report the treatments returned.
+- **WI: vary the RQ1 threat-actor profile with the RQ2 data held fixed.** Does any ISO 31000 treatment flip? A flip demonstrates the applicability gate does work; no flip is a reportable finding that it is inert on this dataset. Either way it goes in the chapter.
+- `make coherence` must pass before Day 10 closes.
 
 ### Day 11 · Mon 7 September · Close the document
 

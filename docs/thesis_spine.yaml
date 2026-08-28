@@ -1,0 +1,123 @@
+# The thesis as one argument in three movements, encoded so it can be checked.
+#
+# Capabilities compose non-linearly, so the threat surface cannot be enumerated (RQ1).
+# Defences fail non-additively under adaptive attack, so defence-in-depth cannot be
+# priced by summing its parts (RQ2). Therefore treatment must be decided per composed
+# configuration against a specific adversary (RQ3).
+#
+# check_coherence.py verifies every link: each RQ has objectives, each objective has a
+# chapter and an artefact, and each artefact is CONSUMED somewhere downstream. An
+# artefact nobody consumes is a chapter that could be deleted without the argument
+# noticing — which is the failure mode this file exists to catch.
+
+thesis_claim: >
+  Composition is the common failure of enumerative threat modelling and additive
+  defence pricing; a viability decision must therefore be taken over a composed
+  configuration against a profiled adversary, not over controls in isolation.
+
+research_questions:
+
+  - id: RQ1
+    question: >
+      Can a capability-derived threat surface model provide more systematic and
+      deployment-specific threat characterisation for multi-agent AI architectures
+      than enumeration-based approaches?
+    status: unchanged from the submitted proposal
+    chapter: dissertation/03_threat_surface_model.md
+    objectives:
+      - id: O1
+        text: "Construct the capability-to-property derivation covering the six capability clusters and their cross-cluster compositions."
+        artefact: A1_threat_surface_model
+        marker: "capability-derived"
+      - id: O2
+        text: "For each property, characterise benchmark coverage as covered / partially covered / uncovered, re-derived against the 2026 landscape."
+        artefact: A2_coverage_audit
+        marker: "coverage"
+    consumed_by:
+      - target: RQ2
+        how: "The derived surface identifies which properties the RQ2 deployment puts at risk, and therefore which defence axes are candidates. States what the study is a study OF."
+        marker_in: dissertation/04_methods.md
+        marker: "threat surface"
+      - target: RQ3
+        how: "The threat-actor profile passes the applicability gate that conditions which viability forces apply."
+        marker_in: dissertation/06_viability_framework.md
+        marker: "threat-actor profile"
+
+  - id: RQ2
+    question: >
+      Do current security controls for multi-agent AI systems maintain their claimed
+      security properties when composed and evaluated against adversarially optimised
+      attack conditions?
+    status: "revised - composition scoping clause added; see docs/REFRAMING_STATEMENT.md"
+    chapter: dissertation/05_results_discussion.md
+    objectives:
+      - id: O3
+        text: "Execute the 2^3 composition factorial across model configurations under R1 and R2."
+        artefact: A3_composition_harness
+        marker: "factorial"
+      - id: O4
+        text: "Test whether composed defences fail independently, controlling for task specification."
+        artefact: A4_correlated_failure_result
+        marker: "correlated failure"
+    consumed_by:
+      - target: RQ3
+        how: "Supplies the measured inputs the viability framework prices: adaptive lift (scientific force), utility tax (engineering force), cost per security gain (economic force)."
+        marker_in: dissertation/06_viability_framework.md
+        marker: "measured"
+    depends_on:
+      - source: RQ1
+        how: "The defence axes evaluated are those the derived surface identifies as candidates for the properties at risk."
+
+  - id: RQ3
+    question: >
+      What scientific, engineering, and economic constraints govern the viability of
+      security controls for multi-agent AI, and how do these constraints determine
+      appropriate risk treatment decisions?
+    status: unchanged from the submitted proposal
+    chapter: dissertation/06_viability_framework.md
+    objectives:
+      - id: O5
+        text: "Operationalise the three forces as measurable per-control properties and map viability profiles to ISO 31000 treatments."
+        artefact: A5_viability_framework
+        marker: "ISO 31000"
+      - id: O6
+        text: "Amend the framework for COMPOSED controls, and apply the decision rule to two deployment contexts using measured values."
+        artefact: A6_treatment_decisions
+        marker: "treatment"
+    depends_on:
+      - source: RQ1
+        how: "The threat-actor profile determines which forces apply and how the scientific force is graded."
+      - source: RQ2
+        how: "Measured adaptive lift, utility tax and cost ratios replace Paper 1 Table 2's illustrative cells."
+
+# The integration test. This is what turns three chapters into one thesis, and it is
+# the only claim in the document that no single RQ can make on its own.
+integration:
+  claim: >
+    The three instruments compose. Holding the measured RQ2 data fixed and varying only
+    the RQ1 threat-actor profile flips at least one ISO 31000 treatment decision - which
+    demonstrates the applicability gate does real work rather than being asserted.
+  chapter: dissertation/06_viability_framework.md
+  marker: "applicability gate"
+  falsifiable: >
+    If no profile change flips any treatment, the gate is inert on this dataset and the
+    composition is decorative. Report that plainly - it is a finding about the framework.
+  note: >
+    Paper 1 section 5 asserts this composition and illustrates it on invented values.
+    Demonstrating it on measured values is the thesis-level contribution that neither
+    the paper nor any single chapter delivers.
+
+# Every artefact must be consumed by something, or named as a terminal deliverable.
+artefacts:
+  - {id: A1_threat_surface_model,     chapter: dissertation/03_threat_surface_model.md, rubric: "conceptual/analytic model"}
+  - {id: A2_coverage_audit,           chapter: dissertation/03_threat_surface_model.md, rubric: "new methodology"}
+  - {id: A3_composition_harness,      chapter: dissertation/04_methods.md,              rubric: "software artefact"}
+  - {id: A4_correlated_failure_result,chapter: dissertation/05_results_discussion.md,   rubric: "new theory / methodology"}
+  - {id: A5_viability_framework,      chapter: dissertation/06_viability_framework.md,  rubric: "conceptual/analytic model"}
+  - {id: A6_treatment_decisions,      chapter: dissertation/06_viability_framework.md,  rubric: "applied result", terminal: true}
+
+# Ch7 must map every objective to where it was met - the rubric asks for this explicitly
+# under "how the aims and objectives have been met".
+aims_met_mapping:
+  chapter: dissertation/07_conclusion.md
+  requires_all: [O1, O2, O3, O4, O5, O6]
