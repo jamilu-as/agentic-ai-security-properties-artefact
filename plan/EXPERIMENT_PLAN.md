@@ -9,13 +9,14 @@ Assumptions that remain are marked in that script.
 
 | | |
 |---|---|
-| Agent episodes | **519,400** |
-| Cost | **~$6,566** incl. 25% contingency |
-| Critical path | **~7 days** of runs, fully parallel |
+| Agent episodes | **207,760** |
+| Cost | **~$610** incl. 25% contingency |
+| Critical path | **~5 days** of runs, 3 GPU workers |
 | Runway | 22 days to submission |
 
-Cost is not the constraint. Wall-clock was, and the bottleneck turned out to be
-solvable — see *The camel bottleneck* below.
+Neither cost nor wall-clock is now the constraint. Scale was cut from the model
+dimension first, per the pre-committed cut order, taking the study from five model
+configurations to the matched local pair — see §3.
 
 ---
 
@@ -28,9 +29,9 @@ Four outputs. Three are built and tested; one is produced by the runs.
 | A1 | **Capability-derived threat surface model** — seven-cluster vocabulary, compositional properties, threat-actor tuple | **built**, tested | `work/w1-surface/instrument/derivation.py` |
 | A2 | **Composition layer** — builds the 2³ factorial, fingerprints every cell, fails on mismatch | **built**, tested | `work/w2-composition/harness/composition/compose.py` |
 | A3 | **Viability decision instrument** — treatment, margin, stability under bootstrap | **built**, tested | `work/w3-viability/instrument/viability.py` |
-| A4 | **Composition measurements** — ρ* per contrast per arm | produced by the runs | `work/w2-composition/results/` |
+| A4 | **Composition measurements** — ρ* per contrast, both checkpoints | produced by the runs | `work/w2-composition/results/` |
 
-33 tests across A1–A3, no API key or harness needed: `python3 work/tests/test_instruments.py`.
+51 tests across A1–A3, no API key or harness needed: `python3 work/tests/test_instruments.py`.
 
 Supporting, already banked: the **artefact-integrity finding** (150 shipped cells
 reduce to 13 distinct payloads) and the **coverage audit** (five of six rows
@@ -69,7 +70,21 @@ a₁₂ > a₁a₂/a₀.*
 
 ### Design
 
-2³ over three pipeline axes × 5 model arms × 2 regimes = **80 conditions**.
+2³ over three pipeline axes × 2 model checkpoints × 2 regimes = **32 conditions**.
+
+Scale was cut from the model dimension first, per the pre-committed cut order. The
+model dimension is the matched local pair `Llama-3-8B-Instruct` / `-RR` — one model
+family, two checkpoints, which is the minimum that keeps the representation axis
+estimable, since a rerouted checkpoint compared against anything but its own base
+confounds the intervention with fine-tuning drift.
+
+**What this costs, stated rather than absorbed.** Consistency of sign across model
+arms was the check separating a composition effect from a property of one model.
+It is not available at this scale. A departure measured here cannot be separated
+from a characteristic of the Llama-3-8B family, so the finding is reported as what
+was measured on that family. Breadth across model families is the first extension
+more budget would buy, and it is named as the primary future work rather than
+presented as a minor caveat.
 
 | Axis | Instance | Composition point |
 |---|---|---|
@@ -130,26 +145,27 @@ data are less determinate than their presentation implies.
 
 ---
 
-## 5. The camel bottleneck, and why the plan is now feasible
+## 5. Why this now runs on one box
 
-The first estimate put wall-clock at 31 days, of which 27 were the four camel cells.
-`--parallel-eval` excludes camel, so those cells looked serial.
+Both target checkpoints are local, so there is no API spend on target models and no
+rate limit to schedule around. What remains is GPU time and the attacker optimiser.
 
-The exclusion is thread-safety, not a fundamental limit. camel's interpreter uses
-module-level `lru_cache` (`namespace.py:35`, `value.py:1342`), so concurrent threads
-share cached state. But `scripts/benchmark.py` is independently invocable and cells are
-independent by design — so each camel cell runs as **its own OS process**, with its own
-caches, sharing nothing. No change to camel's code.
+The cells are independent, so GPU-hours are fixed but wall-clock divides across
+workers at no extra cost:
 
-| camel processes | camel wall-clock | critical path |
-|---|---|---|
-| 4 (thread-limited) | 27.1 d | 31.6 d |
-| 12 | 9.0 d | 9.0 d |
-| **16** | **7.2 d** | **7.2 d** |
-| 24+ | 4.5 d | 7.2 d (GPU arm floors it) |
+| GPU workers | Wall-clock |
+|---|---|
+| 1 | 14.4 d |
+| 2 | 7.2 d |
+| **3** | **4.8 d** |
+| 4 | 3.6 d |
 
-At 16 processes the GPU arm becomes the constraint, so 16 is the right setting and more
-buys nothing.
+One constraint survives from the earlier plan and still matters: `camel` is excluded
+from the optimiser's `--parallel-eval` because its interpreter uses module-level
+`lru_cache`, so concurrent *threads* share state. Its cells run as separate OS
+processes instead, each with its own caches. That is a property of how the cells are
+launched, not of the budget, and applies at any scale.
+
 
 ---
 
@@ -182,5 +198,5 @@ Chapter 3 cut rather than the write-up.
 3. **GPU box**, 48GB, ~175 h. Also hosts the 16 camel processes.
 4. **HuggingFace token** — `Llama-3-8B-Instruct` is gated.
 
-Estimated spend **~$6,566**. GPU rental is $156 of that; the frontier model arm is the
-largest single line.
+Estimated spend **~$610**: $312 GPU, $98 attacker optimiser, $78 camel's quarantined
+LLM, plus contingency. The empirical core is now the cheapest part of the study.

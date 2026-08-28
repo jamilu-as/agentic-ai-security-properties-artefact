@@ -15,8 +15,8 @@ FRAC_STATIC           = 0.47       # four published seed styles    -> R1
 TASKS      = 49        # injection tasks over six attack-supported suites
 CELLS      = 8         # 2^3 pipeline configurations
 CAMEL_CELLS= 4         # of those, the ones carrying the system-level axis
-ARMS_API   = 4         # replication arms
-ARMS_GPU   = 1         # confirmatory arm, local
+ARMS_API   = 0         # none: scale cut from the model dimension first
+ARMS_GPU   = 2         # the matched local pair, base + rerouted
 
 # ---- ASSUMED ----------------------------------------------------------------
 IN_TOK, OUT_TOK   = 12_000, 1_200   # per episode, multi-turn with tool calls
@@ -33,7 +33,12 @@ CONC_CAMEL        = 12              # camel: PROCESS-level, not thread-level.
                                     # every worker its own cache and shares
                                     # nothing. No change to camel's code.
 GPU_EPISODES_HR   = 600             # 8B on a rented 48GB card, batched
+OPT_CALLS_PER_CELLTASK = 25         # attacker LLM variant generations
+OPT_USD_PER_CALL  = 0.005           # cheap model, short prompts
 GPU_USD_HR        = 0.90
+GPU_WORKERS       = 3               # cells are independent; GPU-hours are the same,
+                                    # wall-clock divides. camel cells still need
+                                    # process isolation, which one box supplies.
 
 PRICES = {  # USD per 1M tokens, via OpenRouter
     "frontier": (3.00, 15.00), "lowcost": (0.50, 2.00),
@@ -57,14 +62,12 @@ print(f"  1 GPU confirmatory arm:                        {per_arm*ARMS_GPU:>9,}"
 print(f"  TOTAL:                                         {total_ep:>9,}")
 
 print("\n"+"="*76); print("COST"); print("="*76)
-api_ep = per_arm * ARMS_API
-tiers = ["frontier","lowcost","open","open"]          # the four replication arms
-api = sum(cost(per_arm, t) for t in tiers)
-opt = cost(int(total_ep*FRAC_ADAPTIVE*0.25), "optimiser")
-camel = (api * CAMEL_CELLS/CELLS) * 0.35              # quarantined LLM, extra calls
+api = 0.0                                              # no API target arms
+opt = TASKS * CELLS * (ARMS_API + ARMS_GPU) * OPT_CALLS_PER_CELLTASK * OPT_USD_PER_CALL
+camel = opt * (CAMEL_CELLS / CELLS) * 1.6              # quarantined LLM calls, API-priced
 gpu_h = per_arm*ARMS_GPU / GPU_EPISODES_HR
 gpu = gpu_h * GPU_USD_HR
-print(f"  4 target models (1 frontier, 1 low-cost, 2 open)   ${api:>9,.0f}")
+print(f"  target models (both local, no API spend)           ${api:>9,.0f}")
 print(f"  attacker / optimiser LLM                           ${opt:>9,.0f}")
 print(f"  camel quarantined LLM ({CAMEL_CELLS}/{CELLS} cells)             ${camel:>9,.0f}")
 print(f"  GPU rental, confirmatory arm ({gpu_h:,.0f} h @ ${GPU_USD_HR}/h)   ${gpu:>9,.0f}")
@@ -81,15 +84,15 @@ h_filt  = filt_ep*API_SEC/CONC_PARALLEL/3600
 h_camel = camel_ep*API_SEC/CONC_CAMEL/3600
 print(f"  API filter cells  ({CONC_PARALLEL} concurrent):   {h_filt:>6,.0f} h = {h_filt/24:>4.1f} d")
 print(f"  API camel cells   ({CONC_CAMEL} processes, not thread-safe):  {h_camel:>6,.0f} h = {h_camel/24:>4.1f} d")
-print(f"  GPU arm           (batched {GPU_EPISODES_HR}/h):    {gpu_h:>6,.0f} h = {gpu_h/24:>4.1f} d")
+print(f"  GPU, one worker   (batched {GPU_EPISODES_HR}/h):    {gpu_h:>6,.0f} h = {gpu_h/24:>4.1f} d")
+print(f"  GPU, {GPU_WORKERS} workers   (same GPU-hours, same cost): {gpu_h/GPU_WORKERS:>6,.0f} h = {gpu_h/GPU_WORKERS/24:>4.1f} d")
 print(f"  {'-'*56}")
-crit = max(h_filt, h_camel, gpu_h)
+crit = max(h_filt, h_camel, gpu_h / GPU_WORKERS)
 print(f"  {'-'*56}")
 print(f"  Filter cells (threads), camel cells (processes) and the GPU arm")
 print(f"  use different resources and run CONCURRENTLY.")
 print(f"  CRITICAL PATH:                        {crit:>6,.0f} h = {crit/24:>4.1f} days")
 print()
-print("  Sensitivity on the camel bottleneck (it sets the path):")
-for n in (12, 16, 24, 32):
-    h = camel_ep*API_SEC/n/3600
-    print(f"    {n:>2} processes -> {h:>5,.0f} h = {max(h,h_filt,gpu_h)/24:>4.1f} days critical path")
+print("  GPU workers vs wall-clock (cost is unchanged - same GPU-hours):")
+for n in (1, 2, 3, 4):
+    print(f"    {n} worker(s) -> {gpu_h/n:>5,.0f} h = {gpu_h/n/24:>4.1f} days")

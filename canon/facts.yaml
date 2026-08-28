@@ -16,16 +16,16 @@
 
 facts:
   - id: conditions
-    value: 80
-    means: 2^3 configurations x 5 model arms x 2 regimes
+    value: 32
+    means: 2^3 configurations x 2 model checkpoints x 2 regimes
     pattern: '(\d+)\s+conditions'
     except_in: [work/reviews/, archive/, plan/REFRAMING.md, canon/facts.yaml, canon/source_map.yaml, canon/register.yaml]
 
   - id: cells
-    value: 40
-    means: factorial cells before regime split
+    value: 16
+    means: factorial cells before regime split (8 configurations x 2 checkpoints)
     pattern: '(\d+)\s+cells'
-    except_in: [work/w0-baseline/, work/reviews/, archive/, canon/facts.yaml, canon/CONVENTIONS.md, canon/register.yaml, work/w2-composition/harness/]
+    except_in: [work/w0-baseline/, work/reviews/, archive/, canon/facts.yaml, canon/CONVENTIONS.md, canon/register.yaml, work/w2-composition/harness/, plan/]
 
   - id: suites
     value: 6
