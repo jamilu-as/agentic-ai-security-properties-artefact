@@ -14,7 +14,7 @@ GATES = {
     "G2": ["artefacts", "forbidden", "verbatim", "staleness", "prereg"],
     "G3": ["artefacts", "forbidden", "verbatim", "staleness", "prereg"],
     "G4": ["artefacts", "forbidden", "verbatim", "staleness", "prose", "semantic", "prereg", "structure", "rubric", "words", "coherence", "sources"],
-    "G5": ["artefacts", "forbidden", "verbatim", "staleness", "prose", "semantic", "prereg", "structure", "rubric", "words", "register", "citations", "coherence", "sources", "requirements"],
+    "G5": ["artefacts", "forbidden", "verbatim", "staleness", "prose", "semantic", "prereg", "structure", "rubric", "words", "register", "citations", "refs", "coherence", "sources", "requirements"],
 }
 CHECKS = {
     "artefacts": None,  # gate-aware; dispatched separately
@@ -23,6 +23,7 @@ CHECKS = {
     "prereg":    check_prereg.main,
     "register":  check_register.main,
     "citations": check_citations.main,
+    "refs":      check_citations.cited_but_unlisted,
     "words":     check_wordcount.main,
     "structure": check_structure.main,
     "rubric":    check_rubric_trace.main,

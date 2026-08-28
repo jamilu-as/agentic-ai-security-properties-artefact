@@ -14,26 +14,26 @@ facts:
     value: 80
     means: 2^3 configurations x 5 model arms x 2 regimes
     pattern: '(\d+)\s+conditions'
-    except_in: [dissertation/03_methods.md, work/reviews/, archive/, plan/REFRAMING.md, canon/facts.yaml, canon/source_map.yaml, canon/register.yaml]
+    except_in: [work/reviews/, archive/, plan/REFRAMING.md, canon/facts.yaml, canon/source_map.yaml, canon/register.yaml]
 
   - id: cells
     value: 40
     means: factorial cells before regime split
     pattern: '(\d+)\s+cells'
-    except_in: [work/w0-baseline/, work/reviews/, archive/, dissertation/03_methods.md, canon/facts.yaml, canon/CONVENTIONS.md, canon/register.yaml, work/w2-composition/harness/]
+    except_in: [work/w0-baseline/, work/reviews/, archive/, canon/facts.yaml, canon/CONVENTIONS.md, canon/register.yaml, work/w2-composition/harness/]
 
   - id: suites
     value: 7
     means: AgentDojo suites used (4 canonical + github, shopping, dailylife)
-    pattern: '(?:across |the )(\w+) suites'
+    pattern: '(?:across |the )(seven|four|\d+) suites'
     words_ok: {seven: 7, four: 4}
-    except_in: [work/reviews/, archive/, dissertation/03_methods.md]
+    except_in: [work/reviews/, archive/]
 
   - id: injection_tasks
     value: 55
     means: clustering units across 7 suites (27 across the 4 canonical)
     pattern: '(\d+)\s+injection tasks'
-    except_in: [work/reviews/, archive/, dissertation/03_methods.md, canon/facts.yaml]
+    except_in: [work/reviews/, archive/, canon/facts.yaml]
 
   - id: capability_clusters
     value: 7
@@ -53,7 +53,7 @@ facts:
     value: 800
     means: security tests per cell, confirmatory model arm
     pattern: 'n\s*=\s*(\d+)\s+security tests'
-    except_in: [work/reviews/, archive/]
+    except_in: [work/reviews/, archive/, canon/facts.yaml]
 
   - id: equivalence_margin
     value: '1.29'
@@ -67,11 +67,19 @@ retired:
   - value: '240 conditions'
     superseded_by: 80 conditions
     reason: proposal design; declared as changed in Methods, never asserted as current
-    except_in: [dissertation/03_methods.md, plan/REFRAMING.md, sources/, work/reviews/, archive/, canon/facts.yaml, canon/source_map.yaml, plan/PLAN.md]
+    except_in: [plan/REFRAMING.md, sources/, work/reviews/, archive/, canon/facts.yaml, canon/source_map.yaml, plan/PLAN.md]
   - value: 'a₁·a₂'
     superseded_by: 'a₁a₂/a₀'
     reason: raw product is satisfied by its own null; see 28 Aug commit
     except_in: [dissertation/01_introduction.md, preregistration/PREREGISTRATION.md, work/reviews/, archive/, canon/facts.yaml]
+  - value: 'n = 200 injection tasks'
+    superseded_by: 'n = 200 security tests (replication arms); 800 on the confirmatory arm'
+    reason: 200 counts security tests, not injection tasks - there are 55 injection tasks in total
+    except_in: [work/reviews/, archive/, canon/facts.yaml]
+  - value: '8,000 task-level observations'
+    superseded_by: '12,800 observations per regime'
+    reason: pre-reallocation figure; sampling is now uneven by design
+    except_in: [work/reviews/, archive/, canon/facts.yaml]
   - value: 'spotlighting_with_delimiting'
     superseded_by: spotlighting
     reason: not a key in the pinned harness

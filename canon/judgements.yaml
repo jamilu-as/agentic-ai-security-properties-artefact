@@ -69,8 +69,8 @@ judgements:
     question: Does any claim assert an outcome that Chapter 4 is supposed to test?
     read: [dissertation/01_introduction.md, dissertation/02_literature_review.md, dissertation/00_front_matter.md]
     owner: prose-auditor
-    verdict: null
-    finding: "2.6's pre-announcement was corrected on 28 Aug; needs re-reading for others."
+    verdict: fail
+    finding: "2.6 pre-announcement fixed 29 Aug; front-matter 'five of six rows' still orphaned and 'both are recorded' still false"
     verified_against: null
 
   - id: J08
@@ -87,7 +87,7 @@ judgements:
     read: [dissertation/03_methods.md, plan/REFRAMING.md]
     owner: drift-auditor
     verdict: fail
-    finding: "FALSE POSITIVE in check_register: marker 'drift' matches 'fine-tuning drift' in 3.2. The protocol appears nowhere."
+    finding: "Confirmed false positive: 'drift' occurs once in Ch3 as 'fine-tuning drift'. Proposal 5.1 protocol neither quoted nor cited; 3.4a declares the revision on its own authority instead of the approved plan's"
     verified_against: null
 
   - id: J10
@@ -95,7 +95,7 @@ judgements:
     read: [dissertation/02_literature_review.md, plan/REFRAMING.md, dissertation/06_references.md]
     owner: drift-auditor
     verdict: fail
-    finding: "A2ASecBench framed as currency drift; REFRAMING records a transcription error (ICLR 2026, before the cut-off). Skill-Inject filed as post-cut-off; Schmotz is arXiv 2602.20156, February 2026."
+    finding: "Both confirmed. 2.2's currency framing is refuted by its own next sentence (TAMAS Nov 2025, A2ASecBench ICLR 2026, both pre-cut-off); 2.6 files Skill-Inject as post-cut-off but it is arXiv 2602.20156, Feb 2026"
     verified_against: null
 
   - id: J11
@@ -103,15 +103,15 @@ judgements:
     read: [dissertation/02_literature_review.md, dissertation/03_methods.md, canon/forbidden_claims.yaml]
     owner: novelty-monitor
     verdict: fail
-    finding: "Both cited for other purposes only. A reader cannot see why the claim was dropped, and the register renumbering lost the tracking rows."
+    finding: "X5 withdrawal absent entirely; X7 withdrawal present at 3.4a but names neither CaMeL nor its antecedent. Antecedent is AutoDojo 2606.15057, NOT 2606.26479 which evaluated Progent"
     verified_against: null
 
   - id: J12
     question: Does the document assert as done anything that is not done?
     read: [dissertation/03_methods.md, dissertation/00_front_matter.md]
     owner: drift-auditor
-    verdict: open
-    finding: "Disclosure and hash-lock were qualified on 28 Aug to point at Appendix A. Both must become true before submission, not at it."
+    verdict: fail
+    finding: "Raised from open. Qualifications are evasive: they point at an Appendix A that is a bare heading. HASH.txt absent, no disclosure record, and 3.8 criterion 6 made the same claim a third time (now fixed). Front-matter 'both are recorded' still false"
     verified_against: null
 
   - id: J13
@@ -128,7 +128,7 @@ judgements:
     read: [dissertation/01_introduction.md]
     owner: rubric-marker
     verdict: fail
-    finding: "One sentence of feasibility; no compute budget, cost estimate or schedule. The proposal carried per-objective GPU-hour figures."
+    finding: "One sentence of feasibility, no compute/cost/schedule figure, and its 'harness is an extension not a reconstruction' clause is falsified by the composition re-architecture finding"
     verified_against: null
 
   - id: J15
@@ -143,6 +143,6 @@ judgements:
     question: Does the stated gap still exist in the literature, and do the contribution claims survive a current search?
     read: [dissertation/02_literature_review.md, dissertation/01_introduction.md]
     owner: novelty-monitor
-    verdict: null
-    finding: "NEVER RUN. Web-search budget exhausted 28 Aug. Three claims created that day are unchecked."
-    verified_against: null
+    verdict: open
+    finding: "BLOCKED - web search budget exhausted. Search brief written; highest risk is AutoDojo upstream shipping defence composition, which would delete the engineering contribution"
+    verified_against: "2b53509eb3b12635"

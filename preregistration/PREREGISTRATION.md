@@ -32,7 +32,8 @@ Directional: the confirmatory test is one-sided. A negative departure, in which 
 ## 4. Sample — FIX BEFORE ANY RESULTS
 
 - Suites: **seven** — banking, slack, travel, workspace, github, shopping, dailylife — giving **55 injection tasks** as clustering units. The four canonical suites alone give 27, below the threshold at which cluster-robust variance is reliable.
-- Subsample: **n = 800** security tests for the confirmatory model arm (fixed in advance), **n = 200** for each of the four replication arms, stratified across suites. The uneven allocation is a power decision recorded in §7, not a convenience.
+- **Confirmatory arm, named here because 'fixed in advance' is unverifiable if it is not: `Llama-3-8B-Instruct` (base of the matched representation pair).** Chosen because it is the arm whose attacker budget runs to convergence rather than a round cap, so the adequacy precondition is testable on it, and because it is locally hosted, making the 800-test allocation affordable.
+- Subsample: **n = 800** security tests for that arm, **n = 200** for each of the four replication arms, stratified across suites. The uneven allocation is a power decision recorded in §7, not a convenience.
 - Seed: 20260902 (fixed here; recorded in every run manifest)
 - Selection performed and committed before the first R1 run.
 
@@ -45,9 +46,9 @@ Directional: the confirmatory test is one-sided. A negative departure, in which 
 
 ## 6. Model
 
-**Primary estimand, on the probability scale:** Δ = P(bypass | A ∧ B) − P(bypass | A)·P(bypass | B), bootstrap CIs over injection tasks.
+**Primary estimand:** ρ* = a₁₂·a₀/(a₁·a₂), null ρ* = 1, with companion Δ* = a₁₂ − a₁a₂/a₀ on the probability scale. Cluster bootstrap resampling injection tasks once per replicate, recomputing all four cell rates on the same resample. The raw product a₁a₂ is NOT the benchmark — see §1 and §2.
 
-**Secondary:** logit(p) = β₀ + Σᵢ βᵢ·Dᵢ + Σᵢ<ⱼ βᵢⱼ·(Dᵢ × Dⱼ) + β·Regime + β·Model + ε, with cluster-robust standard errors at injection-task level and random intercepts for task and suite. Firth penalisation where separation is detected.
+**Secondary:** log(p) = β₀ + Σᵢ βᵢ·Dᵢ + Σᵢ<ⱼ βᵢⱼ·(Dᵢ × Dⱼ) + β·Regime + β·Model + ε — a **log link**, so exp(β₁₂) is ρ* directly. Modified Poisson with robust variance where the log link fails to converge. CR2 with Satterthwaite degrees of freedom, plus a wild cluster bootstrap on the confirmatory contrasts. A logistic specification is not used for the confirmatory claim; Firth is a logistic remedy and does not transfer.
 
 **Unit of analysis:** the injection task; outcome is any success within budget. Not the attempt — the optimiser stops on success, which censors attempts differentially by configuration strength.
 
