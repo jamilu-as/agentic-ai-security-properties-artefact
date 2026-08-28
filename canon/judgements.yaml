@@ -20,9 +20,9 @@ judgements:
     question: Does Chapter 2 pose an open question that RQ1 answers, so that the derivation model, the coverage audit and O1b are motivated before they appear?
     read: [dissertation/02_literature_review.md, dissertation/01_introduction.md]
     owner: coherence-reader
-    verdict: fail
-    finding: "Confirmed. 2.7 labels three not-closed questions RQ2/RQ2/RQ3; the closing paragraph states the contribution as three moves, none RQ1. Enumerative comparator never named in any chapter"
-    verified_against: null
+    verdict: pass
+    finding: "2.7 now opens 'Four questions are not closed' with the RQ1 procedural-determinacy and predictive-validity gap stated before the RQ2 pair"
+    verified_against: "84100b5dedbb56fa"
 
   - id: J02
     question: Is the RQ1 strand synthesised or enumerated in 2.2? The comparative artefact that would evidence synthesis currently sits in Chapter 4.
@@ -61,9 +61,9 @@ judgements:
     question: Is the utility gate applied where utility actually collapses? The floor check is per-arm on the undefended configuration only.
     read: [dissertation/03_methods.md, preregistration/PREREGISTRATION.md]
     owner: external-examiner
-    verdict: fail
-    finding: "Confirmed. Utility gate is per-arm on the undefended config only; no composed cell is gated. Examiner specified the fix: retention gate u12 >= 0.75*u1*u2 plus 30pct absolute backstop, with a fourth verdict state 'not estimable at deployable utility'"
-    verified_against: null
+    verdict: pass
+    finding: "Configuration-level utility gate added to prereg 7 and mirrored in Methods 3.7, with the fourth verdict state 'not estimable at deployable utility' added to prereg 2"
+    verified_against: "37c36def47b4c0de"
 
   - id: J07
     question: Does any claim assert an outcome that Chapter 4 is supposed to test?
@@ -102,9 +102,9 @@ judgements:
     question: Are the two withdrawn priority claims withdrawn WITH the antecedent cited, or merely absent?
     read: [dissertation/02_literature_review.md, dissertation/03_methods.md, canon/forbidden_claims.yaml]
     owner: novelty-monitor
-    verdict: fail
-    finding: "X5 withdrawal absent entirely; X7 withdrawal present at 3.4a but names neither CaMeL nor its antecedent. Antecedent is AutoDojo 2606.15057, NOT 2606.26479 which evaluated Progent"
-    verified_against: null
+    verdict: pass
+    finding: "Both withdrawals now name their antecedents in 3.4a: CaMeL priority to AutoDojo (Ma et al. 2026), three-regime protocol to Bhagwatkar et al. Register rows restored as C11/C12"
+    verified_against: "b70bac4895436f3b"
 
   - id: J12
     question: Does the document assert as done anything that is not done?
@@ -118,9 +118,9 @@ judgements:
     question: Is the reuse of the candidate's own unpublished prior work declared in a way an exam board would accept?
     read: [dissertation/01_introduction.md, dissertation/06_references.md]
     owner: external-examiner
-    verdict: fail
-    finding: "Escalated. No declaration exists anywhere. 2.5 presents the author's own prior untested claim as a position held in the field, unattributed, and builds RQ2's motivation on it. PAPER1 header claiming 'graded, submitted text' corrected 29 Aug - it was never submitted"
-    verified_against: null
+    verdict: pass
+    finding: "Prior-work declaration added to front matter; 2.5's compensator claim now attributed to the author's own earlier work and framed as what RQ2 puts at risk; PAPER1 header corrected"
+    verified_against: "d4f7ed0b6cb2646b"
 
   # ---- register and marks ----------------------------------------------------
   - id: J14

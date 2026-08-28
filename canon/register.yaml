@@ -82,6 +82,24 @@ corrections:
   - dissertation/oral/OUTLINE.md
   marker: 20 September
   status: closed
+- id: C11
+  item: Three-regime protocol novelty claim withdrawn; Bhagwatkar et al. (2026, arXiv:2510.05244)
+    published a three-stage cascade before this plan was written. Protocol retained
+    as an instrument, claim retracted WITH the antecedent cited.
+  lands_in:
+  - dissertation/03_methods.md
+  marker: Bhagwatkar et al. (2026) published a three-stage
+  status: closed
+  judgement: J11
+- id: C12
+  item: '"First systematic independent adversarial evaluation of CaMeL" withdrawn.
+    AutoDojo (Ma et al., 2026) integrates and adaptively evaluates CaMeL; the out-of-band
+    survey did so for Progent. Withdrawal stated WITH antecedents named.'
+  lands_in:
+  - dissertation/03_methods.md
+  marker: systematic independent adversarial evaluation of CaMeL
+  status: closed
+  judgement: J11
 positions:
 - id: P1
   item: RQ2 stated with the composition scoping clause
@@ -406,6 +424,17 @@ positions:
   - dissertation/04_results_discussion.md
   marker: decision stability
   status: open
+- id: P43
+  item: 'Literature-drift protocol of the approved plan quoted when declaring the
+    revision, AND its non-execution disclosed: monitoring did not run at the promised
+    cadence, which is why AutoDojo surfaced late and the extensibility cluster was
+    missed inside the review window.'
+  lands_in:
+  - dissertation/03_methods.md
+  - dissertation/05_conclusion.md
+  marker: drift protocol
+  status: open
+  judgement: J09
 prior_art:
 - id: A1
   key: '2606.15057'
