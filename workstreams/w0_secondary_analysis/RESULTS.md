@@ -38,6 +38,12 @@ Read naively this says defence family predicts the **level** of attack success b
 
 **It is not yet reportable, because part of the uniformity is an artefact.**
 
+## The integrity question — RESOLVED. See `INTEGRITY_FINDING.md`.
+
+Fingerprinting content independently of metadata gives **51 distinct cells of 150**. All five travel cells are byte-identical across all ten defence directories; slack collapses eight of ten in every model; banking differentiates. The descriptive pass below is therefore void as stated, and the analysis is restricted to the distinct cells.
+
+Original working note follows.
+
 ## The integrity question — resolve before any claim
 
 Pivoting on `(suite, model, injection_task, vector, iteration)` and comparing defences pairwise:

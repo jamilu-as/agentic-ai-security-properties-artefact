@@ -216,6 +216,12 @@ positions:
     marker: "programme"
     status: open
 
+  - id: P32
+    item: "Duplication in AutoDojo's released variant grid reported: 51 distinct cells of 150, all travel cells identical across ten defence directories. Restricts the W0 baseline and is disclosed upstream."
+    lands_in: [dissertation/04_methods.md, dissertation/05_results_discussion.md]
+    marker: "duplicat"
+    status: open
+
 # Prior art that must be cited defensively. check_citations.py verifies each key appears.
 prior_art:
   - {id: A1,  key: "2606.15057", why: "AutoDojo - direct antecedent, supplies the harness"}
