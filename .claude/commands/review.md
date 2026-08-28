@@ -44,3 +44,11 @@ this register exists to compensate for.
 
 `semantic` is enforced at G4 and G5: by then every judgement must be ruled on
 against current text.
+
+## Note on newly added agents
+
+Agent definitions are loaded when a session starts. An agent file created during a
+session is not dispatchable in that session — `prose-auditor` was added on
+28 August and had to be run with its brief inlined into a general-purpose agent.
+After adding an agent, either start a fresh session or inline the brief. If a
+dispatch fails with "agent type not found", this is why; the file is fine.
