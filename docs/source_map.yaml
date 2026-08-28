@@ -1,0 +1,100 @@
+# What the submitted work becomes.
+#
+# The literature review (10,138 words, graded) and proposal (8,776 words, graded)
+# are the foundation, not background. Against a 14,000-word dissertation, most of
+# the non-empirical text derives from them. This file records the disposition of
+# every section so nothing valuable is silently dropped and nothing stale is
+# silently carried.
+#
+# disposition:
+#   reuse    - transfers substantially as written
+#   condense - transfers compressed; the source is longer than the chapter allows
+#   update   - transfers but the content moved after the 14 May 2026 cut-off
+#   amend    - transfers but the ARGUMENT changes (composition reframe)
+#   retire   - does not transfer; must have a reason
+#
+# check_sources.py fails if a section has no disposition, or if a non-retired
+# section's target chapter is complete but does not carry its marker.
+
+title:
+  submitted: "An Empirical and Analytical Study of Security Properties in Agentic AI System"
+  status: UNCHANGED
+  rationale: >
+    Survives the composition reframe without alteration. "Empirical" is RQ2;
+    "Analytical" is RQ1 and RQ3; "Security Properties" is the LR Table 1
+    capability-derived vocabulary the whole argument hangs on. One less
+    declarable change.
+
+sources:
+  literature_review:
+    file: sources/LITERATURE_REVIEW_submitted_2026-05-17.md
+    words: 10138
+    cut_off: 2026-05-14
+    sections:
+      - {id: LR1.1, name: "What an agentic AI system is",              disposition: reuse,    target: dissertation/01_introduction.md,          marker: "agentic AI system"}
+      - {id: LR1.2, name: "Why agentic security is qualitatively different", disposition: reuse, target: dissertation/01_introduction.md,     marker: "qualitatively"}
+      - {id: LR1.3, name: "Safety and security as joint evaluation frames", disposition: reuse, target: dissertation/02_literature_review.md,  marker: "adversarial assessment"}
+      - {id: LR1.4, name: "Research questions and chapter structure",   disposition: amend,    target: dissertation/01_introduction.md,          marker: "when composed", note: "RQ2 gains the composition scoping clause"}
+      - {id: LR2.1, name: "Tool use and indirect prompt injection",     disposition: update,   target: dissertation/02_literature_review.md,     marker: "indirect prompt injection", note: "defence and attack landscape turned over Jun-Aug 2026"}
+      - {id: LR2.2, name: "Code execution",                            disposition: reuse,    target: dissertation/02_literature_review.md,     marker: "CVE-Bench", note: "anchors the RQ3 cost curve"}
+      - {id: LR2.3, name: "Persistent memory, embodied action, deception", disposition: update, target: dissertation/02_literature_review.md,   marker: "persistent memory", note: "memory security moved substantially; also fix the CIMemories date error"}
+      - {id: LR2.4, name: "Multi-agent and communication-layer threats", disposition: update,  target: dissertation/02_literature_review.md,     marker: "A2ASecBench", note: "the 'no dedicated benchmark' framing is now false"}
+      - {id: LR2.5, name: "Property taxonomy (Table 1)",               disposition: amend,    target: dissertation/03_threat_surface_model.md,  marker: "Table 1", note: "coverage column re-derived under O2; A2A row corrected"}
+      - {id: LR2.6, name: "Limits of the capability-derived framing",   disposition: reuse,    target: dissertation/03_threat_surface_model.md,  marker: "non-linear", note: "the composition argument on the threat side - load-bearing for the thesis spine"}
+      - {id: LR3.0, name: "Defence design axes (Table 2)",             disposition: reuse,    target: dissertation/02_literature_review.md,     marker: "design axis", note: "the four-axis spine; probabilistic/deterministic cross-cut is why composition is worth testing"}
+      - {id: LR3.1, name: "Test-time guardrails",                      disposition: amend,    target: dissertation/04_methods.md,               marker: "prompt-level", note: "exclusion rationale REVERSED; axis reinstated for within-axis replication"}
+      - {id: LR3.2, name: "System-level information-flow control",     disposition: update,   target: dissertation/02_literature_review.md,     marker: "CaMeL", note: "gap claim now contested by AutoDojo and 2606.26479"}
+      - {id: LR3.3, name: "Representation-level activation control",   disposition: reuse,    target: dissertation/02_literature_review.md,     marker: "representation-level"}
+      - {id: LR3.4, name: "Detection-side runtime monitoring",         disposition: update,   target: dissertation/02_literature_review.md,     marker: "detection", note: "live instances are now promptguard/piguard/protectai/datafilter"}
+      - {id: LR3.5, name: "What is not yet defended",                  disposition: update,   target: dissertation/02_literature_review.md,     marker: "not yet defended", note: "memory and A2A both moved"}
+      - {id: LR4.1, name: "Static and adaptive evaluation defined",    disposition: reuse,    target: dissertation/04_methods.md,               marker: "adaptivity", note: "the adaptivity gradient the three-regime protocol implements"}
+      - {id: LR4.2, name: "The adaptive gap at three levels",          disposition: amend,    target: dissertation/02_literature_review.md,     marker: "Nasr", note: "Nasr changes side - supporting citation becomes rival hypothesis"}
+      - {id: LR4.3, name: "Validity threats orthogonal to adaptivity", disposition: reuse,    target: dissertation/04_methods.md,               marker: "validity", note: "supplies the Methods validity-controls section directly"}
+      - {id: LR4.4, name: "Benchmark landscape and coverage gaps",     disposition: amend,    target: dissertation/03_threat_surface_model.md,  marker: "coverage", note: "becomes O2, re-derived against the 2026 landscape"}
+      - {id: LR4.5, name: "Offensive capability as adversary ground truth", disposition: reuse, target: dissertation/06_viability_framework.md,  marker: "offensive", note: "distinctive argument; feeds the RQ3 economic force"}
+      - {id: LR4.6, name: "Six minimum validity criteria",             disposition: reuse,    target: dissertation/04_methods.md,               marker: "validity criteria", note: "strongest reuse asset; criterion 6 is composition, now the headline"}
+      - {id: LR5.1, name: "Three constraints as bidirectional forces", disposition: amend,    target: dissertation/06_viability_framework.md,   marker: "bidirectional", note: "amended: forces do not compose linearly across a STACK either"}
+      - {id: LR5.2, name: "Scientific viability",                      disposition: reuse,    target: dissertation/06_viability_framework.md,   marker: "scientific"}
+      - {id: LR5.3, name: "Engineering viability",                     disposition: update,   target: dissertation/06_viability_framework.md,   marker: "engineering", note: "add The Autonomy Tax 2603.19423 as external quantitative support"}
+      - {id: LR5.4, name: "Economic viability",                        disposition: reuse,    target: dissertation/06_viability_framework.md,   marker: "economic"}
+      - {id: LR5.5, name: "What the literature does not provide",      disposition: reuse,    target: dissertation/02_literature_review.md,     marker: "gap", note: "the RQ3 gap has NOT been closed by anyone"}
+      - {id: LR6.1, name: "Three established claims C1/C2/C3",         disposition: update,   target: dissertation/02_literature_review.md,     marker: "established", note: "C2's CaMeL claim now contested"}
+      - {id: LR6.2, name: "What is not closed",                        disposition: amend,    target: dissertation/02_literature_review.md,     marker: "not closed", note: "the open gap is now composition, not the individual-control question"}
+      - {id: LR6.3, name: "The dissertation's position",               disposition: amend,    target: dissertation/02_literature_review.md,     marker: "position", note: "four-axis promise reconciled with three delivered"}
+
+  proposal:
+    file: sources/PROPOSAL_submitted_2026-05-21.md
+    words: 8776
+    sections:
+      - {id: RP.abs,  name: "Abstract - problem and three structural gaps",   disposition: condense, target: dissertation/00_front_matter.md,        marker: "Abstract"}
+      - {id: RP2.1,   name: "RQ1 statement",                                  disposition: reuse,    target: dissertation/01_introduction.md,        marker: "capability-derived"}
+      - {id: RP2.2,   name: "RQ2 statement",                                  disposition: amend,    target: dissertation/01_introduction.md,        marker: "when composed"}
+      - {id: RP2.3,   name: "RQ3 statement",                                  disposition: reuse,    target: dissertation/01_introduction.md,        marker: "risk treatment"}
+      - {id: RP2.4,   name: "SMART objectives O1-O6",                         disposition: amend,    target: dissertation/01_introduction.md,        marker: "O1", note: "O3/O4 re-scoped to the factorial; dates updated"}
+      - {id: RP3,     name: "Background - the four design axes",              disposition: reuse,    target: dissertation/02_literature_review.md,   marker: "axes"}
+      - {id: RP4.2,   name: "The 4x4x5 evaluation matrix",                    disposition: amend,    target: dissertation/04_methods.md,             marker: "factorial", note: "240 conditions -> 2^3 composition factorial; costed reasoning required"}
+      - {id: RP4.3,   name: "Three-regime adaptive protocol + composition tests", disposition: reuse, target: dissertation/04_methods.md,            marker: "R1", note: "protocol retained; novelty claim withdrawn per 2510.05244"}
+      - {id: RP4.4,   name: "Statistical plan and power calculation",         disposition: amend,    target: dissertation/04_methods.md,             marker: "logistic", note: "0.84 power withdrawn; interaction terms become the primary test"}
+      - {id: RP4.5,   name: "Five validity controls",                         disposition: reuse,    target: dissertation/04_methods.md,             marker: "LLM-judge"}
+      - {id: RP4.6,   name: "Reproducibility and release manifest",           disposition: amend,    target: dissertation/04_methods.md,             marker: "reproducib", note: "LangGraph release replaced by the AutoDojo fork extension"}
+      - {id: RP5.1,   name: "Literature drift monitoring protocol",           disposition: reuse,    target: dissertation/04_methods.md,             marker: "drift", note: "THE defensive asset - it predicted exactly this situation. Quote it."}
+      - {id: RP6,     name: "Risk register",                                  disposition: condense, target: dissertation/07_conclusion.md,          marker: "risk"}
+      - {id: RP7,     name: "Expected contributions",                         disposition: amend,    target: dissertation/01_introduction.md,        marker: "Research output", note: "harness contribution restated; CaMeL priority claim withdrawn"}
+      - {id: RP7.1,   name: "Scope limitations",                              disposition: update,   target: dissertation/07_conclusion.md,          marker: "limitation"}
+      - {id: RP8,     name: "Ethics - disclosure, dual use, institutional",   disposition: update,   target: dissertation/04_methods.md,             marker: "disclosure", note: "add the security-sensitive limb; date the clearance; update provider list"}
+      - {id: RP.dec,  name: "DEC-001 to DEC-004",                             disposition: amend,    target: dissertation/04_methods.md,             marker: "DEC-001", note: "all four revised; see docs/REFRAMING_STATEMENT.md section 5"}
+
+  paper1:
+    file: sources/PAPER1_v1.3.md
+    words: 4487
+    note: "NOT sacrosanct. Its Table 2 is explicitly illustrative and its A2ASecBench claim is false."
+    sections:
+      - {id: P1.1, name: "Introduction - Hamming framing, two decisions",  disposition: reuse,    target: dissertation/01_introduction.md,        marker: "deployer"}
+      - {id: P1.2, name: "Why agentic security resists enumeration",       disposition: reuse,    target: dissertation/03_threat_surface_model.md, marker: "enumeration"}
+      - {id: P1.3, name: "Capability-derived threat surfaces + Table 1",   disposition: amend,    target: dissertation/03_threat_surface_model.md, marker: "threat-actor profile", note: "A2ASecBench correction; coverage column re-derived"}
+      - {id: P1.4, name: "Control viability - three forces, applicability gate, decision rule", disposition: amend, target: dissertation/06_viability_framework.md, marker: "applicability gate", note: "amended for composed controls"}
+      - {id: P1.5, name: "Composing the two instruments + Table 2",        disposition: amend,    target: dissertation/06_viability_framework.md,  marker: "measured", note: "illustrative cells replaced with measured values; the integration test lives here"}
+      - {id: P1.6, name: "Limitations incl. security monoculture",         disposition: reuse,    target: dissertation/07_conclusion.md,           marker: "monoculture"}
+      - {id: P1.7, name: "Conclusion",                                     disposition: condense, target: dissertation/07_conclusion.md,           marker: "conclusion"}
+
+retired: []

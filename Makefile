@@ -26,3 +26,4 @@ freeze:
 	@date -u +"DATA FREEZE %Y-%m-%dT%H:%M:%SZ" > results/FREEZE.txt
 	@git rev-parse HEAD >> results/FREEZE.txt
 	@cat results/FREEZE.txt
+sources:          ; cd checks && $(PY) check_sources.py

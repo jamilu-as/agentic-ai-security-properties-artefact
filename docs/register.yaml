@@ -169,6 +169,17 @@ positions:
     marker: "threat surface"
     status: open
 
+  - id: P23
+    item: "Submitted title carried unchanged - 'An Empirical and Analytical Study of Security Properties in Agentic AI System'"
+    lands_in: [dissertation/00_front_matter.md]
+    marker: "Empirical and Analytical"
+    status: open
+  - id: P24
+    item: "Dissertation built FROM the submitted LR and proposal per docs/source_map.yaml, not rewritten beside them"
+    lands_in: [dissertation/02_literature_review.md, dissertation/04_methods.md]
+    marker: "literature review"
+    status: open
+
 # Prior art that must be cited defensively. check_citations.py verifies each key appears.
 prior_art:
   - {id: A1,  key: "2606.15057", why: "AutoDojo - direct antecedent, supplies the harness"}

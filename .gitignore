@@ -1,5 +1,11 @@
-# University-provided materials — MSG states these must not be uploaded to websites.
+# University-provided materials — the MSG states these must not be uploaded to
+# websites. This is the handbook and both marking-criteria sheets.
 *.pdf
+
+# The student's OWN submitted work is extracted to sources/*.md and versioned:
+# it is the foundation the dissertation is built on, and it needs to be readable
+# by the checks. The PDFs themselves stay local.
+!sources/*.md
 
 # Submitted work kept local (Turnitin / originality)
 *.docx

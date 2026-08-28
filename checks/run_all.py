@@ -2,7 +2,7 @@
 """Run every check. `--gate Gn` enforces; default is advisory."""
 import sys
 import check_forbidden_claims, check_register, check_citations
-import check_wordcount, check_structure, check_rubric_trace, check_prereg, check_coherence
+import check_wordcount, check_structure, check_rubric_trace, check_prereg, check_coherence, check_sources
 
 # Which checks are enforcing at which gate.
 GATES = {
@@ -10,8 +10,8 @@ GATES = {
     "G1": ["forbidden", "prereg"],
     "G2": ["forbidden", "prereg"],
     "G3": ["forbidden", "prereg"],
-    "G4": ["forbidden", "prereg", "structure", "rubric", "words", "coherence"],
-    "G5": ["forbidden", "prereg", "structure", "rubric", "words", "register", "citations", "coherence"],
+    "G4": ["forbidden", "prereg", "structure", "rubric", "words", "coherence", "sources"],
+    "G5": ["forbidden", "prereg", "structure", "rubric", "words", "register", "citations", "coherence", "sources"],
 }
 CHECKS = {
     "forbidden": check_forbidden_claims.main,
@@ -22,6 +22,7 @@ CHECKS = {
     "structure": check_structure.main,
     "rubric":    check_rubric_trace.main,
     "coherence": check_coherence.main,
+    "sources":   check_sources.main,
 }
 
 def main():
