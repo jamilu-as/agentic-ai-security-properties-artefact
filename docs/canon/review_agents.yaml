@@ -1,0 +1,29 @@
+# Reviewer agents. Definitions in .claude/agents/; invoke with /review <stage>.
+#
+# The mechanical checks verify that marker strings are present. These verify that the
+# work behind them is real. Sixteen requirements in requirements.yaml are marked
+# `check: pass` precisely because no marker string can establish them.
+
+agents:
+  - {name: rubric-marker,     clears: [P1],     role: "Supervisor-marker. Marks against descriptor_verbatim; band descriptors unavailable and inferred."}
+  - {name: second-marker,     clears: [P3, P4], role: "Blind second marker. Has read the submitted proposal and literature review; hunts undeclared drift."}
+  - {name: external-examiner, clears: [P9],     role: "Cyber security lens, artefact standard, ten viva questions."}
+  - {name: evidence-auditor,  clears: [P2, P6], role: "Claim-to-evidence trace and statistical soundness. Requirement R29."}
+  - {name: drift-auditor,     clears: [P3, P4], role: "Register and source-map completeness. Distinguishes 'marker present' from 'point made'."}
+  - {name: coherence-reader,  clears: [P8],     role: "One continuous read for argument thread. Requirements R19, R23."}
+  - {name: novelty-monitor,   clears: [P5],     role: "Scoop re-check and dead-claim paraphrase detection."}
+  - {name: gate-reviewer,     clears: [],       role: "Named gate's conditions, including what the checks cannot verify."}
+
+stages:
+  G0: [gate-reviewer]
+  G1: [gate-reviewer]
+  G2: [gate-reviewer]
+  G3: [gate-reviewer, evidence-auditor, novelty-monitor]
+  G4: [gate-reviewer, rubric-marker, second-marker, external-examiner, coherence-reader, evidence-auditor, drift-auditor, novelty-monitor]
+  G5: [gate-reviewer, rubric-marker, second-marker, external-examiner, coherence-reader, evidence-auditor, drift-auditor, novelty-monitor]
+
+rules:
+  - "rubric-marker and second-marker run independently and are not shown each other's output. Marking is double-blind."
+  - "Do not average marks across reviewers. Report the range and the disagreement."
+  - "A green mechanical check is necessary, not sufficient. Marker strings can be present with the point unmade."
+  - "Band descriptors are not held in this repository. Any banding a reviewer gives is inferred and must say so."

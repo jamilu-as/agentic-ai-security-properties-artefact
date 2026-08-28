@@ -54,6 +54,27 @@ make coherence      # the RQ1-RQ2-RQ3 spine: is every artefact consumed?
 make sources        # every section of the submitted work has a disposition and lands
 ```
 
+## Reviewer agents
+
+The mechanical checks verify that marker strings are present. They cannot verify that the
+work behind them is real — which is why sixteen requirements in `requirements.yaml` are
+marked `check: pass`. Eight reviewer agents cover that gap, defined in `.claude/agents/`
+and mapped to stages in `docs/canon/review_agents.yaml`.
+
+```
+/review G4        # gate conditions, both markers, external examiner, coherence, evidence, drift, novelty
+/review markers   # the two markers only, run independently
+/review G0        # gate conditions alone
+```
+
+`rubric-marker` and `second-marker` run without seeing each other's output, because marking
+is double-blind. Their marks are not averaged — the range and the disagreement are the
+point. Band descriptors are not held here, so any banding a reviewer gives is inferred and
+says so.
+
+Agent definitions load at session start. After pulling this repo, restart Claude Code
+before invoking them.
+
 ## Non-negotiables
 
 1. The pre-registration is written and hash-locked **before any R2 data is seen**. Subsample n is fixed there.
