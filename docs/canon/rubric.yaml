@@ -163,6 +163,60 @@ oral_presentation:
   - dissertation/oral/SLIDES.md
   - dissertation/oral/QA_PREP.md
 
+# Module-level facts, VERBATIM from sources/university/CP70073O Dissertation MSG AY25-26.pdf.
+# The dissertation is assessed against LO1-LO5; the criteria above are how that is done.
+module:
+  code: CP70073O
+  credits: 60
+  level: 7
+  partner: UWL RAK Branch Campus
+  module_leader: Professor Julie Wall
+  module_tutor: Dr H Shaheen
+  academic_partner_link_tutor: Dr Parisa Saadati
+  external_examiner: Dr Shancang Li, University of Cardiff
+  supervisor: Dr Haleema PK
+
+  formative_assessment: >
+    "This module does not include a separate formative assessment. Instead, formative
+    feedback is provided on an ongoing basis through supervision meetings and feedback on
+    draft material submitted to supervisors." There is no poster, logbook, interim report
+    or other deliverable beyond the dissertation and the oral presentation.
+
+  learning_outcomes:
+    - id: LO1
+      text: "Demonstrate independence, self-direction and originality in carrying out a research project"
+    - id: LO2
+      text: "Demonstrate a deep understanding of the chosen research area/topic, critically evaluate relevant literature, identify key research questions, and formulate research hypothesis in originality"
+    - id: LO3
+      text: "Creatively design research strategy and research methodology to carry out their research, and make sound justification on the design and implementation"
+    - id: LO4
+      text: "Critically analyse and synthesise research findings, as well as evaluate and conclude research outcome and impact within the professional, legal, social and ethical framework if applicable"
+    - id: LO5
+      text: "Demonstrate a systematic understanding of academic writing and presentation, and develop comprehensive skills and techniques on dissertation writing and oral presentation."
+
+  aims:
+    - "Investigate and explore in depth an area of interest related to their studies using previously acquired knowledge and extend this knowledge in a selected area or software application."
+    - "Produce a significant piece of work focussed on a specific topic that synthesises the academic content of previously studied modules."
+    - "Develop a project plan and execute the plan whilst responding to changes and adapting the plan as necessary."
+    - "Analyse experimental and other findings from secondary research and to relate them to an appropriate theoretical analysis."
+    - "Communicate the work to others by means of appropriate documentation of professional quality."
+    - "Analyse, design and implement a software solution to a well-defined problem and document and present the application architecture."
+
+  supervision:
+    limit: "Agree a schedule of meetings with the supervisor within the 6hr limit."
+    draft_feedback: "At a minimum you can expect informal feedback on one draft per deliverable. You will, however, need to negotiate the timing of submission of these drafts well in advance to fit in with your supervisor's schedule."
+    second_reader: >
+      "A second reader will be assigned to each student. Their role is to provide formal
+      feedback on the deliverables that you submit to the School of Computing and
+      Engineering. You should not expect them to act as a second supervisor or ask them to
+      provide feedback on drafts of your work."
+    marking: "Marked by the supervisor and blind double-marked by another member of staff. May also be marked by the External Examiner. Third marker appointed if the two cannot agree."
+
+  sources_not_yet_obtained:
+    - "Dissertation marking rubric and grade descriptors — Blackboard. The only source of the band descriptors (80-100 / 70-79 / 60-69 / 50-59), which are absent from every PDF held here."
+    - "Module reading list — Blackboard module area, or UWLReadingLists by module code."
+
+
 # MSG-mandated document elements. check_structure.py verifies each.
 mandated_structure:
   - {id: titlepage,     text: "Title page with declaration including AI", file: dissertation/00_front_matter.md, marker: "including AI"}

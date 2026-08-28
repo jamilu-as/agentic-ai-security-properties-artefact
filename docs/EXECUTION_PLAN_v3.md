@@ -2,7 +2,7 @@
 
 **Drafted 28 August 2026.** Operational plan. Supersedes `working/RQ2_EXECUTION_PLAN.md` (27 Jul 2026). Canonical statements of the thesis, decisions and deliverables live in `docs/canon/`.
 
-**Self-imposed completion target: Tuesday 8 September 2026 — 12 days.** Formal submission deadline is 28 September; the 20-day residue is insurance, not plan (§3.4).
+**Self-imposed completion target: Tuesday 8 September 2026 — 12 days.** Formal submission deadline is 28 September; the 20-day residue is insurance, not plan (§3.5).
 
 The binding constraint is **neither money nor build effort — it is wall-clock on adaptive runs.** The Batch API's 50% discount is retained, which means R2's sequential iterations become one batch round per day. Three structural choices absorb that: a **pre-registered R2 iteration cap** (§1.3), **full adaptive depth shifted onto the local GPU arm** where there is no batch penalty (§1.1), and **writing fully decoupled from runs** so no writing day waits on a result.
 
@@ -276,11 +276,19 @@ All nine passes of §5. **P4 drift-declaration completeness** and **P7 structura
 
 Each R2 round is one submission with a 24-hour SLA. Three rules: submit each round **before sleeping**, so the turnaround overlaps the night; size submissions to the account's batch caps checked on Day 1; and if a round fails validation, treat the day as lost and apply §3.1's cut order that evening rather than hoping to catch up.
 
-### 3.3 What to ask the supervisor on Day 1
+### 3.3 Supervision constraints
+
+From the MSG, and they bound what can be asked for:
+
+- **Six-hour limit** on the schedule of supervision meetings across the module. Spend it on decisions, not updates.
+- **One draft per deliverable** is the minimum informal feedback to expect, and its timing must be "negotiated well in advance". At twelve days, that draft is the completed one — which is why the 20-day residue exists.
+- **A second reader** is assigned separately, gives formal feedback on submitted deliverables, and is explicitly not a second supervisor. Do not send them drafts.
+
+### 3.4 What to ask the supervisor on Day 1
 
 One message, asking for a dated acknowledgement of: the RQ2 revision, the four DEC revisions, and confirmation that the existing ethics clearance covers the design as revised (computational only, no human subjects, no personal data, no biological material). Not a request for feedback on the work — there is no time to act on it, and asking for what you cannot use wastes their goodwill and yours.
 
-### 3.4 The residue is insurance, not plan
+### 3.5 The residue is insurance, not plan
 
 Completing on 8 September leaves **20 days** to the deadline. That residue is what makes the sprint sound rather than reckless: it converts every risk in §7 from fatal to recoverable, and it buys back the supervisor loop that §3.1 defers.
 
@@ -372,7 +380,7 @@ Fifty of its hundred marks are presenting own results and answering questions on
 | **A batch round fails validation or is rejected on size** | Costs a full day. Check tier and batch caps on Day 1 and size rounds to them. Treat a failed round as a slipped day and apply §3.1's cut order the same evening. |
 | **R2 has not converged at the five-round cap** | Not a failure. Report the convergence curve at the cap and let the local arm's deeper curve carry the convergence claim. The proposal already commits to ASR as a function of iteration budget. |
 | **A day slips and there is no slack** | Fixed cut order in §3.1. Never cut the 2³ factorial. |
-| **No supervisor feedback before completion** | Accepted cost (§3.1), bought back with the 23-day residue (§3.4). |
+| **No supervisor feedback before completion** | Accepted cost (§3.1), bought back with the 23-day residue (§3.5). |
 | Scope creep back toward the abandoned framings | §2.4 is the guard. White-box, provenance and the representation-axis-as-headline are all closed. |
 
 ---

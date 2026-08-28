@@ -244,6 +244,22 @@ positions:
     marker: "Figure"
     status: open
 
+  - id: P37
+    item: "LO4 requires outcome and impact evaluated within the professional, legal, social and ethical framework - not only the technical. Deployment implications, disclosure ethics, dual use, and regulatory context addressed explicitly."
+    lands_in: [dissertation/05_conclusion.md, dissertation/04_results_discussion.md]
+    marker: "ethical"
+    status: open
+  - id: P38
+    item: "Module aim 'develop a project plan and execute the plan whilst responding to changes and adapting the plan as necessary' cited when declaring the design revision - adaptation is an assessed aim, not a concession"
+    lands_in: [dissertation/03_methods.md]
+    marker: "adapting"
+    status: open
+  - id: P39
+    item: "Hypothesis stated explicitly. Required in three places: the Aims criterion, the MSG Methods chapter spec, and LO2 'formulate research hypothesis in originality'."
+    lands_in: [dissertation/01_introduction.md]
+    marker: "hypothesis"
+    status: open
+
 # Prior art that must be cited defensively. check_citations.py verifies each key appears.
 prior_art:
   - {id: A1,  key: "2606.15057", why: "AutoDojo - direct antecedent, supplies the harness"}
