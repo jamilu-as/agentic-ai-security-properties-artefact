@@ -70,7 +70,7 @@ W3's work is therefore:
 | Axis | Instance | Source |
 |---|---|---|
 | Prompt-level | `spotlighting_with_delimiting` | AutoDojo, integrated |
-| Detection-side | `promptguard` | AutoDojo, integrated |
+| Detection-side | `piguard` | AutoDojo, integrated |
 | System-level IFC | `camel` | AutoDojo, integrated |
 
 Eight combinations: none, three singles, three pairs, one triple.
@@ -204,17 +204,22 @@ One R2 batch round per day drives the critical path. Writing runs alongside from
 - Send `REFRAMING_STATEMENT.md` §0 to supervisor — asking for **acknowledgement, not feedback** (§3.3).
 - Rent the 48GB GPU; start `Llama-3-8B-Instruct` and `-RR` downloads immediately.
 - Fork AutoDojo; environment; dependencies.
-- **Reproduce one published AutoDojo cell.** The day's real gate.
+- **Reproduce one published AutoDojo cell — from the `banking` suite.** Banking is the only suite whose payloads differentiate by defence; a match on travel or slack would confirm plumbing and nothing about the defence axis.
+- **Run the defence-differential pair.** Travel's injections are byte-identical across all ten defence directories, which makes them a ready-made controlled experiment: attack held fixed, defence varied. Run one travel payload under `no_defense` and under one active defence. **Different ASRs** mean the defence is genuinely applied at evaluation time and the harness is trustworthy. **Identical ASRs** mean the evaluation path is defence-blind — which identifies the mechanism behind the duplication and is a stronger result than the reproduction itself. Either outcome discharges the gate's purpose and closes W0's open step.
 - Fix Paper 1: A2ASecBench (Table 1, §3.3) + four venue updates → v1.4. **Register C1, C6.**
 
 **Day 2**
 - Apply arXiv:2510.05244's metric and implementation fixes; log what changed.
-- Build the composition configuration layer — 2³ over spotlighting / promptguard / camel.
+- Build the composition configuration layer — 2³ over spotlighting / piguard / camel.
 - Integrate the RR + base model arm under vLLM.
 - **Write and timestamp the pre-registration.** Fixed subsample n=200 stratified across suites; the analysis model; confirmatory vs exploratory labelling; **the R2 iteration cap of five rounds for the closed-weight arm and full depth for the local arm**; the declared asymmetry. Before any results. Non-negotiable.
 - Submit the R1 batch.
 
-**Gate:** one cell reproduces. **If not by end of Day 2, stop debugging — cite AutoDojo's released numbers as the baseline and build only the composition layer.** Pre-made so it isn't deliberated mid-sprint.
+**Gate:** a banking cell reproduces within tolerance, **and** the defence-differential run resolves either way.
+
+**If not by end of Day 2:** stop debugging and proceed on an **internal baseline**. The 2³ factorial contains its own baselines — the all-off cell is no-defence and the three single-axis cells are the individual defences — so the composition result never required AutoDojo's released baseline at all. Cite their published numbers as external context only.
+
+This replaces an earlier fallback that failed on two counts: it hedged reproduction *difficulty* when the live blocker is harness *inoperability* (no API key blocks the composition runs identically, so "build only the composition layer" would yield a configuration layer with nothing to measure), and its baseline was the released trajectories — precisely what the duplication finding impugns. An internal baseline is immune to both.
 
 ### Days 3–7 · Sun 30 August – Thu 3 September · R2 rounds, and most of the writing
 
@@ -270,7 +275,7 @@ All nine passes of §5. **P4 drift-declaration completeness** and **P7 structura
 
 **Cross-arm comparability is weakened** by the asymmetric R2 depth (§1.1). Declared in Methods and carried into limitations.
 
-**If a day slips, the cut order is fixed in advance:** (1) drop the fourth model configuration; (2) reduce the closed-weight R2 cap from five rounds to three and report the curve at three; (3) reduce the local arm's subsample below 200 and report it. **Never cut the 2³ factorial** — it is the design, and without it there is no composition result.
+**If a day slips.** The cut order below governs **Days 3–7 only**; it is a set of R2-depth levers and none of it applies at G0, G1, G4 or G5. A Day 1–2 slip is handled by the internal-baseline fallback in §3 above; a Day 11–12 slip is handled by the 20-day residue. For Days 3–7: (1) drop the fourth model configuration; (2) reduce the closed-weight R2 cap from five rounds to three and report the curve at three; (3) reduce the local arm's subsample below 200 and report it. **Never cut the 2³ factorial** — it is the design, and without it there is no composition result.
 
 ### 3.2 Batch mechanics are the failure mode
 

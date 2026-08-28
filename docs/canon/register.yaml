@@ -191,7 +191,7 @@ positions:
     status: open
 
   - id: P27
-    item: "Individual-defence baseline from AutoDojo's released optimisation trajectories, reported as the reference the composition result is measured against"
+    item: "Individual-defence baseline taken INTERNALLY from the factorial's own all-off and single-axis cells, not from AutoDojo's released trajectories - which the duplication finding shows are conditioned on neither defence nor target model for 137 of 150 cells. Their published numbers cited as external context only."
     lands_in: [dissertation/04_results_discussion.md]
     marker: "baseline"
     status: open
@@ -217,7 +217,7 @@ positions:
     status: open
 
   - id: P32
-    item: "Duplication in AutoDojo's released variant grid reported: 51 distinct cells of 150, all travel cells identical across ten defence directories. Restricts the W0 baseline and is disclosed upstream."
+    item: "Duplication in AutoDojo's released variant grid reported: 13 distinct payloads across 150 cells (51 holding target model fixed); all fifty travel cells share one payload; the model metadata field is the optimiser, not the target. Restricts the W0 baseline and is disclosed upstream."
     lands_in: [dissertation/03_methods.md, dissertation/04_results_discussion.md]
     marker: "duplicat"
     status: open
