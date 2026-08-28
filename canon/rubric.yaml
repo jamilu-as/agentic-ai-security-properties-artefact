@@ -24,6 +24,35 @@
 #
 # check_rubric_trace.py fails if any criterion has no non-stub evidence file.
 total: 100
+
+# ---------------------------------------------------------------------------
+# BLACKBOARD RUBRIC — the instrument the marker actually scores with.
+# Extracted 29 Aug 2026 from sources/university/BlackBordRubricDetails.html
+# into canon/rubric_bands.yaml (verbatim descriptors, four bands per criterion).
+#
+# TWO FACTS THAT CHANGE HOW MARKING WORKS, and that this file previously had wrong:
+#
+# 1. SCORING IS BANDED, NOT CONTINUOUS. Each criterion scores exactly one of
+#    Excellent / Satisfactory / Unsatisfactory / Poor — for a 10-mark criterion
+#    that is 10, 7.5, 5 or 2.5. There is no 8.5 and no 9. Every mark this project
+#    recorded before 29 Aug (8.5, 8.0, 7) is unattainable. The only question a
+#    marker answers is WHICH BAND, and for this work the live question is almost
+#    always Excellent vs Satisfactory — a 2.5-mark step per criterion, 25 marks
+#    across the whole submission.
+#
+# 2. THE SUB-ITEM SPLITS BELOW ARE NOT IN THE BLACKBOARD RUBRIC. The 20/15 split
+#    of Results, and the 5/5 and 5/5/5 splits elsewhere, come from the marking
+#    criteria PDF. Blackboard scores Results as ONE 35-mark criterion. Treat the
+#    sub-items as what the descriptor covers, never as separately scorable parts.
+#
+# Where the two instruments differ, the Blackboard bands govern the score and the
+# PDF sub-items govern what evidence the band descriptor is judged on.
+# ---------------------------------------------------------------------------
+band_source: canon/rubric_bands.yaml
+scoring: banded
+bands_per_criterion: [excellent, satisfactory, unsatisfactory, poor]
+band_fractions: {excellent: 1.0, satisfactory: 0.75, unsatisfactory: 0.5, poor: 0.25}
+
 criteria:
 - id: aims
   name: Aims and Objectives

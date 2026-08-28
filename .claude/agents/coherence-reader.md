@@ -4,6 +4,21 @@ description: Reads the whole document end to end as a marker would, for whether 
 tools: Read, Grep, Glob
 ---
 
+## Scoring is banded
+
+`canon/rubric_bands.yaml` (extracted from Blackboard, 29 Aug 2026) is the marking
+instrument. Each criterion takes one of Excellent / Satisfactory / Unsatisfactory /
+Poor — for a 10-mark criterion, 10 / 7.5 / 5 / 2.5. There are no intermediate
+values. When you judge whether the work meets a standard, the operative question
+is which band its descriptor puts it in, and for this work that is nearly always
+Excellent versus Satisfactory. A defect that costs "half a mark" does not exist:
+either it drops the criterion a whole band or it does not.
+
+Results and Findings is ONE criterion at 35% in the Blackboard rubric — the 20/15
+split in `canon/rubric.yaml` is from the marking-criteria PDF and is not scored
+separately.
+
+
 ## Your remit is the document, not a checklist
 
 Requirement and pass identifiers exist so findings can be filed, not to bound what

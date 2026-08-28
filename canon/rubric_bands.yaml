@@ -1,0 +1,119 @@
+source: sources/university/BlackBordRubricDetails.html
+extracted: '2026-08-29'
+note: 'Extracted mechanically from the Blackboard rubric. This is the marking instrument the markers actually
+  use. Two facts change how marking works: scoring is BANDED, not continuous - a criterion scores 10,
+  7.5, 5 or 2.5, never 8.5; and Results and Findings is ONE criterion at 35%, not a 20/15 split. Descriptors
+  are verbatim.'
+max_score: 100
+criteria:
+- name: Aims and Objectives
+  weight_pct: 10
+  bands:
+    excellent:
+      descriptor_verbatim: Background and context of research area are thoroughly introduced. Research
+        questions are clearly defined and highly appropriate for Master's level. Aims, objectives, and
+        hypotheses are exceptionally well-formulated, with specific, measurable, and achievable deliverables.
+      points: 10.0
+    satisfactory:
+      descriptor_verbatim: Background and research questions are adequately defined and suitable for Master's
+        level. Aims and objectives are outlined with reasonable clarity and largely achievable deliverables.
+      points: 7.5
+    unsatisfactory:
+      descriptor_verbatim: Background is vague or incomplete. Research questions lack clear focus or Master's
+        level rigor. Aims and deliverables are loosely defined or partially unachievable
+      points: 5.0
+    poor:
+      descriptor_verbatim: Minimal or missing research context. Research questions are undefined or inappropriate.
+        Objectives and deliverables lack clarity, structure, or feasibility.
+      points: 2.5
+- name: Literature Review
+  weight_pct: 10
+  bands:
+    excellent:
+      descriptor_verbatim: In-depth, high-quality review supported by relevant literature. Clear gap analysis
+        and research motivation well addressed through synthesis and evaluation.
+      points: 10.0
+    satisfactory:
+      descriptor_verbatim: Satisfactory review with sufficient relevant literature. Gap analysis and research
+        motivation are present but may lack synthesis depth.
+      points: 7.5
+    unsatisfactory:
+      descriptor_verbatim: Limited literature review with insufficient depth or outdated sources. Gap
+        analysis and research motivation are weak or poorly articulated.
+      points: 5.0
+    poor:
+      descriptor_verbatim: Superficial or incomplete review with missing relevant literature. Fails to
+        identify research gaps or justify motivation.
+      points: 2.5
+- name: Methodology and Approach
+  weight_pct: 10
+  bands:
+    excellent:
+      descriptor_verbatim: Detailed research design and process (experiments, surveys, data collection,
+        procedures). Chosen method is thoroughly articulated and justified.
+      points: 10.0
+    satisfactory:
+      descriptor_verbatim: Research design and process are described adequately. Methodology is articulated
+        and justified with minor gaps in context.
+      points: 7.5
+    unsatisfactory:
+      descriptor_verbatim: Research design is vague or lacks sufficient detail. Method justification is
+        weak or partially context-inappropriate.
+      points: 5.0
+    poor:
+      descriptor_verbatim: Poorly described research design or process. Methods are unjustified, inappropriate,
+        or missing entirely.
+      points: 2.5
+- name: Results and Findings
+  weight_pct: 35
+  bands:
+    excellent:
+      descriptor_verbatim: Strong evidence of main research outputs (theories, algorithms, software, models).
+        Clear statement of data collected with comprehensive descriptive findings.
+      points: 35.0
+    satisfactory:
+      descriptor_verbatim: Clear evidence of main research output. Data collected and results are stated
+        with a satisfactory descriptive summary.
+      points: 26.25
+    unsatisfactory:
+      descriptor_verbatim: Limited evidence of core research outputs. Data collection and results presentation
+        lack clarity or adequate detail
+      points: 17.5
+    poor:
+      descriptor_verbatim: Insufficient or missing research output. Results are absent, unclearly stated,
+        or poorly summarized.
+      points: 8.75
+- name: Analysis and Conclusions
+  weight_pct: 15
+  bands:
+    excellent:
+      descriptor_verbatim: Sound conclusions and summary of contributions supported by rigorous data evaluation.
+        Thorough discussion of limitations, impacts, and future work.
+      points: 15.0
+    satisfactory:
+      descriptor_verbatim: Sound conclusions drawn with fair data analysis. Basic discussion of limitations,
+        implications, and future improvements.
+      points: 11.25
+    unsatisfactory:
+      descriptor_verbatim: Conclusions are weakly supported by data analysis. Superficial reflection on
+        limitations, impact, or future work.
+      points: 7.5
+    poor:
+      descriptor_verbatim: Unsupported or missing conclusions. Critical evaluation and reflection on limitations/impact
+        are absent.
+      points: 3.75
+- name: Oral Defence
+  weight_pct: 20
+  bands:
+    excellent:
+      descriptor_verbatim: Excellent oral presentation delivery and comprehensive handling of Q&A session.
+      points: 20.0
+    satisfactory:
+      descriptor_verbatim: Clear presentation delivery with satisfactory responses during Q&A.
+      points: 15.0
+    unsatisfactory:
+      descriptor_verbatim: Weak presentation or difficulty addressing questions during Q&A.
+      points: 10.0
+    poor:
+      descriptor_verbatim: Poor presentation delivery and unable to handle Q&A
+      points: 5.0

@@ -64,6 +64,15 @@ corrections:
   - dissertation/02_literature_review.md
   marker: CIMemories
   status: open
+- id: C13
+  item: 'Blackboard band descriptors obtained 29 Aug 2026 and extracted to canon/rubric_bands.yaml.
+    Scoring is banded (10/7.5/5/2.5), not continuous: every mark recorded before that
+    date was on a scale that does not exist. Results and Findings is one 35-mark criterion,
+    not a 20/15 split.'
+  lands_in:
+  - canon/rubric.yaml
+  marker: banded
+  status: closed
 positions:
 - id: P1
   item: RQ2 stated with the composition scoping clause
