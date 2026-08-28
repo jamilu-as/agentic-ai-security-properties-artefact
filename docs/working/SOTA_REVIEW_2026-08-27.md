@@ -69,7 +69,7 @@ New defences: PromptArmor (reported 0–0.47% ASR at 76.35% utility on o4-mini),
 
 New red-teaming: PISmith (2603.13026, RL-based), PI-Hunter (2606.12737), AgentVigil (2505.05849), IPI-proxy (2605.11868), Agent Against Agent (2608.05108).
 
-New benchmarks: AgentRedBench (2606.02240), SeClaw (2606.02302), FORTIS over-privilege (2605.09163), Taxonomy and Consistency Analysis of Agent Safety Benchmarks (2605.16282), MCP-SafetyBench, WASP (NeurIPS D&B).
+New benchmarks: AgentRedBench (2606.02240), SeClaw (2606.02302), FORTIS over-privilege (2605.09163), Taxonomy and Consistency Analysis of Agent Safety Benchmarks (2605.16282), MCP-SafetyBench [UNVERIFIED — no benchmark under this name could be confirmed; MCPSecBench arXiv:2508.13220 exists but is a non-peer-reviewed technical report], WASP (NeurIPS D&B).
 
 ### 1.5 The Autonomy Tax — directly relevant to RQ3
 

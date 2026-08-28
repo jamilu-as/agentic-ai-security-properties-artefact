@@ -36,7 +36,7 @@ Paper 1 §3 delivers O1 and substantially delivers O2: Table 1 already maps capa
 The genuine W1 work is bounded:
 - **One row is wrong** — peer agents / agent-to-agent integrity reads "none dedicated"; A2ASecBench is ICLR 2026.
 - **Five rows to verify** — AgentDojo, CVE-Bench, CIMemories, OS-Harm, AI-LieDar as first-dedicated benchmarks against the 2026 landscape.
-- **One possible addition** — agent extensibility / skills emerged as a capability cluster with its own attack surface after the cut-off (SkillJack, SkillSentry, trajectory poisoning, FORTIS over-privilege). A seventh row would be a genuine extension of the derivation, and it is the strongest available demonstration that the model *derives* rather than *enumerates*: a capability that did not exist when the vocabulary was written should slot into it without redesign.
+- **Two additions** — agent extensibility / installable skills (first dedicated benchmark Skill-Inject, arXiv:2602.20156, 23 Feb 2026) and, optionally, multimodal perceptual input (VPI-Bench, arXiv:2506.02456). Note that FORTIS (arXiv:2605.09163, 9 May 2026) predates the 14 May literature cut-off, so the skills cluster was available and missed rather than genuinely post-dating the review. A cluster that slots into the existing vocabulary without redesign is the strongest available evidence that the model derives rather than enumerates.
 - **Expansion** from 716 words to chapter length.
 
 ### 1.2 W3 — RQ3, and what "slot the values in" was hiding

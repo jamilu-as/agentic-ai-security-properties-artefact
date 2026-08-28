@@ -154,7 +154,7 @@ positions:
     marker: "compensator"
     status: open
   - id: P25
-    item: "Table 1 seventh row considered for agent extensibility/skills - a capability cluster that emerged after the cut-off. Demonstrates the model derives rather than enumerates."
+    item: "Table 1 seventh row considered for agent extensibility/installable skills as a seventh cluster, with Skill-Inject (arXiv:2602.20156) as first dedicated benchmark. Demonstrates the model derives rather than enumerates."
     lands_in: [dissertation/04_results_discussion.md]
     marker: "extensibility"
     status: open
@@ -220,6 +220,17 @@ positions:
     item: "Duplication in AutoDojo's released variant grid reported: 51 distinct cells of 150, all travel cells identical across ten defence directories. Restricts the W0 baseline and is disclosed upstream."
     lands_in: [dissertation/03_methods.md, dissertation/04_results_discussion.md]
     marker: "duplicat"
+    status: open
+
+  - id: P33
+    item: "Table 1 corrected per workstreams/w1_threat_surface/COVERAGE_AUDIT.md - five of six rows changed: Tools priority to InjecAgent, code-interpreter category error corrected to RedCode, memory property relabelled contextual integrity, actuators marked none dedicated, peer agents to TAMAS"
+    lands_in: [dissertation/04_results_discussion.md]
+    marker: "InjecAgent"
+    status: open
+  - id: P34
+    item: "Coverage audit's five confidence flags carried into the chapter as stated uncertainty, not asserted fact - actuators row, TAMAS priority, MemEvoBench claim, A2ASecBench author list, CVE-Bench venue"
+    lands_in: [dissertation/04_results_discussion.md]
+    marker: "not established"
     status: open
 
 # Prior art that must be cited defensively. check_citations.py verifies each key appears.
