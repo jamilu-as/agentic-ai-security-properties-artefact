@@ -21,7 +21,7 @@ That is the dataset, and it is a different cut from the paper. AutoDojo reports 
 | Iterations | 0–6 |
 | `n_pairs` per record | 1–12 |
 
-**`camel` is absent.** The shipped grid predates the August 2026 CaMeL work, so the system-level family here is `drift` and `progent` only.
+**`camel` is absent from this grid**, which predates the August 2026 CaMeL work, so the system-level family *in the released cells* is `drift` and `progent` only. The harness itself integrates `camel`; verification at `work/w2-composition/harness/REPRODUCTION.md`.
 
 ## First descriptive pass — and why it is not yet reportable
 
