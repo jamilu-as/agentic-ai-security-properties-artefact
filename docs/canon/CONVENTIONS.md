@@ -37,6 +37,14 @@ which in the file. `rubric.yaml` is the worked example: criteria and mandated st
 are quoted verbatim from university documents; the chapter mapping and word budget are
 ours. An inference that reads as a quotation becomes a constraint nobody imposed.
 
+## Quotation
+
+A field named `_verbatim` holds source text exactly, including its examples, qualifiers
+and "e.g. ... etc." Paraphrase changes meaning: trimming the example list from the
+research-output descriptor turns an open list into a closed enumeration. Where a check
+can verify canon against its source, write the check — `check_rubric_verbatim.py` is the
+worked example. A promise that something is verbatim is not evidence that it is.
+
 ## Applies to
 
 Canon files, chapter sources, commit messages, and any artefact intended to outlive the

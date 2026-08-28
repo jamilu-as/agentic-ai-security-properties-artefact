@@ -2,16 +2,16 @@
 """Run every check. `--gate Gn` enforces; default is advisory."""
 import sys
 import check_forbidden_claims, check_register, check_citations
-import check_wordcount, check_structure, check_rubric_trace, check_prereg, check_coherence, check_sources
+import check_wordcount, check_structure, check_rubric_trace, check_prereg, check_coherence, check_sources, check_rubric_verbatim
 
 # Which checks are enforcing at which gate.
 GATES = {
-    "G0": ["forbidden"],
-    "G1": ["forbidden", "prereg"],
-    "G2": ["forbidden", "prereg"],
-    "G3": ["forbidden", "prereg"],
-    "G4": ["forbidden", "prereg", "structure", "rubric", "words", "coherence", "sources"],
-    "G5": ["forbidden", "prereg", "structure", "rubric", "words", "register", "citations", "coherence", "sources"],
+    "G0": ["forbidden", "verbatim"],
+    "G1": ["forbidden", "verbatim", "prereg"],
+    "G2": ["forbidden", "verbatim", "prereg"],
+    "G3": ["forbidden", "verbatim", "prereg"],
+    "G4": ["forbidden", "verbatim", "prereg", "structure", "rubric", "words", "coherence", "sources"],
+    "G5": ["forbidden", "verbatim", "prereg", "structure", "rubric", "words", "register", "citations", "coherence", "sources"],
 }
 CHECKS = {
     "forbidden": check_forbidden_claims.main,
@@ -23,6 +23,7 @@ CHECKS = {
     "rubric":    check_rubric_trace.main,
     "coherence": check_coherence.main,
     "sources":   check_sources.main,
+    "verbatim":  check_rubric_verbatim.main,
 }
 
 def main():

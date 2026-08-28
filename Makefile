@@ -27,3 +27,4 @@ freeze:
 	@git rev-parse HEAD >> workstreams/w2_composition/results/FREEZE.txt
 	@cat workstreams/w2_composition/results/FREEZE.txt
 sources:          ; cd checks && $(PY) check_sources.py
+verbatim:         ; cd checks && $(PY) check_rubric_verbatim.py
