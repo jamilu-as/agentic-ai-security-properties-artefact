@@ -123,9 +123,10 @@ time, across axes, with the metric corrections applied.
    factorial under a shared adaptive attacker is the contribution.
 2. **A composition layer.** The harness cannot compose: `defense` is a single
    string dispatched through mutually exclusive branches, and the system-level
-   branch returns before every filter branch. Making it compose is a
-   re-architecture of the pipeline factory, with a fingerprint gate that fails a
-   run whose built pipeline is not the cell it claims to be.
+   branch returns before every filter branch. Composed pipelines are therefore
+   built directly from its elements rather than requested through its
+   configuration — the harness itself is left unmodified — with a fingerprint gate
+   that fails a run whose built pipeline is not the cell it claims to be.
 3. **An estimand that is not satisfied by its own null.** Testing against
    a₁a₂/a₀ rather than the raw product, with an equivalence branch that can affirm
    independence and a pre-committed undetermined band. The contrast itself is
