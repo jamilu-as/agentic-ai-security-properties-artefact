@@ -73,6 +73,41 @@ defence's source or weights, which is why §3.5 places this at the attack-aware
 tier and not the architecture-aware one — the distinction is stated in §2.4's four
 tiers and the placement is correct.
 
+## If the harness is unmodified, what does the run answer that its paper did not?
+
+The sharpest form of the question, and it has an empirical answer.
+
+**The harness admits one defence per run, and the released grid contains no
+composed configuration.** Verified directly against all 65,311 released trajectory
+records: ten distinct `defense` values, every one a single defence, zero
+combinations. So the composed cells are not merely unpublished — the tool as
+shipped cannot produce them, which is why nobody has.
+
+That is what the composition layer buys. It is not a modification and it is not an
+improvement to the harness; it is the thing that makes the question askable. Half
+the factorial is territory no run has entered:
+
+| Cell | Status |
+|---|---|
+| `none`, `spotlighting`, `piguard`, `camel` | four single-defence cells; the same *kind* of configuration AutoDojo evaluated |
+| `spotlighting+piguard`, `spotlighting+camel`, `piguard+camel`, and the triple | **four composed cells no tool has produced and no study has run** |
+
+**Why the four single cells still have to be run rather than inherited.** They are
+a₁, a₂, a₃ and a₀ — terms *inside* the estimand, not context for it. ρ\* is a ratio
+of the composed rate to what those four predict, so an error in any of them moves
+the headline result directly. Two reasons they cannot be taken from the published
+grid: those cells were run on a different sample, different suites and different
+models, so they do not estimate the same quantity; and the integrity finding
+established that the released cells reduce to 13 distinct payloads across 150, so
+they would be an unreliable baseline even if the quantities matched. §3.2 records
+that baselines are internal for exactly this reason.
+
+So the run divides roughly in half: one half establishes a baseline the estimand
+requires and cannot inherit, and one half enters configurations that have never
+been evaluated by anyone. Neither half is a replication of the AutoDojo paper —
+the first is a re-estimation on this study's own sample because the estimand
+demands it, and the second is the contribution.
+
 ## What this study adds
 
 Stated plainly, because the harness already does a great deal.
