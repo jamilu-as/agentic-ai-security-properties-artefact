@@ -1,0 +1,21 @@
+note: 'Threat libraries are pinned like the harness: a library that moves under the
+  study would silently change the mapping a surface is expressed in. Cloned 29 Aug
+  2026; the commit is the citable version.'
+libraries:
+- id: ATLAS
+  name: MITRE ATLAS
+  path: threat-libraries/atlas-data
+  commit: 2306ecaf04fb7a14be068b97e3ff40c2d9112e28
+  release: v2026.07
+  data_version: 5.6.0
+  tactics: 16
+  techniques: 170
+  file: dist/ATLAS.yaml
+  licence: see repo LICENSE
+  role: primary enumerative comparator for RQ1 and the vocabulary the derived surface
+    is mapped into
+- id: ATLAS-AGENT
+  name: MITRE ATLAS knowledge-base agent
+  path: threat-libraries/atlas-knowledge-base-agent
+  commit: b2bca6438e99cb72752c27be1728f062b6f943ca
+  role: reference implementation of retrieval over ATLAS; not a separate data source
