@@ -20,7 +20,7 @@ figures:
     to a single orchestrator (see 1.7)
 - id: F3
   source: RP Figure 1 — 4x4x5 evaluation matrix
-  file: null
+  file: dissertation/figures/fig_composition_architecture.svg
   disposition: redraw
   target: dissertation/03_methods.md
   why: 'Structure and visual language carry; the content does not. Redraw as the 2^3
@@ -28,9 +28,7 @@ figures:
     "as proposed" panel if a before/after helps declare the re-scope.
 
     '
-  status: TO DRAW - composition-layer architecture. Module aim requires the application
-    architecture to be documented and presented; no architecture figure exists anywhere.
-    This is the highest-value missing figure.
+  status: built 29 Aug 2026 - the application architecture the module aim requires
 - id: F4
   source: RP Figure 2 — dissertation Gantt
   file: dissertation/figures/fig_gantt_RETIRED.svg

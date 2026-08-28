@@ -19,3 +19,22 @@ the data will not support.
 That also makes the framework falsifiable in a way a prose rule is not: determinacy,
 ordering validity and stability are all measurable, and the instrument is what makes them
 measurable on inputs it did not choose.
+
+## Running it
+
+```python
+from viability import Profile, Adversary, decide, stability
+
+d = decide(Profile(adaptive_lift=6.0, utility_cost=3.0, cost_ratio=0.8),
+           Adversary("criminal", "commodity", budget_bound=True))
+d.treatment        # reduce | accept | transfer | avoid
+d.margin           # distance to the nearest boundary, per force
+d.forces_applied   # economic drops out for an unbounded adversary
+
+stability(bootstrap_profiles, adversary)   # -> 'undetermined' if it flips on noise
+```
+
+Cut-points are those fixed in `preregistration/PREREGISTRATION.md` §9 and are not
+tunable here: a rule whose thresholds move after seeing data is not a rule.
+
+Tests: `python3 work/tests/test_instruments.py`.

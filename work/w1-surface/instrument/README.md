@@ -17,3 +17,26 @@ fixed rather than reconstructed by each analyst.
 
 Inputs are drawn per suite from the benchmark's tool manifests, so the predictive-validity
 test reuses deployments the composition study already runs.
+
+## Running it
+
+```python
+from derivation import Manifest, derive, from_tool_manifest
+
+s = derive(Manifest(tools=["send_money"], reads_untrusted=True,
+                    actuators=True, persists_memory=True))
+s.ranked()        # properties at risk, unmeasured ranked first
+s.compositional   # properties no single capability admits
+s.actor           # threat-actor tuple; conditions which RQ3 forces apply
+```
+
+`from_tool_manifest(names)` builds the manifest from a benchmark suite's tool
+names, which is how the predictive-validity test is applied per suite before any
+attack data is examined.
+
+The vocabulary is fixed in `CLUSTERS` (seven clusters) and `COMPOSITIONS`. The
+analyst supplies the manifest; the mapping is not theirs to reinterpret — that
+separation is exactly what O1b measures for inter-rater agreement, and testing the
+coded part instead would return perfect agreement by construction.
+
+Tests: `python3 work/tests/test_instruments.py`.
