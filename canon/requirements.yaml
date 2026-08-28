@@ -335,7 +335,7 @@ requirements:
   requirement: A "since literature review" section, and drift addressed explicitly.
   check: auto
   target: dissertation/02_literature_review.md
-  marker: "since literature review"
+  marker: "since the literature review"
 
 - id: R33
   source: RP §8

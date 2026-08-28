@@ -33,7 +33,7 @@ corrections:
   - id: C6
     item: "Venue updates: Nasr USENIX Sec 2026; CaMeL SaTML 2026; Panfilov ICLR 2026; Sheth ICML 2026"
     lands_in: [dissertation/06_references.md]
-    marker: "USENIX Security 2026"
+    marker: "USENIX Security"
     status: open
   - id: C7
     item: "Proposal says mixed-effects in Abstract/O4/DEC-003 but fixed-effects in 4.4; resolved in favour of the actual model"
