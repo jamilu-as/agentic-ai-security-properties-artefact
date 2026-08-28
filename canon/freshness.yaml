@@ -4,7 +4,7 @@ derived:
   - dissertation
   - work/reviews
   why: entry point; states what is done and what is next
-  verified: d5549e4f8d53d5ad
+  verified: 5292798c8166dd4c
 - file: canon/thesis_spine.yaml
   depends_on:
   - dissertation/01_introduction.md
