@@ -1,0 +1,45 @@
+name: quality gates
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      gate:
+        description: "Gate to enforce (G0..G5). Blank = advisory."
+        required: false
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.11"}
+      - run: pip install pyyaml
+
+      # Always enforcing, from day one: never let a dead claim into the writing.
+      - name: Forbidden claims
+        run: cd checks && python check_forbidden_claims.py
+
+      # Pre-registration integrity: warns until locked, fails if changed after locking.
+      - name: Pre-registration integrity
+        run: cd checks && python check_prereg.py
+
+      # Advisory while chapters are stubs; enforced at the gate via workflow_dispatch.
+      - name: All checks (advisory)
+        if: ${{ !inputs.gate }}
+        run: cd checks && python run_all.py
+
+      - name: All checks (gate ${{ inputs.gate }})
+        if: ${{ inputs.gate }}
+        run: cd checks && python run_all.py --gate ${{ inputs.gate }}
+
+      - name: Guard against committed university PDFs
+        run: |
+          if git ls-files | grep -qi '\.pdf$'; then
+            echo "PDF committed. The MSG forbids uploading university-provided materials."
+            git ls-files | grep -i '\.pdf$'
+            exit 1
+          fi
+          echo "ok — no PDFs tracked"

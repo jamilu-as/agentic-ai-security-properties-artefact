@@ -1,0 +1,29 @@
+# University-provided materials — MSG states these must not be uploaded to websites.
+*.pdf
+
+# Submitted work kept local (Turnitin / originality)
+*.docx
+~$*
+
+# Secrets and environment
+.env
+.env.*
+secrets/
+*.key
+
+# Run outputs: manifests are committed, raw model outputs are not
+# (proposal §4.6: "raw model outputs withheld to prevent prompt extraction reverse-engineering")
+results/raw/
+results/**/*.jsonl
+*.ckpt
+*.safetensors
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.pytest_cache/
+
+# OS
+.DS_Store

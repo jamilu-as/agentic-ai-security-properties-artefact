@@ -1,0 +1,99 @@
+# CP70073O marking criteria, verbatim weightings, mapped to evidence.
+# check_rubric_trace.py fails if any criterion has no non-stub evidence file.
+total: 100
+criteria:
+  - id: aims
+    name: Aims and Objectives
+    marks: 10
+    sub:
+      - {marks: 5, text: "Background and context well introduced. Research question(s) clearly defined, appropriate for Master level."}
+      - {marks: 5, text: "Aims and objectives clearly defined; hypothesis well-formulated; expected research output and deliverables specific, measurable and achievable."}
+    evidence: [dissertation/01_introduction.md]
+    must_contain: ["hypothesis", "objective", "research question", "deliverable"]
+
+  - id: litreview
+    name: Literature Review
+    marks: 10
+    sub:
+      - {marks: 5, text: "In-depth and quality review supported by sufficient, appropriate and relevant literature."}
+      - {marks: 5, text: "Gap analysis and motivation addressed through analysis, evaluation and synthesis."}
+    evidence: [dissertation/02_literature_review.md]
+    must_contain: ["gap", "since literature review"]
+
+  - id: methods
+    name: Methodology and Approach
+    marks: 10
+    sub:
+      - {marks: 5, text: "Research design and process described in detail."}
+      - {marks: 5, text: "Chosen method/approach well-articulated and justified in the specific context of the research."}
+    evidence: [dissertation/04_methods.md]
+    must_contain: ["justif", "pre-registration", "AutoDojo", "ethic"]
+
+  - id: results
+    name: Results and Findings
+    marks: 35
+    sub:
+      - {marks: 20, text: "Presence and evidence of main research output (new theory, design and methodology, new technical solutions such as algorithms, architectures, conceptual / analytic models, software artefacts)."}
+      - {marks: 15, text: "Statement and description of data collected and results; descriptive summary of findings."}
+    evidence:
+      - dissertation/03_threat_surface_model.md
+      - dissertation/05_results_discussion.md
+      - dissertation/06_viability_framework.md
+    must_contain: ["Research output", "Table", "Figure"]
+
+  - id: analysis
+    name: Analysis and Conclusions
+    marks: 15
+    sub:
+      - {marks: 5, text: "Summary of contributions; sound conclusions drawn and supported by analysis."}
+      - {marks: 5, text: "Critical analysis, exploration and evaluation of data collected / results generated."}
+      - {marks: 5, text: "Limitation and implication / impact of research discussed. Reflection and identification of improvements / future work."}
+    evidence: [dissertation/05_results_discussion.md, dissertation/07_conclusion.md]
+    must_contain: ["limitation", "future work", "contribution"]
+
+  - id: oral
+    name: Oral Defence
+    marks: 20
+    note: "Separate marking form, out of 100, scaled by /5. 30 own results; 20 Q&A; 15 theory; 10 structure; 10 slides; 10 future work; 5 language."
+    evidence: [dissertation/oral/OUTLINE.md]
+    must_contain: ["future work", "results"]
+
+# MSG-mandated document elements. check_structure.py verifies each.
+mandated_structure:
+  - {id: titlepage,     text: "Title page with declaration including AI", file: dissertation/00_front_matter.md, marker: "including AI"}
+  - {id: copyright,     text: "Copyright statement, centred, prescribed wording", file: dissertation/00_front_matter.md, marker: "UK Copyright acts as amended"}
+  - {id: abstract,      text: "Abstract, one page", file: dissertation/00_front_matter.md, marker: "## Abstract"}
+  - {id: acknowledge,   text: "Acknowledgements, one page", file: dissertation/00_front_matter.md, marker: "## Acknowledgements"}
+  - {id: toc,           text: "Table of contents with page numbers", file: dissertation/00_front_matter.md, marker: "## Table of Contents"}
+  - {id: introduction,  text: "Introduction", file: dissertation/01_introduction.md, marker: "#"}
+  - {id: litreview,     text: "Literature review", file: dissertation/02_literature_review.md, marker: "#"}
+  - {id: methods,       text: "Methods", file: dissertation/04_methods.md, marker: "#"}
+  - {id: results,       text: "Results and Discussion", file: dissertation/05_results_discussion.md, marker: "#"}
+  - {id: conclusion,    text: "Conclusion", file: dissertation/07_conclusion.md, marker: "#"}
+  - {id: references,    text: "References, Harvard", file: dissertation/references.md, marker: "#"}
+  - {id: wordcount,     text: "Stated word count", file: dissertation/00_front_matter.md, marker: "## Word Count"}
+  - {id: appendices,    text: "Appendices, numbered sequence", file: dissertation/08_appendices.md, marker: "#"}
+
+# BS 4821 formatting, applied at render time not in source.
+formatting:
+  paper: "A4, one side"
+  font_size: "12pt main text"
+  justification: "left justified, NOT fully justified"
+  line_spacing: "1.5, except quotations"
+  margins: "Left 1.5in; Right 1in; Top and Bottom 1in"
+  quotations: indented
+  referencing: Harvard
+
+word_budget:
+  total_min: 10000
+  total_max: 15000
+  target: 14000
+  chapters:
+    dissertation/01_introduction.md: 1300
+    dissertation/02_literature_review.md: 2400
+    dissertation/03_threat_surface_model.md: 1800
+    dissertation/04_methods.md: 2200
+    dissertation/05_results_discussion.md: 3600
+    dissertation/06_viability_framework.md: 1900
+    dissertation/07_conclusion.md: 900
+  tolerance: 0.25

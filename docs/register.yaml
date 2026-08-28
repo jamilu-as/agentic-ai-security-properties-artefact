@@ -1,0 +1,149 @@
+# Carry-forward register. Every position established in the review of 27-28 August 2026.
+# Nothing is done until `lands_in` exists AND contains `marker`.
+# check_register.py reports status; it FAILS the build at gate G5.
+#
+# status: open | done   (set done only when the check passes on its own)
+
+corrections:
+  - id: C1
+    item: "A2ASecBench is ICLR 2026 - 'none dedicated' is false in Paper 1 Table 1 and section 3.3"
+    lands_in: [dissertation/03_threat_surface_model.md]
+    marker: "A2ASecBench"
+    status: open
+  - id: C2
+    item: "Same error propagates to LR Table 1, 2.4, 2.6 and proposal DEC-004, 7.1"
+    lands_in: [dissertation/02_literature_review.md, dissertation/04_methods.md]
+    marker: "A2ASecBench"
+    status: open
+  - id: C3
+    item: "Three-regime protocol novelty claim withdrawn (2510.05244 predates the proposal)"
+    lands_in: [dissertation/04_methods.md]
+    marker: "2510.05244"
+    status: open
+  - id: C4
+    item: "'First independent adversarial evaluation of CaMeL' withdrawn or narrowed"
+    lands_in: [dissertation/04_methods.md]
+    marker: "CaMeL"
+    status: open
+  - id: C5
+    item: "Claude 3.7 Sonnet retired 19 Feb 2026, three months before the proposal named it"
+    lands_in: [dissertation/04_methods.md]
+    marker: "3.7 Sonnet"
+    status: open
+  - id: C6
+    item: "Venue updates: Nasr USENIX Sec 2026; CaMeL SaTML 2026; Panfilov ICLR 2026; Sheth ICML 2026"
+    lands_in: [dissertation/references.md]
+    marker: "USENIX Security 2026"
+    status: open
+  - id: C7
+    item: "Proposal says mixed-effects in Abstract/O4/DEC-003 but fixed-effects in 4.4; resolved in favour of the actual model"
+    lands_in: [dissertation/04_methods.md]
+    marker: "logistic"
+    status: open
+  - id: C8
+    item: "LR 5.5 and 6.3 promise four axes; proposal delivers three"
+    lands_in: [dissertation/02_literature_review.md]
+    marker: "axes"
+    status: open
+  - id: C9
+    item: "LR has no stated cut-off date; fix as 14 May 2026"
+    lands_in: [dissertation/02_literature_review.md]
+    marker: "14 May 2026"
+    status: open
+  - id: C10
+    item: "LR internal contradiction on CIMemories date; 4.4 is correct (late 2025)"
+    lands_in: [dissertation/02_literature_review.md]
+    marker: "CIMemories"
+    status: open
+
+positions:
+  - id: P1
+    item: "RQ2 restated with the composition scoping clause, change declared"
+    lands_in: [dissertation/01_introduction.md, dissertation/04_methods.md]
+    marker: "when composed"
+    status: open
+  - id: P2
+    item: "DEC-001 revised - means not purpose; bespoke-harness contribution withdrawn"
+    lands_in: [dissertation/04_methods.md]
+    marker: "DEC-001"
+    status: open
+  - id: P3
+    item: "DEC-002 restated as a selection rule, not a list"
+    lands_in: [dissertation/04_methods.md]
+    marker: "DEC-002"
+    status: open
+  - id: P4
+    item: "DEC-003 prompt-level reinstated on a DIFFERENT explicit rationale"
+    lands_in: [dissertation/04_methods.md]
+    marker: "DEC-003"
+    status: open
+  - id: P5
+    item: "DEC-004 narrowed to AgentDojo family; external-validity limit stated"
+    lands_in: [dissertation/04_methods.md, dissertation/07_conclusion.md]
+    marker: "DEC-004"
+    status: open
+  - id: P6
+    item: "Matrix re-scoped from 240 conditions; costed reasoning given"
+    lands_in: [dissertation/04_methods.md]
+    marker: "240"
+    status: open
+  - id: P7
+    item: "Power recomputed; 0.84 withdrawn; Levene labelled exploratory"
+    lands_in: [dissertation/04_methods.md]
+    marker: "exploratory"
+    status: open
+  - id: P8
+    item: "AutoDojo credited as direct antecedent in the Methods OPENING, not a footnote"
+    lands_in: [dissertation/04_methods.md]
+    marker: "AutoDojo"
+    status: open
+  - id: P9
+    item: "Drift-monitoring protocol did not run weekly as promised - disclosed as a limitation"
+    lands_in: [dissertation/07_conclusion.md]
+    marker: "drift"
+    status: open
+  - id: P10
+    item: "Multi-agent framing thinned; scope statement given"
+    lands_in: [dissertation/01_introduction.md, dissertation/07_conclusion.md]
+    marker: "single-orchestrator"
+    status: open
+  - id: P11
+    item: "Ethics: clearance confirmed and dated; no human subjects, PII or biological material"
+    lands_in: [dissertation/04_methods.md]
+    marker: "ethic"
+    status: open
+  - id: P12
+    item: "AI-use declaration on the title page, per the mandated '(including AI)' wording"
+    lands_in: [dissertation/00_front_matter.md]
+    marker: "including AI"
+    status: open
+  - id: P13
+    item: "R2 depth asymmetry between local and closed-weight arms declared and justified"
+    lands_in: [dissertation/04_methods.md, dissertation/07_conclusion.md]
+    marker: "asymmetr"
+    status: open
+
+# Prior art that must be cited defensively. check_citations.py verifies each key appears.
+prior_art:
+  - {id: A1,  key: "2606.15057", why: "AutoDojo - direct antecedent, supplies the harness"}
+  - {id: A2,  key: "2510.09023", why: "Nasr et al. - rival hypothesis; CB assigned to HarmBench not AgentDojo"}
+  - {id: A3,  key: "2606.26479", why: "'One defense, one attack family' - the gap statement"}
+  - {id: A4,  key: "2510.05244", why: "Three-stage cascade; AgentDojo metric fixes"}
+  - {id: A5,  key: "2604.03870", why: "RepE monitor in AgentDojo loop - differentiate from RR training"}
+  - {id: A6,  key: "RRFA",       why: "Unpublished CB-for-agents repo; cite defensively"}
+  - {id: A7,  key: "2406.04313", why: "Zou et al. AI Agents section - direct/forced call, not IPI"}
+  - {id: A8,  key: "2407.15902", why: "Schwinn & Geisler - CB already adaptively broken"}
+  - {id: A9,  key: "2606.10525", why: "Hofer/Debenedetti/Tramer - white-box AgentDojo exists"}
+  - {id: A10, key: "2601.03300", why: "TRYLOCK - layered RepE defence, chat only; composition precedent"}
+  - {id: A11, key: "2607.24392", why: "Names stacking as open; supplies cost anchors"}
+  - {id: A12, key: "2603.19423", why: "The Autonomy Tax - external support for RQ3 engineering force"}
+  - {id: A13, key: "2605.00334", why: "AgentFloor - justifies 8B-class cells for agentic tool use"}
+  - {id: A14, key: "2606.11409", why: "Risk-compute curves - use their metric, do not invent one"}
+
+gates:
+  - {id: G0, day: 2,  name: "Reproduce",     requires: [harness/REPRODUCTION.md]}
+  - {id: G1, day: 2,  name: "Pre-register",  requires: [preregistration/PREREGISTRATION.md, preregistration/HASH.txt]}
+  - {id: G2, day: 7,  name: "Runs complete", requires: [results/runs/MANIFEST.md, results/FREEZE.txt]}
+  - {id: G3, day: 8,  name: "Analysis",      requires: [analysis/figures/correlation_matrix.png]}
+  - {id: G4, day: 10, name: "Draft",         requires: [dissertation/05_results_discussion.md]}
+  - {id: G5, day: 12, name: "Submission",    requires: [dissertation/00_front_matter.md, dissertation/08_appendices.md]}

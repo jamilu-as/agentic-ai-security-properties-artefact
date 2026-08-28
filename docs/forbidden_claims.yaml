@@ -1,0 +1,66 @@
+# Claims established as false or unsupportable by the adversarial novelty audit
+# of 28 August 2026. check_forbidden_claims.py fails the build if any appears
+# in dissertation/ or preregistration/.
+#
+# Each entry: a regex (case-insensitive, whitespace-flexible) and why it is dead.
+
+- id: X1
+  pattern: "circuit breakers?[^.]{0,80}(never|not)[^.]{0,40}adaptive"
+  why: >
+    Broken at least six times since July 2024 — Schwinn & Geisler 2407.15902 (100% ASR),
+    Confirm Labs, Best-of-N 2412.03556 (52%), REINFORCE-GCG 2502.17254 (50%),
+    Nasr et al. 2510.09023 (100% on HarmBench), Limbach et al. 2606.03647 (0.82 EVUS).
+  say_instead: >
+    "never evaluated against indirect prompt injection in an agentic tool-use setting,
+    nor under an adaptive attacker there" — which does survive.
+
+- id: X2
+  pattern: "circuit breakers?[^.]{0,80}(never|not)[^.]{0,40}agentic"
+  why: >
+    Zou et al. 2406.04313 have an "AI Agents" section — 100 harmful function-call requests
+    under Direct Request and Forced Function Calling, BFCL utility retention.
+  say_instead: >
+    Distinguish: their agent evaluation is direct/forced harmful requests, not indirect
+    injection through untrusted tool output, and uses no public agentic benchmark.
+
+- id: X3
+  pattern: "all[^.]{0,60}agentic[^.]{0,40}(adaptive|IPI)[^.]{0,40}black.?box"
+  why: >
+    Hofer, Debenedetti & Tramer 2606.10525 (the AgentDojo authors) extended AgentDojo for
+    white-box GCG in June 2026, and report black-box outperforming gradient methods and
+    local-to-frontier transfer failing.
+  say_instead: >
+    "no published white-box evaluation against DEFENDED agents" — 2606.10525 ran undefended only.
+
+- id: X4
+  pattern: "(provenance|chinese.?lab|western.?trained)[^.]{0,80}(predict|determine)[^.]{0,40}(detector|guard)"
+  why: >
+    Type error. PromptGuard, ProtectAI, PIGuard and GenTel-Shield are input-text classifiers,
+    f(text) -> label; the protected model is not an argument. Detector performance is invariant
+    to the downstream model. Also: GenTel-Safe 2409.19521 published the contrast as a LANGUAGE
+    effect; TraceSafe 2604.07223 explicitly refused the causal claim; IterInject 2605.24659
+    reports a 2.7x spread WITHIN the Chinese-lab bucket.
+  say_instead: Nothing. This framing is abandoned.
+
+- id: X5
+  pattern: "three.?(regime|stage)[^.]{0,60}(unprecedented|first|novel|no prior)"
+  why: >
+    arXiv 2510.05244 (NeurIPS 2025, v1 6 Oct 2025) published a three-stage cascade —
+    standard injection, second-order, adaptive — before the research proposal was written.
+  say_instead: Retain the protocol as an instrument; cite 2510.05244; withdraw the novelty claim.
+
+- id: X6
+  pattern: "first[^.]{0,60}(apply|applying)[^.]{0,40}circuit breakers?[^.]{0,40}agent"
+  why: >
+    github.com/memo-ozdincer/RRFA (Apache-2.0, created Dec 2025, last push Apr 2026) trains
+    circuit-breaker LoRA adapters for agentic tool-calling and evaluates on AgentDojo.
+    Unpublished, but public and discoverable.
+  say_instead: >
+    "first ADAPTIVE evaluation" — RRFA runs static output-diff with no adversary.
+
+- id: X7
+  pattern: "first[^.]{0,60}independent adversarial evaluation[^.]{0,40}CaMeL"
+  why: >
+    AutoDojo 2606.15057 integrates and adaptively evaluates CaMeL; 2606.26479 adaptively
+    evaluated Progent. The proposal's Abstract claim is withdrawn.
+  say_instead: Narrow to whatever survives checking, with antecedents cited.
