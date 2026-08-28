@@ -33,7 +33,7 @@ figures:
     source: "RP Figure 2 — dissertation Gantt"
     file: dissertation/figures/fig_gantt_RETIRED.svg
     disposition: retire
-    why: "Timeline superseded by docs/EXECUTION_PLAN_v3.md. A stale Gantt in the dissertation invites questions it cannot answer."
+    why: "Timeline superseded by plan/PLAN.md. A stale Gantt in the dissertation invites questions it cannot answer."
 
   - id: F5
     source: "Paper 1 Figure 1 — The two instruments composed"
@@ -66,7 +66,7 @@ figures:
     file: null
     disposition: produce
     target: dissertation/04_results_discussion.md
-    why: "The headline result. G3 gate artefact at workstreams/w2_composition/analysis/figures/correlation_matrix.png."
+    why: "The headline result. G3 gate artefact at work/w2-composition/analysis/figures/correlation_matrix.png."
 
 pipeline:
   note: >

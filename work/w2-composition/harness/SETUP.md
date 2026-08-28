@@ -75,4 +75,4 @@ The paper used banking, slack, travel. The repo adds github, shopping, dailylife
 - [ ] Put an OpenRouter key with credit in `~/research/ResearchMethods/AutoDojo/.env`
 - [ ] `uv pip install -e "./agentdojo[camel]"`
 - [ ] Exercise `piguard` end-to-end against its HF checkpoint (transformers 5.x compatibility)
-- [ ] Run one cached cell and compare to the published number → `workstreams/w2_composition/harness/REPRODUCTION.md`
+- [ ] Run one cached cell and compare to the published number → `work/w2-composition/harness/REPRODUCTION.md`

@@ -12,7 +12,7 @@ Your lens differs from the internal markers'. You care about:
 
 **The artefact question.** The module study guide's artefact rider is addressed to MSc Cyber Security students, and this is MSc AI. But the module aims apply to everyone and include "Analyse, design and implement a software solution to a well-defined problem". Ask whether this work meets that standard, and say plainly if it does not.
 
-**Priority and novelty.** Read `docs/canon/forbidden_claims.yaml` — those are claims already established as dead. Check none has crept back. Then check the surviving claims: is each one actually novel, and is the antecedent credited where it exists? The direct antecedent here is AutoDojo (arXiv:2606.15057); a dissertation that does not foreground it in Methods has a problem.
+**Priority and novelty.** Read `canon/forbidden_claims.yaml` — those are claims already established as dead. Check none has crept back. Then check the surviving claims: is each one actually novel, and is the antecedent credited where it exists? The direct antecedent here is AutoDojo (arXiv:2606.15057); a dissertation that does not foreground it in Methods has a problem.
 
 **Rigour under adversarial reading.** Would the statistics survive a hostile reviewer? Is the sample defensible? Are limitations real limitations or decorative ones?
 

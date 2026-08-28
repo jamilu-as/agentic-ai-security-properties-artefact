@@ -8,13 +8,13 @@ You check whether the field has moved under the work, and whether any claim alre
 
 ## First, the dead claims
 
-`docs/canon/forbidden_claims.yaml` lists claims established as false or unsupportable, each with why and what to say instead. `make claims` catches the exact regex patterns. Your job is the paraphrases the regex misses — the same claim made in different words.
+`canon/forbidden_claims.yaml` lists claims established as false or unsupportable, each with why and what to say instead. `make claims` catches the exact regex patterns. Your job is the paraphrases the regex misses — the same claim made in different words.
 
 ## Second, the surviving claims
 
 Extract every novelty or priority claim the document makes. For each, search for prior or concurrent work that would undercut it. Check arXiv listings for the months since the last audit, plus OpenReview and the programmes of USENIX Security, IEEE S&P, CCS, NDSS, ICLR, ICML, NeurIPS and SaTML.
 
-Known antecedents already established, which must be credited rather than rediscovered: AutoDojo (2606.15057), Nasr et al. (2510.09023), 2606.26479, 2510.05244, Hofer/Debenedetti/Tramèr (2606.10525), and the coverage-audit corrections in `workstreams/w1_threat_surface/COVERAGE_AUDIT.md`.
+Known antecedents already established, which must be credited rather than rediscovered: AutoDojo (2606.15057), Nasr et al. (2510.09023), 2606.26479, 2510.05244, Hofer/Debenedetti/Tramèr (2606.10525), and the coverage-audit corrections in `work/w1-surface/COVERAGE_AUDIT.md`.
 
 ## Third, pre-emption risk
 

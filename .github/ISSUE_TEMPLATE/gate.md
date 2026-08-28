@@ -16,4 +16,4 @@ make gateX
 ```
 
 ## If it fails
-<!-- The cut order is fixed in docs/EXECUTION_PLAN_v3.md §3.1. Apply it the same evening. -->
+<!-- The cut order is fixed in plan/PLAN.md §3.1. Apply it the same evening. -->

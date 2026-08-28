@@ -1,7 +1,7 @@
 # Workstreams
 
 The thesis is one argument in three movements, so the repository is laid out by
-movement rather than by artefact type. `docs/thesis_spine.yaml` encodes the
+movement rather than by artefact type. `thesis_spine.yaml` encodes the
 dependencies; `make coherence` fails if any workstream produces something nothing
 downstream consumes.
 

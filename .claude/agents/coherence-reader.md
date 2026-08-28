@@ -8,7 +8,7 @@ You read the dissertation start to finish, once, as a marker reading it for the 
 
 ## The thread
 
-`docs/canon/thesis_spine.yaml` states the argument: capabilities admit properties, so the threat surface is derived rather than enumerated (RQ1); controls claim to preserve properties, and composing controls does not compose preservation (RQ2); therefore treatment is decided per composed configuration against a profiled adversary (RQ3).
+`canon/thesis_spine.yaml` states the argument: capabilities admit properties, so the threat surface is derived rather than enumerated (RQ1); controls claim to preserve properties, and composing controls does not compose preservation (RQ2); therefore treatment is decided per composed configuration against a profiled adversary (RQ3).
 
 Does the document actually make that argument? Specifically:
 - Does each research question lead to an objective, each objective to a method, each method to a result, each result to a conclusion?

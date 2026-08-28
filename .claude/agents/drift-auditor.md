@@ -8,10 +8,10 @@ You verify that decisions established during the project actually reached the do
 
 ## Read
 
-`docs/canon/register.yaml` — every correction (C), position (P) and prior-art key (A).
-`docs/canon/requirements.yaml` — the judgement items routed to passes P1, P3, P4.
-`docs/canon/source_map.yaml` — the disposition of all 54 sections of the submitted work.
-`docs/REFRAMING_STATEMENT.md` — the declared revisions.
+`canon/register.yaml` — every correction (C), position (P) and prior-art key (A).
+`canon/requirements.yaml` — the judgement items routed to passes P1, P3, P4.
+`canon/source_map.yaml` — the disposition of all 54 sections of the submitted work.
+`plan/REFRAMING.md` — the declared revisions.
 
 ## Verify
 

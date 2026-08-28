@@ -8,7 +8,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STUB = "<!-- STUB -->"
 
 def load(name):
-    with open(os.path.join(ROOT, "docs", "canon", name)) as f:
+    with open(os.path.join(ROOT, "canon", name)) as f:
         return yaml.safe_load(f)
 
 def read(rel):

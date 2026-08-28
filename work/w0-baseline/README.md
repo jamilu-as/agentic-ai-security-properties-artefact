@@ -17,6 +17,26 @@ And it reports all of it **descriptively** — no regression, no ANOVA, no boots
 - Bootstrap CIs, Benjamini-Hochberg at FDR 0.10, recomputed power
 - Task-specification bucket as a covariate, using their own labels
 
+## Task: independent replication of the task-specification labels
+
+AutoDojo ships `variant_generation/user_task_buckets.json` — per-user-task labels of
+under-specification (fully-specified / param-open / action-open) that carry their Finding 2,
+and which this study uses as a covariate to control for the rival explanation.
+
+They were assigned manually over 57 user tasks and reported as aggregate percentages.
+**Inheriting them on trust makes our covariate only as good as their annotation**, in an
+artefact where 137 of 150 cells have already proved to be conditioned on nothing.
+
+Replicate independently: label the tasks from the AgentDojo suite definitions without
+reading theirs, then compare. Report inter-annotator agreement.
+
+- **Agreement** strengthens the covariate and is worth a sentence in Methods.
+- **Disagreement** is itself a finding, and it bears directly on AutoDojo's Finding 2 —
+  which is one of the three competing hypotheses this study adjudicates.
+
+Annotation, not measurement: this labels task semantics, it does not measure model
+behaviour, so it does not touch the experimental instrument.
+
 ## What it settles
 
 The individual-defence baseline, rigorously. W2 then asks whether composition behaves additively *relative to that baseline* — which is a sharper question than composition in isolation, and a better dissertation than either alone.

@@ -88,7 +88,7 @@ sources:
       - {id: RP7,     name: "Expected contributions",                         disposition: amend,    target: dissertation/01_introduction.md,        marker: "Research output", note: "harness contribution restated; CaMeL priority claim withdrawn"}
       - {id: RP7.1,   name: "Scope limitations",                              disposition: update,   target: dissertation/05_conclusion.md,          marker: "limitation"}
       - {id: RP8,     name: "Ethics - disclosure, dual use, institutional",   disposition: update,   target: dissertation/03_methods.md,             marker: "disclosure", note: "add the security-sensitive limb; date the clearance; update provider list"}
-      - {id: RP.dec,  name: "DEC-001 to DEC-004",                             disposition: amend,    target: dissertation/03_methods.md,             marker: "DEC-001", note: "all four revised; see docs/REFRAMING_STATEMENT.md section 5"}
+      - {id: RP.dec,  name: "DEC-001 to DEC-004",                             disposition: amend,    target: dissertation/03_methods.md,             marker: "DEC-001", note: "all four revised; see plan/REFRAMING.md section 5"}
 
   paper1:
     file: sources/PAPER1_v1.3.md
@@ -97,7 +97,7 @@ sources:
     sections:
       - {id: P1.1, name: "Introduction - Hamming framing, two decisions",  disposition: reuse,    target: dissertation/01_introduction.md,        marker: "deployer"}
       - {id: P1.2, name: "Why agentic security resists enumeration",       disposition: reuse,    target: dissertation/04_results_discussion.md, marker: "enumeration"}
-      - {id: P1.3, name: "Capability-derived threat surfaces + Table 1",   disposition: reuse,    target: dissertation/04_results_discussion.md, marker: "threat-actor profile", note: "Delivers O1 and substantially O2. Table 1 maps capability cluster -> derived property -> first dedicated benchmark across six rows. Required: correct the peer-agents row to A2ASecBench; verify the remaining five; add the extensibility row per workstreams/w1_threat_surface/COVERAGE_AUDIT.md; expand 716 words to chapter length."}
+      - {id: P1.3, name: "Capability-derived threat surfaces + Table 1",   disposition: reuse,    target: dissertation/04_results_discussion.md, marker: "threat-actor profile", note: "Delivers O1 and substantially O2. Table 1 maps capability cluster -> derived property -> first dedicated benchmark across six rows. Required: correct the peer-agents row to A2ASecBench; verify the remaining five; add the extensibility row per work/w1-surface/COVERAGE_AUDIT.md; expand 716 words to chapter length."}
       - {id: P1.4, name: "Control viability - three forces, applicability gate, decision rule", disposition: reuse, target: dissertation/04_results_discussion.md, marker: "applicability gate", note: "Delivers O5. Section 4.2 asserts that a probabilistic detector becomes acceptable behind composition with cheaper deterministic filters, because the upstream stage narrows the inputs. RQ2 tests that assertion under an adaptive attacker. Correlated failure would bound the compensator argument."}
       - {id: P1.5, name: "Composing the two instruments + Table 2",        disposition: amend,    target: dissertation/04_results_discussion.md,  marker: "measured", note: "illustrative cells replaced with measured values; the integration test lives here"}
       - {id: P1.6, name: "Limitations incl. security monoculture",         disposition: reuse,    target: dissertation/05_conclusion.md,           marker: "monoculture"}

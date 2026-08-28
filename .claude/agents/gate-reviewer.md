@@ -26,11 +26,11 @@ When verifying a claim about credentials or configuration, read only what is nee
 
 ## Then the gate's own conditions
 
-`docs/canon/register.yaml` lists gates and their required artefacts. `docs/EXECUTION_PLAN_v3.md` §3 states what each gate passes on, and §3.1 fixes the cut order when a day slips.
+`canon/register.yaml` lists gates and their required artefacts. `plan/PLAN.md` §3 states what each gate passes on, and §3.1 fixes the cut order when a day slips.
 
 | Gate | Passes when |
 |---|---|
-| G0 | One AutoDojo cell reproduces, or the documented fallback is recorded in `workstreams/w2_composition/harness/REPRODUCTION.md` |
+| G0 | One AutoDojo cell reproduces, or the documented fallback is recorded in `work/w2-composition/harness/REPRODUCTION.md` |
 | G1 | Pre-registration complete and hash-locked **before any R2 data**. Subsample n fixed, iteration cap fixed, confirmatory/exploratory labelled |
 | G2 | R2 complete to cap on the closed-weight arm and to convergence on the local arm; manifests populated; freeze recorded |
 | G3 | Model fitted, intervals bootstrapped, correction applied, power recomputed, figures produced |

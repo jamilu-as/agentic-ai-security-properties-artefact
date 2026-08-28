@@ -16,14 +16,14 @@ Walk every chapter. For each empirical or comparative claim, establish whether i
 
 ## 2. Statistical soundness (pass P6, requirement R29)
 
-Read `preregistration/PREREGISTRATION.md` and `docs/canon/thesis_spine.yaml`, then the results.
+Read `preregistration/PREREGISTRATION.md` and `canon/thesis_spine.yaml`, then the results.
 
 - Is confirmatory versus exploratory labelling honest and consistent with the pre-registration?
 - Is power reported for the design actually run? The proposal's 0.84 figure is **withdrawn**; check it has not reappeared.
 - Are intervals reported, and does any claim exceed what they support?
 - Is multiple-comparison correction applied and stated?
 - Are null and unfavourable results reported as prominently as favourable ones? Requirement R29 is "data are reported honestly and accurately".
-- Are data-quality problems in third-party artefacts reported rather than quietly worked around? See `workstreams/w0_secondary_analysis/INTEGRITY_FINDING.md`.
+- Are data-quality problems in third-party artefacts reported rather than quietly worked around? See `work/w0-baseline/INTEGRITY_FINDING.md`.
 
 ## Produce
 

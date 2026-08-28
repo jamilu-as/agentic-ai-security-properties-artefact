@@ -159,7 +159,7 @@ positions:
     marker: "extensibility"
     status: open
   - id: P26
-    item: "Eight existing figures carried per docs/figure_map.yaml; the mermaid build pipeline in ProposalAgenticSecurity/build reused rather than replaced"
+    item: "Eight existing figures carried per figure_map.yaml; the mermaid build pipeline in ProposalAgenticSecurity/build reused rather than replaced"
     lands_in: [dissertation/04_results_discussion.md]
     marker: "Figure"
     status: open
@@ -185,7 +185,7 @@ positions:
     marker: "Empirical and Analytical"
     status: open
   - id: P24
-    item: "Dissertation built FROM the submitted LR and proposal per docs/source_map.yaml, not rewritten beside them"
+    item: "Dissertation built FROM the submitted LR and proposal per source_map.yaml, not rewritten beside them"
     lands_in: [dissertation/02_literature_review.md, dissertation/03_methods.md]
     marker: "literature review"
     status: open
@@ -223,7 +223,7 @@ positions:
     status: open
 
   - id: P33
-    item: "Table 1 corrected per workstreams/w1_threat_surface/COVERAGE_AUDIT.md - five of six rows changed: Tools priority to InjecAgent, code-interpreter category error corrected to RedCode, memory property relabelled contextual integrity, actuators marked none dedicated, peer agents to TAMAS"
+    item: "Table 1 corrected per work/w1-surface/COVERAGE_AUDIT.md - five of six rows changed: Tools priority to InjecAgent, code-interpreter category error corrected to RedCode, memory property relabelled contextual integrity, actuators marked none dedicated, peer agents to TAMAS"
     lands_in: [dissertation/04_results_discussion.md]
     marker: "InjecAgent"
     status: open
@@ -260,6 +260,12 @@ positions:
     marker: "hypothesis"
     status: open
 
+  - id: P40
+    item: "Task-specification labels replicated independently rather than inherited from user_task_buckets.json; inter-annotator agreement reported. Disagreement bears on AutoDojo's Finding 2, one of the three hypotheses adjudicated."
+    lands_in: [dissertation/03_methods.md, dissertation/04_results_discussion.md]
+    marker: "agreement"
+    status: open
+
 # Prior art that must be cited defensively. check_citations.py verifies each key appears.
 prior_art:
   - {id: A1,  key: "2606.15057", why: "AutoDojo - direct antecedent, supplies the harness"}
@@ -278,9 +284,9 @@ prior_art:
   - {id: A14, key: "2606.11409", why: "Risk-compute curves - use their metric, do not invent one"}
 
 gates:
-  - {id: G0, day: 2,  name: "Reproduce",     requires: [workstreams/w2_composition/harness/REPRODUCTION.md]}
+  - {id: G0, day: 2,  name: "Reproduce",     requires: [work/w2-composition/harness/REPRODUCTION.md]}
   - {id: G1, day: 2,  name: "Pre-register",  requires: [preregistration/PREREGISTRATION.md, preregistration/HASH.txt]}
-  - {id: G2, day: 7,  name: "Runs complete", requires: [workstreams/w2_composition/results/runs/MANIFEST.md, workstreams/w2_composition/results/FREEZE.txt]}
-  - {id: G3, day: 8,  name: "Analysis",      requires: [workstreams/w0_secondary_analysis/RESULTS.md]}
+  - {id: G2, day: 7,  name: "Runs complete", requires: [work/w2-composition/results/runs/MANIFEST.md, work/w2-composition/results/FREEZE.txt]}
+  - {id: G3, day: 8,  name: "Analysis",      requires: [work/w0-baseline/RESULTS.md]}
   - {id: G4, day: 10, name: "Draft",         requires: [dissertation/04_results_discussion.md]}
   - {id: G5, day: 12, name: "Submission",    requires: [dissertation/00_front_matter.md, dissertation/07_appendices.md, dissertation/oral/SLIDES.md, dissertation/oral/QA_PREP.md]}

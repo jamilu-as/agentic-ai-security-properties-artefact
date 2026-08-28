@@ -47,7 +47,7 @@ research_questions:
       Do current security controls for multi-agent AI systems maintain their claimed
       security properties when composed and evaluated against adversarially optimised
       attack conditions?
-    status: "revised - composition scoping clause added; see docs/REFRAMING_STATEMENT.md"
+    status: "revised - composition scoping clause added; see plan/REFRAMING.md"
     chapter: dissertation/04_results_discussion.md
     objectives:
       - id: O3a

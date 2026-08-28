@@ -4,7 +4,7 @@ description: Run the reviewer agents appropriate to a stage. Usage — /review G
 
 Run the reviewer agents for the stage named in `$ARGUMENTS`, in parallel where they are independent.
 
-Mapping, from `docs/canon/review_agents.yaml`:
+Mapping, from `canon/review_agents.yaml`:
 
 | Stage | Agents |
 |---|---|

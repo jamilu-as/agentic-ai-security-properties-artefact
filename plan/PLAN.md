@@ -1,6 +1,6 @@
 # Execution plan v3 — composition study
 
-**Drafted 28 August 2026.** Operational plan. Supersedes `working/RQ2_EXECUTION_PLAN.md` (27 Jul 2026). Canonical statements of the thesis, decisions and deliverables live in `docs/canon/`.
+**Drafted 28 August 2026.** Operational plan. Supersedes `working/RQ2_EXECUTION_PLAN.md` (27 Jul 2026). Canonical statements of the thesis, decisions and deliverables live in `canon/`.
 
 **Self-imposed completion target: Tuesday 8 September 2026 — 12 days.** Formal submission deadline is 28 September; the 20-day residue is insurance, not plan (§3.5).
 
@@ -16,7 +16,7 @@ The binding constraint is **neither money nor build effort — it is wall-clock 
 
 The composition reframe of RQ2 tightens this rather than loosening it: the same phenomenon — composition defeating additive reasoning — appears on the threat side and the defence side, and RQ3 is where that fact becomes a decision.
 
-Encoded machine-readably in `docs/thesis_spine.yaml` and verified by `make coherence`, which fails if any artefact is produced but never consumed downstream. An unconsumed artefact is a chapter that could be deleted without the argument noticing.
+Encoded machine-readably in `thesis_spine.yaml` and verified by `make coherence`, which fails if any artefact is produced but never consumed downstream. An unconsumed artefact is a chapter that could be deleted without the argument noticing.
 
 **Four workstreams.**
 
@@ -332,7 +332,7 @@ Add a short **"Research outputs"** subsection in Ch1 naming and numbering all fo
 
 All nine run on Day 12. Each is a distinct pass with a distinct question; do not merge them. If the day compresses, **P4 and P7 are non-negotiable** — they are the two that protect against losing marks for things that have nothing to do with the quality of the research.
 
-**P1 — Rubric trace.** Also clears requirements R20 (replication-level methods detail) and R25 (originality shown, not claimed) from `docs/canon/requirements.yaml`.
+**P1 — Rubric trace.** Also clears requirements R20 (replication-level methods detail) and R25 (originality shown, not claimed) from `canon/requirements.yaml`.
 
 **P1b — Original rubric trace.** For each of the six criteria and each sub-weighting, name the page where it is evidenced. Any criterion without a page is a hole. Check specifically: is there a formulated *hypothesis* (the word appears in the criterion, in the Methods spec and in LO2)? Are deliverables stated as specific, measurable, achievable? Is there an explicit aims-met mapping in Ch7? Is there a limitations section? Is there future work?
 
@@ -364,7 +364,7 @@ All nine run on Day 12. Each is a distinct pass with a distinct question; do not
 
 ## 6. Oral presentation
 
-**A separate expected deliverable**, marked out of 100 on its own form and carried into the dissertation total at /20. Criteria verbatim in `docs/canon/rubric.yaml` under `oral_presentation`; deck and Q&A specifications in `dissertation/oral/`.
+**A separate expected deliverable**, marked out of 100 on its own form and carried into the dissertation total at /20. Criteria verbatim in `canon/rubric.yaml` under `oral_presentation`; deck and Q&A specifications in `dissertation/oral/`.
 
 Fifty of its hundred marks are presenting own results and answering questions on them — 10% of the module, the same weight as Aims and Objectives plus Literature Review combined in the written work.
 

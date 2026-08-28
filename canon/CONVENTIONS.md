@@ -1,10 +1,10 @@
 # What belongs in canon, and what does not
 
-`docs/canon/` is the durable record. It drives the dissertation, the checks, and any
+`canon/` is the durable record. It drives the dissertation, the checks, and any
 future session's understanding of this project. Everything in it must read as a
 statement about the work.
 
-`docs/working/` is scaffolding: reviews, superseded plans, session reasoning. Useful,
+`archive/` is scaffolding: reviews, superseded plans, session reasoning. Useful,
 dated, and **not** a driver. Nothing in `working/` should be cited by canon.
 
 ## The rule
