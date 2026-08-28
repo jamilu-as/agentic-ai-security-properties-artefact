@@ -190,6 +190,22 @@ positions:
     marker: "literature review"
     status: open
 
+  - id: P27
+    item: "W0 baseline: secondary inferential analysis of AutoDojo's 150 released cells reported as the individual-defence baseline the composition result is measured against"
+    lands_in: [dissertation/05_results_discussion.md]
+    marker: "baseline"
+    status: open
+  - id: P28
+    item: "Ethics Form 4 title differs from the dissertation title - correspondence noted once; declared provider list (OpenAI, Anthropic, open-weight) reconciled with OpenRouter/Google/DeepSeek routing"
+    lands_in: [dissertation/04_methods.md]
+    marker: "Form 4"
+    status: open
+  - id: P29
+    item: "Doctoral programme stated as three concrete studies, not a list - correlated-failure modelling, cost-normalised defence-in-depth, composition under white-box"
+    lands_in: [dissertation/07_conclusion.md]
+    marker: "programme"
+    status: open
+
 # Prior art that must be cited defensively. check_citations.py verifies each key appears.
 prior_art:
   - {id: A1,  key: "2606.15057", why: "AutoDojo - direct antecedent, supplies the harness"}
@@ -211,6 +227,6 @@ gates:
   - {id: G0, day: 2,  name: "Reproduce",     requires: [workstreams/w2_composition/harness/REPRODUCTION.md]}
   - {id: G1, day: 2,  name: "Pre-register",  requires: [preregistration/PREREGISTRATION.md, preregistration/HASH.txt]}
   - {id: G2, day: 7,  name: "Runs complete", requires: [workstreams/w2_composition/results/runs/MANIFEST.md, workstreams/w2_composition/results/FREEZE.txt]}
-  - {id: G3, day: 8,  name: "Analysis",      requires: [workstreams/w2_composition/analysis/figures/correlation_matrix.png]}
+  - {id: G3, day: 8,  name: "Analysis",      requires: [workstreams/w0_secondary_analysis/RESULTS.md]}
   - {id: G4, day: 10, name: "Draft",         requires: [dissertation/05_results_discussion.md]}
   - {id: G5, day: 12, name: "Submission",    requires: [dissertation/00_front_matter.md, dissertation/08_appendices.md]}

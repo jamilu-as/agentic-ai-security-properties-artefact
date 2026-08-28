@@ -51,8 +51,12 @@ research_questions:
     status: "revised - composition scoping clause added; see docs/REFRAMING_STATEMENT.md"
     chapter: dissertation/05_results_discussion.md
     objectives:
+      - id: O3a
+        text: "Secondary inferential analysis of AutoDojo's 150 released cells: does defence category predict adaptive-gap magnitude once task specification is controlled? Establishes the individual-defence baseline. No compute dependency."
+        artefact: A3a_baseline_analysis
+        marker: "baseline"
       - id: O3
-        text: "Execute the 2^3 composition factorial across model configurations under R1 and R2."
+        text: "Execute the 2^3 composition factorial across model configurations under R1 and R2, measured against the O3a baseline."
         artefact: A3_composition_harness
         marker: "factorial"
       - id: O4
@@ -111,6 +115,7 @@ integration:
 artefacts:
   - {id: A1_threat_surface_model,     chapter: dissertation/03_threat_surface_model.md, rubric: "conceptual/analytic model"}
   - {id: A2_coverage_audit,           chapter: dissertation/03_threat_surface_model.md, rubric: "new methodology"}
+  - {id: A3a_baseline_analysis,       chapter: dissertation/05_results_discussion.md,   rubric: "new methodology"}
   - {id: A3_composition_harness,      chapter: dissertation/04_methods.md,              rubric: "software artefact"}
   - {id: A4_correlated_failure_result,chapter: dissertation/05_results_discussion.md,   rubric: "new theory / methodology"}
   - {id: A5_viability_framework,      chapter: dissertation/06_viability_framework.md,  rubric: "conceptual/analytic model"}
@@ -120,4 +125,4 @@ artefacts:
 # under "how the aims and objectives have been met".
 aims_met_mapping:
   chapter: dissertation/07_conclusion.md
-  requires_all: [O1, O2, O3, O4, O5, O6]
+  requires_all: [O1, O2, O3a, O3, O4, O5, O6]
