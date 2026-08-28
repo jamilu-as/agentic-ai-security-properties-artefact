@@ -26,10 +26,10 @@ derived:
   - dissertation/03_methods.md
   - preregistration/PREREGISTRATION.md
   why: run plan must match the design and the locked analysis plan
-  verified: e6edd7da55a0e975
+  verified: 5524a526b00dd805
 - file: canon/facts.yaml
   depends_on:
   - dissertation/03_methods.md
   - preregistration/PREREGISTRATION.md
   why: canonical values are set by the design
-  verified: e6edd7da55a0e975
+  verified: 5524a526b00dd805
