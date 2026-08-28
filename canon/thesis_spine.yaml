@@ -28,6 +28,10 @@ research_questions:
         text: "Construct the capability-to-property derivation covering the six capability clusters and their cross-cluster compositions."
         artefact: A1_threat_surface_model
         marker: "capability-derived"
+      - id: O1b
+        text: "Test the derivation's procedural determinacy against an enumerative baseline by inter-rater agreement, and its predictive validity against the attack outcomes produced under RQ2."
+        artefact: A1b_derivation_instrument
+        marker: "predictive validity"
       - id: O2
         text: "Benchmark coverage per property. Paper 1 Table 1 already delivers this; the work is verification against the 2026 landscape, correcting the peer-agents row, and adding agent extensibility as a seventh cluster with Skill-Inject as its first dedicated benchmark."
         artefact: A2_coverage_audit
@@ -112,6 +116,7 @@ integration:
 # Every artefact must be consumed by something, or named as a terminal deliverable.
 artefacts:
   - {id: A1_threat_surface_model,     chapter: dissertation/04_results_discussion.md, rubric: "conceptual/analytic model"}
+  - {id: A1b_derivation_instrument, chapter: dissertation/04_results_discussion.md, rubric: "software artefact"}
   - {id: A2_coverage_audit,           chapter: dissertation/04_results_discussion.md, rubric: "new methodology"}
   - {id: A3a_baseline_analysis,       chapter: dissertation/04_results_discussion.md,   rubric: "new methodology"}
   - {id: A3_composition_harness,      chapter: dissertation/03_methods.md,              rubric: "software artefact"}
@@ -123,4 +128,4 @@ artefacts:
 # under "how the aims and objectives have been met".
 aims_met_mapping:
   chapter: dissertation/05_conclusion.md
-  requires_all: [O1, O2, O3a, O3, O4, O5, O6]
+  requires_all: [O1, O1b, O2, O3, O4, O5, O6]

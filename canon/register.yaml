@@ -266,6 +266,12 @@ positions:
     marker: "agreement"
     status: open
 
+  - id: P41
+    item: "RQ1 made experimental: derivation released as an instrument, with procedural determinacy measured as inter-rater agreement against an enumerative baseline and predictive validity measured against RQ2 attack outcomes per suite"
+    lands_in: [dissertation/03_methods.md, dissertation/04_results_discussion.md]
+    marker: "predictive validity"
+    status: open
+
 # Prior art that must be cited defensively. check_citations.py verifies each key appears.
 prior_art:
   - {id: A1,  key: "2606.15057", why: "AutoDojo - direct antecedent, supplies the harness"}
