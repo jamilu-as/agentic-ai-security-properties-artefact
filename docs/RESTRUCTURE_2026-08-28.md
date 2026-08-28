@@ -73,17 +73,20 @@ Introducing a second toolchain mid-sprint, on a 12-day runway, to gain typograph
 
 **Decision: markdown, existing pipeline.** Paper 1's three TikZ figures are rendered **once** to SVG and carried as assets. Its Table 1 and Table 2 transfer as markdown tables. The LaTeX source is kept at `sources/paper1_latex/` as the authoritative original.
 
-### 4.2 Ethics: the declared position is on record
+### 4.2 Ethics: the signed submission, correctly identified
 
-`sources/Ethics_Form_4_Filled_Threat_Analysis_Multi_Agent_AI.docx` is the submitted Form 4. It declares **no** to human participants, **no** to travel, and **no** to security-sensitive material, on the stated grounds that "all materials are publicly available: published academic literature, publicly accessible AI APIs (OpenAI, Anthropic, and open-weight models), open-source [benchmarks]".
+An earlier version of this document cited a template found in Downloads as the submission. It was not. The signed form is `sources/ETHICS_Form4_signed_2026-05-02.docx`, submitted **2 May 2026**, signed by the student and by the supervisor, **Dr Haleema PK**.
 
-Two things to carry into the Methods chapter rather than leave implicit:
-- The form's project title is **"Threat Analysis and Security Evaluation of Multi-Agent AI Architectures"**, which differs from the dissertation title. Note the correspondence once.
-- The declared provider list is OpenAI, Anthropic and open-weight models. The revised design routes through OpenRouter and adds Google and DeepSeek. That sits inside "publicly accessible AI APIs", but say so explicitly rather than let a reader notice the gap.
+What it actually establishes, and it is more supportive of the current design than expected:
 
-The clearance itself is confirmed and is not reopened here.
+- **Title:** "An Empirical and Analytical Study of Security Properties in Agentic AI **Systems**" — plural. The proposal and literature review both say "System", singular. The plural is almost certainly correct and the singular a typo carried into both submissions. Use the plural; note the correspondence once.
+- **Section A:** no human participants; no travel; **no security-sensitive material**. Section C Q11, on Counter-Terrorism-relevant materials, is answered no.
+- **Box 1 ticked:** "no significant ethical implications to be brought before the panel."
+- **The declared method already covers this design.** The Analysis section reads: *"Quantitative: attack success rate and utility under attack measured across defence–assessment condition pairs; **variance decomposition across architectures and model backbones**."* Variance decomposition was declared at ethics stage. The three research questions and three aims on the form match the submitted proposal.
 
----
+**One cosmetic mismatch, not a blocker.** The supervisor's classification box ticks **1a, "Literature review – no risk"**, where the work is closer to **3a, "Artefact – no risk"**. The distinction matters less than it first appears: the form's own instructions give 1a, 2a and 3a identical handling — *"For applications 1a, 2a, 3a (no risk) – Applications only need to be moderated by SCREP/SCREP Chair"*. So the procedural route is the same either way and nothing is blocked.
+
+Worth one line to Dr Haleema PK for tidiness when the reframing note goes out, not a separate conversation and not a re-review.
 
 ## 5. The thesis, stated once more and tighter
 

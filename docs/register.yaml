@@ -196,9 +196,19 @@ positions:
     marker: "baseline"
     status: open
   - id: P28
-    item: "Ethics Form 4 title differs from the dissertation title - correspondence noted once; declared provider list (OpenAI, Anthropic, open-weight) reconciled with OpenRouter/Google/DeepSeek routing"
+    item: "Ethics: signed Form 4 of 2 May 2026 cited, with supervisor Dr Haleema PK and the declared method quoted - variance decomposition was declared at ethics stage, which supports the analysis plan"
     lands_in: [dissertation/04_methods.md]
     marker: "Form 4"
+    status: open
+  - id: P30
+    item: "Title uses the plural 'Agentic AI Systems' per the signed ethics form; the singular in the proposal and LR is a typo. Correspondence noted once."
+    lands_in: [dissertation/00_front_matter.md]
+    marker: "Agentic AI Systems"
+    status: open
+  - id: P31
+    item: "Supervisor Dr Haleema PK acknowledged, consistent with Paper 1's acknowledgement"
+    lands_in: [dissertation/00_front_matter.md]
+    marker: "Haleema"
     status: open
   - id: P29
     item: "Doctoral programme stated as three concrete studies, not a list - correlated-failure modelling, cost-normalised defence-in-depth, composition under white-box"

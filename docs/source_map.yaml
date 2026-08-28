@@ -18,6 +18,12 @@
 
 title:
   submitted: "An Empirical and Analytical Study of Security Properties in Agentic AI System"
+  ethics_form: "An Empirical and Analytical Study of Security Properties in Agentic AI Systems"
+  use: "Agentic AI Systems (plural)"
+  note: >
+    The signed ethics form of 2 May 2026 has the plural; the proposal and literature
+    review both carry the singular. The plural is correct English and predates both
+    submissions. Use it, and note the correspondence once in the front matter.
   status: UNCHANGED
   rationale: >
     Survives the composition reframe without alteration. "Empirical" is RQ2;
