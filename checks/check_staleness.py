@@ -53,7 +53,16 @@ def dep_hash(paths):
             h.update(open(full, "rb").read())
     return h.hexdigest()[:16]
 
-def main(strict=True):
+def main(strict=True, final=False):
+    """Contradicting values always fail - they are unambiguous errors.
+
+    Dependency drift warns until the document is being finalised. Hashing is
+    deliberately blunt: a prose edit invalidates a derived file even when nothing
+    it describes changed. Failing a gate on that would train the author to stamp
+    without reading, which converts the whole mechanism into a green light.
+    So it warns early and fails at G4/G5, where a summary file that misdescribes
+    the document is a marked defect.
+    """
     r = Report("Staleness and fact consistency")
     cfg = load("facts.yaml")
     files = scan_files()
@@ -108,7 +117,7 @@ def main(strict=True):
         for d in fresh.get("derived", []):
             cur = dep_hash(d["depends_on"])
             if d.get("verified") != cur:
-                r.F(f"{d['file']} is STALE - {', '.join(d['depends_on'])} changed since it was "
+                (r.F if final else r.W)(f"{d['file']} may be stale - {', '.join(d['depends_on'])} changed since it was "
                     f"last checked. Review it, then `make refresh`.")
             else:
                 r.O(f"{d['file']} fresh against {len(d['depends_on'])} dependenc(ies)")

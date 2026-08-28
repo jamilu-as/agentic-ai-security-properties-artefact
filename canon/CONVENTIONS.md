@@ -96,6 +96,13 @@ dependency changes the check fails and names the file; it does not guess whether
 the description is still true, because it cannot. Read it, correct it, then
 `make refresh`.
 
+Severity is split deliberately. A **contradicting value** always fails — it is an
+unambiguous error. **Dependency drift** only warns until G4, because hashing is
+blunt: a prose edit invalidates a derived file even when nothing it describes
+changed. Failing a gate on that would train the author to stamp without reading,
+which converts the whole mechanism into a green light. At G4 and G5 it fails,
+because by then a summary file that misdescribes the document is a marked defect.
+
 `make refresh` stamps a claim that a human checked the file. Stamping without
 reading defeats the mechanism entirely — it converts a real check into a green
 light. If you have not read it, do not stamp it. A file known to be wrong should be
