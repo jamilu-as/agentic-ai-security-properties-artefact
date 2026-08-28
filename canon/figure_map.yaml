@@ -37,8 +37,8 @@ figures:
 
   - id: F5
     source: "Paper 1 Figure 1 — The two instruments composed"
-    file: null
-    disposition: extract
+    file: dissertation/figures/fig_instruments.svg
+    disposition: produced
     target: dissertation/01_introduction.md
     why: >
       The thesis spine in one picture: RQ1 -> applicability gate -> RQ3, with RQ2 supplying
