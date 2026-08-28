@@ -26,7 +26,7 @@ criteria:
     sub:
       - {marks: 5, text: "Research design and process described in detail."}
       - {marks: 5, text: "Chosen method/approach well-articulated and justified in the specific context of the research."}
-    evidence: [dissertation/04_methods.md]
+    evidence: [dissertation/03_methods.md]
     must_contain: ["justif", "pre-registration", "AutoDojo", "ethic"]
 
   - id: results
@@ -35,10 +35,7 @@ criteria:
     sub:
       - {marks: 20, text: "Presence and evidence of main research output (new theory, design and methodology, new technical solutions such as algorithms, architectures, conceptual / analytic models, software artefacts)."}
       - {marks: 15, text: "Statement and description of data collected and results; descriptive summary of findings."}
-    evidence:
-      - dissertation/03_threat_surface_model.md
-      - dissertation/05_results_discussion.md
-      - dissertation/06_viability_framework.md
+    evidence: [dissertation/04_results_discussion.md]
     must_contain: ["Research output", "Table", "Figure"]
 
   - id: analysis
@@ -48,7 +45,7 @@ criteria:
       - {marks: 5, text: "Summary of contributions; sound conclusions drawn and supported by analysis."}
       - {marks: 5, text: "Critical analysis, exploration and evaluation of data collected / results generated."}
       - {marks: 5, text: "Limitation and implication / impact of research discussed. Reflection and identification of improvements / future work."}
-    evidence: [dissertation/05_results_discussion.md, dissertation/07_conclusion.md]
+    evidence: [dissertation/04_results_discussion.md, dissertation/05_conclusion.md]
     must_contain: ["limitation", "future work", "contribution"]
 
   - id: oral
@@ -67,12 +64,12 @@ mandated_structure:
   - {id: toc,           text: "Table of contents with page numbers", file: dissertation/00_front_matter.md, marker: "## Table of Contents"}
   - {id: introduction,  text: "Introduction", file: dissertation/01_introduction.md, marker: "#"}
   - {id: litreview,     text: "Literature review", file: dissertation/02_literature_review.md, marker: "#"}
-  - {id: methods,       text: "Methods", file: dissertation/04_methods.md, marker: "#"}
-  - {id: results,       text: "Results and Discussion", file: dissertation/05_results_discussion.md, marker: "#"}
-  - {id: conclusion,    text: "Conclusion", file: dissertation/07_conclusion.md, marker: "#"}
-  - {id: references,    text: "References, Harvard", file: dissertation/references.md, marker: "#"}
+  - {id: methods,       text: "Methods", file: dissertation/03_methods.md, marker: "#"}
+  - {id: results,       text: "Results and Discussion", file: dissertation/04_results_discussion.md, marker: "#"}
+  - {id: conclusion,    text: "Conclusion", file: dissertation/05_conclusion.md, marker: "#"}
+  - {id: references,    text: "References, Harvard", file: dissertation/06_references.md, marker: "#"}
   - {id: wordcount,     text: "Stated word count", file: dissertation/00_front_matter.md, marker: "## Word Count"}
-  - {id: appendices,    text: "Appendices, numbered sequence", file: dissertation/08_appendices.md, marker: "#"}
+  - {id: appendices,    text: "Appendices, numbered sequence", file: dissertation/07_appendices.md, marker: "#"}
 
 # BS 4821 formatting, applied at render time not in source.
 formatting:
@@ -91,9 +88,7 @@ word_budget:
   chapters:
     dissertation/01_introduction.md: 1300
     dissertation/02_literature_review.md: 2400
-    dissertation/03_threat_surface_model.md: 1800
-    dissertation/04_methods.md: 2200
-    dissertation/05_results_discussion.md: 3600
-    dissertation/06_viability_framework.md: 1900
-    dissertation/07_conclusion.md: 900
+    dissertation/03_methods.md: 2600
+    dissertation/04_results_discussion.md: 6000
+    dissertation/05_conclusion.md: 1200
   tolerance: 0.25

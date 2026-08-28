@@ -22,7 +22,7 @@ research_questions:
       deployment-specific threat characterisation for multi-agent AI architectures
       than enumeration-based approaches?
     status: unchanged from the submitted proposal
-    chapter: dissertation/03_threat_surface_model.md
+    chapter: dissertation/04_results_discussion.md
     objectives:
       - id: O1
         text: "Construct the capability-to-property derivation covering the six capability clusters and their cross-cluster compositions."
@@ -35,11 +35,11 @@ research_questions:
     consumed_by:
       - target: RQ2
         how: "The derived surface identifies which properties the RQ2 deployment puts at risk, and therefore which defence axes are candidates. States what the study is a study OF."
-        marker_in: dissertation/04_methods.md
+        marker_in: dissertation/03_methods.md
         marker: "threat surface"
       - target: RQ3
         how: "The threat-actor profile passes the applicability gate that conditions which viability forces apply."
-        marker_in: dissertation/06_viability_framework.md
+        marker_in: dissertation/04_results_discussion.md
         marker: "threat-actor profile"
 
   - id: RQ2
@@ -48,7 +48,7 @@ research_questions:
       security properties when composed and evaluated against adversarially optimised
       attack conditions?
     status: "revised - composition scoping clause added; see docs/REFRAMING_STATEMENT.md"
-    chapter: dissertation/05_results_discussion.md
+    chapter: dissertation/04_results_discussion.md
     objectives:
       - id: O3a
         text: "Secondary inferential analysis of AutoDojo's 150 released cells: does defence category predict adaptive-gap magnitude once task specification is controlled? Establishes the individual-defence baseline. No compute dependency."
@@ -65,7 +65,7 @@ research_questions:
     consumed_by:
       - target: RQ3
         how: "Supplies the measured inputs the viability framework prices: adaptive lift (scientific force), utility tax (engineering force), cost per security gain (economic force)."
-        marker_in: dissertation/06_viability_framework.md
+        marker_in: dissertation/04_results_discussion.md
         marker: "measured"
     depends_on:
       - source: RQ1
@@ -77,7 +77,7 @@ research_questions:
       security controls for multi-agent AI, and how do these constraints determine
       appropriate risk treatment decisions?
     status: unchanged from the submitted proposal
-    chapter: dissertation/06_viability_framework.md
+    chapter: dissertation/04_results_discussion.md
     objectives:
       - id: O5
         text: "Operationalise the three forces as measurable per-control properties and map viability profiles to ISO 31000 treatments."
@@ -100,7 +100,7 @@ integration:
     The three instruments compose. Holding the measured RQ2 data fixed and varying only
     the RQ1 threat-actor profile flips at least one ISO 31000 treatment decision - which
     demonstrates the applicability gate does real work rather than being asserted.
-  chapter: dissertation/06_viability_framework.md
+  chapter: dissertation/04_results_discussion.md
   marker: "applicability gate"
   falsifiable: >
     If no profile change flips any treatment, the gate is inert on this dataset and the
@@ -111,16 +111,16 @@ integration:
 
 # Every artefact must be consumed by something, or named as a terminal deliverable.
 artefacts:
-  - {id: A1_threat_surface_model,     chapter: dissertation/03_threat_surface_model.md, rubric: "conceptual/analytic model"}
-  - {id: A2_coverage_audit,           chapter: dissertation/03_threat_surface_model.md, rubric: "new methodology"}
-  - {id: A3a_baseline_analysis,       chapter: dissertation/05_results_discussion.md,   rubric: "new methodology"}
-  - {id: A3_composition_harness,      chapter: dissertation/04_methods.md,              rubric: "software artefact"}
-  - {id: A4_correlated_failure_result,chapter: dissertation/05_results_discussion.md,   rubric: "new theory / methodology"}
-  - {id: A5_viability_framework,      chapter: dissertation/06_viability_framework.md,  rubric: "conceptual/analytic model"}
-  - {id: A6_treatment_decisions,      chapter: dissertation/06_viability_framework.md,  rubric: "applied result", terminal: true}
+  - {id: A1_threat_surface_model,     chapter: dissertation/04_results_discussion.md, rubric: "conceptual/analytic model"}
+  - {id: A2_coverage_audit,           chapter: dissertation/04_results_discussion.md, rubric: "new methodology"}
+  - {id: A3a_baseline_analysis,       chapter: dissertation/04_results_discussion.md,   rubric: "new methodology"}
+  - {id: A3_composition_harness,      chapter: dissertation/03_methods.md,              rubric: "software artefact"}
+  - {id: A4_correlated_failure_result,chapter: dissertation/04_results_discussion.md,   rubric: "new theory / methodology"}
+  - {id: A5_viability_framework,      chapter: dissertation/04_results_discussion.md,  rubric: "conceptual/analytic model"}
+  - {id: A6_treatment_decisions,      chapter: dissertation/04_results_discussion.md,  rubric: "applied result", terminal: true}
 
 # Ch7 must map every objective to where it was met - the rubric asks for this explicitly
 # under "how the aims and objectives have been met".
 aims_met_mapping:
-  chapter: dissertation/07_conclusion.md
+  chapter: dissertation/05_conclusion.md
   requires_all: [O1, O2, O3a, O3, O4, O5, O6]

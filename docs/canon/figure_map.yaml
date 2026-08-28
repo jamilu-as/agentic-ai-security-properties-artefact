@@ -7,7 +7,7 @@ figures:
     source: "LR Figure 1 — Canonical agentic architecture and attack entry channels"
     file: dissertation/figures/fig_agentic_architecture.svg
     disposition: reuse
-    target: dissertation/03_threat_surface_model.md
+    target: dissertation/04_results_discussion.md
     why: >
       This IS the capability-to-channel diagram the RQ1 derivation runs on. Paper 1 §3.1
       refers to the same structure as its Figure 2. Carries directly.
@@ -23,7 +23,7 @@ figures:
     source: "RP Figure 1 — 4x4x5 evaluation matrix"
     file: dissertation/figures/fig_evaluation_matrix_SUPERSEDED.svg
     disposition: redraw
-    target: dissertation/04_methods.md
+    target: dissertation/03_methods.md
     why: >
       Structure and visual language carry; the content does not. Redraw as the 2^3
       composition factorial x model configurations x regimes. Keep the original as the
@@ -49,14 +49,14 @@ figures:
     source: "Paper 1 Figure 2 — Capability-derived threat surface"
     file: null
     disposition: extract
-    target: dissertation/03_threat_surface_model.md
+    target: dissertation/04_results_discussion.md
     why: "The derivation in visual form. Pairs with Table 1."
 
   - id: F7
     source: "Paper 1 Figure 3 — The three viability forces"
     file: null
     disposition: extract
-    target: dissertation/06_viability_framework.md
+    target: dissertation/04_results_discussion.md
     why: >
       The bidirectional-forces diagram. Central to RQ3 and already drawn.
       Annotate with measured values once W2 lands.
@@ -65,7 +65,7 @@ figures:
     source: "New — failure-correlation matrix"
     file: null
     disposition: produce
-    target: dissertation/05_results_discussion.md
+    target: dissertation/04_results_discussion.md
     why: "The headline result. G3 gate artefact at workstreams/w2_composition/analysis/figures/correlation_matrix.png."
 
 pipeline:

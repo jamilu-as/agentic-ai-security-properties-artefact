@@ -7,37 +7,37 @@
 corrections:
   - id: C1
     item: "A2ASecBench is ICLR 2026 - 'none dedicated' is false in Paper 1 Table 1 and section 3.3"
-    lands_in: [dissertation/03_threat_surface_model.md]
+    lands_in: [dissertation/04_results_discussion.md]
     marker: "A2ASecBench"
     status: open
   - id: C2
     item: "Same error propagates to LR Table 1, 2.4, 2.6 and proposal DEC-004, 7.1"
-    lands_in: [dissertation/02_literature_review.md, dissertation/04_methods.md]
+    lands_in: [dissertation/02_literature_review.md, dissertation/03_methods.md]
     marker: "A2ASecBench"
     status: open
   - id: C3
     item: "Three-regime protocol novelty claim withdrawn (2510.05244 predates the proposal)"
-    lands_in: [dissertation/04_methods.md]
+    lands_in: [dissertation/03_methods.md]
     marker: "2510.05244"
     status: open
   - id: C4
     item: "'First independent adversarial evaluation of CaMeL' withdrawn or narrowed"
-    lands_in: [dissertation/04_methods.md]
+    lands_in: [dissertation/03_methods.md]
     marker: "CaMeL"
     status: open
   - id: C5
     item: "Claude 3.7 Sonnet retired 19 Feb 2026, three months before the proposal named it"
-    lands_in: [dissertation/04_methods.md]
+    lands_in: [dissertation/03_methods.md]
     marker: "3.7 Sonnet"
     status: open
   - id: C6
     item: "Venue updates: Nasr USENIX Sec 2026; CaMeL SaTML 2026; Panfilov ICLR 2026; Sheth ICML 2026"
-    lands_in: [dissertation/references.md]
+    lands_in: [dissertation/06_references.md]
     marker: "USENIX Security 2026"
     status: open
   - id: C7
     item: "Proposal says mixed-effects in Abstract/O4/DEC-003 but fixed-effects in 4.4; resolved in favour of the actual model"
-    lands_in: [dissertation/04_methods.md]
+    lands_in: [dissertation/03_methods.md]
     marker: "logistic"
     status: open
   - id: C8
@@ -59,57 +59,57 @@ corrections:
 positions:
   - id: P1
     item: "RQ2 restated with the composition scoping clause, change declared"
-    lands_in: [dissertation/01_introduction.md, dissertation/04_methods.md]
+    lands_in: [dissertation/01_introduction.md, dissertation/03_methods.md]
     marker: "when composed"
     status: open
   - id: P2
     item: "DEC-001 revised - means not purpose; bespoke-harness contribution withdrawn"
-    lands_in: [dissertation/04_methods.md]
+    lands_in: [dissertation/03_methods.md]
     marker: "DEC-001"
     status: open
   - id: P3
     item: "DEC-002 restated as a selection rule, not a list"
-    lands_in: [dissertation/04_methods.md]
+    lands_in: [dissertation/03_methods.md]
     marker: "DEC-002"
     status: open
   - id: P4
     item: "DEC-003 prompt-level reinstated on a DIFFERENT explicit rationale"
-    lands_in: [dissertation/04_methods.md]
+    lands_in: [dissertation/03_methods.md]
     marker: "DEC-003"
     status: open
   - id: P5
     item: "DEC-004 narrowed to AgentDojo family; external-validity limit stated"
-    lands_in: [dissertation/04_methods.md, dissertation/07_conclusion.md]
+    lands_in: [dissertation/03_methods.md, dissertation/05_conclusion.md]
     marker: "DEC-004"
     status: open
   - id: P6
     item: "Matrix re-scoped from 240 conditions; costed reasoning given"
-    lands_in: [dissertation/04_methods.md]
+    lands_in: [dissertation/03_methods.md]
     marker: "240"
     status: open
   - id: P7
     item: "Power recomputed; 0.84 withdrawn; Levene labelled exploratory"
-    lands_in: [dissertation/04_methods.md]
+    lands_in: [dissertation/03_methods.md]
     marker: "exploratory"
     status: open
   - id: P8
     item: "AutoDojo credited as direct antecedent in the Methods OPENING, not a footnote"
-    lands_in: [dissertation/04_methods.md]
+    lands_in: [dissertation/03_methods.md]
     marker: "AutoDojo"
     status: open
   - id: P9
     item: "Drift-monitoring protocol did not run weekly as promised - disclosed as a limitation"
-    lands_in: [dissertation/07_conclusion.md]
+    lands_in: [dissertation/05_conclusion.md]
     marker: "drift"
     status: open
   - id: P10
     item: "Multi-agent framing thinned; scope statement given"
-    lands_in: [dissertation/01_introduction.md, dissertation/07_conclusion.md]
+    lands_in: [dissertation/01_introduction.md, dissertation/05_conclusion.md]
     marker: "single-orchestrator"
     status: open
   - id: P11
     item: "Ethics: clearance confirmed and dated; no human subjects, PII or biological material"
-    lands_in: [dissertation/04_methods.md]
+    lands_in: [dissertation/03_methods.md]
     marker: "ethic"
     status: open
   - id: P12
@@ -119,12 +119,12 @@ positions:
     status: open
   - id: P13
     item: "R2 depth asymmetry between local and closed-weight arms declared and justified"
-    lands_in: [dissertation/04_methods.md, dissertation/07_conclusion.md]
+    lands_in: [dissertation/03_methods.md, dissertation/05_conclusion.md]
     marker: "asymmetr"
     status: open
   - id: P14
     item: "Detection-axis instance is piguard. Rationale: listed in PARALLEL_EVAL_SAFE_DEFENSES; ungated on HuggingFace, where promptguard requires a Llama licence."
-    lands_in: [dissertation/04_methods.md, preregistration/PREREGISTRATION.md]
+    lands_in: [dissertation/03_methods.md, preregistration/PREREGISTRATION.md]
     marker: "piguard"
     status: open
   - id: P15
@@ -134,48 +134,48 @@ positions:
     status: open
   - id: P16
     item: "AutoDojo task-specification buckets used as a covariate, controlling for the rival explanation rather than only acknowledging it"
-    lands_in: [dissertation/04_methods.md, dissertation/05_results_discussion.md]
+    lands_in: [dissertation/03_methods.md, dissertation/04_results_discussion.md]
     marker: "action-open"
     status: open
   - id: P17
     item: "No Batch API in the harness - all API models route through OpenRouter. Cost and schedule assumptions restated accordingly."
-    lands_in: [dissertation/04_methods.md]
+    lands_in: [dissertation/03_methods.md]
     marker: "OpenRouter"
     status: open
 
   - id: P18
     item: "O2 benchmark-coverage audit re-derived against the 2026 landscape - not just the A2ASecBench row patched"
-    lands_in: [dissertation/03_threat_surface_model.md]
+    lands_in: [dissertation/04_results_discussion.md]
     marker: "coverage"
     status: open
   - id: P19
     item: "Paper 1 section 4.2's compensator claim reported on - does composition with cheaper deterministic filters survive an adaptive attacker, or is the argument bounded"
-    lands_in: [dissertation/06_viability_framework.md, dissertation/05_results_discussion.md]
+    lands_in: [dissertation/04_results_discussion.md, dissertation/04_results_discussion.md]
     marker: "compensator"
     status: open
   - id: P25
     item: "Table 1 seventh row considered for agent extensibility/skills - a capability cluster that emerged after the cut-off. Demonstrates the model derives rather than enumerates."
-    lands_in: [dissertation/03_threat_surface_model.md]
+    lands_in: [dissertation/04_results_discussion.md]
     marker: "extensibility"
     status: open
   - id: P26
     item: "Eight existing figures carried per docs/figure_map.yaml; the mermaid build pipeline in ProposalAgenticSecurity/build reused rather than replaced"
-    lands_in: [dissertation/03_threat_surface_model.md]
+    lands_in: [dissertation/04_results_discussion.md]
     marker: "Figure"
     status: open
   - id: P20
     item: "Integration test: vary RQ1 actor profile with RQ2 data fixed; report whether any ISO 31000 treatment flips"
-    lands_in: [dissertation/06_viability_framework.md]
+    lands_in: [dissertation/04_results_discussion.md]
     marker: "applicability gate"
     status: open
   - id: P21
     item: "Paper 1 Table 2's illustrative cells replaced with measured values; the paper's own caveat that they are 'not validated outcomes' addressed"
-    lands_in: [dissertation/06_viability_framework.md]
+    lands_in: [dissertation/04_results_discussion.md]
     marker: "measured"
     status: open
   - id: P22
     item: "W1->W2 link stated: which defence axes the derived surface identifies as candidates for the properties at risk"
-    lands_in: [dissertation/04_methods.md]
+    lands_in: [dissertation/03_methods.md]
     marker: "threat surface"
     status: open
 
@@ -186,18 +186,18 @@ positions:
     status: open
   - id: P24
     item: "Dissertation built FROM the submitted LR and proposal per docs/source_map.yaml, not rewritten beside them"
-    lands_in: [dissertation/02_literature_review.md, dissertation/04_methods.md]
+    lands_in: [dissertation/02_literature_review.md, dissertation/03_methods.md]
     marker: "literature review"
     status: open
 
   - id: P27
     item: "Individual-defence baseline from AutoDojo's released optimisation trajectories, reported as the reference the composition result is measured against"
-    lands_in: [dissertation/05_results_discussion.md]
+    lands_in: [dissertation/04_results_discussion.md]
     marker: "baseline"
     status: open
   - id: P28
     item: "Ethics: signed Form 4 of 2 May 2026 cited, with supervisor Dr Haleema PK and the declared method quoted - variance decomposition was declared at ethics stage, which supports the analysis plan"
-    lands_in: [dissertation/04_methods.md]
+    lands_in: [dissertation/03_methods.md]
     marker: "Form 4"
     status: open
   - id: P30
@@ -212,13 +212,13 @@ positions:
     status: open
   - id: P29
     item: "Doctoral programme stated as three concrete studies, not a list - correlated-failure modelling, cost-normalised defence-in-depth, composition under white-box"
-    lands_in: [dissertation/07_conclusion.md]
+    lands_in: [dissertation/05_conclusion.md]
     marker: "programme"
     status: open
 
   - id: P32
     item: "Duplication in AutoDojo's released variant grid reported: 51 distinct cells of 150, all travel cells identical across ten defence directories. Restricts the W0 baseline and is disclosed upstream."
-    lands_in: [dissertation/04_methods.md, dissertation/05_results_discussion.md]
+    lands_in: [dissertation/03_methods.md, dissertation/04_results_discussion.md]
     marker: "duplicat"
     status: open
 
@@ -244,5 +244,5 @@ gates:
   - {id: G1, day: 2,  name: "Pre-register",  requires: [preregistration/PREREGISTRATION.md, preregistration/HASH.txt]}
   - {id: G2, day: 7,  name: "Runs complete", requires: [workstreams/w2_composition/results/runs/MANIFEST.md, workstreams/w2_composition/results/FREEZE.txt]}
   - {id: G3, day: 8,  name: "Analysis",      requires: [workstreams/w0_secondary_analysis/RESULTS.md]}
-  - {id: G4, day: 10, name: "Draft",         requires: [dissertation/05_results_discussion.md]}
-  - {id: G5, day: 12, name: "Submission",    requires: [dissertation/00_front_matter.md, dissertation/08_appendices.md]}
+  - {id: G4, day: 10, name: "Draft",         requires: [dissertation/04_results_discussion.md]}
+  - {id: G5, day: 12, name: "Submission",    requires: [dissertation/00_front_matter.md, dissertation/07_appendices.md]}
