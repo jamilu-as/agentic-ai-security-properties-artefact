@@ -23,7 +23,7 @@ lock-prereg:
 
 # Day 7. Records the freeze so nothing drifts in afterwards.
 freeze:
-	@date -u +"DATA FREEZE %Y-%m-%dT%H:%M:%SZ" > results/FREEZE.txt
-	@git rev-parse HEAD >> results/FREEZE.txt
-	@cat results/FREEZE.txt
+	@date -u +"DATA FREEZE %Y-%m-%dT%H:%M:%SZ" > workstreams/w2_composition/results/FREEZE.txt
+	@git rev-parse HEAD >> workstreams/w2_composition/results/FREEZE.txt
+	@cat workstreams/w2_composition/results/FREEZE.txt
 sources:          ; cd checks && $(PY) check_sources.py

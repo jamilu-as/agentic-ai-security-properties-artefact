@@ -7,7 +7,7 @@ def main(strict=True):
     r = Report("Pre-registration integrity")
     pre = os.path.join(ROOT, "preregistration", "PREREGISTRATION.md")
     hsh = os.path.join(ROOT, "preregistration", "HASH.txt")
-    r2 = os.path.join(ROOT, "results", "runs")
+    r2 = os.path.join(ROOT, "workstreams", "w2_composition", "results", "runs")
     has_r2 = os.path.isdir(r2) and any("r2" in f.lower() for f in os.listdir(r2))
     if not os.path.exists(pre) or is_stub(open(pre, errors="ignore").read() if os.path.exists(pre) else None):
         (r.F if has_r2 else r.W)("PREREGISTRATION.md is missing or a stub" + (" — and R2 data already exists" if has_r2 else ""))

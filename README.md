@@ -17,11 +17,11 @@ MSc dissertation (CP70073O, University of West London). Private working reposito
 | `docs/` | Execution plan, reframing statement, field review, and the machine-readable control files |
 | `preregistration/` | Analysis plan. Timestamped on Day 2, **before any R2 data**. Immutable thereafter. |
 | `dissertation/` | Chapter sources. Front matter carries the rubric mapping. |
-| `harness/` | AutoDojo fork integration and the 2³ composition configuration layer |
-| `analysis/` | Model fitting, correlation matrix, cost curves, figures |
-| `results/runs/` | Run manifests with config hashes and seeds. Raw outputs are gitignored. |
+| `workstreams/` | **Laid out by movement of the argument, not by artefact type.** W1 threat surface · W2 composition study · W3 viability · WI integration |
+| `sources/` | The submitted work and the university materials it is marked against |
 | `checks/` | The quality gates. Run `make check`. |
-| `sources/` | **The submitted work, extracted.** Literature review (10,138 words, graded) and proposal (8,776 words, graded) plus Paper 1. Read-only — the foundation the dissertation is built from, not background. |
+| `sources/*.md` | **The submitted work, extracted.** Literature review (10,138 words, graded), proposal (8,776 words, graded), Paper 1. Read-only — the foundation, not background. |
+| `sources/university/` | Module handbook and both marking-criteria sheets. **Private repo only** — remove before any public release. |
 
 ## Gates
 
@@ -55,8 +55,10 @@ make sources        # every section of the submitted work has a disposition and 
 1. The pre-registration is written and hash-locked **before any R2 data is seen**. Subsample n is fixed there.
 2. Nothing enters the dissertation that is not in `docs/register.yaml` or produced by the study.
 3. The 2³ factorial is never cut. See the fixed cut order in the execution plan §3.1.
-4. University-provided PDFs are never committed. The student's own submitted work is,
-   as extracted text under `sources/`.
+4. **This repository must stay private.** `sources/university/` holds module materials
+   the handbook says must not be shared or uploaded; keeping them here is a deliberate
+   decision that depends on the repo being private. Remove that directory before any
+   public release.
 5. The dissertation is built **from** the submitted 19,000 graded words, not beside them.
    `docs/source_map.yaml` records the disposition of every section; `make sources` fails
    if one is dropped without a reason.

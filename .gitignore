@@ -1,10 +1,11 @@
-# University-provided materials — the MSG states these must not be uploaded to
-# websites. This is the handbook and both marking-criteria sheets.
+# PDFs are excluded by default, then allowed back under sources/.
+# This repository is PRIVATE. The module handbook says its materials must not be
+# shared or uploaded to websites; keeping them under sources/university/ in a
+# private repo is a deliberate decision by the author. If this repo is ever made
+# public, sources/university/ must be removed first.
 *.pdf
-
-# The student's OWN submitted work is extracted to sources/*.md and versioned:
-# it is the foundation the dissertation is built on, and it needs to be readable
-# by the checks. The PDFs themselves stay local.
+!sources/*.pdf
+!sources/university/*.pdf
 !sources/*.md
 
 # Submitted work kept local (Turnitin / originality)
