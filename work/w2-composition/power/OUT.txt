@@ -1,0 +1,17 @@
+Prospective power for rho*, cluster bootstrap on injection task
+a0=0.70, each defence passes 0.50, 49 clusters (6 attack-supported suites), margin rho* > 1.57
+Margin is the scientific force's 10pp cut-point / 0.175 independence rate.
+
+ true rho* |   n=200 |   n=400 |   n=800
+------------------------------------------
+      1.00 |    0.00 |    0.00 |    0.00  <- null
+      1.57 |    0.03 |    0.02 |    0.01  <- margin
+      1.75 |    0.06 |    0.06 |    0.12
+      2.00 |    0.20 |    0.31 |    0.56
+      2.25 |    0.41 |    0.65 |    0.91
+      2.50 |    0.66 |    0.92 |    1.00
+
+Binding constraint: tests per cell vs clusters, at true rho*=2.00
+   49 clusters, n= 200  power=0.20
+   98 clusters, n= 200  power=0.18
+   49 clusters, n= 400  power=0.31

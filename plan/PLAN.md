@@ -89,7 +89,7 @@ Eight combinations: none, three singles, three pairs, one triple.
 
 **R2 depth is deliberately asymmetric, and this must be declared.** The local arm runs on rented GPU with no batch latency, so it carries **full adaptive depth** to convergence. The closed-weight arm runs through the Batch API at one iteration round per day, so it is capped at the pre-registered budget of **five rounds**. Rationale: the composition factorial is established at full depth on the models under direct control, and the closed-weight cells establish that the effect is not an artefact of an 8B model. The asymmetry is a consequence of the run architecture, not a judgement about the models, and it is reported as a limitation on cross-arm comparability.
 
-**Sample:** a stratified subsample of AgentDojo's 629 security tests, **n fixed in the pre-registration before any results are seen** — n = 800 on the confirmatory arm and 200 on each replication arm, balanced across the seven suites. This is the single most important pre-registration commitment; choosing n after seeing data is the fastest way to lose the statistics.
+**Sample:** a stratified subsample of AgentDojo's 629 security tests, **n fixed in the pre-registration before any results are seen** — n = 800 on the confirmatory arm and 200 on each replication arm, balanced across the six attack-supported suites. This is the single most important pre-registration commitment; choosing n after seeing data is the fastest way to lose the statistics.
 
 ### 1.5 Measured outputs
 

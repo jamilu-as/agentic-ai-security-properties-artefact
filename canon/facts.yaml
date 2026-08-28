@@ -5,6 +5,11 @@
 # value here once; check_staleness.py finds every contradicting mention and names
 # the file and line. Change it here first, then let the check drive the edits.
 #
+# `established_by` records the command or source that establishes the value. A fact
+# without it is unverified, and a check that certifies mentions agree with each
+# other is not evidence the number is true of the world: `injection_tasks: 55` was
+# reported `ok` by two agreeing mentions while being wrong against the harness.
+#
 # `pattern` must capture the number in group 1. `except_in` skips files that
 # legitimately discuss a superseded value (the design-change declaration, the
 # review record, archive).
@@ -23,15 +28,22 @@ facts:
     except_in: [work/w0-baseline/, work/reviews/, archive/, canon/facts.yaml, canon/CONVENTIONS.md, canon/register.yaml, work/w2-composition/harness/]
 
   - id: suites
-    value: 7
-    means: AgentDojo suites used (4 canonical + github, shopping, dailylife)
+    value: 6
+    means: attack-supported AgentDojo suites (4 canonical minus workspace, plus github, shopping, dailylife)
+    established_by: "upstream commit e42ef77 - AutoDojo attack does not support workspace" 
     pattern: '(?:across |the )(seven|four|\d+) suites'
     words_ok: {seven: 7, four: 4}
     except_in: [work/reviews/, archive/]
 
   - id: injection_tasks
-    value: 55
-    means: clustering units across 7 suites (27 across the 4 canonical)
+    value: 49
+    means: clustering units across the 6 ATTACK-SUPPORTED suites (27 across the 4 canonical)
+    established_by: |
+      cd AutoDojo && for s in banking slack travel github shopping dailylife; do
+        grep -cE '^@task_suite\.register_injection_task' \
+          agentdojo/src/agentdojo/default_suites/v1/$s/injection_tasks.py; done
+      Workspace excluded: AutoDojo does not attack it (upstream e42ef77).
+      Commented-out registrations (github 3, shopping 2) do not count.
     pattern: '(\d+)\s+injection tasks'
     except_in: [work/reviews/, archive/, canon/facts.yaml]
 
@@ -56,7 +68,7 @@ facts:
     except_in: [work/reviews/, archive/, canon/facts.yaml]
 
   - id: equivalence_margin
-    value: '1.29'
+    value: '1.57'
     means: equivalence margin on the rho* scale
     pattern: 'margin[^.]{0,40}?rho\*?\s*=?\s*([\d.]+)|ρ\*\s*=\s*([\d.]+)[^.]{0,30}margin'
     except_in: [work/reviews/, archive/]

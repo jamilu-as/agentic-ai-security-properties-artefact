@@ -15,8 +15,7 @@ def sim_once(rng, a0, r1, r2, rho_star, n_clusters, n_per_cell, icc_sd, n_boot):
 
     # injection-task random effect, shared across cells (same tasks in every cell)
     u = rng.normal(0, icc_sd, n_clusters)
-    per = n_per_cell // n_clusters + 1
-    cl = np.repeat(np.arange(n_clusters), per)[:n_per_cell]
+    cl = np.arange(n_per_cell) % n_clusters   # balanced; every cluster occupied
 
     y = np.empty((4, n_per_cell), dtype=float)
     for c in range(4):
@@ -40,7 +39,7 @@ def sim_once(rng, a0, r1, r2, rho_star, n_clusters, n_per_cell, icc_sd, n_boot):
     return np.percentile(boots, 2.5), np.percentile(boots, 97.5)
 
 
-def power(rho_star, n_clusters, margin=1.15, n_sims=400, a0=0.70, r1=0.5, r2=0.5,
+def power(rho_star, n_clusters, margin=1.57, n_sims=400, a0=0.70, r1=0.5, r2=0.5,
           n_per_cell=200, icc_sd=0.8, n_boot=300, seed=20260902):
     rng = np.random.default_rng(seed)
     hits = tot = 0
@@ -54,11 +53,15 @@ def power(rho_star, n_clusters, margin=1.15, n_sims=400, a0=0.70, r1=0.5, r2=0.5
 
 
 print("Prospective power for rho*, cluster bootstrap on injection task")
-print("a0=0.70, each defence passes 0.50, n=200/cell, ICC sd=0.8, margin rho*>1.15\n")
-print(f"{'true rho*':>10} | {'27 clusters':>12} | {'55 clusters':>12}")
-print("-" * 40)
-for rs in (1.00, 1.15, 1.25, 1.50, 1.75, 2.00):
-    p27, _ = power(rs, 27)
-    p55, _ = power(rs, 55)
-    tag = "  <- null" if rs == 1.00 else ("  <- margin" if rs == 1.15 else "")
-    print(f"{rs:10.2f} | {p27:12.3f} | {p55:12.3f}{tag}")
+print("a0=0.70, each defence passes 0.50, 49 clusters (6 attack-supported suites), margin rho* > 1.57")
+print("Margin is the scientific force's 10pp cut-point / 0.175 independence rate.\n")
+print(f"{'true rho*':>10} | {'n=200':>7} | {'n=400':>7} | {'n=800':>7}")
+print("-" * 42)
+for rs in (1.00, 1.57, 1.75, 2.00, 2.25, 2.50):
+    row = [power(rs, 49, n_per_cell=n)[0] for n in (200, 400, 800)]
+    tag = "  <- null" if rs == 1.00 else ("  <- margin" if rs == 1.57 else "")
+    print(f"{rs:10.2f} | {row[0]:7.2f} | {row[1]:7.2f} | {row[2]:7.2f}{tag}")
+
+print("\nBinding constraint: tests per cell vs clusters, at true rho*=2.00")
+for ncl, n in ((49,200),(98,200),(49,400)):
+    print(f"  {ncl:3d} clusters, n={n:4d}  power={power(2.00, ncl, n_per_cell=n)[0]:.2f}")

@@ -13,7 +13,7 @@ Scoped to **inline mitigations** — controls mediating content or actions withi
 
 ## 2. Falsification
 
-Primary estimand **ρ* = a₁₂·a₀/(a₁·a₂)**, null ρ* = 1. Companion **Δ* = a₁₂ − a₁a₂/a₀**, null 0, reported for magnitude in percentage points.
+Primary estimand **`ρ*` = a₁₂·a₀/(a₁·a₂)**, null ρ* = 1. Companion **`Δ*` = a₁₂ − a₁a₂/a₀**, null 0, reported for magnitude in percentage points.
 
 **Supported** if the interval on ρ* lies wholly above the equivalence margin below.
 
@@ -31,7 +31,8 @@ Directional: the confirmatory test is one-sided. A negative departure, in which 
 
 ## 4. Sample — FIX BEFORE ANY RESULTS
 
-- Suites: **seven** — banking, slack, travel, workspace, github, shopping, dailylife — giving **55 injection tasks** as clustering units. The four canonical suites alone give 27, below the threshold at which cluster-robust variance is reliable.
+- Suites: **six attackable** — banking, slack, travel, github, shopping, dailylife — giving **49 injection tasks** as clustering units (verified by counting active `@task_suite.register_injection_task` registrations at the pinned commit; three in github and two in shopping are commented out and do not count). **Workspace is excluded: the AutoDojo optimiser does not attack it** (upstream commit e42ef77). The four canonical suites alone give 27, below the threshold at which cluster-robust variance is reliable.
+- **Engine provenance:** the CaMeL policy engines for github, shopping and dailylife are the harness maintainer's, not the defence authors'. System-level contrasts are additionally reported restricted to banking/slack/travel, whose engines are upstream's.
 - **Confirmatory arm, named here because 'fixed in advance' is unverifiable if it is not: `Llama-3-8B-Instruct` (base of the matched representation pair).** Chosen because it is the arm whose attacker budget runs to convergence rather than a round cap, so the adequacy precondition is testable on it, and because it is locally hosted, making the 800-test allocation affordable.
 - Subsample: **n = 800** security tests for that arm, **n = 200** for each of the four replication arms, stratified across suites. The uneven allocation is a power decision recorded in §7, not a convenience.
 - Seed: 20260902 (fixed here; recorded in every run manifest)
@@ -60,20 +61,20 @@ Directional: the confirmatory test is one-sided. A negative departure, in which 
 - **Triple contrast** evaluated against full independence (ρ* = a₁₂₃·a₀²/(a₁a₂a₃)) and separately against pairwise-plus-one (a₁₂₃·a₀/(a₁₂·a₃)); only the first tests the hypothesis as stated.
 - **Aggregation:** model arm is a stratifier. The verdict is reported per arm with consistency of sign across arms; not pooled into a single number.
 - **Exploratory:** none. A within-axis variance comparison is not estimable with one instance per axis and is not reported.
-- **Equivalence margin:** **ρ* = 1.29**, derived from the decision-rule cut-points fixed in §9: the smallest absolute cut-point is the engineering force's 5pp, and at the design's operating rates independence predicts a₁₂ = 0.175, so 1 + 0.05/0.175 = 1.29. A ±3pp equivalent (ρ* = 1.17) is reported alongside as a sensitivity check.
+- **Equivalence margin: ρ\* = 1.57.** The cut-point must be in the estimand's units. The engineering force is graded on *utility cost*, so its 5pp cannot bound an attack-success estimand; the scientific force is graded on adaptive lift, in the same units, smallest cut-point 10pp. Independence predicts a₁₂ = 0.175 at the design's operating rates, so 1 + 0.10/0.175 = 1.57. The 1.29 a utility-scale cut-point would give is reported as a sensitivity check and noted as favouring 'supported'. The ratio is fixed; the absolute departure it corresponds to is reported per arm, since at the adequacy floor a₀ = 0.40 the same ratio is under six points.
 - **Attacker adequacy:** an arm enters the confirmatory analysis only if the optimiser reaches ≥ 40% attack success against the undefended configuration on that arm.
 - **Minimum benign utility:** an arm enters at all only if benign task completion on the undefended configuration is ≥ 30%; below that, attack success is not measurable and the arm is substituted.
 - **Filter granularity:** sentence-level, fixed here rather than left open.
-- **Power, computed before data collection** (script and seed in `work/w2-composition/power/`). At a₀ = 0.70, each defence passing 0.5, margin ρ* = 1.29, 55 clusters:
+- **Power, computed before data collection** (script and seed in `work/w2-composition/power/`). At a₀ = 0.70, each defence passing 0.5, margin ρ\* = 1.57, 49 clusters:
 
   | True ρ* | n = 200 | n = 800 |
   |---|---|---|
   | 1.00 | 0.00 | 0.00 |
-  | 1.50 | 0.13 | 0.28 |
-  | 1.75 | 0.36 | 0.84 |
-  | 2.00 | 0.64 | 0.99 |
+  | 1.75 | 0.06 | 0.12 |
+  | 2.00 | 0.20 | 0.56 |
+  | 2.25 | 0.41 | 0.91 |
 
-  The confirmatory arm at n = 800 is powered for ρ* ≥ 1.75. Departures below that are pre-committed to report as **undetermined**, not as refutation. Post-hoc power cannot license accepting a null; the equivalence test above does that work.
+  The confirmatory arm is powered only for ρ\* ≥ 2.25. Departures below that are pre-committed to report as **undetermined**, never as refutation. Clusters are not the binding constraint: 49 → 98 moves power at ρ\* = 2.00 from 0.20 to 0.18. Post-hoc power cannot license accepting a null; the equivalence test above does that work.
 
 ## 9. Decision-rule cut-points
 

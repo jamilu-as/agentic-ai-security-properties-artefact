@@ -1,29 +1,48 @@
-# Prospective power — computed 28 Aug 2026, before any adaptive data
+# Prospective power — recomputed 29 Aug 2026, before any adaptive data
 
-Script: `power_sim.py` (seed 20260902). Estimator as pre-registered: cluster
-bootstrap resampling injection tasks once per replicate, all four cell rates
-recomputed on the same resample.
+Script: `power_sim.py` (seed 20260902). `__main__` prints exactly the table below.
 
-Assumptions: a0 = 0.70, each defence passes 0.50 of what reaches it,
-55 injection-task clusters (7 suites), margin rho* = 1.29 (derived from the
-5pp engineering cut-point at the operating rate: 1 + 0.05/0.175).
+Assumptions: a0 = 0.70, each defence passes 0.50 of what reaches it, **49 clusters**
+(the six attack-supported suites; workspace is excluded because AutoDojo does not
+attack it), margin **rho* = 1.57**.
 
-| True rho* | n=200 | n=800 |
-|---|---|---|
-| 1.00 (null) | 0.00 | 0.00 |
-| 1.50 | 0.13 | 0.28 |
-| 1.75 | 0.36 | 0.84 |
-| 2.00 | 0.64 | 0.99 |
+Margin derivation: the cut-point must be in the estimand's units. The engineering
+force is graded on utility cost, so its 5pp cannot set a margin on attack success.
+The scientific force is graded on adaptive lift, in the same units; smallest
+cut-point 10pp. 1 + 0.10/0.175 = 1.57.
 
-## Two design consequences
+| True rho* | n=200 | n=400 | n=800 |
+|---|---|---|---|
+| 1.00 (null) | 0.00 | 0.00 | 0.00 |
+| 1.57 (margin) | 0.03 | 0.02 | 0.01 |
+| 1.75 | 0.06 | 0.06 | 0.12 |
+| 2.00 | 0.20 | 0.31 | 0.56 |
+| 2.25 | 0.41 | 0.65 | 0.91 |
+| 2.50 | 0.66 | 0.92 | 1.00 |
 
-1. **Tests per cell bind, not clusters.** 55->110 clusters moves power at
-   rho*=1.5 from 0.47 to 0.53; 200->400 tests moves it 0.27 to 0.47. The extra
-   suites are justified by breadth for RQ1, not by precision.
-2. **n=200 sees only near-doubling effects.** Sampling reallocated: one
-   confirmatory arm at n=800, four replication arms at n=200. Costs 1.6x the
-   even allocation; takes power at rho*=1.75 from 0.36 to 0.84.
+## Consequences
 
-## Honest limit
-Detects ~0.75 above independence; cannot reliably detect ~0.5 above.
-Departures below the margin are pre-committed as UNDETERMINED, not refuted.
+1. **Clusters are not the binding constraint; tests per cell are.** At rho*=2.00:
+   49 -> 98 clusters moves power 0.20 -> 0.18 (nothing, within error);
+   n 200 -> 400 moves it 0.20 -> 0.31. The extra suites are justified by RQ1
+   breadth and by lifting the cluster count out of the anti-conservative CRVE
+   range, NOT by precision.
+2. **Honest limit.** Conventional power only at rho* >= 2.25. At 2.00 it is 0.56;
+   at 1.75 it is 0.12. A three-quarters departure is a real effect this design
+   would usually fail to separate from the margin. Such results are pre-committed
+   as UNDETERMINED, never as refutation.
+
+## Corrections to the 28 August version
+
+- Margin was 1.29, derived from the engineering force's 5pp — a **utility-cost**
+  cut-point used to bound an **attack-success** estimand. Wrong units, and the
+  error made "supported" easier. Now 1.57 from the scientific force.
+- Clusters were 55, counting the workspace suite, which AutoDojo cannot attack;
+  and an external count of 54 included commented-out registrations. True: 49.
+- Cluster-allocation bug: `per = n//nc + 1` then truncation left 5 of 55 clusters
+  empty at n=200 and 1 at n=800, inflating variance at n=200 relative to n=800 —
+  biasing the very comparison the reallocation was justified by. Now balanced.
+- `__main__` printed a different table (margin 1.15, sweeping clusters not n) from
+  the one reported. It now prints the reported table.
+- The 28 Aug prose gave three different values for one design point (0.13/0.27/0.47)
+  by mixing margin regimes. Withdrawn.

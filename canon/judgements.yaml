@@ -21,7 +21,7 @@ judgements:
     read: [dissertation/02_literature_review.md, dissertation/01_introduction.md]
     owner: coherence-reader
     verdict: fail
-    finding: "2.7 names three open questions and assigns them to RQ2 and RQ3 only. RQ1 has no stated gap; nothing in Ch2 motivates the derivation model."
+    finding: "Confirmed. 2.7 labels three not-closed questions RQ2/RQ2/RQ3; the closing paragraph states the contribution as three moves, none RQ1. Enumerative comparator never named in any chapter"
     verified_against: null
 
   - id: J02
@@ -29,23 +29,23 @@ judgements:
     read: [dissertation/02_literature_review.md]
     owner: coherence-reader
     verdict: fail
-    finding: "Six capabilities, one sentence each, synthesis arriving after the list. Ch2 enumerates and Ch4 synthesises, which is the wrong way round for marks awarded inside the Literature Review."
+    finding: "Confirmed. 2.2 is a 260-word enumeration of six capabilities at a sentence each; the comparative artefact remains deferred to 4.I, so Ch2 enumerates and Ch4 synthesises"
     verified_against: null
 
   - id: J03
     question: Does Chapter 3 read as one chapter or as accreted layers? It has been rewritten once and heavily edited since.
     read: [dissertation/03_methods.md]
     owner: coherence-reader
-    verdict: open
-    finding: "3.4 sits as a wedge between two RQ2 sections. Contrastive-frame density is 1 per 87 words against 1 per 171 in Ch1."
+    verdict: fail
+    finding: "Layers. 3.4a widened the 3.4 wedge by 40 percent; three rules stated twice; 6830 words against a 3250 ceiling. Cut list recorded in the round-4 review"
     verified_against: null
 
   - id: J04
     question: Is the primary estimand stated consistently in 1.4, the objectives table, and 3.7? It was changed on 28 Aug and three places had to follow.
     read: [dissertation/01_introduction.md, dissertation/03_methods.md, preregistration/PREREGISTRATION.md]
     owner: evidence-auditor
-    verdict: null
-    finding: null
+    verdict: fail
+    finding: "Prereg 6 carried the raw product with logistic+Firth while 1/2/7 carried rho* - now fixed; markdown emphasis was eating the star that distinguishes rho* from rho in four places - now literal"
     verified_against: null
 
   # ---- evidence and soundness ------------------------------------------------
@@ -54,7 +54,7 @@ judgements:
     read: [dissertation/03_methods.md, dissertation/02_literature_review.md, dissertation/06_references.md]
     owner: evidence-auditor
     verdict: fail
-    finding: "Disjunction cannot fail, and 3 of 4 instances carry no citation by which either limb could be checked. Weakened from the proposal's 'peer-reviewed at a top venue'."
+    finding: "Confirmed and hardened: criterion is an unfalsifiable disjunction, and 4 of 4 instances are uncheckable from 3.2. Hines was a dangling citation - now added"
     verified_against: null
 
   - id: J06
@@ -62,7 +62,7 @@ judgements:
     read: [dissertation/03_methods.md, preregistration/PREREGISTRATION.md]
     owner: external-examiner
     verdict: fail
-    finding: "Triple-defence cell is where utility collapses; a crippled agent cannot reach the injection's goal either, giving spurious rho* < 1. Cuts against the hypothesis, which is why it is credible."
+    finding: "Confirmed. Utility gate is per-arm on the undefended config only; no composed cell is gated. Examiner specified the fix: retention gate u12 >= 0.75*u1*u2 plus 30pct absolute backstop, with a fourth verdict state 'not estimable at deployable utility'"
     verified_against: null
 
   - id: J07
@@ -77,9 +77,9 @@ judgements:
     question: Is the claim that the local arm's convergence curve bounds the capped arms supportable?
     read: [dissertation/03_methods.md]
     owner: evidence-auditor
-    verdict: fail
-    finding: "Llama-3-8B's convergence says nothing about a frontier model's. Delete or restate as illustration."
-    verified_against: null
+    verdict: pass
+    finding: "Bounding sentence is gone; 3.6 now states only that the cap asymmetry limits cross-arm comparison"
+    verified_against: "9228b4a366a67183"
 
   # ---- declaration and integrity ---------------------------------------------
   - id: J09
@@ -118,8 +118,8 @@ judgements:
     question: Is the reuse of the candidate's own unpublished prior work declared in a way an exam board would accept?
     read: [dissertation/01_introduction.md, dissertation/06_references.md]
     owner: external-examiner
-    verdict: open
-    finding: "The threat-surface model and viability framework originate there; 1.6 presents both as outputs of this dissertation. Decide the line and hold it consistently."
+    verdict: fail
+    finding: "Escalated. No declaration exists anywhere. 2.5 presents the author's own prior untested claim as a position held in the field, unattributed, and builds RQ2's motivation on it. PAPER1 header claiming 'graded, submitted text' corrected 29 Aug - it was never submitted"
     verified_against: null
 
   # ---- register and marks ----------------------------------------------------
