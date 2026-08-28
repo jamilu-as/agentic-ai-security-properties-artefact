@@ -455,6 +455,15 @@ positions:
   - dissertation/04_results_discussion.md
   marker: '0.890'
   status: open
+- id: P46
+  item: 'BLOCKING BEFORE SUBMISSION: the duplication finding must actually be disclosed
+    to the AutoDojo authors and recorded in work/w0-baseline/DISCLOSURE.md with recipient,
+    date, channel and what was sent. Ch4, Ch5 and 3.11 all now point at that record.
+    Until it exists, three sections cite an appendix entry that does not.'
+  lands_in:
+  - work/w0-baseline/DISCLOSURE.md
+  marker: disclosed on
+  status: open
 prior_art:
 - id: A1
   key: '2606.15057'
