@@ -9,6 +9,14 @@ enforced has its required artefacts present and non-stub.
 import sys, os
 from _common import load, read, is_stub, Report, ROOT
 
+# Artefacts that are legitimately short. is_stub() calls anything under 40 words a
+# placeholder, which is right for prose and wrong for a hash: HASH.txt is a digest
+# and a timestamp, and padding it to satisfy a word count would be absurd. These
+# are checked for well-formedness instead.
+SHORT_BY_NATURE = {
+    "preregistration/HASH.txt": lambda s: len(s.split("\n")[0].strip()) == 64,
+}
+
 def main(strict=True, gate=None):
     r = Report(f"Gate artefacts{' — ' + gate if gate else ''}")
     gates = {g["id"]: g for g in load("register.yaml")["gates"]}
@@ -25,6 +33,11 @@ def main(strict=True, gate=None):
         t = read(a)
         if t is None:
             r.F(f'{gate} {g["name"]}: {a} does not exist')
+        elif a in SHORT_BY_NATURE:
+            if SHORT_BY_NATURE[a](t):
+                r.O(f'{gate} {g["name"]}: {a} present and well-formed')
+            else:
+                r.F(f'{gate} {g["name"]}: {a} is malformed — expected a 64-character sha256 on line 1')
         elif is_stub(t):
             r.F(f'{gate} {g["name"]}: {a} exists but is a stub — the gate cannot pass on a placeholder')
         else:
