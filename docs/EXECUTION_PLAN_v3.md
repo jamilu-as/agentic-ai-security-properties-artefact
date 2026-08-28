@@ -1,6 +1,6 @@
 # Execution plan v3 — composition study
 
-**Drafted 28 August 2026.** Supersedes RQ2_EXECUTION_PLAN.md (27 Jul), which was written before the field review of 27–28 August and is wrong on three material points: it missed AutoDojo, it treated credit programmes as open when both had closed, and it recommended a defence axis that a hostile novelty audit later found near-dead as a headline claim.
+**Drafted 28 August 2026.** Operational plan. Supersedes `working/RQ2_EXECUTION_PLAN.md` (27 Jul 2026). Canonical statements of the thesis, decisions and deliverables live in `docs/canon/`.
 
 **Self-imposed completion target: Tuesday 8 September 2026 — 12 days.** Formal submission deadline is 28 September; the 20-day residue is insurance, not plan (§3.4).
 
@@ -31,7 +31,7 @@ Encoded machine-readably in `docs/thesis_spine.yaml` and verified by `make coher
 
 ### 1.1 W1 — RQ1, and what was nearly lost
 
-**Correction to an earlier version of this plan, which overstated the work.** Paper 1 §3 delivers O1 *and* substantially delivers O2: Table 1 already maps capability cluster → derived property → first dedicated benchmark across six rows, and §3.2 gives the threat-actor profile as a minimum tuple. This is not a workstream to build; it is a chapter to expand and verify.
+Paper 1 §3 delivers O1 and substantially delivers O2: Table 1 already maps capability cluster → derived property → first dedicated benchmark across six rows, and §3.2 gives the threat-actor profile as a minimum tuple. This is not a workstream to build; it is a chapter to expand and verify.
 
 The genuine W1 work is bounded:
 - **One row is wrong** — peer agents / agent-to-agent integrity reads "none dedicated"; A2ASecBench is ICLR 2026.
@@ -41,11 +41,11 @@ The genuine W1 work is bounded:
 
 ### 1.2 W3 — RQ3, and what "slot the values in" was hiding
 
-**The framework does not need amending. It needs testing — and it already contains the claim to test.** Paper 1 §4.2, on engineering viability as a compensator:
+The framework already contains the claim under test. Paper 1 §4.2, on engineering viability as a compensator:
 
 > "a probabilistic detector with no formal robustness becomes acceptable behind rate limiting, internal-only access, and **composition with cheaper deterministic filters**, since a deterministic upstream stage narrows the inputs the probabilistic stage must reason about and the realised threat model sits well below worst-case adaptive success."
 
-That is the composition hypothesis, asserted, in the submitted framework. W2 measures whether it survives an adaptive attacker. **Correlated failure would bound the compensator argument the framework rests on** — a finding about the instrument, produced by its own empirical chapter, which is a far stronger position than amending an instrument nobody has tested.
+W2 measures whether that assertion survives an adaptive attacker. Correlated failure would bound the compensator argument the framework rests on.
 
 W3's work is therefore:
 - **Populate** — measured values replace Paper 1 Table 2's explicitly illustrative cells.

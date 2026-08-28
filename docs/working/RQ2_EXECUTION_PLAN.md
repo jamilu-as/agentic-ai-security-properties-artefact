@@ -1,3 +1,6 @@
+> **Working document — not canon.** Dated session material, retained for provenance.
+> Canonical statements live in `docs/canon/`. Nothing here drives the dissertation.
+
 # RQ2 execution plan — v2, costed and re-anchored
 
 **Drafted 27 July 2026** (Week 7 of 16). Supersedes v1 of this document, which descoped on unexamined assumptions and was wrong.

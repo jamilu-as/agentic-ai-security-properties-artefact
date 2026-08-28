@@ -1,26 +1,30 @@
-# An Empirical and Analytical Study of Security Properties in Agentic AI System
+# An Empirical and Analytical Study of Security Properties in Agentic AI Systems
 
-MSc dissertation (CP70073O, University of West London). Private working repository.
+MSc dissertation, CP70073O, University of West London. Supervisor: Dr Haleema PK.
+Private working repository.
 
-**Submitted title, unchanged.** It survives the composition reframe: *Empirical* is RQ2, *Analytical* is RQ1 and RQ3, and *Security Properties* is the capability-derived vocabulary of literature review Table 1 that the whole argument hangs on.
+**RQ1:** Can a capability-derived threat surface model provide more systematic and deployment-specific threat characterisation for multi-agent AI architectures than enumeration-based approaches?
 
 **RQ2:** Do current security controls maintain their claimed security properties **when composed** and evaluated against adversarially optimised attack conditions?
 
-**Claim under test:** an adaptive attacker induces *correlated* failure across defence axes, making defence-in-depth sub-additive. Refuted if the interaction terms between defence-presence indicators are indistinguishable from zero after Benjamini-Hochberg correction.
+**RQ3:** What scientific, engineering, and economic constraints govern the viability of security controls for multi-agent AI, and how do these constraints determine appropriate risk treatment decisions?
 
-**Target completion: 8 September 2026.** Formal deadline 28 September; the residue is insurance, not plan.
+**Hypothesis under test (RQ2):** an adaptive attacker induces correlated failure across defence axes, making defence-in-depth sub-additive. Refuted if the interaction terms between defence-presence indicators are indistinguishable from zero after Benjamini-Hochberg correction at FDR 0.10.
+
+**Target completion: 8 September 2026.** Formal deadline: 28 September 2026.
 
 ## Layout
 
 | Path | What |
 |---|---|
-| `docs/` | Execution plan, reframing statement, field review, and the machine-readable control files |
+| `docs/canon/` | The durable record: thesis spine, decisions, register, source and figure maps, rubric, forbidden claims. Drives the checks. See `canon/CONVENTIONS.md`. |
+| `docs/working/` | Dated reviews, superseded plans, session reasoning. Not a driver. |
 | `preregistration/` | Analysis plan. Timestamped on Day 2, **before any R2 data**. Immutable thereafter. |
 | `dissertation/` | Chapter sources. Front matter carries the rubric mapping. |
 | `workstreams/` | **Laid out by movement of the argument, not by artefact type.** W1 threat surface · W2 composition study · W3 viability · WI integration |
 | `sources/` | The submitted work and the university materials it is marked against |
 | `checks/` | The quality gates. Run `make check`. |
-| `sources/*.md` | **The submitted work, extracted.** Literature review (10,138 words, graded), proposal (8,776 words, graded), Paper 1. Read-only — the foundation, not background. |
+| `sources/` | Submitted work, read-only: literature review (10,138 words), research proposal (8,776 words), Paper 1 with its LaTeX source, signed ethics form. |
 | `sources/university/` | Module handbook and both marking-criteria sheets. **Private repo only** — remove before any public release. |
 
 ## Gates
@@ -59,6 +63,7 @@ make sources        # every section of the submitted work has a disposition and 
    the handbook says must not be shared or uploaded; keeping them here is a deliberate
    decision that depends on the repo being private. Remove that directory before any
    public release.
-5. The dissertation is built **from** the submitted 19,000 graded words, not beside them.
-   `docs/source_map.yaml` records the disposition of every section; `make sources` fails
-   if one is dropped without a reason.
+5. Every section of the submitted work has a recorded disposition in
+   `docs/canon/source_map.yaml`. `make sources` fails if one is dropped without a reason.
+6. Canon states what is the case; it does not narrate how a position was reached.
+   See `docs/canon/CONVENTIONS.md`.

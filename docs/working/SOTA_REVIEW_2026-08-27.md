@@ -1,3 +1,6 @@
+> **Working document — not canon.** Dated session material, retained for provenance.
+> Canonical statements live in `docs/canon/`. Nothing here drives the dissertation.
+
 # SOTA re-review — 27 August 2026
 
 **Scope:** everything the RQ2 execution plan (27 Jul 2026) assumed, re-checked against the field as of today.

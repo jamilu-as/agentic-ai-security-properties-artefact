@@ -123,7 +123,7 @@ positions:
     marker: "asymmetr"
     status: open
   - id: P14
-    item: "Detection-axis instance is piguard not promptguard - parallel-eval safe per code allowlist, and ungated on HF. Decided before any results."
+    item: "Detection-axis instance is piguard. Rationale: listed in PARALLEL_EVAL_SAFE_DEFENSES; ungated on HuggingFace, where promptguard requires a Llama licence."
     lands_in: [dissertation/04_methods.md, preregistration/PREREGISTRATION.md]
     marker: "piguard"
     status: open
@@ -191,7 +191,7 @@ positions:
     status: open
 
   - id: P27
-    item: "W0 baseline: secondary inferential analysis of AutoDojo's 150 released cells reported as the individual-defence baseline the composition result is measured against"
+    item: "Individual-defence baseline from AutoDojo's released optimisation trajectories, reported as the reference the composition result is measured against"
     lands_in: [dissertation/05_results_discussion.md]
     marker: "baseline"
     status: open
@@ -201,7 +201,7 @@ positions:
     marker: "Form 4"
     status: open
   - id: P30
-    item: "Title uses the plural 'Agentic AI Systems' per the signed ethics form; the singular in the proposal and LR is a typo. Correspondence noted once."
+    item: "Title: An Empirical and Analytical Study of Security Properties in Agentic AI Systems. Front matter notes the correspondence with the singular form used in the proposal and literature review."
     lands_in: [dissertation/00_front_matter.md]
     marker: "Agentic AI Systems"
     status: open

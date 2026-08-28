@@ -1,3 +1,6 @@
+> **Working document — not canon.** Dated session material, retained for provenance.
+> Canonical statements live in `docs/canon/`. Nothing here drives the dissertation.
+
 # Restructure — 28 August 2026
 
 A step back across everything established this session, against the stated objective: maximum marks, genuine research value, a doctoral gateway, not shabby work.

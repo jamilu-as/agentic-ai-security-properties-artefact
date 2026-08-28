@@ -6,9 +6,8 @@
 # configuration against a specific adversary (RQ3).
 #
 # check_coherence.py verifies every link: each RQ has objectives, each objective has a
-# chapter and an artefact, and each artefact is CONSUMED somewhere downstream. An
-# artefact nobody consumes is a chapter that could be deleted without the argument
-# noticing — which is the failure mode this file exists to catch.
+# chapter and an artefact, and each artefact is consumed somewhere downstream or declared
+# terminal.
 
 thesis_claim: >
   Composition is the common failure of enumerative threat modelling and additive
@@ -107,9 +106,8 @@ integration:
     If no profile change flips any treatment, the gate is inert on this dataset and the
     composition is decorative. Report that plainly - it is a finding about the framework.
   note: >
-    Paper 1 section 5 asserts this composition and illustrates it on invented values.
-    Demonstrating it on measured values is the thesis-level contribution that neither
-    the paper nor any single chapter delivers.
+    Paper 1 section 5 composes the two instruments on illustrative values, stating that
+    they are "not externally validated outcomes". This test supplies measured values.
 
 # Every artefact must be consumed by something, or named as a terminal deliverable.
 artefacts:

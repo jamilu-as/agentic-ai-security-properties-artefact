@@ -1,3 +1,6 @@
+> **Working document — not canon.** Dated session material, retained for provenance.
+> Canonical statements live in `docs/canon/`. Nothing here drives the dissertation.
+
 # Decision lens
 
 Run before any non-trivial decision, and at every gate. It exists because the failure pattern in this project has been consistent: optimising the thing in front of us and losing the whole.
