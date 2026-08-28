@@ -87,6 +87,10 @@ research_questions:
         text: "Operationalise the three forces as measurable per-control properties and map viability profiles to ISO 31000 treatments."
         artefact: A5_viability_framework
         marker: "ISO 31000"
+      - id: O6b
+        text: "Test the decision rule's determinacy, ordering validity against measured cost-effectiveness, and stability under bootstrap propagation of its own inputs."
+        artefact: A6b_viability_instrument
+        marker: "decision stability"
       - id: O6
         text: "Amend the framework for COMPOSED controls, and apply the decision rule to two deployment contexts using measured values."
         artefact: A6_treatment_decisions
@@ -122,10 +126,11 @@ artefacts:
   - {id: A3_composition_harness,      chapter: dissertation/03_methods.md,              rubric: "software artefact"}
   - {id: A4_correlated_failure_result,chapter: dissertation/04_results_discussion.md,   rubric: "new theory / methodology"}
   - {id: A5_viability_framework,      chapter: dissertation/04_results_discussion.md,  rubric: "conceptual/analytic model"}
+  - {id: A6b_viability_instrument, chapter: dissertation/04_results_discussion.md, rubric: "software artefact"}
   - {id: A6_treatment_decisions,      chapter: dissertation/04_results_discussion.md,  rubric: "applied result", terminal: true}
 
 # Ch7 must map every objective to where it was met - the rubric asks for this explicitly
 # under "how the aims and objectives have been met".
 aims_met_mapping:
   chapter: dissertation/05_conclusion.md
-  requires_all: [O1, O1b, O2, O3, O4, O5, O6]
+  requires_all: [O1, O1b, O2, O3, O4, O5, O6, O6b]

@@ -272,6 +272,12 @@ positions:
     marker: "predictive validity"
     status: open
 
+  - id: P42
+    item: "RQ3 made experimental: decision rule released as an instrument, tested for determinacy by inter-rater agreement, ordering validity against measured cost-effectiveness, and stability under bootstrap propagation. Controls near a boundary reported as undetermined rather than assigned."
+    lands_in: [dissertation/03_methods.md, dissertation/04_results_discussion.md]
+    marker: "decision stability"
+    status: open
+
 # Prior art that must be cited defensively. check_citations.py verifies each key appears.
 prior_art:
   - {id: A1,  key: "2606.15057", why: "AutoDojo - direct antecedent, supplies the harness"}
