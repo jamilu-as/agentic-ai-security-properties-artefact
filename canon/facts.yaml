@@ -1,0 +1,78 @@
+# Single source of truth for values that appear in more than one file.
+#
+# The recurring failure in this project is not wrong numbers - it is numbers that
+# were right, got revised in one file, and stayed wrong in four others. Declare a
+# value here once; check_staleness.py finds every contradicting mention and names
+# the file and line. Change it here first, then let the check drive the edits.
+#
+# `pattern` must capture the number in group 1. `except_in` skips files that
+# legitimately discuss a superseded value (the design-change declaration, the
+# review record, archive).
+
+facts:
+  - id: conditions
+    value: 80
+    means: 2^3 configurations x 5 model arms x 2 regimes
+    pattern: '(\d+)\s+conditions'
+    except_in: [dissertation/03_methods.md, work/reviews/, archive/, plan/REFRAMING.md, canon/facts.yaml, canon/source_map.yaml, canon/register.yaml]
+
+  - id: cells
+    value: 40
+    means: factorial cells before regime split
+    pattern: '(\d+)\s+cells'
+    except_in: [work/w0-baseline/, work/reviews/, archive/, dissertation/03_methods.md, canon/facts.yaml, canon/CONVENTIONS.md, canon/register.yaml, work/w2-composition/harness/]
+
+  - id: suites
+    value: 7
+    means: AgentDojo suites used (4 canonical + github, shopping, dailylife)
+    pattern: '(?:across |the )(\w+) suites'
+    words_ok: {seven: 7, four: 4}
+    except_in: [work/reviews/, archive/, dissertation/03_methods.md]
+
+  - id: injection_tasks
+    value: 55
+    means: clustering units across 7 suites (27 across the 4 canonical)
+    pattern: '(\d+)\s+injection tasks'
+    except_in: [work/reviews/, archive/, dissertation/03_methods.md, canon/facts.yaml]
+
+  - id: capability_clusters
+    value: 7
+    means: capability clusters in the derivation vocabulary
+    pattern: '(\w+)\s+capability clusters'
+    words_ok: {seven: 7, six: 6}
+    except_in: [work/reviews/, archive/]
+
+  - id: word_cap
+    value: 15000
+    means: MSG maximum, body only
+    pattern: '(15,?000)'
+    normalise: strip_comma
+    except_in: []
+
+  - id: n_confirmatory
+    value: 800
+    means: security tests per cell, confirmatory model arm
+    pattern: 'n\s*=\s*(\d+)\s+security tests'
+    except_in: [work/reviews/, archive/]
+
+  - id: equivalence_margin
+    value: '1.29'
+    means: equivalence margin on the rho* scale
+    pattern: 'margin[^.]{0,40}?rho\*?\s*=?\s*([\d.]+)|ρ\*\s*=\s*([\d.]+)[^.]{0,30}margin'
+    except_in: [work/reviews/, archive/]
+
+# Values that must NOT reappear once retired. Distinct from forbidden_claims.yaml,
+# which covers claims; these are superseded numbers.
+retired:
+  - value: '240 conditions'
+    superseded_by: 80 conditions
+    reason: proposal design; declared as changed in Methods, never asserted as current
+    except_in: [dissertation/03_methods.md, plan/REFRAMING.md, sources/, work/reviews/, archive/, canon/facts.yaml, canon/source_map.yaml, plan/PLAN.md]
+  - value: 'a₁·a₂'
+    superseded_by: 'a₁a₂/a₀'
+    reason: raw product is satisfied by its own null; see 28 Aug commit
+    except_in: [dissertation/01_introduction.md, preregistration/PREREGISTRATION.md, work/reviews/, archive/, canon/facts.yaml]
+  - value: 'spotlighting_with_delimiting'
+    superseded_by: spotlighting
+    reason: not a key in the pinned harness
+    except_in: [work/reviews/, archive/, canon/facts.yaml, preregistration/PREREGISTRATION.md]

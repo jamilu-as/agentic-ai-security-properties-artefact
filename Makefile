@@ -1,4 +1,6 @@
-.PHONY: help check gate0 gate1 gate2 gate3 gate4 gate5 lock-prereg freeze setup
+.PHONY: help check lock-prereg freeze setup prose stale refresh
+# NB: gate0..gate5 are deliberately NOT .PHONY - GNU make will not apply the
+# gate% pattern rule to a target declared phony, which silently made them no-ops.
 PY := python3
 
 help:
@@ -6,6 +8,9 @@ help:
 	@echo "make gate<N>      enforce gate N (0-5)"
 	@echo "make lock-prereg  hash-lock the pre-registration (G1, before any R2 data)"
 	@echo "make freeze       record the data freeze (G2)"
+	@echo "make prose        academic register: self-appraisal, AI tells, tic density"
+	@echo "make stale        cross-file fact consistency + derived-file freshness"
+	@echo "make refresh      re-stamp derived files after reviewing them"
 	@echo "make setup        install check dependencies"
 	@echo ""
 	@echo "Individual checks: $(PY) checks/<name>.py --advisory"
@@ -13,6 +18,11 @@ help:
 
 setup:            ; $(PY) -m pip install -r requirements.txt
 check:            ; cd checks && $(PY) run_all.py
+prose:            ; cd checks && $(PY) check_prose.py --advisory
+stale:            ; cd checks && $(PY) check_staleness.py --advisory
+
+# Re-stamp derived files AFTER reading them. The hash claims a human checked it.
+refresh:          ; cd checks && $(PY) refresh.py
 gate%:            ; cd checks && $(PY) run_all.py --gate G$*
 
 # G1. Locks the analysis plan before any R2 data is seen.

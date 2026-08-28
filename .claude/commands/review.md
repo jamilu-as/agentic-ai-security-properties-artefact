@@ -10,8 +10,9 @@ Mapping, from `canon/review_agents.yaml`:
 |---|---|
 | `G0`–`G2` | `gate-reviewer` |
 | `G3` | `gate-reviewer`, `evidence-auditor`, `novelty-monitor` |
-| `G4` | `gate-reviewer`, `rubric-marker`, `second-marker`, `external-examiner`, `coherence-reader`, `evidence-auditor`, `drift-auditor`, `novelty-monitor` |
+| `G4` | `gate-reviewer`, `rubric-marker`, `second-marker`, `external-examiner`, `coherence-reader`, `evidence-auditor`, `drift-auditor`, `novelty-monitor`, `prose-auditor` |
 | `G5` | all of G4, plus a final `gate-reviewer` on G5 |
+| `prose` | `prose-auditor` — run whenever a chapter reaches first draft, not only at gates |
 | `markers` | `rubric-marker`, `second-marker` — run these two without letting either see the other's output, since marking is double-blind |
 | `all` | every agent |
 

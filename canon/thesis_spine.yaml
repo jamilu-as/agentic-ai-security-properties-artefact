@@ -19,13 +19,13 @@ research_questions:
   - id: RQ1
     question: >
       Can a capability-derived threat surface model provide more systematic and
-      deployment-specific threat characterisation for multi-agent AI architectures
+      deployment-specific threat characterisation for agentic AI systems
       than enumeration-based approaches?
     status: unchanged from the submitted proposal
     chapter: dissertation/04_results_discussion.md
     objectives:
       - id: O1
-        text: "Construct the capability-to-property derivation covering the six capability clusters and their cross-cluster compositions."
+        text: "Construct the capability-to-property derivation covering the seven capability clusters and their cross-cluster compositions."
         artefact: A1_threat_surface_model
         marker: "capability-derived"
       - id: O1b
@@ -48,18 +48,15 @@ research_questions:
 
   - id: RQ2
     question: >
-      Do current security controls for multi-agent AI systems maintain their claimed
+      Do current security controls for agentic AI systems maintain their claimed
       security properties when composed and evaluated against adversarially optimised
       attack conditions?
     status: "revised - composition scoping clause added; see plan/REFRAMING.md"
     chapter: dissertation/04_results_discussion.md
     objectives:
-      - id: O3a
-        text: "Secondary inferential analysis of AutoDojo's 150 released cells: does defence category predict adaptive-gap magnitude once task specification is controlled? Establishes the individual-defence baseline. No compute dependency."
-        artefact: A3a_baseline_analysis
-        marker: "baseline"
+
       - id: O3
-        text: "Execute the 2^3 composition factorial across model configurations under R1 and R2, measured against the O3a baseline."
+        text: "Execute the 2^3 composition factorial across model configurations under R1 and R2,; baselines are internal to the factorial."
         artefact: A3_composition_harness
         marker: "factorial"
       - id: O4
@@ -78,7 +75,7 @@ research_questions:
   - id: RQ3
     question: >
       What scientific, engineering, and economic constraints govern the viability of
-      security controls for multi-agent AI, and how do these constraints determine
+      security controls for agentic AI, and how do these constraints determine
       appropriate risk treatment decisions?
     status: unchanged from the submitted proposal
     chapter: dissertation/04_results_discussion.md
@@ -122,7 +119,7 @@ artefacts:
   - {id: A1_threat_surface_model,     chapter: dissertation/04_results_discussion.md, rubric: "conceptual/analytic model"}
   - {id: A1b_derivation_instrument, chapter: dissertation/04_results_discussion.md, rubric: "software artefact"}
   - {id: A2_coverage_audit,           chapter: dissertation/04_results_discussion.md, rubric: "new methodology"}
-  - {id: A3a_baseline_analysis,       chapter: dissertation/04_results_discussion.md,   rubric: "new methodology"}
+  - {id: ,       chapter: dissertation/04_results_discussion.md,   rubric: "new methodology"}
   - {id: A3_composition_harness,      chapter: dissertation/03_methods.md,              rubric: "software artefact"}
   - {id: A4_correlated_failure_result,chapter: dissertation/04_results_discussion.md,   rubric: "new theory / methodology"}
   - {id: A5_viability_framework,      chapter: dissertation/04_results_discussion.md,  rubric: "conceptual/analytic model"}

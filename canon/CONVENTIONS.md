@@ -65,3 +65,56 @@ justification a marker can use.
 
 Canon files, chapter sources, commit messages, and any artefact intended to outlive the
 session that produced it.
+
+---
+
+## The freshness rule
+
+Summary files in this project have repeatedly described a state the work had moved
+past: the entry point opened on "Day 1" for a fortnight, the spine carried an
+objective the design had retired, the figure map pointed at placements that had
+changed in both directions. Every instance was found by a human reading carefully,
+which is the most expensive way to find it and the least reliable.
+
+The cause is structural. Facts are duplicated across canon, plan, the
+pre-registration and the chapters, with nothing connecting the copies. Revising one
+leaves the rest silently wrong, and a wrong number in canon is worse than no number,
+because the checks then enforce it.
+
+Two mechanisms, both in `make check` and enforced from gate G0:
+
+**Declared facts.** `canon/facts.yaml` holds every value that appears in more than
+one file — condition counts, cluster counts, sample sizes, the equivalence margin.
+`check_staleness.py` finds every mention and names any that disagrees. Change the
+value there first, then let the check drive the edits. `retired:` holds superseded
+values that must not come back; a value stated *as* superseded is fine, and the
+check recognises that context.
+
+**Derived files.** `canon/freshness.yaml` lists files that describe other files
+rather than standing alone. Each stores a hash of what it describes. When a
+dependency changes the check fails and names the file; it does not guess whether
+the description is still true, because it cannot. Read it, correct it, then
+`make refresh`.
+
+`make refresh` stamps a claim that a human checked the file. Stamping without
+reading defeats the mechanism entirely — it converts a real check into a green
+light. If you have not read it, do not stamp it. A file known to be wrong should be
+left failing, which is what `figure_map.yaml` was until it was corrected.
+
+## The register rule
+
+The dissertation reports what was done and what follows. It does not tell the
+marker that the work is careful.
+
+The test for any sentence: **delete it. If nothing factual is lost, it was
+advocacy.** Prose that pre-empts criticism, explains why a decision is defensible,
+or closes a paragraph on a flourish spends words against a hard limit to argue a
+case the evidence should carry.
+
+`make prose` catches self-appraisal phrasing, generated-text tells, and tic density
+— the contrastive "X rather than Y" frame in particular, which is precise once and
+a defensive posture at one per hundred words. The `prose-auditor` agent reads for
+what a regex cannot: claims unsupported at the point they are made, and confidence
+that exceeds the evidence in either direction. Run it when a chapter reaches first
+draft, not only at a gate — register problems are cheapest to fix in the draft that
+created them.

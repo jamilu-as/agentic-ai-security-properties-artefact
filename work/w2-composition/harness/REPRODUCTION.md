@@ -28,7 +28,7 @@ one of them true.
 
 | Axis | Instance | Constructs | Notes |
 |---|---|---|---|
-| Prompt-level | `spotlighting_with_delimiting` | yes | no dependencies beyond core |
+| Prompt-level | `spotlighting` | yes | no dependencies beyond core |
 | Detection | `piguard` | yes | downloads `leolee99/PIGuard`; requires `trust_remote_code` |
 | System-level | `camel` | yes | 36 vendored modules, per-suite policy engines, yields `PrivilegedLLM` |
 
