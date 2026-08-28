@@ -122,6 +122,26 @@ positions:
     lands_in: [dissertation/04_methods.md, dissertation/07_conclusion.md]
     marker: "asymmetr"
     status: open
+  - id: P14
+    item: "Detection-axis instance is piguard not promptguard - parallel-eval safe per code allowlist, and ungated on HF. Decided before any results."
+    lands_in: [dissertation/04_methods.md, preregistration/PREREGISTRATION.md]
+    marker: "piguard"
+    status: open
+  - id: P15
+    item: "Filter granularity fixed (sentence vs document) - a researcher degree of freedom if left open"
+    lands_in: [preregistration/PREREGISTRATION.md]
+    marker: "granularity"
+    status: open
+  - id: P16
+    item: "AutoDojo task-specification buckets used as a covariate, controlling for the rival explanation rather than only acknowledging it"
+    lands_in: [dissertation/04_methods.md, dissertation/05_results_discussion.md]
+    marker: "action-open"
+    status: open
+  - id: P17
+    item: "No Batch API in the harness - all API models route through OpenRouter. Cost and schedule assumptions restated accordingly."
+    lands_in: [dissertation/04_methods.md]
+    marker: "OpenRouter"
+    status: open
 
 # Prior art that must be cited defensively. check_citations.py verifies each key appears.
 prior_art:
