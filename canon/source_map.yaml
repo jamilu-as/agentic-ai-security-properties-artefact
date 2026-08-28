@@ -93,7 +93,12 @@ sources:
   paper1:
     file: sources/PAPER1_v1.3.md
     words: 4487
-    note: "Table 2 cells are illustrative, not validated; the Table 1 peer-agents row is superseded by A2ASecBench (ICLR 2026)."
+    note: >
+      Unpublished draft material of this thesis, written up in paper form and not
+      submitted anywhere. It is a source in the same sense as any other working draft:
+      content transfers, and it is neither cited nor referred to as an external work.
+      Its Table 2 values are illustrative and are replaced with measured ones; its
+      Table 1 peer-agents row is superseded.
     sections:
       - {id: P1.1, name: "Introduction - Hamming framing, two decisions",  disposition: reuse,    target: dissertation/01_introduction.md,        marker: "deployer"}
       - {id: P1.2, name: "Why agentic security resists enumeration",       disposition: reuse,    target: dissertation/04_results_discussion.md, marker: "enumeration"}

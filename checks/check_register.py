@@ -8,6 +8,9 @@ def main(strict=True):
     r = Report("Carry-forward register")
     for section in ("corrections", "positions"):
         for it in reg.get(section, []):
+            if it.get("status") == "retired":
+                r.O(f'{it["id"]} retired — {it["item"][:70]}')
+                continue
             landed = []
             for rel in it["lands_in"]:
                 text = read(rel)

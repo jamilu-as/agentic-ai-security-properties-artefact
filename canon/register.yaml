@@ -6,7 +6,7 @@
 
 corrections:
   - id: C1
-    item: "A2ASecBench is ICLR 2026 - 'none dedicated' is false in Paper 1 Table 1 and section 3.3"
+    item: "Coverage table records a dedicated agent-to-agent benchmark; the earlier none-dedicated entry is superseded"
     lands_in: [dissertation/04_results_discussion.md]
     marker: "A2ASecBench"
     status: open
@@ -16,20 +16,20 @@ corrections:
     marker: "A2ASecBench"
     status: open
   - id: C3
-    item: "Three-regime protocol novelty claim withdrawn (2510.05244 predates the proposal)"
+    item: "Published metric corrections for the benchmark applied and cited, not inherited"
     lands_in: [dissertation/03_methods.md]
-    marker: "2510.05244"
+    marker: "Bhagwatkar"
     status: open
   - id: C4
-    item: "'First independent adversarial evaluation of CaMeL' withdrawn or narrowed"
+    item: "System-level axis instance named and its provenance credited"
     lands_in: [dissertation/03_methods.md]
-    marker: "CaMeL"
+    marker: "camel"
     status: open
   - id: C5
-    item: "Claude 3.7 Sonnet retired 19 Feb 2026, three months before the proposal named it"
-    lands_in: [dissertation/03_methods.md]
-    marker: "3.7 Sonnet"
-    status: open
+    item: "RETIRED. Model expiry was an argument for revising a fixed list; the set is now specified as a rule, which makes the point moot."
+    lands_in: []
+    marker: ""
+    status: retired
   - id: C6
     item: "Venue updates: Nasr USENIX Sec 2026; CaMeL SaTML 2026; Panfilov ICLR 2026; Sheth ICML 2026"
     lands_in: [dissertation/06_references.md]
@@ -58,49 +58,49 @@ corrections:
 
 positions:
   - id: P1
-    item: "RQ2 restated with the composition scoping clause, change declared"
+    item: "RQ2 stated with the composition scoping clause"
     lands_in: [dissertation/01_introduction.md, dissertation/03_methods.md]
     marker: "when composed"
     status: open
   - id: P2
-    item: "DEC-001 revised - means not purpose; bespoke-harness contribution withdrawn"
+    item: "Harness choice justified on its merits: maintained public implementation, compositional pipeline, published metric corrections applied. AutoDojo credited as the framework extended."
     lands_in: [dissertation/03_methods.md]
-    marker: "DEC-001"
+    marker: "harness"
     status: open
   - id: P3
-    item: "DEC-002 restated as a selection rule, not a list"
+    item: "Model set specified as a selection rule rather than a list, so it survives turnover"
     lands_in: [dissertation/03_methods.md]
-    marker: "DEC-002"
+    marker: "as a rule"
     status: open
   - id: P4
-    item: "DEC-003 prompt-level reinstated on a DIFFERENT explicit rationale"
+    item: "Prompt-level axis included and justified: the factorial must span the design space, and a defence weak alone is the interesting case under layering guidance"
     lands_in: [dissertation/03_methods.md]
-    marker: "DEC-003"
+    marker: "prompt-level"
     status: open
   - id: P5
-    item: "DEC-004 narrowed to AgentDojo family; external-validity limit stated"
+    item: "Single benchmark family justified by the 2^k cell trade; external-validity limit stated in Methods and Conclusion"
     lands_in: [dissertation/03_methods.md, dissertation/05_conclusion.md]
-    marker: "DEC-004"
+    marker: "external validity"
     status: open
   - id: P6
-    item: "Matrix re-scoped from 240 conditions; costed reasoning given"
-    lands_in: [dissertation/03_methods.md]
-    marker: "240"
+    item: "Scope of the empirical work stated once in limitations as what the evidence supports, not as a revision narrative"
+    lands_in: [dissertation/05_conclusion.md]
+    marker: "narrower"
     status: open
   - id: P7
-    item: "Power recomputed; 0.84 withdrawn; Levene labelled exploratory"
+    item: "Power estimated by simulation over realised cell counts and reported with results. No within-axis variance term is estimable with one instance per axis and none is reported."
     lands_in: [dissertation/03_methods.md]
     marker: "exploratory"
     status: open
   - id: P8
-    item: "AutoDojo credited as direct antecedent in the Methods OPENING, not a footnote"
+    item: "AutoDojo credited as the framework extended, in the body of Methods and in the research-outputs list"
     lands_in: [dissertation/03_methods.md]
     marker: "AutoDojo"
     status: open
   - id: P9
-    item: "Drift-monitoring protocol did not run weekly as promised - disclosed as a limitation"
+    item: "Currency of the review stated as a limitation: which claims rest on work appearing after the cut-off, and the bound that places on the gap claim"
     lands_in: [dissertation/05_conclusion.md]
-    marker: "drift"
+    marker: "cut-off"
     status: open
   - id: P10
     item: "Multi-agent framing thinned; scope statement given"

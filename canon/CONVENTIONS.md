@@ -45,6 +45,22 @@ research-output descriptor turns an open list into a closed enumeration. Where a
 can verify canon against its source, write the check — `check_rubric_verbatim.py` is the
 worked example. A promise that something is verbatim is not evidence that it is.
 
+## Register of the dissertation itself
+
+The dissertation states its design and justifies it on the merits. It does not narrate its
+own history — no "as submitted / as revised", no internal decision labels, no section
+whose subject is what changed since an earlier document. Those belong to the project
+record in `canon/` and to the supervisor correspondence in `plan/REFRAMING.md`, not to
+the deliverable.
+
+Where scope is narrower than initially planned, the dissertation says so once, in
+limitations, as a bounded statement of what the evidence supports. That is a finding about
+the work, not a report on the process.
+
+The distinction matters because a document that argues from its own history reads as a
+project log, and because justification addressed to a reader of an earlier draft is not
+justification a marker can use.
+
 ## Applies to
 
 Canon files, chapter sources, commit messages, and any artefact intended to outlive the
