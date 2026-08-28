@@ -1,0 +1,76 @@
+# The eight figures already drawn. Sources live in dissertation/figures/;
+# originals and the mermaid->SVG->PDF build pipeline are in ../ProposalAgenticSecurity/build/.
+# Nothing here is redrawn from scratch that can be carried.
+
+figures:
+  - id: F1
+    source: "LR Figure 1 — Canonical agentic architecture and attack entry channels"
+    file: dissertation/figures/fig_agentic_architecture.svg
+    disposition: reuse
+    target: dissertation/03_threat_surface_model.md
+    why: >
+      This IS the capability-to-channel diagram the RQ1 derivation runs on. Paper 1 §3.1
+      refers to the same structure as its Figure 2. Carries directly.
+
+  - id: F2
+    source: "LR Figure 2 — Multi-agent architecture topologies"
+    file: dissertation/figures/fig_multiagent_topologies.svg
+    disposition: reuse
+    target: dissertation/02_literature_review.md
+    why: "Supports the scope statement about single-orchestrator evaluation vs multi-agent generalisation."
+
+  - id: F3
+    source: "RP Figure 1 — 4x4x5 evaluation matrix"
+    file: dissertation/figures/fig_evaluation_matrix_SUPERSEDED.svg
+    disposition: redraw
+    target: dissertation/04_methods.md
+    why: >
+      Structure and visual language carry; the content does not. Redraw as the 2^3
+      composition factorial x model configurations x regimes. Keep the original as the
+      "as proposed" panel if a before/after helps declare the re-scope.
+
+  - id: F4
+    source: "RP Figure 2 — dissertation Gantt"
+    file: dissertation/figures/fig_gantt_RETIRED.svg
+    disposition: retire
+    why: "Timeline superseded by docs/EXECUTION_PLAN_v3.md. A stale Gantt in the dissertation invites questions it cannot answer."
+
+  - id: F5
+    source: "Paper 1 Figure 1 — The two instruments composed"
+    file: null
+    disposition: extract
+    target: dissertation/01_introduction.md
+    why: >
+      The thesis spine in one picture: RQ1 -> applicability gate -> RQ3, with RQ2 supplying
+      what RQ3 prices. Belongs in the Introduction as the roadmap figure.
+      Not yet extracted from the PDF — source is in the paper's build, not in this repo.
+
+  - id: F6
+    source: "Paper 1 Figure 2 — Capability-derived threat surface"
+    file: null
+    disposition: extract
+    target: dissertation/03_threat_surface_model.md
+    why: "The derivation in visual form. Pairs with Table 1."
+
+  - id: F7
+    source: "Paper 1 Figure 3 — The three viability forces"
+    file: null
+    disposition: extract
+    target: dissertation/06_viability_framework.md
+    why: >
+      The bidirectional-forces diagram. Central to RQ3 and already drawn.
+      Annotate with measured values once W2 lands.
+
+  - id: F8
+    source: "New — failure-correlation matrix"
+    file: null
+    disposition: produce
+    target: dissertation/05_results_discussion.md
+    why: "The headline result. G3 gate artefact at workstreams/w2_composition/analysis/figures/correlation_matrix.png."
+
+pipeline:
+  note: >
+    ../ProposalAgenticSecurity/build/ has render_mermaid.py, fix_svg_contrast.py,
+    mmd_config.json, puppeteer_config.json and pdf_config.js — the working
+    mermaid -> SVG -> PDF toolchain used for the submitted documents. Reuse it rather
+    than introducing a second rendering path.

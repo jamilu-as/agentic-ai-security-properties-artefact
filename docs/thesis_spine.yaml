@@ -30,7 +30,7 @@ research_questions:
         artefact: A1_threat_surface_model
         marker: "capability-derived"
       - id: O2
-        text: "For each property, characterise benchmark coverage as covered / partially covered / uncovered, re-derived against the 2026 landscape."
+        text: "Benchmark coverage per property. Paper 1 Table 1 already delivers this; the work is verification against the 2026 landscape, correcting the peer-agents row, and considering agent extensibility as a seventh cluster."
         artefact: A2_coverage_audit
         marker: "coverage"
     consumed_by:

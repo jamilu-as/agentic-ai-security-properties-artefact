@@ -31,17 +31,27 @@ Encoded machine-readably in `docs/thesis_spine.yaml` and verified by `make coher
 
 ### 1.1 W1 — RQ1, and what was nearly lost
 
-O1 ports from Paper 1 §§2–3. **O2 does not exist yet in any form.** The proposal committed to characterising benchmark coverage for every property in the model, and A2ASecBench being wrong is not one row to patch — it is evidence the whole coverage column needs re-deriving against a landscape that turned over: CIMemories, MCP-SafetyBench, AgentRedBench, WASP, SeClaw, FORTIS, A2ASecBench, and the August skill-attack cluster all post-date the literature review.
+**Correction to an earlier version of this plan, which overstated the work.** Paper 1 §3 delivers O1 *and* substantially delivers O2: Table 1 already maps capability cluster → derived property → first dedicated benchmark across six rows, and §3.2 gives the threat-actor profile as a minimum tuple. This is not a workstream to build; it is a chapter to expand and verify.
 
-The coverage audit is a rubric-eligible artefact in its own right ("new... methodology") and it is what makes RQ1 a contribution rather than a restatement.
+The genuine W1 work is bounded:
+- **One row is wrong** — peer agents / agent-to-agent integrity reads "none dedicated"; A2ASecBench is ICLR 2026.
+- **Five rows to verify** — AgentDojo, CVE-Bench, CIMemories, OS-Harm, AI-LieDar as first-dedicated benchmarks against the 2026 landscape.
+- **One possible addition** — agent extensibility / skills emerged as a capability cluster with its own attack surface after the cut-off (SkillJack, SkillSentry, trajectory poisoning, FORTIS over-privilege). A seventh row would be a genuine extension of the derivation, and it is the strongest available demonstration that the model *derives* rather than *enumerates*: a capability that did not exist when the vocabulary was written should slot into it without redesign.
+- **Expansion** from 716 words to chapter length.
 
 ### 1.2 W3 — RQ3, and what "slot the values in" was hiding
 
-Populating Paper 1's Table 2 with measured values fixes its central weakness but is not the whole of O5/O6. Three further pieces:
+**The framework does not need amending. It needs testing — and it already contains the claim to test.** Paper 1 §4.2, on engineering viability as a compensator:
 
-- **Amend the framework for composition.** Paper 1 §4.2 argues "three forces, not a filter" for a single control. If failures correlate across a stack while defender cost compounds, the forces do not compose linearly across a *stack* either. That is an extension to the instrument, not an application of it.
-- **Test the decision rule**, not just report inputs — does it return different treatments for the same control in different contexts, on measured data.
-- **Sensitivity across actor profiles** — the integration test above.
+> "a probabilistic detector with no formal robustness becomes acceptable behind rate limiting, internal-only access, and **composition with cheaper deterministic filters**, since a deterministic upstream stage narrows the inputs the probabilistic stage must reason about and the realised threat model sits well below worst-case adaptive success."
+
+That is the composition hypothesis, asserted, in the submitted framework. W2 measures whether it survives an adaptive attacker. **Correlated failure would bound the compensator argument the framework rests on** — a finding about the instrument, produced by its own empirical chapter, which is a far stronger position than amending an instrument nobody has tested.
+
+W3's work is therefore:
+- **Populate** — measured values replace Paper 1 Table 2's explicitly illustrative cells.
+- **Test the decision rule** — does it return different treatments for the same control across the two deployment contexts, on measured data.
+- **Report back on §4.2** — whether the compensator claim holds, is bounded, or fails.
+- **Sensitivity across actor profiles** — the integration test.
 
 ### 1.3 W2 — RQ2, the composition study
 
