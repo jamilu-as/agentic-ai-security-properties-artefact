@@ -1,4 +1,27 @@
-# CP70073O marking criteria, verbatim weightings, mapped to evidence.
+# CP70073O marking criteria.
+#
+# PROVENANCE — three different things are recorded here, and they are not equally
+# authoritative. Do not let the third read as the first.
+#
+#   `criteria`             VERBATIM from sources/university/MSc Dissertation Marking
+#                          Criteria (1).pdf. Names, descriptors and sub-weightings are
+#                          quoted exactly. The rubric is criterion-based and says
+#                          NOTHING about chapters, ordering, or which chapter carries
+#                          which criterion.
+#   `mandated_structure`   VERBATIM requirement list from the MSG (a different
+#                          document), which does specify the chapter sequence.
+#   `evidence`, `must_contain`, `word_budget`
+#                          OUR MAPPING. Not from either source. A working assignment of
+#                          where each criterion's evidence is expected to appear, used
+#                          to drive check_rubric_trace.py. Markers award against criteria
+#                          wherever the evidence is found, so this is a drafting aid, not
+#                          a constraint the university imposes.
+#
+# Notably inferred: Analysis and Conclusions (15) is split here as one 5-mark block in
+# the Results chapter (critical evaluation of results) and two in the Conclusion
+# (contributions; limitations and future work). The rubric states the three blocks and
+# does not say where they appear.
+#
 # check_rubric_trace.py fails if any criterion has no non-stub evidence file.
 total: 100
 criteria:

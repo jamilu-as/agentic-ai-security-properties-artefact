@@ -30,6 +30,13 @@ work is built on, including work done by someone without the conversation. And p
 written to justify a change to an interlocutor reads, in a dissertation, as defensiveness
 about a change no examiner had questioned.
 
+## Provenance
+
+Where a canon file mixes quoted source with our own working assignment, say which is
+which in the file. `rubric.yaml` is the worked example: criteria and mandated structure
+are quoted verbatim from university documents; the chapter mapping and word budget are
+ours. An inference that reads as a quotation becomes a constraint nobody imposed.
+
 ## Applies to
 
 Canon files, chapter sources, commit messages, and any artefact intended to outlive the
