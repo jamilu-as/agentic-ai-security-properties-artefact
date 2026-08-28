@@ -88,7 +88,7 @@ positions:
     marker: "narrower"
     status: open
   - id: P7
-    item: "Power estimated by simulation over realised cell counts and reported with results. No within-axis variance term is estimable with one instance per axis and none is reported."
+    item: "Power estimated by simulation over PLANNED cell counts before collection and reported in Methods; post-hoc power on realised data cannot license accepting a null. No within-axis variance term is estimable with one instance per axis and none is reported."
     lands_in: [dissertation/03_methods.md]
     marker: "exploratory"
     status: open
