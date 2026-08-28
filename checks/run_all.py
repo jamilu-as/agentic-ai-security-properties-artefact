@@ -2,18 +2,20 @@
 """Run every check. `--gate Gn` enforces; default is advisory."""
 import sys
 import check_forbidden_claims, check_register, check_citations
-import check_wordcount, check_structure, check_rubric_trace, check_prereg, check_coherence, check_sources, check_rubric_verbatim, check_requirements
+import check_wordcount, check_structure, check_rubric_trace, check_prereg, check_coherence, check_sources, check_rubric_verbatim, check_requirements, check_gate_artefacts
 
 # Which checks are enforcing at which gate.
 GATES = {
-    "G0": ["forbidden", "verbatim"],
-    "G1": ["forbidden", "verbatim", "prereg"],
-    "G2": ["forbidden", "verbatim", "prereg"],
-    "G3": ["forbidden", "verbatim", "prereg"],
-    "G4": ["forbidden", "verbatim", "prereg", "structure", "rubric", "words", "coherence", "sources"],
-    "G5": ["forbidden", "verbatim", "prereg", "structure", "rubric", "words", "register", "citations", "coherence", "sources", "requirements"],
+    "G0": ["artefacts", "forbidden", "verbatim"],
+    "G1": ["artefacts", "forbidden", "verbatim", "prereg"],
+    "G2": ["artefacts", "forbidden", "verbatim", "prereg"],
+    "G3": ["artefacts", "forbidden", "verbatim", "prereg"],
+    "G4": ["artefacts", "forbidden", "verbatim", "prereg", "structure", "rubric", "words", "coherence", "sources"],
+    "G5": ["artefacts", "forbidden", "verbatim", "prereg", "structure", "rubric", "words", "register", "citations", "coherence", "sources", "requirements"],
 }
 CHECKS = {
+    "artefacts": None,  # gate-aware; dispatched separately
+
     "forbidden": check_forbidden_claims.main,
     "prereg":    check_prereg.main,
     "register":  check_register.main,
@@ -35,7 +37,13 @@ def main():
             sys.exit(f"unknown gate {gate}; expected one of {', '.join(GATES)}")
     enforcing = set(GATES.get(gate, []))
     rc = 0
+    if gate:
+        rc |= check_gate_artefacts.main(strict=("artefacts" in enforcing), gate=gate)
+    else:
+        rc |= check_gate_artefacts.main(strict=False)
     for name, fn in CHECKS.items():
+        if fn is None:
+            continue
         rc |= fn(strict=(name in enforcing))
     print()
     if gate:

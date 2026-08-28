@@ -38,9 +38,11 @@ Read naively this says defence family predicts the **level** of attack success b
 
 **It is not yet reportable, because part of the uniformity is an artefact.**
 
-## The integrity question — RESOLVED. See `INTEGRITY_FINDING.md`.
+## The integrity question — OBSERVATION established, MECHANISM open. See `INTEGRITY_FINDING.md`.
 
-Fingerprinting content independently of metadata gives **51 distinct cells of 150**. All five travel cells are byte-identical across all ten defence directories; slack collapses eight of ten in every model; banking differentiates. The descriptive pass below is therefore void as stated, and the analysis is restricted to the distinct cells.
+Fingerprinting content independently of metadata gives **13 distinct payloads across 150 cells** (51 holding the target model fixed). All five travel cells are byte-identical across all ten defence directories; slack collapses eight of ten in every model; banking differentiates. The descriptive pass below is therefore void as stated, and the analysis is restricted to the distinct cells.
+
+**The mechanism is not established.** Three candidates remain, none confirmed, and the standing rule below — no number enters the dissertation until steps 1 and 2 are done — still holds with step 2 undone. Step 2 is now folded into gate G0 as the defence-differential run, which discriminates between the candidates directly.
 
 Original working note follows.
 

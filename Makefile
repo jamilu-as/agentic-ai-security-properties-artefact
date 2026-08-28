@@ -29,3 +29,4 @@ freeze:
 sources:          ; cd checks && $(PY) check_sources.py
 verbatim:         ; cd checks && $(PY) check_rubric_verbatim.py
 requirements:     ; cd checks && $(PY) check_requirements.py
+artefacts:        ; cd checks && $(PY) check_gate_artefacts.py
