@@ -69,7 +69,7 @@ W3's work is therefore:
 
 | Axis | Instance | Source |
 |---|---|---|
-| Prompt-level | `spotlighting_with_delimiting` | AutoDojo, integrated |
+| Prompt-level | `spotlighting` (delimiting variant) | AutoDojo, integrated |
 | Detection-side | `piguard` | AutoDojo, integrated |
 | System-level IFC | `camel` | AutoDojo, integrated |
 

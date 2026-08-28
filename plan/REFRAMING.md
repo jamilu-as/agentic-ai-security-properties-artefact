@@ -92,7 +92,7 @@ The proposal's §4.3 methodology table carries a *Composition test* column with 
 
 **Revised:** Fork of AutoDojo, which vendors AgentDojo.
 
-**Rationale:** the stated purpose of DEC-001 — comparability with published baselines on the same interface — is better served by building on the AgentDojo lineage directly than by reimplementing its conventions in a different framework. This is a revision of means, not of purpose. Three additional reasons: AutoDojo's `agent_pipeline` module is already compositional, so k-way stacking is a configuration change rather than a re-architecture; it ships nine defences already integrated, including CaMeL and Progent; and arXiv:2510.05244 (NeurIPS 2025) documents metric bugs and implementation faults in stock AgentDojo, with published fixes, which a maintained fork lets us apply rather than inherit.
+**Rationale:** the stated purpose of DEC-001 — comparability with published baselines on the same interface — is better served by building on the AgentDojo lineage directly than by reimplementing its conventions in a different framework. This is a revision of means, not of purpose. Three additional reasons: AutoDojo's `agent_pipeline` module is *not* compositional — `defense` is a single string dispatched through mutually exclusive early returns, and CaMeL returns a structurally different pipeline before every filter branch — so k-way stacking is a re-architecture of the pipeline factory. This was verified against the pinned commit on 28 August 2026 and corrects the claim made when this decision was first recorded. The work is real and is reported as the engineering contribution rather than assumed away; it ships nine defences already integrated, including CaMeL and Progent; and arXiv:2510.05244 (NeurIPS 2025) documents metric bugs and implementation faults in stock AgentDojo, with published fixes, which a maintained fork lets us apply rather than inherit.
 
 **Acknowledged cost:** the proposal listed a bespoke LangGraph harness among its methodological contributions. That claim is withdrawn. The contribution is restated as an extension of a third-party harness — the composition configuration layer, the representation-level defence integration, and the correlated-failure analysis — with AutoDojo credited as the direct antecedent in the Methods chapter opening rather than in a footnote.
 
@@ -123,7 +123,7 @@ The proposal's §4.3 methodology table carries a *Composition test* column with 
 
 | Axis | Instance |
 |---|---|
-| Prompt-level | `spotlighting_with_delimiting` |
+| Prompt-level | `spotlighting` (delimiting variant) |
 | Detection-side | `promptguard` |
 | System-level IFC | `camel` |
 | Representation-level | `Llama-3-8B-Instruct-RR` (as agent policy) |
