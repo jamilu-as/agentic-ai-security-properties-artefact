@@ -445,6 +445,16 @@ positions:
   - dissertation/03_methods.md
   marker: ATLAS
   status: open
+- id: P45
+  item: E1.3/E3.2 results in hand, pre-registration locked first. Derivation alpha
+    0.890 (compositional 1.000) against enumerative 0.578; exact match 3/6 against
+    0/6. Decision rule step 1 alpha 1.000 as pre-committed, step 2 alpha 0.522 with
+    three profiles exposing branches the rule does not cover. Rule NOT amended after
+    seeing the failures; the gap is reported.
+  lands_in:
+  - dissertation/04_results_discussion.md
+  marker: '0.890'
+  status: open
 prior_art:
 - id: A1
   key: '2606.15057'

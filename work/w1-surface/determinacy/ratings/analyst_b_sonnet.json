@@ -1,0 +1,32 @@
+{
+  "procedure_a": {
+    "D1": {"properties": ["tool-call integrity", "action irreversibility", "retrieval integrity"],
+           "compositional": ["injected irreversible action"]},
+    "D2": {"properties": ["tool-call integrity", "contextual integrity", "action irreversibility", "retrieval integrity"],
+           "compositional": ["cross-session exfiltration", "injected irreversible action"]},
+    "D3": {"properties": ["tool-call integrity", "action irreversibility", "retrieval integrity"],
+           "compositional": ["injected irreversible action"]},
+    "D4": {"properties": ["tool-call integrity", "execution containment", "action irreversibility", "inter-agent trust", "goal integrity"],
+           "compositional": ["injected irreversible action", "lateral execution"]},
+    "D5": {"properties": ["tool-call integrity", "action irreversibility", "retrieval integrity", "supply-chain and privilege scoping"],
+           "compositional": ["injected irreversible action", "load-time privilege escalation"]},
+    "D6": {"properties": ["tool-call integrity", "contextual integrity", "action irreversibility", "goal integrity"],
+           "compositional": ["cross-session exfiltration", "injected irreversible action"]}
+  },
+  "procedure_b": {
+    "D1": ["AML.T0051","AML.T0053","AML.T0099","AML.T0067","AML.T0080","AML.T0057","AML.T0086","AML.T0108","AML.T0056"],
+    "D2": ["AML.T0051","AML.T0053","AML.T0099","AML.T0080","AML.T0080.000","AML.T0057","AML.T0092","AML.T0086","AML.T0108","AML.T0094","AML.T0061","AML.T0070","AML.T0071","AML.T0064","AML.T0082","AML.T0056"],
+    "D3": ["AML.T0051","AML.T0053","AML.T0099","AML.T0067","AML.T0080","AML.T0057","AML.T0086","AML.T0108","AML.T0070","AML.T0071","AML.T0064","AML.T0056"],
+    "D4": ["AML.T0051","AML.T0053","AML.T0099","AML.T0067","AML.T0080","AML.T0034.002","AML.T0057","AML.T0086","AML.T0108","AML.T0084.003","AML.T0103","AML.T0061","AML.T0056"],
+    "D5": ["AML.T0051","AML.T0053","AML.T0099","AML.T0067","AML.T0080","AML.T0057","AML.T0086","AML.T0108","AML.T0084.003","AML.T0010.005","AML.T0104","AML.T0110","AML.T0109","AML.T0011.002","AML.T0070","AML.T0071","AML.T0064","AML.T0082","AML.T0056"],
+    "D6": ["AML.T0051","AML.T0053","AML.T0099","AML.T0080","AML.T0080.000","AML.T0057","AML.T0092","AML.T0086","AML.T0108","AML.T0084.003","AML.T0094","AML.T0056"]
+  },
+  "treatment": {
+    "P1": {"grades": {"scientific":"strong","engineering":"strong","economic":"strong"}, "treatment":"reduce"},
+    "P2": {"grades": {"scientific":"weak","engineering":"strong","economic":"strong"}, "treatment":"avoid"},
+    "P3": {"grades": {"scientific":"moderate","engineering":"weak","economic":"weak"}, "treatment":"avoid"},
+    "P4": {"grades": {"scientific":"strong","engineering":"strong","economic":"n/a"}, "treatment":"reduce"},
+    "P5": {"grades": {"scientific":"moderate","engineering":"moderate","economic":"moderate"}, "treatment":"avoid"},
+    "P6": {"grades": {"scientific":"weak","engineering":"weak","economic":"weak"}, "treatment":"accept"}
+  }
+}

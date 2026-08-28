@@ -144,5 +144,5 @@ judgements:
     read: [dissertation/02_literature_review.md, dissertation/01_introduction.md]
     owner: novelty-monitor
     verdict: open
-    finding: "BLOCKED - web search budget exhausted. Search brief written; highest risk is AutoDojo upstream shipping defence composition, which would delete the engineering contribution"
-    verified_against: "2b53509eb3b12635"
+    finding: "Still blocked on web budget; unchanged"
+    verified_against: "ffefb94713e60ea4"

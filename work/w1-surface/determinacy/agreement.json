@@ -1,26 +1,26 @@
 {
  "A \u2014 derived, single-capability": {
-  "alpha": 0.8074074074074075,
+  "alpha": 0.8896392050935752,
   "units": 48,
   "categories": 8,
-  "label_prevalence": 0.3125,
-  "chance_agreement": 0.5703,
+  "label_prevalence": 0.5069,
+  "chance_agreement": 0.5001,
   "raters": 3
  },
  "A \u2014 derived, compositional": {
-  "alpha": 0.2674897119341564,
+  "alpha": 1.0,
   "units": 30,
   "categories": 5,
-  "label_prevalence": 0.1,
-  "chance_agreement": 0.82,
+  "label_prevalence": 0.3333,
+  "chance_agreement": 0.5556,
   "raters": 3
  },
  "B \u2014 enumerative (ATLAS)": {
-  "alpha": 0.8527974783293932,
+  "alpha": 0.5783645341981132,
   "units": 156,
   "categories": 26,
-  "label_prevalence": 0.0962,
-  "chance_agreement": 0.8262,
+  "label_prevalence": 0.453,
+  "chance_agreement": 0.5044,
   "raters": 3
  }
 }
