@@ -45,6 +45,7 @@
     {
      "cluster": "persistent_goals",
      "property": "goal integrity",
+     "because": "capability reachable from untrusted content",
      "atlas": [
       {
        "id": "AML.T0094",
@@ -66,6 +67,7 @@
     {
      "cluster": "persistent_memory",
      "property": "contextual integrity",
+     "because": "capability reachable from untrusted content",
      "atlas": [
       {
        "id": "AML.T0080",
@@ -99,6 +101,7 @@
     {
      "cluster": "tool_use",
      "property": "tool-call integrity",
+     "because": "capability reachable from untrusted content",
      "atlas": [
       {
        "id": "AML.T0051",
@@ -135,6 +138,16 @@
    ],
    "compositional": [
     {
+     "property": "trust laundering",
+     "from": [
+      "plans",
+      "retains"
+     ],
+     "atlas_partial": [],
+     "atlas_covers_composition": false,
+     "gap": "no catalogued technique covers attacker content acquiring provenance by transiting a trusted peer's memory"
+    },
+    {
      "property": "cross-session exfiltration",
      "from": [
       "acts",
@@ -156,31 +169,29 @@
      ],
      "atlas_covers_composition": false,
      "gap": "memory poisoning and tool exfiltration are catalogued separately; the surface where content written in one session acts in a later one is not"
-    },
-    {
-     "property": "trust laundering",
-     "from": [
-      "plans",
-      "retains"
-     ],
-     "atlas_partial": [],
-     "atlas_covers_composition": false,
-     "gap": "no catalogued technique covers attacker content acquiring provenance by transiting a trusted peer's memory"
     }
    ],
    "actor": {
     "motivation": "criminal",
-    "tier": "commodity",
+    "tier": "capable",
     "economic_force_applies": true
    },
    "atlas_version": "5.6.0",
+   "parameters": {
+    "topology": "single-agent",
+    "internet_facing": false,
+    "authenticated_only": true,
+    "multi_tenant": false,
+    "sector": "financial services",
+    "adversary": "criminal/capable"
+   },
    "n_atlas_techniques": 10,
    "n_uncovered_compositional": 1
   },
   "slack": {
    "architecture": {
     "name": "slack",
-    "topology": "single-agent",
+    "topology": "peer-to-peer",
     "components": 13,
     "edges": 23,
     "agents": 1,
@@ -213,6 +224,7 @@
     {
      "cluster": "actuators",
      "property": "action irreversibility",
+     "because": "capability reachable from untrusted content",
      "atlas": [
       {
        "id": "AML.T0101",
@@ -232,8 +244,36 @@
      "atlas_covered": true
     },
     {
+     "cluster": "peer_agents",
+     "property": "inter-agent trust",
+     "because": "peer-to-peer topology: peers are principals the agent trusts",
+     "atlas": [
+      {
+       "id": "AML.T0108",
+       "name": "AI Agent",
+       "tactics": [
+        "Command and Control"
+       ]
+      },
+      {
+       "id": "AML.T0084.003",
+       "name": "Call Chains",
+       "tactics": []
+      },
+      {
+       "id": "AML.T0103",
+       "name": "Deploy AI Agent",
+       "tactics": [
+        "Execution"
+       ]
+      }
+     ],
+     "atlas_covered": true
+    },
+    {
      "cluster": "persistent_goals",
      "property": "goal integrity",
+     "because": "capability reachable from untrusted content",
      "atlas": [
       {
        "id": "AML.T0094",
@@ -255,6 +295,7 @@
     {
      "cluster": "persistent_memory",
      "property": "contextual integrity",
+     "because": "capability reachable from untrusted content",
      "atlas": [
       {
        "id": "AML.T0080",
@@ -288,6 +329,7 @@
     {
      "cluster": "tool_use",
      "property": "tool-call integrity",
+     "because": "capability reachable from untrusted content",
      "atlas": [
       {
        "id": "AML.T0051",
@@ -324,6 +366,31 @@
    ],
    "compositional": [
     {
+     "property": "injected irreversible action",
+     "from": [
+      "acts",
+      "reaches_outside"
+     ],
+     "atlas_partial": [
+      {
+       "id": "AML.T0051",
+       "name": "LLM Prompt Injection",
+       "tactics": [
+        "Execution"
+       ]
+      },
+      {
+       "id": "AML.T0101",
+       "name": "Data Destruction via AI Agent Tool Invocation",
+       "tactics": [
+        "Impact"
+       ]
+      }
+     ],
+     "atlas_covers_composition": false,
+     "gap": "injection and destructive tool use are catalogued separately; reachability of an unundoable effect from untrusted content is a property of the wiring"
+    },
+    {
      "property": "trust laundering",
      "from": [
       "plans",
@@ -355,40 +422,23 @@
      ],
      "atlas_covers_composition": false,
      "gap": "memory poisoning and tool exfiltration are catalogued separately; the surface where content written in one session acts in a later one is not"
-    },
-    {
-     "property": "injected irreversible action",
-     "from": [
-      "acts",
-      "reaches_outside"
-     ],
-     "atlas_partial": [
-      {
-       "id": "AML.T0051",
-       "name": "LLM Prompt Injection",
-       "tactics": [
-        "Execution"
-       ]
-      },
-      {
-       "id": "AML.T0101",
-       "name": "Data Destruction via AI Agent Tool Invocation",
-       "tactics": [
-        "Impact"
-       ]
-      }
-     ],
-     "atlas_covers_composition": false,
-     "gap": "injection and destructive tool use are catalogued separately; reachability of an unundoable effect from untrusted content is a property of the wiring"
     }
    ],
    "actor": {
-    "motivation": "criminal",
+    "motivation": "insider",
     "tier": "commodity",
     "economic_force_applies": true
    },
    "atlas_version": "5.6.0",
-   "n_atlas_techniques": 12,
+   "parameters": {
+    "topology": "peer-to-peer",
+    "internet_facing": false,
+    "authenticated_only": true,
+    "multi_tenant": true,
+    "sector": "enterprise collaboration",
+    "adversary": "insider/commodity"
+   },
+   "n_atlas_techniques": 15,
    "n_uncovered_compositional": 1
   },
   "travel": {
@@ -444,6 +494,7 @@
     {
      "cluster": "persistent_goals",
      "property": "goal integrity",
+     "because": "anonymous internet exposure: sustained, unattributed probing is available",
      "atlas": [
       {
        "id": "AML.T0094",
@@ -465,6 +516,7 @@
     {
      "cluster": "persistent_memory",
      "property": "contextual integrity",
+     "because": "capability reachable from untrusted content",
      "atlas": [
       {
        "id": "AML.T0080",
@@ -498,6 +550,7 @@
     {
      "cluster": "tool_use",
      "property": "tool-call integrity",
+     "because": "capability reachable from untrusted content",
      "atlas": [
       {
        "id": "AML.T0051",
@@ -534,6 +587,7 @@
     {
      "cluster": "retrieval",
      "property": "retrieval integrity",
+     "because": "a retrieval component is reachable from untrusted content",
      "atlas": [
       {
        "id": "AML.T0070",
@@ -569,6 +623,16 @@
    ],
    "compositional": [
     {
+     "property": "trust laundering",
+     "from": [
+      "plans",
+      "retains"
+     ],
+     "atlas_partial": [],
+     "atlas_covers_composition": false,
+     "gap": "no catalogued technique covers attacker content acquiring provenance by transiting a trusted peer's memory"
+    },
+    {
      "property": "cross-session exfiltration",
      "from": [
       "acts",
@@ -590,16 +654,6 @@
      ],
      "atlas_covers_composition": false,
      "gap": "memory poisoning and tool exfiltration are catalogued separately; the surface where content written in one session acts in a later one is not"
-    },
-    {
-     "property": "trust laundering",
-     "from": [
-      "plans",
-      "retains"
-     ],
-     "atlas_partial": [],
-     "atlas_covers_composition": false,
-     "gap": "no catalogued technique covers attacker content acquiring provenance by transiting a trusted peer's memory"
     }
    ],
    "actor": {
@@ -608,13 +662,21 @@
     "economic_force_applies": true
    },
    "atlas_version": "5.6.0",
+   "parameters": {
+    "topology": "single-agent",
+    "internet_facing": true,
+    "authenticated_only": false,
+    "multi_tenant": false,
+    "sector": "consumer services",
+    "adversary": "criminal/commodity"
+   },
    "n_atlas_techniques": 14,
    "n_uncovered_compositional": 1
   },
   "github": {
    "architecture": {
     "name": "github",
-    "topology": "single-agent",
+    "topology": "orchestrator-worker",
     "components": 36,
     "edges": 69,
     "agents": 1,
@@ -670,6 +732,7 @@
     {
      "cluster": "actuators",
      "property": "action irreversibility",
+     "because": "capability reachable from untrusted content",
      "atlas": [
       {
        "id": "AML.T0101",
@@ -689,8 +752,36 @@
      "atlas_covered": true
     },
     {
+     "cluster": "peer_agents",
+     "property": "inter-agent trust",
+     "because": "multi-tenant: other tenants are untrusted principals",
+     "atlas": [
+      {
+       "id": "AML.T0108",
+       "name": "AI Agent",
+       "tactics": [
+        "Command and Control"
+       ]
+      },
+      {
+       "id": "AML.T0084.003",
+       "name": "Call Chains",
+       "tactics": []
+      },
+      {
+       "id": "AML.T0103",
+       "name": "Deploy AI Agent",
+       "tactics": [
+        "Execution"
+       ]
+      }
+     ],
+     "atlas_covered": true
+    },
+    {
      "cluster": "persistent_goals",
      "property": "goal integrity",
+     "because": "anonymous internet exposure: sustained, unattributed probing is available",
      "atlas": [
       {
        "id": "AML.T0094",
@@ -712,6 +803,7 @@
     {
      "cluster": "persistent_memory",
      "property": "contextual integrity",
+     "because": "capability reachable from untrusted content",
      "atlas": [
       {
        "id": "AML.T0080",
@@ -745,6 +837,7 @@
     {
      "cluster": "tool_use",
      "property": "tool-call integrity",
+     "because": "capability reachable from untrusted content",
      "atlas": [
       {
        "id": "AML.T0051",
@@ -781,6 +874,31 @@
    ],
    "compositional": [
     {
+     "property": "injected irreversible action",
+     "from": [
+      "acts",
+      "reaches_outside"
+     ],
+     "atlas_partial": [
+      {
+       "id": "AML.T0051",
+       "name": "LLM Prompt Injection",
+       "tactics": [
+        "Execution"
+       ]
+      },
+      {
+       "id": "AML.T0101",
+       "name": "Data Destruction via AI Agent Tool Invocation",
+       "tactics": [
+        "Impact"
+       ]
+      }
+     ],
+     "atlas_covers_composition": false,
+     "gap": "injection and destructive tool use are catalogued separately; reachability of an unundoable effect from untrusted content is a property of the wiring"
+    },
+    {
      "property": "trust laundering",
      "from": [
       "plans",
@@ -812,40 +930,23 @@
      ],
      "atlas_covers_composition": false,
      "gap": "memory poisoning and tool exfiltration are catalogued separately; the surface where content written in one session acts in a later one is not"
-    },
-    {
-     "property": "injected irreversible action",
-     "from": [
-      "acts",
-      "reaches_outside"
-     ],
-     "atlas_partial": [
-      {
-       "id": "AML.T0051",
-       "name": "LLM Prompt Injection",
-       "tactics": [
-        "Execution"
-       ]
-      },
-      {
-       "id": "AML.T0101",
-       "name": "Data Destruction via AI Agent Tool Invocation",
-       "tactics": [
-        "Impact"
-       ]
-      }
-     ],
-     "atlas_covers_composition": false,
-     "gap": "injection and destructive tool use are catalogued separately; reachability of an unundoable effect from untrusted content is a property of the wiring"
     }
    ],
    "actor": {
     "motivation": "criminal",
-    "tier": "commodity",
+    "tier": "capable",
     "economic_force_applies": true
    },
    "atlas_version": "5.6.0",
-   "n_atlas_techniques": 12,
+   "parameters": {
+    "topology": "orchestrator-worker",
+    "internet_facing": true,
+    "authenticated_only": false,
+    "multi_tenant": true,
+    "sector": "software development",
+    "adversary": "criminal/capable"
+   },
+   "n_atlas_techniques": 15,
    "n_uncovered_compositional": 1
   },
   "shopping": {
@@ -913,6 +1014,7 @@
     {
      "cluster": "actuators",
      "property": "action irreversibility",
+     "because": "capability reachable from untrusted content",
      "atlas": [
       {
        "id": "AML.T0101",
@@ -932,8 +1034,36 @@
      "atlas_covered": true
     },
     {
+     "cluster": "peer_agents",
+     "property": "inter-agent trust",
+     "because": "multi-tenant: other tenants are untrusted principals",
+     "atlas": [
+      {
+       "id": "AML.T0108",
+       "name": "AI Agent",
+       "tactics": [
+        "Command and Control"
+       ]
+      },
+      {
+       "id": "AML.T0084.003",
+       "name": "Call Chains",
+       "tactics": []
+      },
+      {
+       "id": "AML.T0103",
+       "name": "Deploy AI Agent",
+       "tactics": [
+        "Execution"
+       ]
+      }
+     ],
+     "atlas_covered": true
+    },
+    {
      "cluster": "persistent_goals",
      "property": "goal integrity",
+     "because": "anonymous internet exposure: sustained, unattributed probing is available",
      "atlas": [
       {
        "id": "AML.T0094",
@@ -955,6 +1085,7 @@
     {
      "cluster": "persistent_memory",
      "property": "contextual integrity",
+     "because": "capability reachable from untrusted content",
      "atlas": [
       {
        "id": "AML.T0080",
@@ -988,6 +1119,7 @@
     {
      "cluster": "tool_use",
      "property": "tool-call integrity",
+     "because": "capability reachable from untrusted content",
      "atlas": [
       {
        "id": "AML.T0051",
@@ -1024,6 +1156,7 @@
     {
      "cluster": "retrieval",
      "property": "retrieval integrity",
+     "because": "a retrieval component is reachable from untrusted content",
      "atlas": [
       {
        "id": "AML.T0070",
@@ -1082,6 +1215,16 @@
      "gap": "memory poisoning and tool exfiltration are catalogued separately; the surface where content written in one session acts in a later one is not"
     },
     {
+     "property": "trust laundering",
+     "from": [
+      "plans",
+      "retains"
+     ],
+     "atlas_partial": [],
+     "atlas_covers_composition": false,
+     "gap": "no catalogued technique covers attacker content acquiring provenance by transiting a trusted peer's memory"
+    },
+    {
      "property": "injected irreversible action",
      "from": [
       "acts",
@@ -1105,16 +1248,6 @@
      ],
      "atlas_covers_composition": false,
      "gap": "injection and destructive tool use are catalogued separately; reachability of an unundoable effect from untrusted content is a property of the wiring"
-    },
-    {
-     "property": "trust laundering",
-     "from": [
-      "plans",
-      "retains"
-     ],
-     "atlas_partial": [],
-     "atlas_covers_composition": false,
-     "gap": "no catalogued technique covers attacker content acquiring provenance by transiting a trusted peer's memory"
     }
    ],
    "actor": {
@@ -1123,13 +1256,21 @@
     "economic_force_applies": true
    },
    "atlas_version": "5.6.0",
-   "n_atlas_techniques": 16,
+   "parameters": {
+    "topology": "single-agent",
+    "internet_facing": true,
+    "authenticated_only": false,
+    "multi_tenant": true,
+    "sector": "e-commerce",
+    "adversary": "criminal/commodity"
+   },
+   "n_atlas_techniques": 19,
    "n_uncovered_compositional": 1
   },
   "dailylife": {
    "architecture": {
     "name": "dailylife",
-    "topology": "single-agent",
+    "topology": "orchestrator-worker",
     "components": 29,
     "edges": 55,
     "agents": 1,
@@ -1179,6 +1320,7 @@
     {
      "cluster": "actuators",
      "property": "action irreversibility",
+     "because": "capability reachable from untrusted content",
      "atlas": [
       {
        "id": "AML.T0101",
@@ -1200,6 +1342,7 @@
     {
      "cluster": "persistent_goals",
      "property": "goal integrity",
+     "because": "capability reachable from untrusted content",
      "atlas": [
       {
        "id": "AML.T0094",
@@ -1221,6 +1364,7 @@
     {
      "cluster": "persistent_memory",
      "property": "contextual integrity",
+     "because": "capability reachable from untrusted content",
      "atlas": [
       {
        "id": "AML.T0080",
@@ -1254,6 +1398,7 @@
     {
      "cluster": "tool_use",
      "property": "tool-call integrity",
+     "because": "capability reachable from untrusted content",
      "atlas": [
       {
        "id": "AML.T0051",
@@ -1290,6 +1435,7 @@
     {
      "cluster": "retrieval",
      "property": "retrieval integrity",
+     "because": "a retrieval component is reachable from untrusted content",
      "atlas": [
       {
        "id": "AML.T0070",
@@ -1384,11 +1530,19 @@
     }
    ],
    "actor": {
-    "motivation": "criminal",
+    "motivation": "opportunist",
     "tier": "commodity",
     "economic_force_applies": true
    },
    "atlas_version": "5.6.0",
+   "parameters": {
+    "topology": "orchestrator-worker",
+    "internet_facing": true,
+    "authenticated_only": true,
+    "multi_tenant": false,
+    "sector": "personal assistant",
+    "adversary": "opportunist/commodity"
+   },
    "n_atlas_techniques": 16,
    "n_uncovered_compositional": 1
   }
@@ -1674,10 +1828,72 @@
   "compositional_uncovered": 1,
   "claim": "Every single-capability property maps to at least one catalogued technique. No compositional property maps to a technique that covers the composition; 1 of 5 map to nothing at all. That residue is what a derivation finds and an enumeration cannot."
  },
+ "sensitivity": {
+  "env: as deployed": [
+   "contextual integrity",
+   "goal integrity",
+   "tool-call integrity"
+  ],
+  "env: air-gapped, staff only": [],
+  "env: internet-facing, anonymous": [
+   "contextual integrity",
+   "goal integrity",
+   "tool-call integrity"
+  ],
+  "env: multi-tenant": [
+   "contextual integrity",
+   "goal integrity",
+   "inter-agent trust",
+   "tool-call integrity"
+  ],
+  "topology: single-agent": [
+   "contextual integrity",
+   "goal integrity",
+   "tool-call integrity"
+  ],
+  "topology: orchestrator-worker": [
+   "contextual integrity",
+   "goal integrity",
+   "tool-call integrity"
+  ],
+  "topology: peer-to-peer": [
+   "contextual integrity",
+   "goal integrity",
+   "inter-agent trust",
+   "tool-call integrity"
+  ],
+  "topology: swarm": [
+   "contextual integrity",
+   "goal integrity",
+   "inter-agent trust",
+   "tool-call integrity"
+  ],
+  "adversary: cost-bounded criminal": [
+   "contextual integrity",
+   "goal integrity",
+   "tool-call integrity"
+  ],
+  "adversary: resourced criminal": [
+   "contextual integrity",
+   "goal integrity",
+   "tool-call integrity"
+  ],
+  "adversary: nation-state (unbounded)": [
+   "contextual integrity",
+   "goal integrity",
+   "inter-agent trust",
+   "tool-call integrity"
+  ],
+  "adversary: insider": [
+   "contextual integrity",
+   "goal integrity",
+   "tool-call integrity"
+  ]
+ },
  "discrimination": {
-  "mean_jaccard_properties": 0.7633333333333333,
-  "mean_jaccard_techniques": 0.7753968253968254,
-  "distinct_surfaces": 4,
+  "mean_jaccard_properties": 0.69,
+  "mean_jaccard_techniques": 0.7031746031746031,
+  "distinct_surfaces": 5,
   "n_suites": 6,
   "baseline_techniques": 43
  }

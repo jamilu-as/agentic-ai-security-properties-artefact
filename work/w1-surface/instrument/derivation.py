@@ -213,11 +213,39 @@ def derive_from_architecture(arch, lib=None) -> Dict[str, Any]:
     for cid in reachable:
         reach_caps |= arch.by_id(cid).capabilities
 
-    clusters = sorted({_CAP_TO_CLUSTER[c] for c in reach_caps if c in _CAP_TO_CLUSTER})
+    clusters = {_CAP_TO_CLUSTER[c] for c in reach_caps if c in _CAP_TO_CLUSTER}
     if arch.agents() and reachable:
-        clusters = sorted(set(clusters) | {"tool_use"})
-    if len(arch.agents()) > 1 or arch.topology in ("peer-to-peer", "swarm", "orchestrator-worker"):
-        clusters = sorted(set(clusters) | {"peer_agents"})
+        clusters.add("tool_use")
+
+    env, adv = arch.environment, arch.adversary
+    reasons: Dict[str, str] = {}
+
+    # Topology decides whether a peer relationship exists to be abused at all.
+    # A single-agent deployment has no peer trust surface, however many tools it has.
+    if arch.topology in ("peer-to-peer", "swarm"):
+        clusters.add("peer_agents")
+        reasons["peer_agents"] = f"{arch.topology} topology: peers are principals the agent trusts"
+    elif arch.topology == "orchestrator-worker" and len(arch.agents()) > 1:
+        clusters.add("peer_agents")
+        reasons["peer_agents"] = "orchestrator delegates to workers across a trust boundary"
+
+    # Tenancy: other tenants are untrusted principals sharing the deployment.
+    if env.multi_tenant:
+        clusters.add("peer_agents")
+        reasons.setdefault("peer_agents", "multi-tenant: other tenants are untrusted principals")
+
+    # Exposure widens who can reach the untrusted channel, not what it can do.
+    if env.internet_facing and not env.authenticated_users_only:
+        clusters.add("persistent_goals")
+        reasons["persistent_goals"] = "anonymous internet exposure: sustained, unattributed probing is available"
+
+    # An advanced adversary is assumed able to chain through capabilities a
+    # commodity one would not reach; a cost-bounded one is not.
+    if adv.tier == "advanced":
+        clusters |= {"persistent_goals", "peer_agents"}
+        reasons.setdefault("persistent_goals", "advanced adversary: multi-step campaigns are in scope")
+
+    clusters = sorted(clusters)
 
     props = []
     for c in clusters:
@@ -226,6 +254,7 @@ def derive_from_architecture(arch, lib=None) -> Dict[str, Any]:
         entry = CLUSTERS[c]
         techs = atlas_map.PROPERTY_TO_ATLAS.get(entry["property"], [])
         props.append({"cluster": c, "property": entry["property"],
+                      "because": reasons.get(c, "capability reachable from untrusted content"),
                       "atlas": [lib.describe(t) for t in techs],
                       "atlas_covered": bool(techs)})
 
@@ -233,6 +262,7 @@ def derive_from_architecture(arch, lib=None) -> Dict[str, Any]:
     # retrieval component is reachable from untrusted content
     if any(arch.by_id(c).kind == "vector_store" for c in reachable):
         props.append({"cluster": "retrieval", "property": "retrieval integrity",
+                      "because": "a retrieval component is reachable from untrusted content",
                       "atlas": [lib.describe(t) for t in atlas_map.PROPERTY_TO_ATLAS["retrieval integrity"]],
                       "atlas_covered": True})
 
@@ -259,6 +289,10 @@ def derive_from_architecture(arch, lib=None) -> Dict[str, Any]:
         "actor": {"motivation": adv.motivation, "tier": adv.tier,
                   "economic_force_applies": adv.economic_force_applies},
         "atlas_version": lib.version,
+        "parameters": {"topology": arch.topology, "internet_facing": env.internet_facing,
+                       "authenticated_only": env.authenticated_users_only,
+                       "multi_tenant": env.multi_tenant, "sector": env.sector,
+                       "adversary": f"{adv.motivation}/{adv.tier}"},
         "n_atlas_techniques": len({t["id"] for p in props for t in p["atlas"]}),
         "n_uncovered_compositional": sum(1 for c in comp if not c["atlas_partial"]),
     }

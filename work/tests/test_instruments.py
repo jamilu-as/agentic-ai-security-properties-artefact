@@ -78,10 +78,10 @@ check("system-level axis implies the split architecture",
 check("no system-level axis means a plain LLM", "LLM" in Cell.parse("spotlighting").expected_elements())
 check("correct pipeline verifies", verify(c3, c3.expected_elements()) is None)
 
-def raises(fn, *a):
+def raises(fn, *a, exc=Exception):
     try:
         fn(*a); return False
-    except CompositionError:
+    except exc:
         return True
 
 check("SILENT OMISSION caught (the failure this exists to prevent)",
@@ -101,3 +101,70 @@ print()
 if FAILED:
     print(f"FAILED ({len(FAILED)}): " + ", ".join(FAILED)); sys.exit(1)
 print("all instrument tests pass")
+
+# --- architecture-driven derivation + ATLAS mapping + treatment (added 29 Aug) ---
+sys.path[:0] = [os.path.join(ROOT, "w1-surface")]
+from architecture import Architecture, Component, Edge, Environment, Adversary, from_tool_manifest
+import atlas_map
+from derivation import derive_from_architecture, atlas_baseline
+import deployments as dep
+from treatment import ControlMeasurement as CM, ResidualPosture, decide_for_surface, CONTROL_BEARS_ON
+treatment_bears = lambda c: CONTROL_BEARS_ON.get(c, set())
+
+print("\n=== architecture (RQ1 input) ===")
+lib = atlas_map.AtlasLibrary()
+check("ATLAS library loads and is pinned", lib.version == "5.6.0", lib.version)
+check("every mapped technique exists in ATLAS", bool(atlas_map.validate(lib)))
+air = from_tool_manifest("x", ["send_money"], environment=Environment(
+    internet_facing=False, authenticated_users_only=True, processes_third_party_content=False))
+web = from_tool_manifest("x", ["send_money"], environment=Environment(
+    internet_facing=True, authenticated_users_only=False, processes_third_party_content=True))
+check("air-gapped deployment has no untrusted reach", len(air.untrusted_reaches()) == 0)
+check("internet-facing deployment does", len(web.untrusted_reaches()) > 0)
+check("unreachable capability is off the surface",
+      len(derive_from_architecture(air, lib)["properties"]) == 0)
+check("reachable capability is on it",
+      len(derive_from_architecture(web, lib)["properties"]) > 0)
+check("bad topology rejected",
+      raises(lambda: Architecture("a", topology="mesh")))
+check("edge to unknown component rejected",
+      raises(lambda: Architecture("a", components=[Component("p", "agent")],
+                                  edges=[Edge("p", "ghost")])))
+
+print("\n=== discrimination and residue (RQ1 claim) ===")
+p2p = dep.vary("banking", ["send_money"], topology="peer-to-peer")
+solo = dep.vary("banking", ["send_money"], topology="single-agent")
+check("topology changes the surface",
+      {p["property"] for p in derive_from_architecture(p2p, lib)["properties"]} !=
+      {p["property"] for p in derive_from_architecture(solo, lib)["properties"]})
+ns = dep.vary("banking", ["send_money"], adversary=Adversary("nation-state", "advanced", True))
+check("unbounded adversary switches the economic force off",
+      derive_from_architecture(ns, lib)["actor"]["economic_force_applies"] is False)
+cov = atlas_map.coverage_report(lib)
+check("every single-capability property is catalogued", cov["single_capability_all_covered"])
+check("no compositional property is fully catalogued", cov["compositional_fully_covered"] == 0)
+check("at least one has no ATLAS entry at all", cov["compositional_uncovered"] >= 1)
+check("enumerative baseline is deployment-independent", len(atlas_baseline(lib)) > 30)
+
+print("\n=== treatment (RQ3) ===")
+a0 = 0.70
+M = {"spotlighting": CM(["spotlighting"], .52, a0, 2., .6),
+     "piguard": CM(["piguard"], .38, a0, 4., 1.2),
+     "camel": CM(["camel"], .21, a0, 11., 2.4),
+     "camel+piguard": CM(["camel", "piguard"], .16, a0, 15., 3.1, rho_star=1.40)}
+surf = derive_from_architecture(dep.build("shopping", ["send_money", "browse_webpage", "search_items"]), lib)
+check("residual posture drives the treatment",
+      len({decide_for_surface(surf, M, posture=p)[0].treatment for p in
+           (ResidualPosture(monitorable=True), ResidualPosture(contractually_shiftable=True),
+            ResidualPosture())}) == 3)
+d = decide_for_surface(surf, M, posture=ResidualPosture(monitorable=True))
+check("a stack exceeding independence is flagged",
+      any(x.residual_vs_expected and x.residual_vs_expected > 1.05 for x in d))
+check("every decision carries ATLAS ids", all(x.atlas for x in d))
+check("controls are only recommended where they bear",
+      all(any(x.property in treatment_bears(c) for c in x.recommended) for x in d if x.recommended))
+check("a property with no bearing control returns avoid",
+      decide_for_surface({"properties": [{"property": "goal integrity", "atlas": []}],
+                          "actor": surf["actor"], "compositional": [],
+                          "architecture": surf["architecture"]},
+                         {"piguard": M["piguard"]})[0].treatment == "avoid")

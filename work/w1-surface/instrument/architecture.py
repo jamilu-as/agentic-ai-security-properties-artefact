@@ -188,10 +188,21 @@ def from_tool_manifest(name: str, tool_names: List[str],
     its name implies a state change, and irreversible if it moves money, deletes,
     or sends outside the system.
     """
-    joined = " ".join(tool_names).lower()
-    comps = [Component("agent", "agent", "trusted", reads_untrusted=True),
-             Component("channel", "user_channel", "untrusted", reads_untrusted=True)]
-    edges = [Edge("channel", "agent", "instructions", crosses_boundary=True)]
+    env0 = environment or Environment(processes_third_party_content=True,
+                                      internet_facing=any(k in " ".join(tool_names).lower()
+                                                          for k in ("web", "http")))
+    # Whether untrusted content reaches the deployment at all is an ENVIRONMENT
+    # fact, not a property of the tool list. A deployment that ingests no
+    # third-party content and admits only authenticated staff has a genuinely
+    # smaller injection surface, and a practitioner expects the derivation to say
+    # so. Hard-coding this true made every environment look alike.
+    ingests = env0.processes_third_party_content or env0.internet_facing or env0.multi_tenant
+    channel_trust = "untrusted" if (env0.internet_facing and not env0.authenticated_users_only) \
+                    else "semi-trusted" if ingests else "trusted"
+
+    comps = [Component("agent", "agent", "trusted", reads_untrusted=ingests),
+             Component("channel", "user_channel", channel_trust, reads_untrusted=ingests)]
+    edges = [Edge("channel", "agent", "instructions", crosses_boundary=ingests)]
 
     ACTS = ("send", "transfer", "pay", "delete", "post", "book", "order", "update",
             "create", "schedule", "share", "add", "remove", "cancel")
@@ -204,14 +215,14 @@ def from_tool_manifest(name: str, tool_names: List[str],
                "datastore" if any(k in tl for k in ("memory", "note", "history", "file", "read")) else \
                "external_api" if any(k in tl for k in ("web", "http", "url", "browse")) else \
                "tool"
-        comps.append(Component(t, kind, "semi-trusted",
-                               reads_untrusted=True,
+        # a retrieval or external component ingests untrusted content whenever the
+        # environment supplies any; a purely internal tool does not
+        ext = kind in ("vector_store", "external_api")
+        comps.append(Component(t, kind, "semi-trusted" if ext else "trusted",
+                               reads_untrusted=ingests and ext,
                                reversible=not any(k in tl for k in IRREV)))
         edges.append(Edge("agent", t, "control"))
         edges.append(Edge(t, "agent", "data"))
 
-    env = environment or Environment(processes_third_party_content=True,
-                                     internet_facing=any("web" in t.lower() or "http" in t.lower()
-                                                         for t in tool_names))
     return Architecture(name=name, topology=topology, components=comps, edges=edges,
-                        environment=env, adversary=adversary or Adversary())
+                        environment=env0, adversary=adversary or Adversary())

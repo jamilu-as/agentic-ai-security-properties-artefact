@@ -14,22 +14,48 @@ its own tool manifest so the derivation sees a deployment, not a special case.
 |---|---|
 | ATLAS baseline, per deployment | the same **43** agentic techniques |
 | Baseline pairwise Jaccard | **1.00** by construction |
-| Derived surface, mean Jaccard over 15 pairs | **0.763** |
-| ... on ATLAS techniques | 0.775 |
-| Distinct surfaces | **4 of 6** |
-| Range | 0.60 – 1.00 |
+| Derived surface, mean Jaccard over 15 pairs | **0.690** |
+| ... on ATLAS techniques | 0.703 |
+| Distinct surfaces | **5 of 6** |
+| Range | 0.50 – 1.00 |
 
 The catalogue cannot discriminate: it does not know the wiring, so it returns the
 same list for a banking agent and a shopping agent. The derivation returns four
 distinct surfaces across six deployments.
 
-**The discrimination is real but modest, and the reason is worth stating rather
-than hiding.** All six suites are tool-using deployments in one regime, so they
-share the core of the surface; two pairs return identical surfaces (Jaccard 1.00).
-Wider architectural variation — a peer-to-peer topology, a deployment with no
-actuator, one with installable skills — would separate them further, and the
-instrument accepts those, but the benchmark does not supply them. This bounds what
-the test can show and is carried as a limitation.
+An earlier run of this experiment built all six suites identically from their tool
+names, which discarded the parameters a practitioner actually varies and gave
+0.763 / 4 distinct surfaces. Each suite is now profiled on what it *is* — banking
+authenticated and internal, slack multi-tenant and peer-to-peer, github reading
+third-party repositories — with the rationale recorded per suite in
+`deployments.py` so a reader can disagree with a specific judgement.
+
+**The discrimination is real but bounded, and the reason is stated rather than
+hidden.** All six remain tool-using deployments in one regime, so they share the
+core of the surface and one pair still returns identically. Wider variation would
+separate them further; the benchmark does not supply it.
+
+## Parameter sensitivity — tools held fixed
+
+The practitioner-facing half: the same tool manifest under different deployment
+parameters. A catalogue returns the same list for every row.
+
+| Variation | Properties |
+|---|---|
+| as deployed | 3 |
+| **air-gapped, staff only** | **0** |
+| internet-facing, anonymous | 3 |
+| multi-tenant | 4 |
+| topology: single-agent / orchestrator-worker | 3 |
+| topology: peer-to-peer / swarm | 4 |
+| adversary: nation-state (unbounded) | 4, economic force **off** |
+
+Twelve parameter settings return three distinct surfaces; ATLAS returns one for
+all twelve. The air-gapped row is the sharpest: a deployment ingesting no
+third-party content and admitting only authenticated staff has no injection
+surface at all, while the catalogue still reports 43 applicable techniques. That
+is the difference between a list of what has been seen and an assessment of what
+is reachable here.
 
 ## Residue — what ATLAS does not carry
 

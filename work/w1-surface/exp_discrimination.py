@@ -17,11 +17,13 @@ import sys, os, re, json, itertools
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, "instrument"))
+sys.path.insert(0, HERE)
 ROOT = os.path.dirname(os.path.dirname(HERE))
 SUITES_DIR = os.path.join(os.path.dirname(ROOT), "AutoDojo",
                           "agentdojo", "src", "agentdojo", "default_suites", "v1")
 
 from architecture import from_tool_manifest, Environment, Adversary   # noqa: E402
+import deployments                                                    # noqa: E402
 from derivation import derive_from_architecture, atlas_baseline       # noqa: E402
 import atlas_map                                                      # noqa: E402
 
@@ -60,7 +62,7 @@ def main():
     for s in SUITES:
         tools = tool_manifest(s)
         manifests[s] = tools
-        arch = from_tool_manifest(s, tools)
+        arch = deployments.build(s, tools)
         surfaces[s] = derive_from_architecture(arch, lib)
 
     print(f"\n{'suite':<11}{'tools':>6}{'reach':>7}{'props':>7}{'comp':>6}{'ATLAS':>7}  properties")
@@ -106,8 +108,38 @@ def main():
             mark = "no ATLAS entry" if not v["covered"] else f"partial: {len(v['partial_techniques'])} technique(s)"
             print(f"    {name:<32} raised by {len(raised)}/6 suites — {mark}")
 
+    # -- parameter sensitivity ---------------------------------------------
+    print("\n" + "=" * 72)
+    print("PARAMETER SENSITIVITY — tools held fixed, deployment parameters varied")
+    print("=" * 72)
+    print("A catalogue returns the same list under every row below.\n")
+    probe, ptools = "banking", manifests["banking"]
+    sens = {}
+    print(f"{'variation':<34}{'props':>6}{'comp':>6}  surface")
+    print("-" * 72)
+    for label, ch in deployments.VARIATIONS.items():
+        d = derive_from_architecture(deployments.vary(probe, ptools, env_change=ch), lib)
+        names = sorted(p["property"] for p in d["properties"])
+        sens[f"env: {label}"] = names
+        print(f"{label:<34}{len(names):>6}{len(d['compositional']):>6}  {', '.join(n.split()[0] for n in names)}")
+    for topo in deployments.TOPOLOGY_VARIATIONS:
+        d = derive_from_architecture(deployments.vary(probe, ptools, topology=topo), lib)
+        names = sorted(p["property"] for p in d["properties"])
+        sens[f"topology: {topo}"] = names
+        print(f"{'topology: ' + topo:<34}{len(names):>6}{len(d['compositional']):>6}  {', '.join(n.split()[0] for n in names)}")
+    for label, a in deployments.ADVERSARY_VARIATIONS.items():
+        d = derive_from_architecture(deployments.vary(probe, ptools, adversary=a), lib)
+        names = sorted(p["property"] for p in d["properties"])
+        econ = d["actor"]["economic_force_applies"]
+        sens[f"adversary: {label}"] = names
+        print(f"{'adversary: ' + label:<34}{len(names):>6}{len(d['compositional']):>6}  "
+              f"{', '.join(n.split()[0] for n in names)}  [economic force {'on' if econ else 'OFF'}]")
+    distinct_sens = len({tuple(v) for v in sens.values()})
+    print(f"\n  {len(sens)} parameter settings -> {distinct_sens} distinct surfaces")
+    print("  ATLAS baseline -> 1 surface, for all of them")
+
     out = os.path.join(HERE, "discrimination_results.json")
-    json.dump({"atlas": audit, "surfaces": surfaces, "coverage": cov,
+    json.dump({"atlas": audit, "surfaces": surfaces, "coverage": cov, "sensitivity": sens,
                "discrimination": {"mean_jaccard_properties": mean(derived_j),
                                   "mean_jaccard_techniques": mean(tech_j),
                                   "distinct_surfaces": distinct,
