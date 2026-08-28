@@ -246,16 +246,19 @@ One closed-weight R2 batch round per day. The local arm starts on Day 3 and runs
 - **WI: vary the RQ1 threat-actor profile with the RQ2 data held fixed.** Does any ISO 31000 treatment flip? A flip demonstrates the applicability gate does work; no flip is a reportable finding that it is inert on this dataset. Either way it goes in the chapter.
 - `make coherence` must pass before Day 10 closes.
 
-### Day 11 · Mon 7 September · Close the document
+### Day 11 · Mon 7 September · Close the document, build the deck
 
 - Ch7 Conclusion — contributions, explicit aims-met mapping, limitations, future work.
 - Abstract (one page); front matter; title page with the declaration including "(including AI)"; centred copyright statement with prescribed wording; ToC with page numbers; stated word count; numbered appendices.
 - **Harvard conversion throughout.** Paper 1 uses numbered citations; budget real time.
 - BS 4821, verified by measurement: 12pt, **left-justified not fully justified**, 1.5 spacing, margins L 1.5in / R 1in / T,B 1in, quotations indented.
+- **Build the slide deck.** A separate deliverable worth 100 marks on its own form. Half of it — 30 for presenting own results, 20 for answering questions — is results and defence. Structure follows Chapter 4. Every number traceable to a table or figure in the written work.
 
 ### Day 12 · Tue 8 September · Review and close
 
-All nine passes of §5. **P4 drift-declaration completeness** and **P7 structural compliance** run first and are non-negotiable. Then P1, P6, P2, P3, P5, P8, P9. Turnitin. Oral deck (§6).
+All nine passes of §5. **P4 drift-declaration completeness** and **P7 structural compliance** run first and are non-negotiable. Then P1, P6, P2, P3, P5, P8, P9. Turnitin.
+
+**Rehearse the presentation and complete `QA_PREP.md`.** Twenty of its hundred marks are answering questions, which cannot be prepared by making slides. Rehearse the priority questions — the AutoDojo antecedent, the withdrawn power calculation, the artefact standard, the integrity finding — and prepare the concessions as deliberately as the defences.
 
 ### Tuesday 8 September — complete.
 
@@ -336,9 +339,11 @@ All nine run on Day 12. Each is a distinct pass with a distinct question; do not
 
 ---
 
-## 6. Oral defence
+## 6. Oral presentation
 
-Worth **20 marks**, marked out of 100 on a separate form and scaled. Internal weighting drives the deck:
+**A separate expected deliverable**, marked out of 100 on its own form and carried into the dissertation total at /20. Criteria verbatim in `docs/canon/rubric.yaml` under `oral_presentation`; deck and Q&A specifications in `dissertation/oral/`.
+
+Fifty of its hundred marks are presenting own results and answering questions on them — 10% of the module, the same weight as Aims and Objectives plus Literature Review combined in the written work.
 
 | Weight | Criterion | Consequence |
 |---|---|---|

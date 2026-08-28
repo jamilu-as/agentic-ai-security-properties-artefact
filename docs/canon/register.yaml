@@ -233,6 +233,17 @@ positions:
     marker: "not established"
     status: open
 
+  - id: P35
+    item: "Oral presentation treated as a separate expected deliverable with its own verbatim criteria, deck and Q&A preparation - 100 marks on its own form, scaling into Oral Defence /20"
+    lands_in: [dissertation/oral/OUTLINE.md]
+    marker: "own results"
+    status: open
+  - id: P36
+    item: "Every number shown in the deck traceable to a table or figure in the written work"
+    lands_in: [dissertation/oral/SLIDES.md]
+    marker: "Figure"
+    status: open
+
 # Prior art that must be cited defensively. check_citations.py verifies each key appears.
 prior_art:
   - {id: A1,  key: "2606.15057", why: "AutoDojo - direct antecedent, supplies the harness"}
@@ -256,4 +267,4 @@ gates:
   - {id: G2, day: 7,  name: "Runs complete", requires: [workstreams/w2_composition/results/runs/MANIFEST.md, workstreams/w2_composition/results/FREEZE.txt]}
   - {id: G3, day: 8,  name: "Analysis",      requires: [workstreams/w0_secondary_analysis/RESULTS.md]}
   - {id: G4, day: 10, name: "Draft",         requires: [dissertation/04_results_discussion.md]}
-  - {id: G5, day: 12, name: "Submission",    requires: [dissertation/00_front_matter.md, dissertation/07_appendices.md]}
+  - {id: G5, day: 12, name: "Submission",    requires: [dissertation/00_front_matter.md, dissertation/07_appendices.md, dissertation/oral/SLIDES.md, dissertation/oral/QA_PREP.md]}

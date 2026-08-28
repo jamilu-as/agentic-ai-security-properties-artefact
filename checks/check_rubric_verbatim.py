@@ -51,6 +51,36 @@ def main(strict=True):
         for s in crit.get("sub", []):
             if norm(s["text"]) not in norm(text):
                 r.F(f'{name}: sub-item not a substring of the source descriptor — "{s["text"][:70]}..."')
+    # Oral presentation criteria, from the separate marking form.
+    OPDF = os.path.join(ROOT, "sources", "university", "MSc Dissertation Presentation Marking Criteria (1).pdf")
+    oral = rub.get("oral_presentation")
+    if oral and os.path.exists(OPDF):
+        with pdfplumber.open(OPDF) as pdf:
+            orows = [[(c or "").replace("\n"," ").strip() for c in row]
+                     for t in (pdf.pages[0].extract_tables() or []) for row in t]
+        osrc = {}
+        for row in orows:
+            c = [x for x in row if x]
+            m = [x for x in c if x.isdigit()]
+            if m:
+                t = [x for x in c if not x.isdigit() and not x.startswith("Oral Presentation")][-1]
+                osrc[norm(t)] = int(m[0])
+        osum = 0
+        for c in oral["criteria"]:
+            osum += c["marks"]
+            k = norm(c["criterion_verbatim"])
+            if k not in osrc:
+                r.F(f'oral: criterion not found in source PDF — "{k[:70]}..."')
+            elif osrc[k] != c["marks"]:
+                r.F(f'oral: canon says {c["marks"]}, PDF says {osrc[k]} — "{k[:60]}..."')
+        if osum != oral["total"]:
+            r.F(f"oral criteria sum to {osum}, not {oral['total']}")
+        else:
+            r.O(f"oral presentation: {len(oral['criteria'])} criteria matching source, summing to {osum}")
+        for a in oral.get("artefacts", []):
+            if not os.path.exists(os.path.join(ROOT, a)):
+                r.F(f"oral artefact missing: {a}")
+
     if total != rub["total"]:
         r.F(f"criteria sum to {total}, not {rub['total']}")
     else:

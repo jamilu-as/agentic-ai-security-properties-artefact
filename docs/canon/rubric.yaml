@@ -135,6 +135,34 @@ criteria:
   - future work
   - results
 
+# Oral presentation. VERBATIM from sources/university/MSc Dissertation Presentation
+# Marking Criteria (1).pdf. Marked out of 100 on a separate form; the Oral Defence
+# criterion above carries it into the dissertation total at /20, i.e. scaled by 5.
+# A separate expected deliverable, not an appendix to the written work.
+oral_presentation:
+  total: 100
+  scales_into: Oral Defence /20
+  criteria:
+  - marks: 10
+    criterion_verbatim: Presentation is well structured, with good selection of material
+  - marks: 10
+    criterion_verbatim: Slides are well prepared with appropriate level of detail
+  - marks: 15
+    criterion_verbatim: Student displays clear understanding of theoretical foundation of the topic, using
+      correct terminology
+  - marks: 30
+    criterion_verbatim: Student presents own results clearly and correctly
+  - marks: 20
+    criterion_verbatim: Student is able to answer reasonable questions
+  - marks: 10
+    criterion_verbatim: Student to articulate future work possible
+  - marks: 5
+    criterion_verbatim: Clear and correct language is used, both on slides and when presenting
+  artefacts:
+  - dissertation/oral/OUTLINE.md
+  - dissertation/oral/SLIDES.md
+  - dissertation/oral/QA_PREP.md
+
 # MSG-mandated document elements. check_structure.py verifies each.
 mandated_structure:
   - {id: titlepage,     text: "Title page with declaration including AI", file: dissertation/00_front_matter.md, marker: "including AI"}
