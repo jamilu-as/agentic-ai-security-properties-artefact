@@ -435,6 +435,16 @@ positions:
   marker: drift protocol
   status: open
   judgement: J09
+- id: P44
+  item: RQ1 rebuilt around deployment architecture and mapped onto MITRE ATLAS, restoring
+    the approved O1 wording (architecture, environment, threat-actor reward structures)
+    that an earlier capability-manifest version had thinned. Headline is discrimination
+    plus residue, not inter-rater agreement.
+  lands_in:
+  - dissertation/04_results_discussion.md
+  - dissertation/03_methods.md
+  marker: ATLAS
+  status: open
 prior_art:
 - id: A1
   key: '2606.15057'

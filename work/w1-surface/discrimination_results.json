@@ -1,0 +1,1684 @@
+{
+ "atlas": {
+  "atlas_version": "5.6.0",
+  "techniques_in_library": 170,
+  "techniques_referenced": 26,
+  "properties_mapped": 8,
+  "compositional_properties": 5,
+  "compositional_with_no_coverage": [
+   "trust laundering"
+  ]
+ },
+ "surfaces": {
+  "banking": {
+   "architecture": {
+    "name": "banking",
+    "topology": "single-agent",
+    "components": 13,
+    "edges": 23,
+    "agents": 1,
+    "reachable_from_untrusted": [
+     "agent",
+     "channel",
+     "get_balance",
+     "get_iban",
+     "get_most_recent_transactions",
+     "get_scheduled_transactions",
+     "get_user_info",
+     "read_file",
+     "schedule_transaction",
+     "send_money",
+     "update_password",
+     "update_scheduled_transaction",
+     "update_user_info"
+    ],
+    "capabilities": [
+     "accepts_input",
+     "acts",
+     "plans",
+     "reasons",
+     "retains"
+    ],
+    "irreversible_action_reachable": true
+   },
+   "properties": [
+    {
+     "cluster": "persistent_goals",
+     "property": "goal integrity",
+     "atlas": [
+      {
+       "id": "AML.T0094",
+       "name": "Delay Execution of LLM Instructions",
+       "tactics": [
+        "Defense Evasion"
+       ]
+      },
+      {
+       "id": "AML.T0061",
+       "name": "LLM Prompt Self-Replication",
+       "tactics": [
+        "Persistence"
+       ]
+      }
+     ],
+     "atlas_covered": true
+    },
+    {
+     "cluster": "persistent_memory",
+     "property": "contextual integrity",
+     "atlas": [
+      {
+       "id": "AML.T0080",
+       "name": "AI Agent Context Poisoning",
+       "tactics": [
+        "Persistence"
+       ]
+      },
+      {
+       "id": "AML.T0080.000",
+       "name": "Memory",
+       "tactics": []
+      },
+      {
+       "id": "AML.T0057",
+       "name": "LLM Data Leakage",
+       "tactics": [
+        "Exfiltration"
+       ]
+      },
+      {
+       "id": "AML.T0092",
+       "name": "Manipulate User LLM Chat History",
+       "tactics": [
+        "Defense Evasion"
+       ]
+      }
+     ],
+     "atlas_covered": true
+    },
+    {
+     "cluster": "tool_use",
+     "property": "tool-call integrity",
+     "atlas": [
+      {
+       "id": "AML.T0051",
+       "name": "LLM Prompt Injection",
+       "tactics": [
+        "Execution"
+       ]
+      },
+      {
+       "id": "AML.T0053",
+       "name": "AI Agent Tool Invocation",
+       "tactics": [
+        "Execution",
+        "Privilege Escalation"
+       ]
+      },
+      {
+       "id": "AML.T0099",
+       "name": "AI Agent Tool Data Poisoning",
+       "tactics": [
+        "Persistence"
+       ]
+      },
+      {
+       "id": "AML.T0067",
+       "name": "LLM Trusted Output Components Manipulation",
+       "tactics": [
+        "Defense Evasion"
+       ]
+      }
+     ],
+     "atlas_covered": true
+    }
+   ],
+   "compositional": [
+    {
+     "property": "cross-session exfiltration",
+     "from": [
+      "acts",
+      "retains"
+     ],
+     "atlas_partial": [
+      {
+       "id": "AML.T0080.000",
+       "name": "Memory",
+       "tactics": []
+      },
+      {
+       "id": "AML.T0086",
+       "name": "Exfiltration via AI Agent Tool Invocation",
+       "tactics": [
+        "Exfiltration"
+       ]
+      }
+     ],
+     "atlas_covers_composition": false,
+     "gap": "memory poisoning and tool exfiltration are catalogued separately; the surface where content written in one session acts in a later one is not"
+    },
+    {
+     "property": "trust laundering",
+     "from": [
+      "plans",
+      "retains"
+     ],
+     "atlas_partial": [],
+     "atlas_covers_composition": false,
+     "gap": "no catalogued technique covers attacker content acquiring provenance by transiting a trusted peer's memory"
+    }
+   ],
+   "actor": {
+    "motivation": "criminal",
+    "tier": "commodity",
+    "economic_force_applies": true
+   },
+   "atlas_version": "5.6.0",
+   "n_atlas_techniques": 10,
+   "n_uncovered_compositional": 1
+  },
+  "slack": {
+   "architecture": {
+    "name": "slack",
+    "topology": "single-agent",
+    "components": 13,
+    "edges": 23,
+    "agents": 1,
+    "reachable_from_untrusted": [
+     "add_user_to_channel",
+     "agent",
+     "channel",
+     "get_channels",
+     "get_users_in_channel",
+     "get_webpage",
+     "invite_user_to_slack",
+     "post_webpage",
+     "read_channel_messages",
+     "read_inbox",
+     "remove_user_from_slack",
+     "send_channel_message",
+     "send_direct_message"
+    ],
+    "capabilities": [
+     "accepts_input",
+     "acts",
+     "plans",
+     "reaches_outside",
+     "reasons",
+     "retains"
+    ],
+    "irreversible_action_reachable": true
+   },
+   "properties": [
+    {
+     "cluster": "actuators",
+     "property": "action irreversibility",
+     "atlas": [
+      {
+       "id": "AML.T0101",
+       "name": "Data Destruction via AI Agent Tool Invocation",
+       "tactics": [
+        "Impact"
+       ]
+      },
+      {
+       "id": "AML.T0086",
+       "name": "Exfiltration via AI Agent Tool Invocation",
+       "tactics": [
+        "Exfiltration"
+       ]
+      }
+     ],
+     "atlas_covered": true
+    },
+    {
+     "cluster": "persistent_goals",
+     "property": "goal integrity",
+     "atlas": [
+      {
+       "id": "AML.T0094",
+       "name": "Delay Execution of LLM Instructions",
+       "tactics": [
+        "Defense Evasion"
+       ]
+      },
+      {
+       "id": "AML.T0061",
+       "name": "LLM Prompt Self-Replication",
+       "tactics": [
+        "Persistence"
+       ]
+      }
+     ],
+     "atlas_covered": true
+    },
+    {
+     "cluster": "persistent_memory",
+     "property": "contextual integrity",
+     "atlas": [
+      {
+       "id": "AML.T0080",
+       "name": "AI Agent Context Poisoning",
+       "tactics": [
+        "Persistence"
+       ]
+      },
+      {
+       "id": "AML.T0080.000",
+       "name": "Memory",
+       "tactics": []
+      },
+      {
+       "id": "AML.T0057",
+       "name": "LLM Data Leakage",
+       "tactics": [
+        "Exfiltration"
+       ]
+      },
+      {
+       "id": "AML.T0092",
+       "name": "Manipulate User LLM Chat History",
+       "tactics": [
+        "Defense Evasion"
+       ]
+      }
+     ],
+     "atlas_covered": true
+    },
+    {
+     "cluster": "tool_use",
+     "property": "tool-call integrity",
+     "atlas": [
+      {
+       "id": "AML.T0051",
+       "name": "LLM Prompt Injection",
+       "tactics": [
+        "Execution"
+       ]
+      },
+      {
+       "id": "AML.T0053",
+       "name": "AI Agent Tool Invocation",
+       "tactics": [
+        "Execution",
+        "Privilege Escalation"
+       ]
+      },
+      {
+       "id": "AML.T0099",
+       "name": "AI Agent Tool Data Poisoning",
+       "tactics": [
+        "Persistence"
+       ]
+      },
+      {
+       "id": "AML.T0067",
+       "name": "LLM Trusted Output Components Manipulation",
+       "tactics": [
+        "Defense Evasion"
+       ]
+      }
+     ],
+     "atlas_covered": true
+    }
+   ],
+   "compositional": [
+    {
+     "property": "trust laundering",
+     "from": [
+      "plans",
+      "retains"
+     ],
+     "atlas_partial": [],
+     "atlas_covers_composition": false,
+     "gap": "no catalogued technique covers attacker content acquiring provenance by transiting a trusted peer's memory"
+    },
+    {
+     "property": "cross-session exfiltration",
+     "from": [
+      "acts",
+      "retains"
+     ],
+     "atlas_partial": [
+      {
+       "id": "AML.T0080.000",
+       "name": "Memory",
+       "tactics": []
+      },
+      {
+       "id": "AML.T0086",
+       "name": "Exfiltration via AI Agent Tool Invocation",
+       "tactics": [
+        "Exfiltration"
+       ]
+      }
+     ],
+     "atlas_covers_composition": false,
+     "gap": "memory poisoning and tool exfiltration are catalogued separately; the surface where content written in one session acts in a later one is not"
+    },
+    {
+     "property": "injected irreversible action",
+     "from": [
+      "acts",
+      "reaches_outside"
+     ],
+     "atlas_partial": [
+      {
+       "id": "AML.T0051",
+       "name": "LLM Prompt Injection",
+       "tactics": [
+        "Execution"
+       ]
+      },
+      {
+       "id": "AML.T0101",
+       "name": "Data Destruction via AI Agent Tool Invocation",
+       "tactics": [
+        "Impact"
+       ]
+      }
+     ],
+     "atlas_covers_composition": false,
+     "gap": "injection and destructive tool use are catalogued separately; reachability of an unundoable effect from untrusted content is a property of the wiring"
+    }
+   ],
+   "actor": {
+    "motivation": "criminal",
+    "tier": "commodity",
+    "economic_force_applies": true
+   },
+   "atlas_version": "5.6.0",
+   "n_atlas_techniques": 12,
+   "n_uncovered_compositional": 1
+  },
+  "travel": {
+   "architecture": {
+    "name": "travel",
+    "topology": "single-agent",
+    "components": 30,
+    "edges": 57,
+    "agents": 1,
+    "reachable_from_untrusted": [
+     "agent",
+     "cancel_calendar_event",
+     "channel",
+     "check_restaurant_opening_hours",
+     "create_calendar_event",
+     "get_all_car_rental_companies_in_city",
+     "get_all_hotels_in_city",
+     "get_all_restaurants_in_city",
+     "get_car_fuel_options",
+     "get_car_price_per_day",
+     "get_car_rental_address",
+     "get_car_types_available",
+     "get_contact_information_for_restaurants",
+     "get_cuisine_type_for_restaurants",
+     "get_day_calendar_events",
+     "get_dietary_restrictions_for_all_restaurants",
+     "get_flight_information",
+     "get_hotels_address",
+     "get_hotels_prices",
+     "get_price_for_restaurants",
+     "get_rating_reviews_for_car_rental",
+     "get_rating_reviews_for_hotels",
+     "get_rating_reviews_for_restaurants",
+     "get_restaurants_address",
+     "get_user_information",
+     "reserve_car_rental",
+     "reserve_hotel",
+     "reserve_restaurant",
+     "search_calendar_events",
+     "send_email"
+    ],
+    "capabilities": [
+     "accepts_input",
+     "acts",
+     "plans",
+     "reasons",
+     "retains",
+     "retrieves"
+    ],
+    "irreversible_action_reachable": true
+   },
+   "properties": [
+    {
+     "cluster": "persistent_goals",
+     "property": "goal integrity",
+     "atlas": [
+      {
+       "id": "AML.T0094",
+       "name": "Delay Execution of LLM Instructions",
+       "tactics": [
+        "Defense Evasion"
+       ]
+      },
+      {
+       "id": "AML.T0061",
+       "name": "LLM Prompt Self-Replication",
+       "tactics": [
+        "Persistence"
+       ]
+      }
+     ],
+     "atlas_covered": true
+    },
+    {
+     "cluster": "persistent_memory",
+     "property": "contextual integrity",
+     "atlas": [
+      {
+       "id": "AML.T0080",
+       "name": "AI Agent Context Poisoning",
+       "tactics": [
+        "Persistence"
+       ]
+      },
+      {
+       "id": "AML.T0080.000",
+       "name": "Memory",
+       "tactics": []
+      },
+      {
+       "id": "AML.T0057",
+       "name": "LLM Data Leakage",
+       "tactics": [
+        "Exfiltration"
+       ]
+      },
+      {
+       "id": "AML.T0092",
+       "name": "Manipulate User LLM Chat History",
+       "tactics": [
+        "Defense Evasion"
+       ]
+      }
+     ],
+     "atlas_covered": true
+    },
+    {
+     "cluster": "tool_use",
+     "property": "tool-call integrity",
+     "atlas": [
+      {
+       "id": "AML.T0051",
+       "name": "LLM Prompt Injection",
+       "tactics": [
+        "Execution"
+       ]
+      },
+      {
+       "id": "AML.T0053",
+       "name": "AI Agent Tool Invocation",
+       "tactics": [
+        "Execution",
+        "Privilege Escalation"
+       ]
+      },
+      {
+       "id": "AML.T0099",
+       "name": "AI Agent Tool Data Poisoning",
+       "tactics": [
+        "Persistence"
+       ]
+      },
+      {
+       "id": "AML.T0067",
+       "name": "LLM Trusted Output Components Manipulation",
+       "tactics": [
+        "Defense Evasion"
+       ]
+      }
+     ],
+     "atlas_covered": true
+    },
+    {
+     "cluster": "retrieval",
+     "property": "retrieval integrity",
+     "atlas": [
+      {
+       "id": "AML.T0070",
+       "name": "RAG Poisoning",
+       "tactics": [
+        "Persistence"
+       ]
+      },
+      {
+       "id": "AML.T0071",
+       "name": "False RAG Entry Injection",
+       "tactics": [
+        "Defense Evasion"
+       ]
+      },
+      {
+       "id": "AML.T0064",
+       "name": "Gather RAG-Indexed Targets",
+       "tactics": [
+        "Reconnaissance"
+       ]
+      },
+      {
+       "id": "AML.T0082",
+       "name": "RAG Credential Harvesting",
+       "tactics": [
+        "Credential Access"
+       ]
+      }
+     ],
+     "atlas_covered": true
+    }
+   ],
+   "compositional": [
+    {
+     "property": "cross-session exfiltration",
+     "from": [
+      "acts",
+      "retains"
+     ],
+     "atlas_partial": [
+      {
+       "id": "AML.T0080.000",
+       "name": "Memory",
+       "tactics": []
+      },
+      {
+       "id": "AML.T0086",
+       "name": "Exfiltration via AI Agent Tool Invocation",
+       "tactics": [
+        "Exfiltration"
+       ]
+      }
+     ],
+     "atlas_covers_composition": false,
+     "gap": "memory poisoning and tool exfiltration are catalogued separately; the surface where content written in one session acts in a later one is not"
+    },
+    {
+     "property": "trust laundering",
+     "from": [
+      "plans",
+      "retains"
+     ],
+     "atlas_partial": [],
+     "atlas_covers_composition": false,
+     "gap": "no catalogued technique covers attacker content acquiring provenance by transiting a trusted peer's memory"
+    }
+   ],
+   "actor": {
+    "motivation": "criminal",
+    "tier": "commodity",
+    "economic_force_applies": true
+   },
+   "atlas_version": "5.6.0",
+   "n_atlas_techniques": 14,
+   "n_uncovered_compositional": 1
+  },
+  "github": {
+   "architecture": {
+    "name": "github",
+    "topology": "single-agent",
+    "components": 36,
+    "edges": 69,
+    "agents": 1,
+    "reachable_from_untrusted": [
+     "agent",
+     "browse_webpage",
+     "channel",
+     "copy_node",
+     "create_dir",
+     "create_file",
+     "delete_node",
+     "download_file_through_id",
+     "download_file_through_url",
+     "get_github_account_user_information",
+     "get_github_linked_unread_emails",
+     "get_github_repository_information",
+     "get_logged_in_github_user_information",
+     "get_received_emails",
+     "get_sent_emails",
+     "git_add_ssh_key",
+     "git_clone",
+     "git_create_repo",
+     "git_delete_repo",
+     "git_delete_ssh_key",
+     "git_get_linked_ssh_keys",
+     "git_invite_collaborators",
+     "git_issue",
+     "git_pull",
+     "git_push",
+     "git_star",
+     "git_transfer_repo_ownership",
+     "git_unstar",
+     "input_to_webpage",
+     "list_directory",
+     "login_github_account",
+     "move_node",
+     "read_file",
+     "send_email",
+     "update_github_account_password",
+     "verify_github_account"
+    ],
+    "capabilities": [
+     "accepts_input",
+     "acts",
+     "plans",
+     "reaches_outside",
+     "reasons",
+     "retains"
+    ],
+    "irreversible_action_reachable": true
+   },
+   "properties": [
+    {
+     "cluster": "actuators",
+     "property": "action irreversibility",
+     "atlas": [
+      {
+       "id": "AML.T0101",
+       "name": "Data Destruction via AI Agent Tool Invocation",
+       "tactics": [
+        "Impact"
+       ]
+      },
+      {
+       "id": "AML.T0086",
+       "name": "Exfiltration via AI Agent Tool Invocation",
+       "tactics": [
+        "Exfiltration"
+       ]
+      }
+     ],
+     "atlas_covered": true
+    },
+    {
+     "cluster": "persistent_goals",
+     "property": "goal integrity",
+     "atlas": [
+      {
+       "id": "AML.T0094",
+       "name": "Delay Execution of LLM Instructions",
+       "tactics": [
+        "Defense Evasion"
+       ]
+      },
+      {
+       "id": "AML.T0061",
+       "name": "LLM Prompt Self-Replication",
+       "tactics": [
+        "Persistence"
+       ]
+      }
+     ],
+     "atlas_covered": true
+    },
+    {
+     "cluster": "persistent_memory",
+     "property": "contextual integrity",
+     "atlas": [
+      {
+       "id": "AML.T0080",
+       "name": "AI Agent Context Poisoning",
+       "tactics": [
+        "Persistence"
+       ]
+      },
+      {
+       "id": "AML.T0080.000",
+       "name": "Memory",
+       "tactics": []
+      },
+      {
+       "id": "AML.T0057",
+       "name": "LLM Data Leakage",
+       "tactics": [
+        "Exfiltration"
+       ]
+      },
+      {
+       "id": "AML.T0092",
+       "name": "Manipulate User LLM Chat History",
+       "tactics": [
+        "Defense Evasion"
+       ]
+      }
+     ],
+     "atlas_covered": true
+    },
+    {
+     "cluster": "tool_use",
+     "property": "tool-call integrity",
+     "atlas": [
+      {
+       "id": "AML.T0051",
+       "name": "LLM Prompt Injection",
+       "tactics": [
+        "Execution"
+       ]
+      },
+      {
+       "id": "AML.T0053",
+       "name": "AI Agent Tool Invocation",
+       "tactics": [
+        "Execution",
+        "Privilege Escalation"
+       ]
+      },
+      {
+       "id": "AML.T0099",
+       "name": "AI Agent Tool Data Poisoning",
+       "tactics": [
+        "Persistence"
+       ]
+      },
+      {
+       "id": "AML.T0067",
+       "name": "LLM Trusted Output Components Manipulation",
+       "tactics": [
+        "Defense Evasion"
+       ]
+      }
+     ],
+     "atlas_covered": true
+    }
+   ],
+   "compositional": [
+    {
+     "property": "trust laundering",
+     "from": [
+      "plans",
+      "retains"
+     ],
+     "atlas_partial": [],
+     "atlas_covers_composition": false,
+     "gap": "no catalogued technique covers attacker content acquiring provenance by transiting a trusted peer's memory"
+    },
+    {
+     "property": "cross-session exfiltration",
+     "from": [
+      "acts",
+      "retains"
+     ],
+     "atlas_partial": [
+      {
+       "id": "AML.T0080.000",
+       "name": "Memory",
+       "tactics": []
+      },
+      {
+       "id": "AML.T0086",
+       "name": "Exfiltration via AI Agent Tool Invocation",
+       "tactics": [
+        "Exfiltration"
+       ]
+      }
+     ],
+     "atlas_covers_composition": false,
+     "gap": "memory poisoning and tool exfiltration are catalogued separately; the surface where content written in one session acts in a later one is not"
+    },
+    {
+     "property": "injected irreversible action",
+     "from": [
+      "acts",
+      "reaches_outside"
+     ],
+     "atlas_partial": [
+      {
+       "id": "AML.T0051",
+       "name": "LLM Prompt Injection",
+       "tactics": [
+        "Execution"
+       ]
+      },
+      {
+       "id": "AML.T0101",
+       "name": "Data Destruction via AI Agent Tool Invocation",
+       "tactics": [
+        "Impact"
+       ]
+      }
+     ],
+     "atlas_covers_composition": false,
+     "gap": "injection and destructive tool use are catalogued separately; reachability of an unundoable effect from untrusted content is a property of the wiring"
+    }
+   ],
+   "actor": {
+    "motivation": "criminal",
+    "tier": "commodity",
+    "economic_force_applies": true
+   },
+   "atlas_version": "5.6.0",
+   "n_atlas_techniques": 12,
+   "n_uncovered_compositional": 1
+  },
+  "shopping": {
+   "architecture": {
+    "name": "shopping",
+    "topology": "single-agent",
+    "components": 41,
+    "edges": 79,
+    "agents": 1,
+    "reachable_from_untrusted": [
+     "add_calendar_event_participants",
+     "agent",
+     "browse_webpage",
+     "cancel_calendar_event",
+     "cart_add_product",
+     "cart_remove_product",
+     "cart_total",
+     "channel",
+     "checkout_selected_cart",
+     "clear_cart",
+     "copy_node",
+     "create_calendar_event",
+     "create_dir",
+     "create_file",
+     "delete_node",
+     "download_file_through_id",
+     "download_file_through_url",
+     "get_balance",
+     "get_current_day",
+     "get_day_calendar_events",
+     "get_invoice",
+     "get_shopping_account_user_information",
+     "get_shopping_linked_received_emails",
+     "get_shopping_linked_unread_emails",
+     "input_to_webpage",
+     "list_directory",
+     "login_shopping_account",
+     "move_node",
+     "read_file",
+     "refund_order",
+     "reschedule_calendar_event",
+     "search_calendar_events",
+     "search_product",
+     "send_email",
+     "send_money",
+     "update_shopping_account_password",
+     "update_shopping_account_user_info",
+     "verify_shopping_account",
+     "view_available_discounts",
+     "view_cart",
+     "view_order_history"
+    ],
+    "capabilities": [
+     "accepts_input",
+     "acts",
+     "plans",
+     "reaches_outside",
+     "reasons",
+     "retains",
+     "retrieves"
+    ],
+    "irreversible_action_reachable": true
+   },
+   "properties": [
+    {
+     "cluster": "actuators",
+     "property": "action irreversibility",
+     "atlas": [
+      {
+       "id": "AML.T0101",
+       "name": "Data Destruction via AI Agent Tool Invocation",
+       "tactics": [
+        "Impact"
+       ]
+      },
+      {
+       "id": "AML.T0086",
+       "name": "Exfiltration via AI Agent Tool Invocation",
+       "tactics": [
+        "Exfiltration"
+       ]
+      }
+     ],
+     "atlas_covered": true
+    },
+    {
+     "cluster": "persistent_goals",
+     "property": "goal integrity",
+     "atlas": [
+      {
+       "id": "AML.T0094",
+       "name": "Delay Execution of LLM Instructions",
+       "tactics": [
+        "Defense Evasion"
+       ]
+      },
+      {
+       "id": "AML.T0061",
+       "name": "LLM Prompt Self-Replication",
+       "tactics": [
+        "Persistence"
+       ]
+      }
+     ],
+     "atlas_covered": true
+    },
+    {
+     "cluster": "persistent_memory",
+     "property": "contextual integrity",
+     "atlas": [
+      {
+       "id": "AML.T0080",
+       "name": "AI Agent Context Poisoning",
+       "tactics": [
+        "Persistence"
+       ]
+      },
+      {
+       "id": "AML.T0080.000",
+       "name": "Memory",
+       "tactics": []
+      },
+      {
+       "id": "AML.T0057",
+       "name": "LLM Data Leakage",
+       "tactics": [
+        "Exfiltration"
+       ]
+      },
+      {
+       "id": "AML.T0092",
+       "name": "Manipulate User LLM Chat History",
+       "tactics": [
+        "Defense Evasion"
+       ]
+      }
+     ],
+     "atlas_covered": true
+    },
+    {
+     "cluster": "tool_use",
+     "property": "tool-call integrity",
+     "atlas": [
+      {
+       "id": "AML.T0051",
+       "name": "LLM Prompt Injection",
+       "tactics": [
+        "Execution"
+       ]
+      },
+      {
+       "id": "AML.T0053",
+       "name": "AI Agent Tool Invocation",
+       "tactics": [
+        "Execution",
+        "Privilege Escalation"
+       ]
+      },
+      {
+       "id": "AML.T0099",
+       "name": "AI Agent Tool Data Poisoning",
+       "tactics": [
+        "Persistence"
+       ]
+      },
+      {
+       "id": "AML.T0067",
+       "name": "LLM Trusted Output Components Manipulation",
+       "tactics": [
+        "Defense Evasion"
+       ]
+      }
+     ],
+     "atlas_covered": true
+    },
+    {
+     "cluster": "retrieval",
+     "property": "retrieval integrity",
+     "atlas": [
+      {
+       "id": "AML.T0070",
+       "name": "RAG Poisoning",
+       "tactics": [
+        "Persistence"
+       ]
+      },
+      {
+       "id": "AML.T0071",
+       "name": "False RAG Entry Injection",
+       "tactics": [
+        "Defense Evasion"
+       ]
+      },
+      {
+       "id": "AML.T0064",
+       "name": "Gather RAG-Indexed Targets",
+       "tactics": [
+        "Reconnaissance"
+       ]
+      },
+      {
+       "id": "AML.T0082",
+       "name": "RAG Credential Harvesting",
+       "tactics": [
+        "Credential Access"
+       ]
+      }
+     ],
+     "atlas_covered": true
+    }
+   ],
+   "compositional": [
+    {
+     "property": "cross-session exfiltration",
+     "from": [
+      "acts",
+      "retains"
+     ],
+     "atlas_partial": [
+      {
+       "id": "AML.T0080.000",
+       "name": "Memory",
+       "tactics": []
+      },
+      {
+       "id": "AML.T0086",
+       "name": "Exfiltration via AI Agent Tool Invocation",
+       "tactics": [
+        "Exfiltration"
+       ]
+      }
+     ],
+     "atlas_covers_composition": false,
+     "gap": "memory poisoning and tool exfiltration are catalogued separately; the surface where content written in one session acts in a later one is not"
+    },
+    {
+     "property": "injected irreversible action",
+     "from": [
+      "acts",
+      "reaches_outside"
+     ],
+     "atlas_partial": [
+      {
+       "id": "AML.T0051",
+       "name": "LLM Prompt Injection",
+       "tactics": [
+        "Execution"
+       ]
+      },
+      {
+       "id": "AML.T0101",
+       "name": "Data Destruction via AI Agent Tool Invocation",
+       "tactics": [
+        "Impact"
+       ]
+      }
+     ],
+     "atlas_covers_composition": false,
+     "gap": "injection and destructive tool use are catalogued separately; reachability of an unundoable effect from untrusted content is a property of the wiring"
+    },
+    {
+     "property": "trust laundering",
+     "from": [
+      "plans",
+      "retains"
+     ],
+     "atlas_partial": [],
+     "atlas_covers_composition": false,
+     "gap": "no catalogued technique covers attacker content acquiring provenance by transiting a trusted peer's memory"
+    }
+   ],
+   "actor": {
+    "motivation": "criminal",
+    "tier": "commodity",
+    "economic_force_applies": true
+   },
+   "atlas_version": "5.6.0",
+   "n_atlas_techniques": 16,
+   "n_uncovered_compositional": 1
+  },
+  "dailylife": {
+   "architecture": {
+    "name": "dailylife",
+    "topology": "single-agent",
+    "components": 29,
+    "edges": 55,
+    "agents": 1,
+    "reachable_from_untrusted": [
+     "add_calendar_event_participants",
+     "agent",
+     "browse_webpage",
+     "cancel_calendar_event",
+     "channel",
+     "copy_node",
+     "create_calendar_event",
+     "create_dir",
+     "create_file",
+     "delete_email",
+     "delete_node",
+     "download_file_through_id",
+     "download_file_through_url",
+     "get_balance",
+     "get_current_day",
+     "get_day_calendar_events",
+     "get_received_emails",
+     "get_sent_emails",
+     "get_unread_emails",
+     "input_to_webpage",
+     "list_directory",
+     "move_node",
+     "read_file",
+     "reschedule_calendar_event",
+     "search_calendar_events",
+     "search_emails",
+     "send_email",
+     "send_money",
+     "verify_transaction"
+    ],
+    "capabilities": [
+     "accepts_input",
+     "acts",
+     "plans",
+     "reaches_outside",
+     "reasons",
+     "retains",
+     "retrieves"
+    ],
+    "irreversible_action_reachable": true
+   },
+   "properties": [
+    {
+     "cluster": "actuators",
+     "property": "action irreversibility",
+     "atlas": [
+      {
+       "id": "AML.T0101",
+       "name": "Data Destruction via AI Agent Tool Invocation",
+       "tactics": [
+        "Impact"
+       ]
+      },
+      {
+       "id": "AML.T0086",
+       "name": "Exfiltration via AI Agent Tool Invocation",
+       "tactics": [
+        "Exfiltration"
+       ]
+      }
+     ],
+     "atlas_covered": true
+    },
+    {
+     "cluster": "persistent_goals",
+     "property": "goal integrity",
+     "atlas": [
+      {
+       "id": "AML.T0094",
+       "name": "Delay Execution of LLM Instructions",
+       "tactics": [
+        "Defense Evasion"
+       ]
+      },
+      {
+       "id": "AML.T0061",
+       "name": "LLM Prompt Self-Replication",
+       "tactics": [
+        "Persistence"
+       ]
+      }
+     ],
+     "atlas_covered": true
+    },
+    {
+     "cluster": "persistent_memory",
+     "property": "contextual integrity",
+     "atlas": [
+      {
+       "id": "AML.T0080",
+       "name": "AI Agent Context Poisoning",
+       "tactics": [
+        "Persistence"
+       ]
+      },
+      {
+       "id": "AML.T0080.000",
+       "name": "Memory",
+       "tactics": []
+      },
+      {
+       "id": "AML.T0057",
+       "name": "LLM Data Leakage",
+       "tactics": [
+        "Exfiltration"
+       ]
+      },
+      {
+       "id": "AML.T0092",
+       "name": "Manipulate User LLM Chat History",
+       "tactics": [
+        "Defense Evasion"
+       ]
+      }
+     ],
+     "atlas_covered": true
+    },
+    {
+     "cluster": "tool_use",
+     "property": "tool-call integrity",
+     "atlas": [
+      {
+       "id": "AML.T0051",
+       "name": "LLM Prompt Injection",
+       "tactics": [
+        "Execution"
+       ]
+      },
+      {
+       "id": "AML.T0053",
+       "name": "AI Agent Tool Invocation",
+       "tactics": [
+        "Execution",
+        "Privilege Escalation"
+       ]
+      },
+      {
+       "id": "AML.T0099",
+       "name": "AI Agent Tool Data Poisoning",
+       "tactics": [
+        "Persistence"
+       ]
+      },
+      {
+       "id": "AML.T0067",
+       "name": "LLM Trusted Output Components Manipulation",
+       "tactics": [
+        "Defense Evasion"
+       ]
+      }
+     ],
+     "atlas_covered": true
+    },
+    {
+     "cluster": "retrieval",
+     "property": "retrieval integrity",
+     "atlas": [
+      {
+       "id": "AML.T0070",
+       "name": "RAG Poisoning",
+       "tactics": [
+        "Persistence"
+       ]
+      },
+      {
+       "id": "AML.T0071",
+       "name": "False RAG Entry Injection",
+       "tactics": [
+        "Defense Evasion"
+       ]
+      },
+      {
+       "id": "AML.T0064",
+       "name": "Gather RAG-Indexed Targets",
+       "tactics": [
+        "Reconnaissance"
+       ]
+      },
+      {
+       "id": "AML.T0082",
+       "name": "RAG Credential Harvesting",
+       "tactics": [
+        "Credential Access"
+       ]
+      }
+     ],
+     "atlas_covered": true
+    }
+   ],
+   "compositional": [
+    {
+     "property": "cross-session exfiltration",
+     "from": [
+      "acts",
+      "retains"
+     ],
+     "atlas_partial": [
+      {
+       "id": "AML.T0080.000",
+       "name": "Memory",
+       "tactics": []
+      },
+      {
+       "id": "AML.T0086",
+       "name": "Exfiltration via AI Agent Tool Invocation",
+       "tactics": [
+        "Exfiltration"
+       ]
+      }
+     ],
+     "atlas_covers_composition": false,
+     "gap": "memory poisoning and tool exfiltration are catalogued separately; the surface where content written in one session acts in a later one is not"
+    },
+    {
+     "property": "injected irreversible action",
+     "from": [
+      "acts",
+      "reaches_outside"
+     ],
+     "atlas_partial": [
+      {
+       "id": "AML.T0051",
+       "name": "LLM Prompt Injection",
+       "tactics": [
+        "Execution"
+       ]
+      },
+      {
+       "id": "AML.T0101",
+       "name": "Data Destruction via AI Agent Tool Invocation",
+       "tactics": [
+        "Impact"
+       ]
+      }
+     ],
+     "atlas_covers_composition": false,
+     "gap": "injection and destructive tool use are catalogued separately; reachability of an unundoable effect from untrusted content is a property of the wiring"
+    },
+    {
+     "property": "trust laundering",
+     "from": [
+      "plans",
+      "retains"
+     ],
+     "atlas_partial": [],
+     "atlas_covers_composition": false,
+     "gap": "no catalogued technique covers attacker content acquiring provenance by transiting a trusted peer's memory"
+    }
+   ],
+   "actor": {
+    "motivation": "criminal",
+    "tier": "commodity",
+    "economic_force_applies": true
+   },
+   "atlas_version": "5.6.0",
+   "n_atlas_techniques": 16,
+   "n_uncovered_compositional": 1
+  }
+ },
+ "coverage": {
+  "atlas_version": "5.6.0",
+  "single_capability": {
+   "tool-call integrity": [
+    {
+     "id": "AML.T0051",
+     "name": "LLM Prompt Injection",
+     "tactics": [
+      "Execution"
+     ]
+    },
+    {
+     "id": "AML.T0053",
+     "name": "AI Agent Tool Invocation",
+     "tactics": [
+      "Execution",
+      "Privilege Escalation"
+     ]
+    },
+    {
+     "id": "AML.T0099",
+     "name": "AI Agent Tool Data Poisoning",
+     "tactics": [
+      "Persistence"
+     ]
+    },
+    {
+     "id": "AML.T0067",
+     "name": "LLM Trusted Output Components Manipulation",
+     "tactics": [
+      "Defense Evasion"
+     ]
+    }
+   ],
+   "execution containment": [
+    {
+     "id": "AML.T0053",
+     "name": "AI Agent Tool Invocation",
+     "tactics": [
+      "Execution",
+      "Privilege Escalation"
+     ]
+    },
+    {
+     "id": "AML.T0101",
+     "name": "Data Destruction via AI Agent Tool Invocation",
+     "tactics": [
+      "Impact"
+     ]
+    },
+    {
+     "id": "AML.T0034.002",
+     "name": "Agentic Resource Consumption",
+     "tactics": []
+    }
+   ],
+   "contextual integrity": [
+    {
+     "id": "AML.T0080",
+     "name": "AI Agent Context Poisoning",
+     "tactics": [
+      "Persistence"
+     ]
+    },
+    {
+     "id": "AML.T0080.000",
+     "name": "Memory",
+     "tactics": []
+    },
+    {
+     "id": "AML.T0057",
+     "name": "LLM Data Leakage",
+     "tactics": [
+      "Exfiltration"
+     ]
+    },
+    {
+     "id": "AML.T0092",
+     "name": "Manipulate User LLM Chat History",
+     "tactics": [
+      "Defense Evasion"
+     ]
+    }
+   ],
+   "action irreversibility": [
+    {
+     "id": "AML.T0101",
+     "name": "Data Destruction via AI Agent Tool Invocation",
+     "tactics": [
+      "Impact"
+     ]
+    },
+    {
+     "id": "AML.T0086",
+     "name": "Exfiltration via AI Agent Tool Invocation",
+     "tactics": [
+      "Exfiltration"
+     ]
+    }
+   ],
+   "inter-agent trust": [
+    {
+     "id": "AML.T0108",
+     "name": "AI Agent",
+     "tactics": [
+      "Command and Control"
+     ]
+    },
+    {
+     "id": "AML.T0084.003",
+     "name": "Call Chains",
+     "tactics": []
+    },
+    {
+     "id": "AML.T0103",
+     "name": "Deploy AI Agent",
+     "tactics": [
+      "Execution"
+     ]
+    }
+   ],
+   "goal integrity": [
+    {
+     "id": "AML.T0094",
+     "name": "Delay Execution of LLM Instructions",
+     "tactics": [
+      "Defense Evasion"
+     ]
+    },
+    {
+     "id": "AML.T0061",
+     "name": "LLM Prompt Self-Replication",
+     "tactics": [
+      "Persistence"
+     ]
+    }
+   ],
+   "supply-chain and privilege scoping": [
+    {
+     "id": "AML.T0010.005",
+     "name": "AI Agent Tool",
+     "tactics": []
+    },
+    {
+     "id": "AML.T0104",
+     "name": "Publish Poisoned AI Agent Tool",
+     "tactics": [
+      "Resource Development"
+     ]
+    },
+    {
+     "id": "AML.T0110",
+     "name": "AI Agent Tool Poisoning",
+     "tactics": [
+      "Persistence"
+     ]
+    },
+    {
+     "id": "AML.T0109",
+     "name": "AI Supply Chain Rug Pull",
+     "tactics": [
+      "Defense Evasion"
+     ]
+    },
+    {
+     "id": "AML.T0011.002",
+     "name": "Poisoned AI Agent Tool",
+     "tactics": []
+    }
+   ],
+   "retrieval integrity": [
+    {
+     "id": "AML.T0070",
+     "name": "RAG Poisoning",
+     "tactics": [
+      "Persistence"
+     ]
+    },
+    {
+     "id": "AML.T0071",
+     "name": "False RAG Entry Injection",
+     "tactics": [
+      "Defense Evasion"
+     ]
+    },
+    {
+     "id": "AML.T0064",
+     "name": "Gather RAG-Indexed Targets",
+     "tactics": [
+      "Reconnaissance"
+     ]
+    },
+    {
+     "id": "AML.T0082",
+     "name": "RAG Credential Harvesting",
+     "tactics": [
+      "Credential Access"
+     ]
+    }
+   ]
+  },
+  "single_capability_all_covered": true,
+  "compositional": {
+   "cross-session exfiltration": {
+    "covered": true,
+    "partial_techniques": [
+     {
+      "id": "AML.T0080.000",
+      "name": "Memory",
+      "tactics": []
+     },
+     {
+      "id": "AML.T0086",
+      "name": "Exfiltration via AI Agent Tool Invocation",
+      "tactics": [
+       "Exfiltration"
+      ]
+     }
+    ],
+    "gap": "memory poisoning and tool exfiltration are catalogued separately; the surface where content written in one session acts in a later one is not"
+   },
+   "injected irreversible action": {
+    "covered": true,
+    "partial_techniques": [
+     {
+      "id": "AML.T0051",
+      "name": "LLM Prompt Injection",
+      "tactics": [
+       "Execution"
+      ]
+     },
+     {
+      "id": "AML.T0101",
+      "name": "Data Destruction via AI Agent Tool Invocation",
+      "tactics": [
+       "Impact"
+      ]
+     }
+    ],
+    "gap": "injection and destructive tool use are catalogued separately; reachability of an unundoable effect from untrusted content is a property of the wiring"
+   },
+   "lateral execution": {
+    "covered": true,
+    "partial_techniques": [
+     {
+      "id": "AML.T0084.003",
+      "name": "Call Chains",
+      "tactics": []
+     }
+    ],
+    "gap": "call chains are catalogued for discovery, not as an execution path between peers after one is compromised"
+   },
+   "load-time privilege escalation": {
+    "covered": true,
+    "partial_techniques": [
+     {
+      "id": "AML.T0110",
+      "name": "AI Agent Tool Poisoning",
+      "tactics": [
+       "Persistence"
+      ]
+     },
+     {
+      "id": "AML.T0002.002",
+      "name": "AI Agent Configuration",
+      "tactics": []
+     }
+    ],
+    "gap": "tool poisoning is catalogued; the acquisition of actuator permissions at install time, before any tool call is scored, is not"
+   },
+   "trust laundering": {
+    "covered": false,
+    "partial_techniques": [],
+    "gap": "no catalogued technique covers attacker content acquiring provenance by transiting a trusted peer's memory"
+   }
+  },
+  "compositional_fully_covered": 0,
+  "compositional_partially_covered": 4,
+  "compositional_uncovered": 1,
+  "claim": "Every single-capability property maps to at least one catalogued technique. No compositional property maps to a technique that covers the composition; 1 of 5 map to nothing at all. That residue is what a derivation finds and an enumeration cannot."
+ },
+ "discrimination": {
+  "mean_jaccard_properties": 0.7633333333333333,
+  "mean_jaccard_techniques": 0.7753968253968254,
+  "distinct_surfaces": 4,
+  "n_suites": 6,
+  "baseline_techniques": 43
+ }
+}

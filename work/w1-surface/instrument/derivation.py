@@ -167,3 +167,111 @@ def from_tool_manifest(names: List[str], **kw) -> Manifest:
     )
     inferred.update(kw)
     return Manifest(**inferred)
+
+
+# ===========================================================================
+# Architecture-driven derivation (RQ1 as approved: architecture, environment
+# and adversary reward structure onto the property taxonomy), with the surface
+# expressed in MITRE ATLAS so a practitioner can act on and check it.
+# ===========================================================================
+from typing import Any
+
+# capability (from architecture) -> cluster (property vocabulary)
+_CAP_TO_CLUSTER = {
+    "acts":           "tool_use",
+    "executes":       "code_interpreter",
+    "retains":        "persistent_memory",
+    "retrieves":      "persistent_memory",
+    "reaches_outside":"actuators",
+    "installs":       "extensibility",
+    "plans":          "persistent_goals",
+}
+_PAIR_TO_COMPOSITION = {
+    frozenset({"acts", "retains"}):       "cross-session exfiltration",
+    frozenset({"acts", "reaches_outside"}):"injected irreversible action",
+    frozenset({"executes", "plans"}):      "lateral execution",
+    frozenset({"installs", "reaches_outside"}): "load-time privilege escalation",
+    frozenset({"retains", "plans"}):       "trust laundering",
+}
+
+
+def derive_from_architecture(arch, lib=None) -> Dict[str, Any]:
+    """Derive an applicable, ATLAS-mapped threat surface from an architecture.
+
+    Applicability is what the architecture decides. A capability present but not
+    reachable from untrusted content is not on the surface, and a compositional
+    property needs both capabilities co-reachable on the same path. That is the
+    discrimination an enumerative catalogue cannot make: ATLAS returns the same
+    agentic techniques for any agentic system, because a catalogue does not know
+    your wiring.
+    """
+    import atlas_map
+    lib = lib or atlas_map.AtlasLibrary()
+
+    reachable = arch.untrusted_reaches()
+    reach_caps: Set[str] = set()
+    for cid in reachable:
+        reach_caps |= arch.by_id(cid).capabilities
+
+    clusters = sorted({_CAP_TO_CLUSTER[c] for c in reach_caps if c in _CAP_TO_CLUSTER})
+    if arch.agents() and reachable:
+        clusters = sorted(set(clusters) | {"tool_use"})
+    if len(arch.agents()) > 1 or arch.topology in ("peer-to-peer", "swarm", "orchestrator-worker"):
+        clusters = sorted(set(clusters) | {"peer_agents"})
+
+    props = []
+    for c in clusters:
+        if c not in CLUSTERS:
+            continue
+        entry = CLUSTERS[c]
+        techs = atlas_map.PROPERTY_TO_ATLAS.get(entry["property"], [])
+        props.append({"cluster": c, "property": entry["property"],
+                      "atlas": [lib.describe(t) for t in techs],
+                      "atlas_covered": bool(techs)})
+
+    # retrieval integrity is architectural, not a cluster: it exists iff a
+    # retrieval component is reachable from untrusted content
+    if any(arch.by_id(c).kind == "vector_store" for c in reachable):
+        props.append({"cluster": "retrieval", "property": "retrieval integrity",
+                      "atlas": [lib.describe(t) for t in atlas_map.PROPERTY_TO_ATLAS["retrieval integrity"]],
+                      "atlas_covered": True})
+
+    comp = []
+    for pair in arch.capability_pairs():
+        name = _PAIR_TO_COMPOSITION.get(frozenset(pair))
+        if not name:
+            continue
+        spec = atlas_map.COMPOSITIONAL_TO_ATLAS.get(name, {"partial": [], "why": ""})
+        comp.append({"property": name, "from": sorted(pair),
+                     "atlas_partial": [lib.describe(t) for t in spec["partial"]],
+                     "atlas_covers_composition": False,
+                     "gap": spec["why"]})
+
+    if not arch.irreversible_reachable():
+        props = [p for p in props if p["property"] != "action irreversibility"]
+        comp = [c for c in comp if c["property"] != "injected irreversible action"]
+
+    adv = arch.adversary
+    return {
+        "architecture": arch.summary(),
+        "properties": props,
+        "compositional": comp,
+        "actor": {"motivation": adv.motivation, "tier": adv.tier,
+                  "economic_force_applies": adv.economic_force_applies},
+        "atlas_version": lib.version,
+        "n_atlas_techniques": len({t["id"] for p in props for t in p["atlas"]}),
+        "n_uncovered_compositional": sum(1 for c in comp if not c["atlas_partial"]),
+    }
+
+
+def atlas_baseline(lib=None) -> List[str]:
+    """The enumerative comparator: every agentic technique ATLAS carries.
+
+    This is what a practitioner gets from the catalogue alone, and it is the same
+    list for every deployment — which is the point of the discrimination test.
+    """
+    import atlas_map
+    lib = lib or atlas_map.AtlasLibrary()
+    kw = ("agent", "llm", "prompt", "rag", "tool")
+    return sorted(t["id"] for t in lib.techniques.values()
+                  if any(k in t["name"].lower() for k in kw))
