@@ -48,6 +48,33 @@ total: 100
 # Where the two instruments differ, the Blackboard bands govern the score and the
 # PDF sub-items govern what evidence the band descriptor is judged on.
 # ---------------------------------------------------------------------------
+submission:
+  dissertation_deadline: 2026-09-20
+  oral_date: 2026-09-25
+  oral_time: "10:00"
+  oral_mode: in person
+  oral_length_min: 12
+  oral_qa_min: 3
+  source: Course Announcement, Dissertation Submission
+  note: |
+    Announced deadline is 20 September, NOT the 28 September carried in the
+    proposal and in this repo until 29 August. The buffer behind the 8 September
+    working target is 12 days, not 20. The oral falls AFTER submission, so the
+    dissertation is fixed before the presentation is given.
+  declaration_required: |
+    "a signed Declaration affirming that the work is your own, except where
+    explicitly referencing the contributions of others (including AI)"
+  emphasis: |
+    "Key Assessment Components: The pivotal section is the Results, accounting
+    for 35% of the assessment."
+  oral_mandated_sections:
+    - Title
+    - Summary of Related Literature Survey
+    - Aims and Objectives
+    - Experimental Setup
+    - Results & Findings
+    - Conclusions (including potential limitations)
+
 band_source: canon/rubric_bands.yaml
 scoring: banded
 bands_per_criterion: [excellent, satisfactory, unsatisfactory, poor]

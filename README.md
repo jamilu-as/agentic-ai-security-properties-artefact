@@ -11,7 +11,7 @@ Private working repository.
 
 **Hypothesis under test (RQ2):** an adaptive attacker induces correlated failure across defence axes, making defence-in-depth sub-additive. Refuted if the interaction terms between defence-presence indicators are indistinguishable from zero after Benjamini-Hochberg correction at FDR 0.10.
 
-**Target completion: 8 September 2026.** Formal deadline: 28 September 2026.
+**Target completion: 8 September 2026.** Announced deadline: **20 September 2026**. Oral defence 25 September 2026, 10:00, in person.
 
 ---
 

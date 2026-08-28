@@ -2,7 +2,7 @@
 
 **Drafted 28 August 2026.** Operational plan. Supersedes `working/RQ2_EXECUTION_PLAN.md` (27 Jul 2026). Canonical statements of the thesis, decisions and deliverables live in `canon/`.
 
-**Self-imposed completion target: Tuesday 8 September 2026 — 12 days.** Formal submission deadline is 28 September; the 20-day residue is insurance, not plan (§3.5).
+**Self-imposed completion target: Tuesday 8 September 2026 — 12 days.** Announced submission deadline is **20 September** (Course Announcement); the residue is 12 days, not 20 (§3.5). Oral defence is 25 September at 10:00, in person, after submission.
 
 The binding constraint is **neither money nor build effort — it is wall-clock on adaptive runs.** The Batch API's 50% discount is retained, which means R2's sequential iterations become one batch round per day. Three structural choices absorb that: a **pre-registered R2 iteration cap** (§1.3), **full adaptive depth shifted onto the local GPU arm** where there is no batch penalty (§1.1), and **writing fully decoupled from runs** so no writing day waits on a result.
 

@@ -73,6 +73,15 @@ corrections:
   - canon/rubric.yaml
   marker: banded
   status: closed
+- id: C14
+  item: Submission deadline is 20 September 2026, not 28 September as carried from
+    the proposal. Oral defence 25 September 2026 10:00 in person, 12 min + 3 min Q&A,
+    six mandated sections. The oral falls after submission, so the dissertation is
+    fixed before the presentation.
+  lands_in:
+  - dissertation/oral/OUTLINE.md
+  marker: 20 September
+  status: closed
 positions:
 - id: P1
   item: RQ2 stated with the composition scoping clause
