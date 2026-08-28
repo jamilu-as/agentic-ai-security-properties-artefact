@@ -4,7 +4,7 @@ derived:
   - dissertation
   - work/reviews
   why: entry point; states what is done and what is next
-  verified: 8a7580d52cee1b79
+  verified: 132839150884eda6
 - file: canon/thesis_spine.yaml
   depends_on:
   - dissertation/01_introduction.md
@@ -15,21 +15,21 @@ derived:
   - dissertation
   why: 'figure placements and captions - KNOWN STALE: F1 mapped to Ch4 but placed
     as Fig 2.1; F2 absent from Ch2; F3 points at a chapter with no figure'
-  verified: 211e65b0190032e0
+  verified: 31b92711b91b4a15
 - file: canon/source_map.yaml
   depends_on:
   - dissertation
   why: disposition of submitted work across chapters
-  verified: 211e65b0190032e0
+  verified: 31b92711b91b4a15
 - file: plan/PLAN.md
   depends_on:
   - dissertation/03_methods.md
   - preregistration/PREREGISTRATION.md
   why: run plan must match the design and the locked analysis plan
-  verified: 5524a526b00dd805
+  verified: 63c19c38f807a129
 - file: canon/facts.yaml
   depends_on:
   - dissertation/03_methods.md
   - preregistration/PREREGISTRATION.md
   why: canonical values are set by the design
-  verified: 5524a526b00dd805
+  verified: 63c19c38f807a129

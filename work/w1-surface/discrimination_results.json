@@ -1192,29 +1192,6 @@
    ],
    "compositional": [
     {
-     "property": "cross-session exfiltration",
-     "from": [
-      "acts",
-      "retains"
-     ],
-     "atlas_partial": [
-      {
-       "id": "AML.T0080.000",
-       "name": "Memory",
-       "tactics": []
-      },
-      {
-       "id": "AML.T0086",
-       "name": "Exfiltration via AI Agent Tool Invocation",
-       "tactics": [
-        "Exfiltration"
-       ]
-      }
-     ],
-     "atlas_covers_composition": false,
-     "gap": "memory poisoning and tool exfiltration are catalogued separately; the surface where content written in one session acts in a later one is not"
-    },
-    {
      "property": "trust laundering",
      "from": [
       "plans",
@@ -1248,6 +1225,29 @@
      ],
      "atlas_covers_composition": false,
      "gap": "injection and destructive tool use are catalogued separately; reachability of an unundoable effect from untrusted content is a property of the wiring"
+    },
+    {
+     "property": "cross-session exfiltration",
+     "from": [
+      "acts",
+      "retains"
+     ],
+     "atlas_partial": [
+      {
+       "id": "AML.T0080.000",
+       "name": "Memory",
+       "tactics": []
+      },
+      {
+       "id": "AML.T0086",
+       "name": "Exfiltration via AI Agent Tool Invocation",
+       "tactics": [
+        "Exfiltration"
+       ]
+      }
+     ],
+     "atlas_covers_composition": false,
+     "gap": "memory poisoning and tool exfiltration are catalogued separately; the surface where content written in one session acts in a later one is not"
     }
    ],
    "actor": {
@@ -1471,27 +1471,14 @@
    ],
    "compositional": [
     {
-     "property": "cross-session exfiltration",
+     "property": "trust laundering",
      "from": [
-      "acts",
+      "plans",
       "retains"
      ],
-     "atlas_partial": [
-      {
-       "id": "AML.T0080.000",
-       "name": "Memory",
-       "tactics": []
-      },
-      {
-       "id": "AML.T0086",
-       "name": "Exfiltration via AI Agent Tool Invocation",
-       "tactics": [
-        "Exfiltration"
-       ]
-      }
-     ],
+     "atlas_partial": [],
      "atlas_covers_composition": false,
-     "gap": "memory poisoning and tool exfiltration are catalogued separately; the surface where content written in one session acts in a later one is not"
+     "gap": "no catalogued technique covers attacker content acquiring provenance by transiting a trusted peer's memory"
     },
     {
      "property": "injected irreversible action",
@@ -1519,14 +1506,27 @@
      "gap": "injection and destructive tool use are catalogued separately; reachability of an unundoable effect from untrusted content is a property of the wiring"
     },
     {
-     "property": "trust laundering",
+     "property": "cross-session exfiltration",
      "from": [
-      "plans",
+      "acts",
       "retains"
      ],
-     "atlas_partial": [],
+     "atlas_partial": [
+      {
+       "id": "AML.T0080.000",
+       "name": "Memory",
+       "tactics": []
+      },
+      {
+       "id": "AML.T0086",
+       "name": "Exfiltration via AI Agent Tool Invocation",
+       "tactics": [
+        "Exfiltration"
+       ]
+      }
+     ],
      "atlas_covers_composition": false,
-     "gap": "no catalogued technique covers attacker content acquiring provenance by transiting a trusted peer's memory"
+     "gap": "memory poisoning and tool exfiltration are catalogued separately; the surface where content written in one session acts in a later one is not"
     }
    ],
    "actor": {
