@@ -2,7 +2,7 @@
 """Run every check. `--gate Gn` enforces; default is advisory."""
 import sys
 import check_forbidden_claims, check_register, check_citations
-import check_prose, check_staleness
+import check_prose, check_staleness, check_semantic
 import check_wordcount, check_structure, check_rubric_trace, check_prereg, check_coherence, check_sources, check_rubric_verbatim, check_requirements, check_gate_artefacts
 
 # Which checks are enforcing at which gate.
@@ -13,8 +13,8 @@ GATES = {
     "G1": ["artefacts", "forbidden", "verbatim", "staleness", "prereg"],
     "G2": ["artefacts", "forbidden", "verbatim", "staleness", "prereg"],
     "G3": ["artefacts", "forbidden", "verbatim", "staleness", "prereg"],
-    "G4": ["artefacts", "forbidden", "verbatim", "staleness", "prose", "prereg", "structure", "rubric", "words", "coherence", "sources"],
-    "G5": ["artefacts", "forbidden", "verbatim", "staleness", "prose", "prereg", "structure", "rubric", "words", "register", "citations", "coherence", "sources", "requirements"],
+    "G4": ["artefacts", "forbidden", "verbatim", "staleness", "prose", "semantic", "prereg", "structure", "rubric", "words", "coherence", "sources"],
+    "G5": ["artefacts", "forbidden", "verbatim", "staleness", "prose", "semantic", "prereg", "structure", "rubric", "words", "register", "citations", "coherence", "sources", "requirements"],
 }
 CHECKS = {
     "artefacts": None,  # gate-aware; dispatched separately
@@ -32,6 +32,7 @@ CHECKS = {
     "requirements": check_requirements.main,
     "prose":     check_prose.main,
     "staleness": lambda strict=True: check_staleness.main(strict, final=_FINAL[0]),
+    "semantic":  lambda strict=True: check_semantic.main(strict, final=_FINAL[0]),
 }
 
 def main():

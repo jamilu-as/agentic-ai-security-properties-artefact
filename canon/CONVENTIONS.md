@@ -125,3 +125,35 @@ what a regex cannot: claims unsupported at the point they are made, and confiden
 that exceeds the evidence in either direction. Run it when a chapter reaches first
 draft, not only at a gate — register problems are cheapest to fix in the draft that
 created them.
+
+## The proxy rule
+
+Every mechanical check in `checks/` names a semantic property and verifies a proxy
+for it. `check_register` names "the position landed" and tests whether a substring
+appears. `check_coherence` claims to catch "chapters that could be deleted without
+the argument noticing" and tests whether objective markers exist. `check_sources`
+names "the section was carried" and tests a marker — which passed `RP5.1` for weeks
+on a marker `drift` that matched the unrelated phrase "fine-tuning drift".
+
+This is not a defect to be fixed with better regexes. The properties are not
+decidable by string matching, and a check that pretends otherwise is worse than no
+check, because a green line reads as evidence.
+
+Two rules follow.
+
+**Checks report what they proved.** Not `landed` but `marker in <file> — substance
+NOT verified`. Where substance is ruled on elsewhere, they say so and name the
+judgement. A reader must never have to know which checks are honest.
+
+**Judgement is registered, owned and dated.** `canon/judgements.yaml` holds the
+questions that need reading: what to read, the question, the owning agent, the
+verdict, and the hash of the text the verdict was reached against. A ruling on a
+paragraph that has since been rewritten is not a ruling, so verdicts expire when
+the text changes. `make semantic` reports what is unruled, failing, or stale; it
+never rules on anything itself.
+
+The division is deliberate. Scripts are fast, run on every change, and catch
+mechanical error — a number that disagrees with itself, a required element absent,
+a retired value returning. Reading catches everything else, and everything else is
+where the marks are. Neither substitutes for the other, and the failure mode to
+guard against is letting a green check stand in for a judgement nobody made.

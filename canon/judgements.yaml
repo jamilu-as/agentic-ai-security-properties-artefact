@@ -1,0 +1,148 @@
+# Questions no script can settle.
+#
+# The mechanical checks test strings. Every one of them names a semantic property
+# and verifies a proxy for it: check_register tests whether a marker appears, not
+# whether the point is made; check_coherence tests whether objective markers exist,
+# not whether the argument holds. Both have been wrong in both directions.
+#
+# This register holds the judgements that require reading. Each names what to read,
+# the question, and the agent that owns it. A verdict is recorded WITH the hash of
+# what was read, so it expires when the text changes - a ruling on a paragraph that
+# has since been rewritten is not a ruling.
+#
+# verdict: open | pass | fail | null (never ruled on)
+# Record verdicts with `checks/rule.py <id> <pass|fail|open> "<finding>"`.
+
+judgements:
+
+  # ---- argument and structure -----------------------------------------------
+  - id: J01
+    question: Does Chapter 2 pose an open question that RQ1 answers, so that the derivation model, the coverage audit and O1b are motivated before they appear?
+    read: [dissertation/02_literature_review.md, dissertation/01_introduction.md]
+    owner: coherence-reader
+    verdict: fail
+    finding: "2.7 names three open questions and assigns them to RQ2 and RQ3 only. RQ1 has no stated gap; nothing in Ch2 motivates the derivation model."
+    verified_against: null
+
+  - id: J02
+    question: Is the RQ1 strand synthesised or enumerated in 2.2? The comparative artefact that would evidence synthesis currently sits in Chapter 4.
+    read: [dissertation/02_literature_review.md]
+    owner: coherence-reader
+    verdict: fail
+    finding: "Six capabilities, one sentence each, synthesis arriving after the list. Ch2 enumerates and Ch4 synthesises, which is the wrong way round for marks awarded inside the Literature Review."
+    verified_against: null
+
+  - id: J03
+    question: Does Chapter 3 read as one chapter or as accreted layers? It has been rewritten once and heavily edited since.
+    read: [dissertation/03_methods.md]
+    owner: coherence-reader
+    verdict: open
+    finding: "3.4 sits as a wedge between two RQ2 sections. Contrastive-frame density is 1 per 87 words against 1 per 171 in Ch1."
+    verified_against: null
+
+  - id: J04
+    question: Is the primary estimand stated consistently in 1.4, the objectives table, and 3.7? It was changed on 28 Aug and three places had to follow.
+    read: [dissertation/01_introduction.md, dissertation/03_methods.md, preregistration/PREREGISTRATION.md]
+    owner: evidence-auditor
+    verdict: null
+    finding: null
+    verified_against: null
+
+  # ---- evidence and soundness ------------------------------------------------
+  - id: J05
+    question: Can each defence instance be checked against the stated selection criterion? The criterion admits "peer-reviewed venue OR author reference implementation".
+    read: [dissertation/03_methods.md, dissertation/02_literature_review.md, dissertation/06_references.md]
+    owner: evidence-auditor
+    verdict: fail
+    finding: "Disjunction cannot fail, and 3 of 4 instances carry no citation by which either limb could be checked. Weakened from the proposal's 'peer-reviewed at a top venue'."
+    verified_against: null
+
+  - id: J06
+    question: Is the utility gate applied where utility actually collapses? The floor check is per-arm on the undefended configuration only.
+    read: [dissertation/03_methods.md, preregistration/PREREGISTRATION.md]
+    owner: external-examiner
+    verdict: fail
+    finding: "Triple-defence cell is where utility collapses; a crippled agent cannot reach the injection's goal either, giving spurious rho* < 1. Cuts against the hypothesis, which is why it is credible."
+    verified_against: null
+
+  - id: J07
+    question: Does any claim assert an outcome that Chapter 4 is supposed to test?
+    read: [dissertation/01_introduction.md, dissertation/02_literature_review.md, dissertation/00_front_matter.md]
+    owner: prose-auditor
+    verdict: null
+    finding: "2.6's pre-announcement was corrected on 28 Aug; needs re-reading for others."
+    verified_against: null
+
+  - id: J08
+    question: Is the claim that the local arm's convergence curve bounds the capped arms supportable?
+    read: [dissertation/03_methods.md]
+    owner: evidence-auditor
+    verdict: fail
+    finding: "Llama-3-8B's convergence says nothing about a frontier model's. Delete or restate as illustration."
+    verified_against: null
+
+  # ---- declaration and integrity ---------------------------------------------
+  - id: J09
+    question: Is the literature-drift protocol actually carried into the document? check_register passes it on a marker that matches an unrelated phrase.
+    read: [dissertation/03_methods.md, plan/REFRAMING.md]
+    owner: drift-auditor
+    verdict: fail
+    finding: "FALSE POSITIVE in check_register: marker 'drift' matches 'fine-tuning drift' in 3.2. The protocol appears nowhere."
+    verified_against: null
+
+  - id: J10
+    question: Are the two corrections dated in the direction the evidence supports, rather than the flattering one?
+    read: [dissertation/02_literature_review.md, plan/REFRAMING.md, dissertation/06_references.md]
+    owner: drift-auditor
+    verdict: fail
+    finding: "A2ASecBench framed as currency drift; REFRAMING records a transcription error (ICLR 2026, before the cut-off). Skill-Inject filed as post-cut-off; Schmotz is arXiv 2602.20156, February 2026."
+    verified_against: null
+
+  - id: J11
+    question: Are the two withdrawn priority claims withdrawn WITH the antecedent cited, or merely absent?
+    read: [dissertation/02_literature_review.md, dissertation/03_methods.md, canon/forbidden_claims.yaml]
+    owner: novelty-monitor
+    verdict: fail
+    finding: "Both cited for other purposes only. A reader cannot see why the claim was dropped, and the register renumbering lost the tracking rows."
+    verified_against: null
+
+  - id: J12
+    question: Does the document assert as done anything that is not done?
+    read: [dissertation/03_methods.md, dissertation/00_front_matter.md]
+    owner: drift-auditor
+    verdict: open
+    finding: "Disclosure and hash-lock were qualified on 28 Aug to point at Appendix A. Both must become true before submission, not at it."
+    verified_against: null
+
+  - id: J13
+    question: Is the reuse of the candidate's own unpublished prior work declared in a way an exam board would accept?
+    read: [dissertation/01_introduction.md, dissertation/06_references.md]
+    owner: external-examiner
+    verdict: open
+    finding: "The threat-surface model and viability framework originate there; 1.6 presents both as outputs of this dissertation. Decide the line and hold it consistently."
+    verified_against: null
+
+  # ---- register and marks ----------------------------------------------------
+  - id: J14
+    question: Is achievability evidenced, as the criterion requires, or only asserted?
+    read: [dissertation/01_introduction.md]
+    owner: rubric-marker
+    verdict: fail
+    finding: "One sentence of feasibility; no compute budget, cost estimate or schedule. The proposal carried per-objective GPU-hour figures."
+    verified_against: null
+
+  - id: J15
+    question: Do Parts I and III of Chapter 4 have a descriptive layer separable from interpretation, or only Part II?
+    read: [dissertation/04_results_discussion.md, dissertation/03_methods.md]
+    owner: coherence-reader
+    verdict: fail
+    finding: "Only Part II has the seam. O1b and O6b produce real data (alpha, rank correlation, invariance proportion) that would give Parts I and III one."
+    verified_against: null
+
+  - id: J16
+    question: Does the stated gap still exist in the literature, and do the contribution claims survive a current search?
+    read: [dissertation/02_literature_review.md, dissertation/01_introduction.md]
+    owner: novelty-monitor
+    verdict: null
+    finding: "NEVER RUN. Web-search budget exhausted 28 Aug. Three claims created that day are unchecked."
+    verified_against: null

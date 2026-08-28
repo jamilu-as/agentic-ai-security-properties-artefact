@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-"""Every section of the submitted work has a disposition, and every non-retired
+"""Source-map coverage by MARKER PRESENCE, which is not the same as the point
+being made. RP5.1 passed for weeks on a marker `drift` that matched the unrelated
+phrase "fine-tuning drift". Items whose substance matters carry a `judgement:`
+key pointing at canon/judgements.yaml. Original note follows.
+
+Every section of the submitted work has a disposition, and every non-retired
 section lands in its target chapter. Guards against the graded 19,000 words being
 rebuilt from scratch or silently dropped."""
 import sys
@@ -38,9 +43,13 @@ def main(strict=True):
             if is_stub(tgt):
                 r.W(f'{sec["id"]} [{d}] -> {sec["target"]} (still a stub)')
             elif sec["marker"].lower() in tgt.lower():
-                r.O(f'{sec["id"]} [{d}] landed in {sec["target"]}')
+                j = sec.get("judgement")
+                if j:
+                    r.O(f'{sec["id"]} [{d}] marker in {sec["target"]} — substance ruled on by {j}')
+                else:
+                    r.O(f'{sec["id"]} [{d}] marker in {sec["target"]} — substance NOT verified')
             else:
-                r.F(f'{sec["id"]} [{d}] NOT landed — "{sec["marker"]}" absent from {sec["target"]}')
+                r.F(f'{sec["id"]} [{d}] marker absent — "{sec["marker"]}" not in {sec["target"]}')
                 if sec.get("note"):
                     r.F(f'      {sec["note"]}')
     r.O("dispositions: " + ", ".join(f"{k}={v}" for k, v in sorted(counts.items())))
