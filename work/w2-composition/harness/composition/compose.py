@@ -7,8 +7,21 @@ exclusive branches, each returning a finished pipeline. `camel` returns before
 every filter branch and builds a structurally different pipeline. There is no path
 through that factory yielding two defences at once, so a naive `--defense a,b,c`
 takes the first matching branch and silently returns ONE defence while the cell
-name claims three. That is the failure this module exists to prevent, and it is
-why composition here is a re-architecture of the factory rather than a config flag.
+name claims three. That is the failure this module exists to prevent.
+
+WHAT THIS DOES AND DOES NOT DO. It does not modify the harness. The fork is
+unmodified, and deliberately so: the defences must remain the implementations
+their authors published, or the study measures this project's reading of them
+instead. What this module does is construct composed pipelines *itself* from the
+harness's own elements, bypassing the single-defence dispatch rather than
+rewriting it. The harness stays reproducible against upstream and this layer is
+the auditable delta.
+
+The cost of that choice is one dependency on a private method,
+`AgentPipeline._build_camel_pipeline`, because the system-level defence has no
+public constructor separate from the dispatch that returns it. That coupling is
+guarded below and declared as a maintenance risk: an upstream rename breaks this
+module, which is why the pin is a commit and not a version range.
 
 The composition operator is PINNED in preregistration/PREREGISTRATION.md §3 and
 implemented below exactly as pinned:
@@ -127,6 +140,11 @@ def build(cell: Cell, config, *, cls=None):
     the harness or its optional extras installed.
     """
     from agentdojo.agent_pipeline.agent_pipeline import AgentPipeline
+    if cell.camel and not hasattr(AgentPipeline, "_build_camel_pipeline"):
+        raise CompositionError(
+            "AgentPipeline._build_camel_pipeline is absent from the pinned harness. "
+            "This module depends on that private constructor because the system-level "
+            "defence has no public one. Re-pin, or add a public factory upstream.")
     from agentdojo.agent_pipeline.basic_elements import InitQuery, SystemMessage
     from agentdojo.agent_pipeline.tool_execution import ToolsExecutor, tool_result_to_str
     from agentdojo.agent_pipeline.pi_detector import TransformersBasedPIDetector

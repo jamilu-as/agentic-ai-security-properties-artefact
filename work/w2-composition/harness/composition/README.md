@@ -3,7 +3,25 @@
 Builds the 2³ defence factorial over one agent pipeline, and fails any run whose
 constructed pipeline is not the cell it claims to be.
 
-## Why this is a re-architecture, not a flag
+## We do not modify the harness
+
+The fork is unmodified — no local changes, no commits. That is deliberate: §3.2
+selects defences on the basis that they are the implementations their authors
+published, and editing them would make the study measure this project's reading of
+them instead.
+
+This module sits *alongside* the harness and builds composed pipelines from its
+elements, bypassing the single-defence dispatch rather than rewriting it. Upstream
+stays reproducible; this layer is the auditable delta between the published
+artefact and what was run.
+
+One coupling is unavoidable and is declared: `AgentPipeline._build_camel_pipeline`
+is private, because the system-level defence has no public constructor separate
+from the dispatch that returns it. `build()` checks for it and fails with a clear
+message rather than an AttributeError. An upstream rename breaks this module, which
+is why the harness is pinned by commit rather than by version range.
+
+## Why composition needs a separate construction path
 
 `PipelineConfig.defense` is a single string. `AgentPipeline.from_config` dispatches
 it through mutually exclusive branches, each returning a finished pipeline, and the
