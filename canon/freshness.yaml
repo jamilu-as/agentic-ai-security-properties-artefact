@@ -4,7 +4,7 @@ derived:
   - dissertation
   - work/reviews
   why: entry point; states what is done and what is next
-  verified: 27e61b38c9f91e40
+  verified: e2d475987a9fd26d
 - file: canon/thesis_spine.yaml
   depends_on:
   - dissertation/01_introduction.md
@@ -15,12 +15,12 @@ derived:
   - dissertation
   why: 'figure placements and captions - KNOWN STALE: F1 mapped to Ch4 but placed
     as Fig 2.1; F2 absent from Ch2; F3 points at a chapter with no figure'
-  verified: 9fffbb2141f4a796
+  verified: 4942b1772e9a854c
 - file: canon/source_map.yaml
   depends_on:
   - dissertation
   why: disposition of submitted work across chapters
-  verified: 9fffbb2141f4a796
+  verified: 4942b1772e9a854c
 - file: plan/PLAN.md
   depends_on:
   - dissertation/03_methods.md

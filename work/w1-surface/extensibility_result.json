@@ -1,0 +1,212 @@
+{
+ "architecture": {
+  "name": "skill-extensible assistant",
+  "topology": "single-agent",
+  "components": 4,
+  "edges": 4,
+  "agents": 1,
+  "reachable_from_untrusted": [
+   "agent",
+   "channel",
+   "marketplace",
+   "payments"
+  ],
+  "capabilities": [
+   "accepts_input",
+   "acts",
+   "installs",
+   "plans",
+   "reaches_outside",
+   "reasons"
+  ],
+  "irreversible_action_reachable": true
+ },
+ "properties": [
+  {
+   "cluster": "actuators",
+   "property": "action irreversibility",
+   "because": "capability reachable from untrusted content",
+   "atlas": [
+    {
+     "id": "AML.T0101",
+     "name": "Data Destruction via AI Agent Tool Invocation",
+     "tactics": [
+      "Impact"
+     ]
+    },
+    {
+     "id": "AML.T0086",
+     "name": "Exfiltration via AI Agent Tool Invocation",
+     "tactics": [
+      "Exfiltration"
+     ]
+    }
+   ],
+   "atlas_covered": true
+  },
+  {
+   "cluster": "extensibility",
+   "property": "supply-chain and privilege scoping",
+   "because": "capability reachable from untrusted content",
+   "atlas": [
+    {
+     "id": "AML.T0010.005",
+     "name": "AI Agent Tool",
+     "tactics": []
+    },
+    {
+     "id": "AML.T0104",
+     "name": "Publish Poisoned AI Agent Tool",
+     "tactics": [
+      "Resource Development"
+     ]
+    },
+    {
+     "id": "AML.T0110",
+     "name": "AI Agent Tool Poisoning",
+     "tactics": [
+      "Persistence"
+     ]
+    },
+    {
+     "id": "AML.T0109",
+     "name": "AI Supply Chain Rug Pull",
+     "tactics": [
+      "Defense Evasion"
+     ]
+    },
+    {
+     "id": "AML.T0011.002",
+     "name": "Poisoned AI Agent Tool",
+     "tactics": []
+    }
+   ],
+   "atlas_covered": true
+  },
+  {
+   "cluster": "persistent_goals",
+   "property": "goal integrity",
+   "because": "anonymous internet exposure: sustained, unattributed probing is available",
+   "atlas": [
+    {
+     "id": "AML.T0094",
+     "name": "Delay Execution of LLM Instructions",
+     "tactics": [
+      "Defense Evasion"
+     ]
+    },
+    {
+     "id": "AML.T0061",
+     "name": "LLM Prompt Self-Replication",
+     "tactics": [
+      "Persistence"
+     ]
+    }
+   ],
+   "atlas_covered": true
+  },
+  {
+   "cluster": "tool_use",
+   "property": "tool-call integrity",
+   "because": "capability reachable from untrusted content",
+   "atlas": [
+    {
+     "id": "AML.T0051",
+     "name": "LLM Prompt Injection",
+     "tactics": [
+      "Execution"
+     ]
+    },
+    {
+     "id": "AML.T0053",
+     "name": "AI Agent Tool Invocation",
+     "tactics": [
+      "Execution",
+      "Privilege Escalation"
+     ]
+    },
+    {
+     "id": "AML.T0099",
+     "name": "AI Agent Tool Data Poisoning",
+     "tactics": [
+      "Persistence"
+     ]
+    },
+    {
+     "id": "AML.T0067",
+     "name": "LLM Trusted Output Components Manipulation",
+     "tactics": [
+      "Defense Evasion"
+     ]
+    }
+   ],
+   "atlas_covered": true
+  }
+ ],
+ "compositional": [
+  {
+   "property": "injected irreversible action",
+   "from": [
+    "acts",
+    "reaches_outside"
+   ],
+   "atlas_partial": [
+    {
+     "id": "AML.T0051",
+     "name": "LLM Prompt Injection",
+     "tactics": [
+      "Execution"
+     ]
+    },
+    {
+     "id": "AML.T0101",
+     "name": "Data Destruction via AI Agent Tool Invocation",
+     "tactics": [
+      "Impact"
+     ]
+    }
+   ],
+   "atlas_covers_composition": false,
+   "gap": "injection and destructive tool use are catalogued separately; reachability of an unundoable effect from untrusted content is a property of the wiring"
+  },
+  {
+   "property": "load-time privilege escalation",
+   "from": [
+    "installs",
+    "reaches_outside"
+   ],
+   "atlas_partial": [
+    {
+     "id": "AML.T0110",
+     "name": "AI Agent Tool Poisoning",
+     "tactics": [
+      "Persistence"
+     ]
+    },
+    {
+     "id": "AML.T0002.002",
+     "name": "AI Agent Configuration",
+     "tactics": []
+    }
+   ],
+   "atlas_covers_composition": false,
+   "gap": "tool poisoning is catalogued; the acquisition of actuator permissions at install time, before any tool call is scored, is not"
+  }
+ ],
+ "actor": {
+  "motivation": "criminal",
+  "tier": "capable",
+  "economic_force_applies": true
+ },
+ "atlas_version": "5.6.0",
+ "parameters": {
+  "topology": "single-agent",
+  "internet_facing": true,
+  "authenticated_only": false,
+  "multi_tenant": false,
+  "sector": "general",
+  "adversary": "criminal/capable"
+ },
+ "n_atlas_techniques": 13,
+ "n_uncovered_compositional": 0
+}
