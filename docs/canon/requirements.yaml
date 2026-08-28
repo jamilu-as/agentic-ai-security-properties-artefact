@@ -1,0 +1,397 @@
+# Every requirement extracted from the assessment sources, explicit and implicit.
+#
+# source      where it comes from. MSG = CP70073O Dissertation MSG AY25-26.pdf;
+#             RUBRIC = MSc Dissertation Marking Criteria (1).pdf;
+#             ORAL = MSc Dissertation Presentation Marking Criteria (1).pdf;
+#             ETHICS = signed Form 4; RP = submitted research proposal; LR = literature review.
+# kind        explicit (stated as a requirement) | implicit (a descriptor implies it)
+# check       auto (a marker in a file) | pass (a named review pass) | gate (blocks a gate)
+# quote       verbatim source text where the wording carries the requirement
+#
+# check_requirements.py verifies every `auto` item and reports `pass` items as a checklist.
+
+requirements:
+
+# ---------- document structure ----------
+- id: R01
+  source: MSG p.6
+  kind: explicit
+  quote: "You must include the following page"
+  requirement: Title page with the prescribed declaration, including the words "(including AI)".
+  check: auto
+  target: dissertation/00_front_matter.md
+  marker: "including AI"
+
+- id: R02
+  source: MSG p.6
+  kind: explicit
+  quote: "A statement regarding copyright should be presented in the middle of the page"
+  requirement: Copyright statement, centred, prescribed wording reproduced exactly.
+  check: auto
+  target: dissertation/00_front_matter.md
+  marker: "UK Copyright acts as amended"
+
+- id: R03
+  source: MSG p.6
+  kind: explicit
+  quote: "Abstract (on one page) - a summary of the dissertation stating the problem identified, the approach and the results."
+  requirement: >
+    Abstract on one page, containing all three named elements - problem identified,
+    approach, results. A summary missing any one of the three is incomplete against the spec.
+  check: pass
+  pass: P7
+  target: dissertation/00_front_matter.md
+
+- id: R04
+  source: MSG p.6
+  kind: explicit
+  quote: "Acknowledgements (on one page) - people / orgs that have helped you during the dissertation."
+  requirement: Acknowledgements, one page.
+  check: auto
+  target: dissertation/00_front_matter.md
+  marker: "## Acknowledgements"
+
+- id: R05
+  source: MSG p.6
+  kind: explicit
+  quote: "Table of contents (include page numbers)"
+  requirement: Table of contents with page numbers.
+  check: pass
+  pass: P7
+  target: dissertation/00_front_matter.md
+
+- id: R06
+  source: MSG p.7
+  kind: explicit
+  requirement: References in the Harvard referencing system.
+  check: pass
+  pass: P7
+  target: dissertation/06_references.md
+
+- id: R07
+  source: MSG p.7
+  kind: explicit
+  requirement: Stated word count, within 10,000-15,000.
+  check: auto
+  target: dissertation/00_front_matter.md
+  marker: "## Word Count"
+
+- id: R08
+  source: MSG p.7
+  kind: explicit
+  requirement: Appendices in a numbered sequence.
+  check: auto
+  target: dissertation/07_appendices.md
+  marker: "Appendix A"
+
+# ---------- per-chapter content requirements ----------
+- id: R09
+  source: MSG p.6
+  kind: explicit
+  quote: "Include relevant critical discussion of existing work in order to fully define the context of your work."
+  requirement: >
+    The Introduction must itself contain critical discussion of existing work. This is
+    required IN the Introduction, separately from the Literature Review chapter.
+  check: auto
+  target: dissertation/01_introduction.md
+  marker: "critical"
+
+- id: R10
+  source: MSG p.6
+  kind: explicit
+  quote: "sourced from books, journals, reports and other grey literature"
+  requirement: >
+    Grey literature is explicitly legitimised as a source class. For this topic that
+    admits preprints, vendor advisories, standards bodies and incident reports alongside
+    peer-reviewed work - and licences citing arXiv preprints without apology.
+  check: auto
+  target: dissertation/02_literature_review.md
+  marker: "grey literature"
+
+- id: R11
+  source: MSG p.6
+  kind: explicit
+  quote: "Provide a theoretical structure for how you are intending to test your aims / objectives or your hypothesis."
+  requirement: Methods states a theoretical structure for testing the hypothesis.
+  check: auto
+  target: dissertation/03_methods.md
+  marker: "hypothes"
+
+- id: R12
+  source: MSG p.6
+  kind: explicit
+  quote: "The results should be clearly described using appropriate figures and tables"
+  requirement: Results described using figures and tables, not prose alone.
+  check: auto
+  target: dissertation/04_results_discussion.md
+  marker: "Table"
+
+- id: R13
+  source: MSG p.6
+  kind: explicit
+  quote: >
+    "the establishment of relationships (causal, correlation etc) should be presented so
+    that the reader can clearly follow your logic"
+  requirement: >
+    Relationships between variables presented explicitly, with the inferential chain
+    legible. The correlation structure across defence axes is the direct answer to this.
+  check: auto
+  target: dissertation/04_results_discussion.md
+  marker: "correlat"
+
+- id: R14
+  source: MSG p.6
+  kind: explicit
+  quote: "describe the key features of your research and how the aims and objectives have been met"
+  requirement: Conclusion contains an explicit aims-and-objectives-met mapping.
+  check: auto
+  target: dissertation/05_conclusion.md
+  marker: "objectives have been met"
+
+- id: R15
+  source: MSG p.6
+  kind: explicit
+  quote: "provide recommendations for further work or changes in practice or policy if appropriate"
+  requirement: Recommendations for further work, and for practice or policy where applicable.
+  check: auto
+  target: dissertation/05_conclusion.md
+  marker: "further work"
+
+# ---------- implicit, from rubric descriptors ----------
+- id: R16
+  source: RUBRIC, Aims and Objectives
+  kind: implicit
+  quote: "hypothesis well-formulated"
+  requirement: >
+    A formulated hypothesis, stated as such. Required independently in three places -
+    this descriptor, the MSG Methods chapter spec, and LO2.
+  check: auto
+  target: dissertation/01_introduction.md
+  marker: "hypothesis"
+
+- id: R17
+  source: RUBRIC, Aims and Objectives
+  kind: implicit
+  quote: "expected research output and deliverables are specific, measurable and achievable"
+  requirement: Deliverables enumerated and stated in specific, measurable, achievable terms.
+  check: auto
+  target: dissertation/01_introduction.md
+  marker: "deliverable"
+
+- id: R18
+  source: RUBRIC, Literature Review
+  kind: implicit
+  quote: "Gap analysis and motivation / importance of proposed research well addressed"
+  requirement: >
+    An explicit gap analysis, and a statement of why the research matters. Half the
+    Literature Review marks are for this rather than for coverage.
+  check: auto
+  target: dissertation/02_literature_review.md
+  marker: "gap"
+
+- id: R19
+  source: RUBRIC, Literature Review
+  kind: implicit
+  quote: "through analysis, evaluation and synthesis of related literature"
+  requirement: >
+    Synthesis, not enumeration. Comparative tables or taxonomies that combine sources
+    evidence this in a way that prose summary does not.
+  check: pass
+  pass: P8
+  target: dissertation/02_literature_review.md
+
+- id: R20
+  source: RUBRIC, Methodology
+  kind: implicit
+  quote: "(e.g. experiment design, survey / interview design, data collection, procedure description, etc.)"
+  requirement: >
+    Detail sufficient for replication - design, instruments, datasets, parameters,
+    procedure, controls. The descriptor's own examples state the expected level.
+  check: pass
+  pass: P1
+  target: dissertation/03_methods.md
+
+- id: R21
+  source: RUBRIC, Methodology
+  kind: implicit
+  quote: "justified in the specific context of the research"
+  requirement: >
+    Justification tied to this research question, including alternatives considered and
+    rejected. Generic methodology-textbook prose does not satisfy it.
+  check: auto
+  target: dissertation/03_methods.md
+  marker: "rejected"
+
+- id: R22
+  source: RUBRIC, Results and Findings
+  kind: implicit
+  quote: "Presence and evidence of main research output"
+  requirement: >
+    A named, identifiable research output, evidenced in the main body rather than
+    asserted or relegated to an appendix. Worth 20 marks, the largest single item.
+  check: auto
+  target: dissertation/01_introduction.md
+  marker: "Research output"
+
+- id: R23
+  source: RUBRIC, Results / Analysis
+  kind: implicit
+  requirement: >
+    Descriptive reporting and critical analysis kept separately identifiable. They are
+    marked under different criteria; blended prose evidences neither cleanly.
+  check: pass
+  pass: P8
+  target: dissertation/04_results_discussion.md
+
+- id: R24
+  source: RUBRIC, Analysis and Conclusions
+  kind: implicit
+  quote: "Limitation and implication / impact of research discussed"
+  requirement: An explicit limitations section. Absence forfeits part of a 5-mark block.
+  check: auto
+  target: dissertation/05_conclusion.md
+  marker: "imitation"
+
+# ---------- learning outcomes ----------
+- id: R25
+  source: MSG LO1
+  kind: implicit
+  quote: "Demonstrate independence, self-direction and originality"
+  requirement: >
+    Originality shown, not claimed. The clearest evidence available is work no source
+    supplied - the coverage-audit corrections and the artefact integrity finding.
+  check: pass
+  pass: P1
+
+- id: R26
+  source: MSG LO4
+  kind: explicit
+  quote: "evaluate and conclude research outcome and impact within the professional, legal, social and ethical framework if applicable"
+  requirement: >
+    Outcome and impact evaluated in professional, legal, social and ethical terms, not
+    only technical ones. Deployment implications, disclosure ethics, dual use, regulatory
+    context.
+  check: auto
+  target: dissertation/05_conclusion.md
+  marker: "ethical"
+
+- id: R27
+  source: MSG LO5
+  kind: explicit
+  requirement: Oral presentation is an assessed outcome, not ancillary to the written work.
+  check: gate
+  gate: G5
+  target: dissertation/oral/SLIDES.md
+
+# ---------- integrity ----------
+- id: R28
+  source: MSG appendix
+  kind: explicit
+  quote: "the use of generative AI tools, where permitted, is transparent and clearly acknowledged"
+  requirement: >
+    An explicit statement of how generative AI was used. The title-page declaration says
+    "(including AI)"; a bare signature does not discharge "transparent and clearly
+    acknowledged".
+  check: auto
+  target: dissertation/00_front_matter.md
+  marker: "AI use"
+
+- id: R29
+  source: MSG appendix
+  kind: explicit
+  quote: "data are reported honestly and accurately"
+  requirement: >
+    Results reported as measured, including null and unfavourable outcomes, and including
+    data-quality problems found in third-party artefacts.
+  check: pass
+  pass: P2
+
+- id: R30
+  source: MSG appendix
+  kind: explicit
+  quote: "conducting their research in line with the approved proposal and ethical conditions"
+  requirement: >
+    Design revisions declared against the approved proposal. Ethics Form 4 signed
+    2 May 2026 cited with its declared position.
+  check: auto
+  target: dissertation/03_methods.md
+  marker: "Form 4"
+
+# ---------- self-imposed, from the submitted work ----------
+- id: R31
+  source: RP §4.6
+  kind: explicit
+  requirement: Pre-registration timestamped before R2 data collection.
+  check: gate
+  gate: G1
+  target: preregistration/HASH.txt
+
+- id: R32
+  source: RP §5.1
+  kind: explicit
+  quote: >
+    "Where a new result supersedes a defence or benchmark in the experimental design the
+    implications are explicitly addressed in the discussion rather than absorbed silently."
+  requirement: A "since literature review" section, and drift addressed explicitly.
+  check: auto
+  target: dissertation/02_literature_review.md
+  marker: "since literature review"
+
+- id: R33
+  source: RP §8
+  kind: explicit
+  requirement: >
+    Responsible disclosure before public release. Applies to the duplication found in the
+    AutoDojo released grid.
+  check: pass
+  pass: P4
+
+- id: R34
+  source: LR §4.6
+  kind: explicit
+  requirement: >
+    The six minimum validity criteria are the standard the study set itself; the design is
+    audited against them in Methods.
+  check: auto
+  target: dissertation/03_methods.md
+  marker: "validity criteria"
+
+- id: R35
+  source: MSG module aims
+  kind: implicit
+  quote: "Develop a project plan and execute the plan whilst responding to changes and adapting the plan as necessary."
+  requirement: >
+    Adapting the design to a changed field is an assessed module aim. Declare revisions in
+    those terms rather than defensively.
+  check: auto
+  target: dissertation/03_methods.md
+  marker: "adapting"
+
+# ---------- formatting, BS 4821 ----------
+- id: R36
+  source: MSG p.7
+  kind: explicit
+  requirement: >
+    BS 4821 - A4 one side; 12pt main text; paragraphs LEFT JUSTIFIED, not fully justified;
+    1.5 line spacing except quotations; margins Left 1.5in, Right 1in, Top and Bottom 1in;
+    quotations indented. Verify by measurement at render, not by eye.
+  check: pass
+  pass: P7
+
+# ---------- submission ----------
+- id: R37
+  source: MSG §4
+  kind: explicit
+  requirement: Submitted via Turnitin on Blackboard, Week 16.
+  check: pass
+  pass: P7
+
+- id: R38
+  source: MSG §7
+  kind: explicit
+  quote: "Without an extension, the maximum mark you will be able to get for that work will be the pass mark."
+  requirement: >
+    Late submission without an approved extension caps the mark at 50%. Self-certification
+    must be requested BEFORE the deadline; three per academic year.
+  check: pass
+  pass: P7

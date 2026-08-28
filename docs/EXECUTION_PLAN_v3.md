@@ -327,21 +327,31 @@ Add a short **"Research outputs"** subsection in Ch1 naming and numbering all fo
 
 All nine run on Day 12. Each is a distinct pass with a distinct question; do not merge them. If the day compresses, **P4 and P7 are non-negotiable** — they are the two that protect against losing marks for things that have nothing to do with the quality of the research.
 
-**P1 — Rubric trace.** For each of the six criteria and each sub-weighting, name the page where it is evidenced. Any criterion without a page is a hole. Check specifically: is there a formulated *hypothesis* (the word appears in the criterion, in the Methods spec and in LO2)? Are deliverables stated as specific, measurable, achievable? Is there an explicit aims-met mapping in Ch7? Is there a limitations section? Is there future work?
+**P1 — Rubric trace.** Also clears requirements R20 (replication-level methods detail) and R25 (originality shown, not claimed) from `docs/canon/requirements.yaml`.
 
-**P2 — Claim–evidence trace.** Every empirical claim traced to a table, figure or citation. Flag every unsupported assertion. Pay particular attention to claims inherited from Paper 1, which was written before the results existed.
+**P1b — Original rubric trace.** For each of the six criteria and each sub-weighting, name the page where it is evidenced. Any criterion without a page is a hole. Check specifically: is there a formulated *hypothesis* (the word appears in the criterion, in the Methods spec and in LO2)? Are deliverables stated as specific, measurable, achievable? Is there an explicit aims-met mapping in Ch7? Is there a limitations section? Is there future work?
+
+**P2 — Claim–evidence trace.** Also clears R29 (results reported honestly, including null and unfavourable outcomes and third-party data-quality problems).
+
+**P2b —** Every empirical claim traced to a table, figure or citation. Flag every unsupported assertion. Pay particular attention to claims inherited from Paper 1, which was written before the results existed.
 
 **P3 — Objective closure.** O1–O6 from the proposal. For each: answered, revised, or dropped — and if revised or dropped, is that declared?
 
-**P4 — Drift declaration completeness.** Walk §2.1 and §2.2 of this document. Every row must be satisfied. This is the pass that protects against a second marker comparing the proposal with the dissertation and finding an undeclared change.
+**P4 — Drift declaration completeness.** Also clears R33 (responsible disclosure of the AutoDojo duplication before public release).
+
+**P4b —** Walk §2.1 and §2.2 of this document. Every row must be satisfied. This is the pass that protects against a second marker comparing the proposal with the dissertation and finding an undeclared change.
 
 **P5 — Novelty and priority re-check.** Re-run the scoop check against arXiv listings and the §2.4 dead-claims table. Verify no novelty claim in the draft is on that list. Check for anything published since Gate 3.
 
 **P6 — Statistical soundness.** Confirmatory versus exploratory correctly labelled. Power reported for the actual design. No claim exceeds what the interaction terms support. Multiple-comparison correction applied and stated. Floor-bounded cells handled as the proposal specified.
 
-**P7 — Structural compliance.** The twelve mandated elements present. BS 4821 formatting verified by measurement, not by eye. Harvard referencing consistent throughout. Word count stated and within range. Declaration signed and dated. Copyright statement centred with the prescribed wording.
+**P7 — Structural compliance.** Also clears R03 (abstract states problem, approach AND results), R05 (ToC page numbers), R06 (Harvard), R36 (BS 4821 by measurement), R37 (Turnitin), R38 (deadline / extension rule).
 
-**P8 — Coherence and flow.** Read the whole document in one sitting. Check the thread: does each RQ lead to an objective, each objective to a method, each method to a result, each result to a conclusion? Does Ch2 end pointed at the contribution? Does the abstract match what the document actually delivers?
+**P7b —** The twelve mandated elements present. BS 4821 formatting verified by measurement, not by eye. Harvard referencing consistent throughout. Word count stated and within range. Declaration signed and dated. Copyright statement centred with the prescribed wording.
+
+**P8 — Coherence and flow.** Also clears R19 (synthesis not enumeration) and R23 (descriptive reporting kept separable from critical analysis).
+
+**P8b —** Read the whole document in one sitting. Check the thread: does each RQ lead to an objective, each objective to a method, each method to a result, each result to a conclusion? Does Ch2 end pointed at the contribution? Does the abstract match what the document actually delivers?
 
 **P9 — Hostile reader.** Two simulated readers. *The second marker*, who has read the proposal and is looking for undeclared drift. *The external examiner*, a cyber security academic (Dr Shancang Li, Cardiff), who will ask why an AI dissertation on a security topic should not be held to the artefact standard — and whose likely first question is "isn't this AutoDojo plus a defence?" Rehearse both answers in writing.
 
