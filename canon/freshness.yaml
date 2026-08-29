@@ -4,32 +4,32 @@ derived:
   - dissertation
   - work/reviews
   why: entry point; states what is done and what is next
-  verified: 132839150884eda6
+  verified: 5faff214f0d2c0a0
 - file: canon/thesis_spine.yaml
   depends_on:
   - dissertation/01_introduction.md
   why: RQ/objective/artefact chain must match the objectives table
-  verified: 5e0f1fac5add3aad
+  verified: UNREVIEWED-since-2026-08-29-edits
 - file: canon/figure_map.yaml
   depends_on:
   - dissertation
   why: 'figure placements and captions - KNOWN STALE: F1 mapped to Ch4 but placed
     as Fig 2.1; F2 absent from Ch2; F3 points at a chapter with no figure'
-  verified: 31b92711b91b4a15
+  verified: UNREVIEWED-since-2026-08-29-edits
 - file: canon/source_map.yaml
   depends_on:
   - dissertation
   why: disposition of submitted work across chapters
-  verified: 31b92711b91b4a15
+  verified: UNREVIEWED-since-2026-08-29-edits
 - file: plan/PLAN.md
   depends_on:
   - dissertation/03_methods.md
   - preregistration/PREREGISTRATION.md
   why: run plan must match the design and the locked analysis plan
-  verified: 63c19c38f807a129
+  verified: UNREVIEWED-since-2026-08-29-edits
 - file: canon/facts.yaml
   depends_on:
   - dissertation/03_methods.md
   - preregistration/PREREGISTRATION.md
   why: canonical values are set by the design
-  verified: 63c19c38f807a129
+  verified: b84f78343db41472

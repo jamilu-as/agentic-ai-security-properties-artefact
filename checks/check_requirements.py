@@ -28,9 +28,18 @@ def main(strict=True):
             r.F(f'{q["id"]} [{q["source"]}] "{q["marker"]}" absent from {q["target"]}')
             r.F(f'      {q["requirement"].strip().splitlines()[0][:100]}')
 
+    # Same exemption as check_gate_artefacts: a 64-char digest plus a timestamp is
+    # not a stub, and warning that it is can never be cleared.
+    from check_gate_artefacts import SHORT_BY_NATURE
+
+    def _real(target, text):
+        if target in SHORT_BY_NATURE:
+            return bool(text) and SHORT_BY_NATURE[target](text)
+        return bool(text) and not is_stub(text)
+
     for q in gated:
         text = read(q["target"])
-        (r.O if text and not is_stub(text) else r.W)(
+        (r.O if _real(q["target"], text) else r.W)(
             f'{q["id"]} [gate {q["gate"]}] {q["target"]}')
 
     by_pass = defaultdict(list)

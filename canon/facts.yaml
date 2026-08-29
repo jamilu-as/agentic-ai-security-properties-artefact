@@ -18,12 +18,14 @@ facts:
   - id: conditions
     value: 32
     means: 2^3 configurations x 2 model checkpoints x 2 regimes
+    established_by: "PREREGISTRATION.md section 3, hash-locked 2026-08-28"
     pattern: '(\d+)\s+conditions'
     except_in: [work/reviews/, archive/, plan/REFRAMING.md, canon/facts.yaml, canon/source_map.yaml, canon/register.yaml]
 
   - id: cells
     value: 16
     means: factorial cells before regime split (8 configurations x 2 checkpoints)
+    established_by: "PREREGISTRATION.md section 3, hash-locked 2026-08-28"
     pattern: '(\d+)\s+cells'
     except_in: [work/w0-baseline/, work/reviews/, archive/, canon/facts.yaml, canon/CONVENTIONS.md, canon/register.yaml, work/w2-composition/harness/, plan/]
 
@@ -53,6 +55,24 @@ facts:
     pattern: '(\w+)\s+capability clusters'
     words_ok: {seven: 7, six: 6}
     except_in: [work/reviews/, archive/]
+
+  # Added 29 Aug. The five-arm residue (Cells 40, Conditions 80) survived in
+  # Table 3.1 for a day because every pattern above needs the value adjacent to its
+  # noun, and a markdown table separates them with a pipe. Table cells are where
+  # design numbers are most likely to go stale and least likely to be re-read.
+  - id: cells_table
+    value: 16
+    means: same as `cells`, as it appears in a markdown table row
+    established_by: "PREREGISTRATION.md section 3, hash-locked 2026-08-28"
+    pattern: '\|\s*Cells\s*\|\s*(\d+)\s*\|'
+    except_in: [work/reviews/, archive/, canon/facts.yaml]
+
+  - id: conditions_table
+    value: 32
+    means: same as `conditions`, as it appears in a markdown table row
+    established_by: "PREREGISTRATION.md section 3, hash-locked 2026-08-28"
+    pattern: '\|\s*Conditions\s*\|\s*(\d+)\s*\|'
+    except_in: [work/reviews/, archive/, canon/facts.yaml]
 
   - id: word_cap
     value: 15000

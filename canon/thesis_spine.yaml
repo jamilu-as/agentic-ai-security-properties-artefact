@@ -56,13 +56,13 @@ research_questions:
     objectives:
 
       - id: O3
-        text: "Execute the 2^3 composition factorial across model configurations under R1 and R2,; baselines are internal to the factorial."
+        text: "Establish whether defences drawn from different design axes can be composed at all, and report the mechanism where they cannot. Restated 29 Aug 2026 when the confirmatory factorial was withdrawn before collection; prereg amendment 2."
         artefact: A3_composition_harness
-        marker: "factorial"
+        marker: "composed"
       - id: O4
-        text: "Test whether composed defences fail independently, controlling for task specification."
+        text: "Establish whether a multiplicative benchmark can identify correlated failure at the effectiveness these defences exhibit. Restated 29 Aug 2026; see O3."
         artefact: A4_correlated_failure_result
-        marker: "correlated failure"
+        marker: "attainable"
     consumed_by:
       - target: RQ3
         how: "Supplies the measured inputs the viability framework prices: adaptive lift (scientific force), utility tax (engineering force), cost per security gain (economic force)."

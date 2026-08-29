@@ -20,9 +20,19 @@ SHORT_BY_NATURE = {
 def main(strict=True, gate=None):
     r = Report(f"Gate artefacts{' — ' + gate if gate else ''}")
     gates = {g["id"]: g for g in load("register.yaml")["gates"]}
+    def _missing(a):
+        # The summary loop used bare is_stub(), so HASH.txt - a 64-char digest and a
+        # timestamp - was permanently counted as a stub here while the gate-specific
+        # path below exempted it. A warn that can never be cleared teaches people to
+        # ignore warns, so the summary applies the same exemption.
+        s = read(a)
+        if a in SHORT_BY_NATURE:
+            return s is None or not SHORT_BY_NATURE[a](s)
+        return is_stub(s)
+
     if gate is None:
         for gid, g in sorted(gates.items()):
-            missing = [a for a in g["requires"] if is_stub(read(a))]
+            missing = [a for a in g["requires"] if _missing(a)]
             (r.W if missing else r.O)(
                 f'{gid} {g["name"]}: {len(g["requires"]) - len(missing)}/{len(g["requires"])} artefacts real')
         return r.emit(False)

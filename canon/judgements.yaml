@@ -143,6 +143,6 @@ judgements:
     question: Does the stated gap still exist in the literature, and do the contribution claims survive a current search?
     read: [dissertation/02_literature_review.md, dissertation/01_introduction.md]
     owner: novelty-monitor
-    verdict: open
-    finding: "Still blocked on web budget; unchanged"
-    verified_against: "ffefb94713e60ea4"
+    verdict: fail
+    finding: "Composition gap claim is dead as worded: arXiv:2604.23887 (26 Apr 2026, pre-cut-off) stacks defences under an adaptive attacker; survives only narrowed to agentic tool-use and to the multiplicative estimand. Composition-layer engineering claim HOLDS (AutoDojo upstream at pinned HEAD, no PRs/forks ahead). Rothman 1986 -> 1976; four uncited STRIDE/LINDDUN determinacy references; MCP-SafetyBench is real (2512.15163)."
+    verified_against: null
