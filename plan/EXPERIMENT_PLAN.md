@@ -10,7 +10,7 @@ Assumptions that remain are marked in that script.
 | | |
 |---|---|
 | Agent episodes | **207,760** |
-| Cost | **~$610** incl. 25% contingency |
+| Cost | **~$265** incl. 25% contingency (~$200 on interruptible) |
 | Critical path | **~5 days** of runs, 3 GPU workers |
 | Runway | 22 days to submission |
 
@@ -153,12 +153,44 @@ rate limit to schedule around. What remains is GPU time and the attacker optimis
 The cells are independent, so GPU-hours are fixed but wall-clock divides across
 workers at no extra cost:
 
-| GPU workers | Wall-clock |
-|---|---|
-| 1 | 14.4 d |
-| 2 | 7.2 d |
-| **3** | **4.8 d** |
-| 4 | 3.6 d |
+| GPU workers | Wall-clock | Cost |
+|---|---|---|
+| 1 | 14.4 d | $114 |
+| 2 | 7.2 d | $114 |
+| **3** | **4.8 d** | **$114** |
+| 4 | 3.6 d | $114 |
+| 6 | 2.4 d | $114 |
+
+**Buy wall-clock with parallelism, not with a faster card.** Cost is invariant to
+worker count because the GPU-hours are the same however they are split, whereas a
+faster card costs more per episode: the L40S runs roughly twice the throughput at
+about 2.4 times the price, so three A6000s beat one L40S on cost *and* on time.
+
+**Provider quotes, 29 August 2026** (full table in `plan/cost_model.py`, ranked by
+cost per episode, which is what matters — not cost per hour):
+
+| Provider | $/hr | GPU-h | Total | $/1k episodes |
+|---|---|---|---|---|
+| Vast.ai A6000, interruptible | 0.15 | 346 | **$52** | 0.25 |
+| Vast.ai A6000, on-demand | 0.29 | 346 | $100 | 0.48 |
+| **RunPod A6000, community** | **0.33** | **346** | **$114** | **0.55** |
+| RunPod A40, community | 0.35 | 346 | $121 | 0.58 |
+| RunPod L40S, community | 0.79 | 173 | $137 | 0.66 |
+| RunPod A100 80GB, secure | 1.39 | 133 | $185 | 0.89 |
+| *old placeholder, never a quote* | *0.90* | *346* | *$312* | *1.50* |
+
+48GB is the binding requirement and is not negotiable downward: Llama-3-8B at bf16
+is 16.1GB of weights, and a 24GB card leaves about 6GB of KV cache — roughly four
+concurrent sequences — which collapses throughput. **Quantising to fit a 24GB card
+is not available**: the target model's behaviour is the object of study, so an
+altered checkpoint is a confound and breaks comparability with the harness's
+published numbers.
+
+**The largest uncertainty is not the price.** `GPU_EPISODES_HR = 600` remains an
+assumption, and agent episodes are multi-turn and latency-bound rather than
+throughput-bound, so vLLM token/s figures overstate it. At 450 ep/hr the GPU line
+moves by more than the entire spread between the cheapest and dearest provider
+above. **Measure one cell before booking anything.**
 
 One constraint survives from the earlier plan and still matters: `camel` is excluded
 from the optimiser's `--parallel-eval` because its interpreter uses module-level
@@ -191,12 +223,19 @@ Chapter 3 cut rather than the write-up.
 
 ## 7. What is needed to start
 
-1. **Funded OpenRouter key** → `AutoDojo/.env`. Four replication arms plus the optimiser.
-2. **Separate `OPENAI_API_KEY`** — camel's vendored quarantined LLM calls OpenAI
-   directly, not through OpenRouter. Without it, 4 of 8 cells in every arm fail, which
-   is the whole system-level axis.
-3. **GPU box**, 48GB, ~175 h. Also hosts the 16 camel processes.
+1. **Funded OpenRouter key** → `AutoDojo/.env`. The attacker optimiser only; no target
+   model routes through it, both checkpoints being local.
+2. ~~**Separate `OPENAI_API_KEY`**~~ — **no longer needed.** camel wires OpenAI
+   directly rather than through OpenRouter, but `CAMEL_LOCAL_BASE_URL` routes both its
+   privileged and its quarantined LLM at the local vLLM server with the key ignored
+   (`quarantined_llm.py:95`, `models.py:131`). Both target checkpoints are local, so
+   this is the natural configuration and it removes the $78 line. The privileged model
+   taking the target checkpoint is required by the design; the quarantined model is a
+   **declared deviation** (§3.2) and `run_cell.py` records it in the manifest.
+3. **GPU box**, 48GB, 346 GPU-hours total across both arms — split across three
+   boxes for 4.8 days wall-clock. Needs >=8 cores and >=48GB system RAM as well as
+   the card, because it also hosts the 16 camel processes.
 4. **HuggingFace token** — `Llama-3-8B-Instruct` is gated.
 
-Estimated spend **~$610**: $312 GPU, $98 attacker optimiser, $78 camel's quarantined
+Estimated spend **~$265**: $114 GPU, $98 attacker optimiser, $0 camel's quarantined
 LLM, plus contingency. The empirical core is now the cheapest part of the study.

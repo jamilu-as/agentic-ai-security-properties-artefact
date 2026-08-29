@@ -34,3 +34,16 @@ venv/
 
 # OS
 .DS_Store
+
+# Live API credentials. Added 29 Aug 2026: `.env` was covered but a plain
+# tokens.txt was not, and it held working HuggingFace, RunPod and OpenRouter keys.
+# It had never been committed; nothing but luck was stopping `git add -A`.
+tokens.txt
+*.token
+*.pem
+
+# Harness run outputs. Manifests ARE committed - §3.10 requires them - but the
+# trajectory logs under them are raw model output and are withheld.
+work/w2-composition/results/runs/logs/
+work/w2-composition/results/runs/**/*.json
+!work/w2-composition/results/runs/*.json
