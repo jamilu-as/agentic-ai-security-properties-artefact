@@ -231,3 +231,76 @@ and stated rather than unspecified.
 
 Both are retained. The original hash remains verifiable against the text above the
 amendment line.
+
+---
+
+# Amendment 2 — 29 August 2026, superseding Amendment 1
+
+**Still before any data was collected. Amendment 1 stands above as a record of the
+decision, and is superseded rather than deleted.**
+
+## What changed
+
+Amendment 1 moved the model dimension to Llama-3.1 with a third-party LoRA adapter,
+on the reasoning that the Llama-3 base was gated and no published rerouted checkpoint
+existed for it. **The second premise was wrong.** `GraySwanAI/Llama-3-8B-Instruct-RR`
+is the circuit-breakers checkpoint from Zou et al. (2024) — the paper this study
+already cites as the representation axis's provenance — and it is **ungated**, a
+complete model rather than an adapter.
+
+The model dimension therefore returns to what the original locked plan specified.
+
+| | Pinned |
+|---|---|
+| Base checkpoint | `NousResearch/Meta-Llama-3-8B-Instruct` (see sourcing note) |
+| Rerouted checkpoint | `GraySwanAI/Llama-3-8B-Instruct-RR`, revision `d92f951d380d3489fb56b08c296376ea61cebef0` |
+| Both | ungated; complete models, no adapter composition |
+
+## Why this is better than Amendment 1
+
+§3.2 selects each defence instance on the ground that it is **the method as its
+authors defined it**, and rejects reimplementation because a reimplementation
+measures the reimplementation. Gray Swan's checkpoint is the artefact of the paper
+the representation axis is named from. The RRFA adapters of Amendment 1, while
+published and well documented, are a third party's reimplementation of that method
+for agentic tool-calling, trained on the Fujitsu B4 Orchestrator Attack Benchmark.
+Adopting them would have measured that reimplementation.
+
+It also restores the axis to what Chapter 2 describes and what the reference list
+already supports (Zou et al., 2024), removing a divergence between the cited
+provenance and the artefact actually run.
+
+## Sourcing note, declared
+
+`meta-llama/Meta-Llama-3-8B-Instruct` is gated `manual` and access was not granted,
+so the base is taken from `NousResearch/Meta-Llama-3-8B-Instruct`, a
+licence-compliant republication carrying Meta's full licence text.
+
+The mirror is treated as faithful on evidence rather than on reputation: its
+safetensors index reports `total_size` 16,060,522,496 bytes across 291 tensors, and
+the Gray Swan rerouted checkpoint reports **the same total size and the same tensor
+count**. A rerouted model derived from a different base would not share its base's
+weight layout to the byte. This is strong evidence, not proof — the gated original
+cannot be fetched to compare hashes directly — and it is recorded as a limitation on
+provenance rather than asserted as equivalence.
+
+If access to the Meta repository is granted before the run, the base should be taken
+from there and this note reduced to a footnote.
+
+## What it does not change
+
+The estimand, margin, cluster count, sample, verdict partition, utility gate,
+confirmatory family and power table are all unchanged, as under Amendment 1. The
+matched pair is again two complete checkpoints differing by the representation-level
+intervention, which is what the original plan specified.
+
+## Hashes
+
+| Plan | Hash |
+|---|---|
+| Original | `84cb6fd84d4f3e869e92a36e78444cd7134ad4905a5ef7b169943560d2969808` (`HASH.v1.txt`) |
+| Amendment 1 | `6ec441765770a6906b5965a0e7e6b8899efc4860b474bb909f32c15f9accb5fc` (`HASH.v2.txt`) |
+| Amendment 2 | recorded in `HASH.txt` on re-lock |
+
+All three are retained. Each remains verifiable against the text standing above its
+own amendment line.
