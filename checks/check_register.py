@@ -11,8 +11,22 @@ So it reports `marker` rather than `landed`, and any item whose substance matter
 is registered in canon/judgements.yaml for an agent to read and rule on. See
 check_semantic.py. Never read a `marker` line here as evidence the point is made.
 """
+import re
 import sys
 from _common import load, read, is_stub, Report
+
+
+def flat(s):
+    """Collapse whitespace so a marker split across a line break still matches.
+
+    Markdown line wrapping is not semantic: a marker string is either present in
+    the prose or it is not, and where the reflow happens to break the line says
+    nothing about that. Matching the raw text made every reflow of a paragraph
+    containing a marker read as a deletion - which it did, once, during the
+    compression pass, reporting C11 absent while the sentence sat intact across
+    lines 244-245 of the methods chapter.
+    """
+    return re.sub(r"\s+", " ", s).lower()
 
 def main(strict=True):
     reg = load("register.yaml")
@@ -27,7 +41,7 @@ def main(strict=True):
                 text = read(rel)
                 if text is None or is_stub(text):
                     continue
-                if it["marker"].lower() in text.lower():
+                if flat(it["marker"]) in flat(text):
                     landed.append(rel)
             if landed:
                 judged = it.get("judgement")
