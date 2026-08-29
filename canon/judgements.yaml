@@ -115,11 +115,11 @@ judgements:
     verified_against: null
 
   - id: J13
-    question: Is the reuse of the candidate's own unpublished prior work declared in a way an exam board would accept?
+    question: RETIRED 29 Aug. Premise void - the draft was never published, never submitted to a venue, and never submitted for assessment, so it is working material of this thesis rather than prior work. Nothing to declare; the front-matter declaration is removed.
     read: [dissertation/01_introduction.md, dissertation/06_references.md]
     owner: external-examiner
     verdict: pass
-    finding: "Prior-work declaration added to front matter; 2.5's compensator claim now attributed to the author's own earlier work and framed as what RQ2 puts at risk; PAPER1 header corrected"
+    finding: "Retired. An unpublished, unassessed draft by the author is not prior work; declaring it invited a viva question with no basis. Declaration removed from front matter, the compensator claim restated as untested in the literature rather than attributed to a separate document."
     verified_against: "d4f7ed0b6cb2646b"
 
   # ---- register and marks ----------------------------------------------------
