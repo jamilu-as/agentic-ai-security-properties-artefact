@@ -1,7 +1,7 @@
 
 # Pre-registration — analysis plan
 
-**Status: locked, amendment 1.** All parameters below are fixed. `make prereg` fails if
+**Status: locked, amendment 3.** All parameters below are fixed. `make prereg` fails if
 this file changes after locking.
 
 ## 0. Amendment log
@@ -10,10 +10,22 @@ A pre-registration earns its authority by being fixed before the data, not by ne
 being corrected. This file was amended once, and the record is here so that the change
 is auditable rather than silent.
 
-| | |
-|---|---|
-| v1 hash | `4a2854410aaf5985…` locked 2026-08-28T22:27:11Z (kept at `HASH_v1_superseded.txt`) |
-| v2 hash | see `HASH.txt` |
+**The hash chain, reconstructed and corrected 29 August.** An earlier draft of this log
+recorded a v2 of `84cb6fd8…`. That is wrong: `84cb6fd8` is the value in `HASH.v1.txt` and
+it matches no recoverable state of this file. The verifiable chain, obtained by hashing
+every committed version, is:
+
+| | Hash | Locked | Retained at |
+|---|---|---|---|
+| v1 | `4a2854410aaf5985…` | 2026-08-28T22:27:11Z | `HASH_v1_superseded.txt` |
+| v2 | `6ec441765770a690…` | 2026-08-29 | `HASH.v2.txt` |
+| v3 | `28b5fc057149e1ee…` | 2026-08-29 | `HASH_v2_superseded.txt` |
+| **v4, current** | see `HASH.txt` | 2026-08-29T15:31:58Z | — |
+
+`HASH.v1.txt` is retained unaltered although its value is unattributable, because deleting
+an artefact that does not reconcile is worse than keeping one that visibly does not. The
+amendment sections below are numbered in the order they were written, not the order the
+hashes were taken; §0's numbering is authoritative where they disagree.
 | Amended | 2026-08-29 |
 | R2 data existing at the time of amendment | **none.** No adaptive run has been executed; no API key has been present in the run environment at any point. `work/w2-composition/results/runs/` holds a manifest stub and nothing else. |
 
@@ -39,6 +51,86 @@ is touched, and §§1, 2, 6, 7, 8 and 9 are byte-identical to v1.
 
 Amending after data would be a different act, and the amendment guard in
 `checks/check_prereg.py` now looks at the directory the runs actually land in.
+
+---
+
+## Amendment 3 — 29 August 2026. The confirmatory factorial is withdrawn.
+
+**R2 data existing at the time of amendment: none.** No adaptive run has been executed
+and no optimiser call has ever been made. `work/w2-composition/results/runs/` holds five
+JSON files — two static-regime G0 runs, a smoke test, a utility probe and the behavioural
+audit — all R1 or instrumentation, none adaptive. (An earlier line in this log described
+that directory as holding "a manifest stub and nothing else"; that was true when v1 was
+written and is not true now.) The guard in `check_prereg.py` counts any `.json` there and
+therefore **warns**; it is a warning rather than a failure, the strict check still exits
+zero, and it is deliberately not relaxed. **This amendment removes an analysis and adds none** — no estimand, margin,
+cut-point, sample size, stopping rule or verdict condition is altered.
+
+### What is withdrawn, and why it cannot be run
+
+**The confirmatory factorial cannot return its own supported verdict.** Under
+monotonicity — composing a second defence does not make an agent more attackable than
+its more permeable component alone — ρ\* has a ceiling of 1/max(r₁, r₂). The margin fixed
+in §7 is 1.57, so SUPPORTED requires a component defence passing under 0.637 of what
+reaches it. Measured on the released grid (65,311 records) at this plan's own unit of
+analysis — injection task, any success within budget — no defence pair in any suite
+reaches it:
+
+| suite | best composable pair | attainable ρ\* ceiling |
+|---|---|---|
+| banking | datafilter + protectai | 1.05 |
+| slack | piguard + protectai | 1.25 |
+| travel | datafilter + piguard | 1.00 |
+
+The pair this design composes is the worst case: on banking, spotlighting and piguard
+each pass r = 1.000, giving a ceiling of exactly 1.000. **The estimand cannot exceed its
+own null.** a₀ = 1.000 on all three suites, which independently trips the ceiling
+tripwire this study wrote for itself.
+
+**Two of the three axes cannot be composed at all.** A behavioural audit — every pipeline
+element's `query()` wrapped with a call counter, one real task per cell — measures
+`ToolsExecutor` executing **zero** times in every cell containing the system-level axis.
+The prompt-level and detection axes are constructed, fingerprinted, and never reached.
+Four of eight cells are behaviourally one cell. The mechanism is architectural: of the
+harness's fourteen defences, three own the pipeline and eleven insert a stage into it,
+and the two classes cannot compose — 36 of 91 possible pairs.
+
+Together these mean the confirmatory family would return, for three of four contrasts,
+an algebraic identity: with a₁₂ = a₂, ρ\* reduces to a₀/a₁ = 1/r₁, a value fixed entirely
+by one defence's solo effectiveness and carrying no compositional information. Two such
+values clear the 1.57 margin at the design's assumed rates. **Running it would purchase a
+false positive by construction.**
+
+### What replaces it
+
+RQ2 keeps its rank and its wording. Its method changes from an estimate of ρ\* to two
+questions the evidence in hand answers:
+
+1. **Can defences from different design axes be composed at all?** Answered by
+   construction and by the behavioural audit, with the architecture-owning versus
+   stage-inserting mechanism stated and the 36-of-91 generality reported. This is not
+   available from prior work: Nasr et al. (2026) exclude the plan-then-execute class
+   explicitly, on the ground that their attack "is guaranteed to fail by construction",
+   so they could not have measured it.
+2. **Can a multiplicative benchmark identify correlated failure at realistic defence
+   effectiveness?** No, and the ceiling above is the reason. Reported as a methodological
+   result with its binding condition — a margin m requires a component with r < 1/m —
+   rather than as an obstacle encountered.
+
+The magnitude limb of RQ2 is **conceded to prior work**: Nasr et al. §5.3 report that
+stacking detectors does not resolve the robustness problem, and their Table 7 shows a
+composed configuration whose static attack success falls from 28% to 1% while adaptive
+attack success does not move from 99%. §2.4 and §2.6 record this.
+
+### What still runs
+
+A static, injection-free **utility measurement per configuration**, which needs no
+adaptive attacker and no GPU arm. It supplies U_c for the configuration-level utility
+gate of §7 and the engineering and economic forces of RQ3, neither of which is derivable
+from the released grid — it carries no utility or cost column. Estimated cost under $5.
+
+The scientific force **is** derivable from the grid and is reported from it, with the
+unit of analysis stated beside every figure.
 
 ## 1. Hypothesis
 
@@ -234,7 +326,7 @@ amendment line.
 
 ---
 
-# Amendment 2 — 29 August 2026, superseding Amendment 1
+# Amendment 2 (model dimension) — 29 August 2026, superseding Amendment 1
 
 **Still before any data was collected. Amendment 1 stands above as a record of the
 decision, and is superseded rather than deleted.**
