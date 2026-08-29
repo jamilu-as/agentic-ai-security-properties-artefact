@@ -1,7 +1,44 @@
 
 # Pre-registration — analysis plan
 
-**Status: complete, awaiting lock.** All parameters below are fixed. Run `make lock-prereg` before the first adaptive run; `make prereg` fails thereafter if this file changes.
+**Status: locked, amendment 1.** All parameters below are fixed. `make prereg` fails if
+this file changes after locking.
+
+## 0. Amendment log
+
+A pre-registration earns its authority by being fixed before the data, not by never
+being corrected. This file was amended once, and the record is here so that the change
+is auditable rather than silent.
+
+| | |
+|---|---|
+| v1 hash | `4a2854410aaf5985…` locked 2026-08-28T22:27:11Z (kept at `HASH_v1_superseded.txt`) |
+| v2 hash | see `HASH.txt` |
+| Amended | 2026-08-29 |
+| R2 data existing at the time of amendment | **none.** No adaptive run has been executed; no API key has been present in the run environment at any point. `work/w2-composition/results/runs/` holds a manifest stub and nothing else. |
+
+**What changed, and why each was a correction rather than a choice.** Every item below
+is either residue from the superseded five-configuration design or an underspecification
+that had already produced a construction defect. None of them is an analytic degree of
+freedom: no estimand, cut-point, margin, sample size, stopping rule or verdict condition
+is touched, and §§1, 2, 6, 7, 8 and 9 are byte-identical to v1.
+
+1. **§5 iteration cap.** v1 capped a "closed-weight arm" at five rounds. No closed-weight
+   arm survived the cut to the matched local pair, so the clause governed nothing. Both
+   arms are local and both run to convergence.
+2. **§3 detection instance.** v1 named `piguard` without its granularity. The harness
+   offers two, and the composition layer was found on 29 August building the *other* one
+   — `protectai` at document granularity — with the construction gate passing it. Pinning
+   the checkpoint id and the granularity is what makes that cell checkable.
+3. **§3 system-level configuration.** v1 pinned camel's *placement* but never which model
+   occupies its privileged and quarantined positions. Both are now stated, including the
+   deviation from the published configuration, so it is a term of the plan rather than a
+   downstream declaration.
+4. **§4 environment.** The harness commit, benchmark version and both checkpoint ids are
+   now pinned by identifier. v1 referred to "the pinned commit" without giving it.
+
+Amending after data would be a different act, and the amendment guard in
+`checks/check_prereg.py` now looks at the directory the runs actually land in.
 
 ## 1. Hypothesis
 
@@ -27,7 +64,11 @@ Directional: the confirmatory test is one-sided. A negative departure, in which 
 
 ## 3. Design
 
-2³ factorial over pipeline axes (spotlighting / piguard / camel) × **2 model checkpoints** × 2 regimes = **32 conditions**. The model dimension is the matched local pair `Llama-3-8B-Instruct` / `-RR`: one model family, two checkpoints, which is the minimum that keeps the representation-level axis estimable, since a rerouted checkpoint compared against anything but its own base confounds the intervention with fine-tuning drift. Scale was cut from the model dimension first, per the pre-committed cut order. Detection-side instance is `piguard`: concurrency-safe in the harness and ungated on HuggingFace. Prompt-level instance is `spotlighting` (the delimiting variant); the harness has no `spotlighting_with_delimiting` key.
+2³ factorial over pipeline axes (spotlighting / piguard / camel) × **2 model checkpoints** × 2 regimes = **32 conditions**. The model dimension is the matched local pair `Llama-3-8B-Instruct` / `-RR`: one model family, two checkpoints, which is the minimum that keeps the representation-level axis estimable, since a rerouted checkpoint compared against anything but its own base confounds the intervention with fine-tuning drift. Scale was cut from the model dimension first, per the pre-committed cut order. Prompt-level instance is `spotlighting` (the delimiting variant); the harness has no `spotlighting_with_delimiting` key.
+
+**Detection-side instance — pinned to checkpoint and granularity.** `piguard`, resolving to `leolee99/PIGuard`, at **sentence** granularity: the harness's default, in which tool output is split into sentences, each classified, and only the flagged sentences dropped. Chosen because it is in the harness's concurrency-safe set and its checkpoint is ungated where the alternative requires licence acceptance. *(Amendment 1: v1 named the defence but not its granularity. The harness also offers document granularity, which redacts the whole message and is a different filter; the composition layer was found building `protectai` at document granularity on 29 August, and the construction gate passed it because the fingerprint recorded only that "a detector" was present. The fingerprint now carries the checkpoint id and the granularity.)*
+
+**System-level instance — pinned to the models occupying its positions.** `camel`, with both its **privileged** and its **quarantined** model served from the same local instance as the target checkpoint. For the privileged position that is what this design requires, since the representation arm is defined as varying the model in that position. For the quarantined position it is a **deviation from the configuration CaMeL's authors published**, who ran a larger model there: the instance is therefore weaker here than as published, which moves both its single-axis rate and every composed rate containing it, and not by amounts that cancel. It is pinned here rather than discovered later, and is reported with the result. *(Amendment 1: v1 pinned camel's placement but was silent on which models occupy its positions.)*
 
 **Composition operator — fixed here.** The harness dispatches one defence per run through mutually exclusive branches; composition is implemented by re-architecting the pipeline factory. Placement is pinned as: prompt-level rewrite on the privileged planner's system message; detector on raw tool output before the quarantined model; representation arm varies the model in the privileged position. Sensitivity check on one arm: (a) detector on quarantined-model output instead of input, (b) prompt-level rewrite on the quarantined model. Reported whether or not the verdict changes. Every constructed pipeline is fingerprinted against its cell name; mismatch fails the run.
 
@@ -37,15 +78,24 @@ Directional: the confirmatory test is one-sided. A negative departure, in which 
 - **Engine provenance:** the CaMeL policy engines for github, shopping and dailylife are the harness maintainer's, not the defence authors'. System-level contrasts are additionally reported restricted to banking/slack/travel, whose engines are upstream's.
 - **Confirmatory arm, named here because 'fixed in advance' is unverifiable if it is not: `Llama-3-8B-Instruct` (base of the matched pair).** The rerouted checkpoint `-RR` supplies the representation-axis contrast and an internal replication of the four confirmatory contrasts; it is not a second confirmatory arm. Chosen because it is the arm whose attacker budget runs to convergence rather than a round cap, so the adequacy precondition is testable on it, and because it is locally hosted, making the 800-test allocation affordable.
 - Subsample: **n = 800** security tests per cell on **both** checkpoints, stratified across the six suites. Precision at this depth is affordable because both models run locally; the design trades breadth across model families for depth within one, and §7 records what that costs.
+- **Environment, pinned by identifier** *(Amendment 1: v1 referred to "the pinned commit" without giving it)*:
+
+  | | |
+  |---|---|
+  | Harness | `xhOwenMa/AutoDojo` at commit `abbcbd8d59ea19115dc874eeb2cf294169ac5e0d` |
+  | Benchmark version | `v1.2.2` (the harness's own default) |
+  | Base checkpoint | `meta-llama/Meta-Llama-3-8B-Instruct` |
+  | Representation-rerouted checkpoint | `GraySwanAI/Llama-3-8B-Instruct-RR` |
+  | Detection checkpoint | `leolee99/PIGuard`, sentence granularity |
+
 - Seed: 20260902 (fixed here; recorded in every run manifest)
 - Selection performed and committed before the first R1 run.
 
 ## 5. Iteration cap
 
-- Closed-weight arm: **5 rounds**, imposed by per-call latency and cost over a hosted API; there is no batch pathway in the run configuration.
-- Local arm: full depth to convergence.
-- The asymmetry is declared and reported as a limitation on cross-arm comparability.
-- Convergence curves reported at rounds 1-5 for both arms and beyond 5 for the local arm.
+- **Both arms: full depth to convergence.** Both target checkpoints are served locally, so neither carries the per-call latency that motivated a round cap, and the arms are directly comparable on attacker budget. *(Amendment 1: v1 capped a "closed-weight arm" at 5 rounds. No closed-weight arm exists in this design — the cut to the matched local pair removed it — so the clause governed nothing.)*
+- Convergence curves reported from round 1 for both arms.
+- The attacker optimiser is a hosted frontier model and is **not** localised, though the harness would permit it. The optimiser is the adaptive attacker and §3.5 of the Methods places this study at the attack-aware tier; substituting a small local model there would cut attacker capability, which biases ρ* toward 1 — toward this study's own refutation branch. Attacker adequacy is gated separately in §7.
 
 ## 6. Model
 
@@ -98,3 +148,86 @@ Fixed here so the equivalence margin above is derived from thresholds set before
 | Economic | defender cost per unit attack success averted | favourable < 1× · marginal 1–3× · unfavourable > 3× |
 
 Treatment follows: two or more strong readings with no weak reading → *reduce*; a weak reading on a force the adversary profile makes decisive, with monitorable residual → *accept*; the same where residual is contractually shiftable → *transfer*; no configuration reaching moderate on any force → *avoid*.
+
+---
+
+# Amendment 1 — 29 August 2026
+
+**Made before any data was collected. Superseded text is left standing above rather
+than edited, so the change is visible rather than absorbed.**
+
+## What changed
+
+The model dimension moves from `Meta-Llama-3-8B-Instruct` to
+**`meta-llama/Llama-3.1-8B-Instruct`**, and the representation-level checkpoint is
+pinned to a published LoRA adapter rather than left unnamed.
+
+| | Pinned |
+|---|---|
+| Base checkpoint | `meta-llama/Llama-3.1-8B-Instruct` |
+| Rerouted checkpoint | `meta-llama/Llama-3.1-8B-Instruct` + LoRA adapter |
+| Adapter repo | `memo-ozdincer/rrfa-runs`, revision `92593ebbd40130930c8b4273f5e90087d4e220b8` |
+| Adapter path | `runs/208788/adapter/checkpoint-300` (final; 300 of 300 training steps) |
+| Adapter licence | Apache-2.0 |
+| Base revision the adapter was trained against | `0e9e39f249a16976918f6564b8830bc894c89659` |
+
+The base revision is pinned as well as the repo. The adapter's own config records
+the snapshot it was trained on, and applying a LoRA to a different revision of the
+same repo is not guaranteed to reproduce the intervention — an unpinned base makes
+the representation axis an unpinned factor even when the adapter is pinned.
+
+## Why, and why this is not a researcher degree of freedom
+
+Three reasons, none of which depends on any result, because no result exists: the
+factorial has not been run and this amendment is dated before it.
+
+1. **Access.** `Meta-Llama-3-8B-Instruct` is gated `manual` and access was not
+   granted. `Llama-3.1-8B-Instruct` is available. A checkpoint that cannot be
+   downloaded cannot be the study's target model.
+2. **The representation axis becomes a published artefact rather than one this
+   study would have to train.** RRFA is training code, not weights, so the original
+   plan implied training our own adapter — which §3.2's selection criterion forbids
+   in substance, since it rejects reimplementation on the ground that a
+   reimplementation measures the reimplementation. The published adapters at
+   `memo-ozdincer/rrfa-runs` are trained on `Llama-3.1-8B-Instruct`, target
+   indirect prompt injection and tool-flip attacks, and are the authors' own.
+   Adopting them makes the fourth axis the method as its authors defined it, which
+   is what the criterion asks for.
+3. **Consistency with the harness.** AutoDojo's own adversarial-variant generator
+   defaults to `meta-llama/Llama-3.1-8B-Instruct`, so the target model and the
+   attacker's seed-generation model are the same family.
+
+§3.2 specifies the model set as a **rule** — "a matched pair of open-weight
+checkpoints tractable to local execution, differing only in the representation-level
+intervention" — and names instances as current rather than definitional.
+`Llama-3.1-8B-Instruct` with the RRFA adapter satisfies that rule exactly, and
+satisfies the matched-pair requirement more strictly than the original: the pair now
+differs *only* by a LoRA adapter over identical base weights, so the comparison
+cannot be confounded with fine-tuning drift between separately trained checkpoints.
+
+## What it does not change
+
+Nothing else. The estimand, the margin, the cluster count, the sample, the verdict
+partition, the utility gate, the confirmatory family and the power table are all
+unchanged, because none of them depends on which 8B checkpoint occupies the model
+dimension.
+
+## Declaration
+
+The adapter was trained by a third party on the Fujitsu B4 Orchestrator Attack
+Benchmark, which is not this study's data and is not AgentDojo. Whether an adapter
+trained on one attack distribution generalises to another is exactly the kind of
+question adaptive evaluation exists to ask, and §3.3's expectation that the
+representation axis will return a null is unchanged by the substitution — if
+anything it is sharpened, since the adapter's training distribution is now known
+and stated rather than unspecified.
+
+## Hashes
+
+| | |
+|---|---|
+| Original locked plan | `84cb6fd84d4f3e869e92a36e78444cd7134ad4905a5ef7b169943560d2969808` |
+| This amended plan | recorded in `HASH.txt` on re-lock |
+
+Both are retained. The original hash remains verifiable against the text above the
+amendment line.
