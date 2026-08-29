@@ -84,8 +84,11 @@ def raises(fn, *a, exc=Exception):
     except exc:
         return True
 
+# prefix match, not equality: the detection element carries its checkpoint id since
+# 29 Aug, so `e != "PIDetector"` silently filtered nothing and the test passed vacuously
 check("SILENT OMISSION caught (the failure this exists to prevent)",
-      raises(verify, c3, [e for e in c3.expected_elements() if e != "PIDetector"]))
+      raises(verify, c3, [e for e in c3.expected_elements()
+                          if not e.startswith("PIDetector")]))
 check("camel-only masquerading as the triple is caught",
       raises(verify, c3, Cell.parse("camel").expected_elements()))
 check("unexpected element caught", raises(verify, c3, c3.expected_elements() + ["RogueFilter"]))
@@ -96,6 +99,47 @@ check("every factorial cell verifies against itself",
       all(verify(c, c.expected_elements()) is None for c in factorial()))
 check("distinct cells have distinct expected element sets",
       len({tuple(sorted(set(c.expected_elements()))) for c in factorial()}) == 8)
+
+# The construction gate, hardened 29 Aug. compose.py was building `protectai` at
+# document granularity while the pre-registration pins `piguard` at sentence
+# granularity, and the gate passed it: "PIDetector" matched either one. The element
+# now carries the checkpoint id, so that class of error cannot return silently.
+import compose as _c
+check("detection axis is the pre-registered instance",
+      _c.DETECTION_DEFENSE == "piguard" and _c.DETECTION_MODEL_ID == "leolee99/PIGuard")
+_det = [e for e in Cell(piguard=True).expected_elements() if e.startswith("PIDetector")]
+check("detector element names its checkpoint and granularity",
+      len(_det) == 1 and "leolee99/PIGuard" in _det[0] and "@sentence" in _det[0])
+check("no two cells share a fingerprint",
+      len({_c._fingerprint(c.expected_elements()) for c in factorial()}) == 8)
+check("referent cell carries no defence elements",
+      not [e for e in Cell().expected_elements()
+           if e.startswith(("PIDetector", "PrivilegedLLM", "SpotlightSystemMessage"))])
+
+def _rejects(cell, actual):
+    try:
+        verify(cell, actual); return False
+    except CompositionError:
+        return True
+
+_triple = Cell(spotlighting=True, piguard=True, camel=True)
+check("gate rejects a cell that quietly dropped an axis",
+      _rejects(_triple, [e for e in _triple.expected_elements()
+                         if not e.startswith("PIDetector")]))
+_pi = Cell(piguard=True)
+check("gate rejects the WRONG detector (the 29 Aug defect)",
+      _rejects(_pi, [e for e in _pi.expected_elements() if not e.startswith("PIDetector")]
+                    + ["PIDetector[protectai/deberta-v3-base-prompt-injection-v2@document]"]))
+
+def _parse_rejects(spec):
+    try:
+        Cell.parse(spec); return False
+    except CompositionError:
+        return True
+
+check("parse rejects an axis outside the factorial", _parse_rejects("spotlighting,promptguard"))
+check("parse rejects a repeated axis", _parse_rejects("piguard,piguard"))
+check("'none' parses to the all-off referent", Cell.parse("none").name == "none")
 
 print()
 if FAILED:
@@ -168,3 +212,4 @@ check("a property with no bearing control returns avoid",
                           "actor": surf["actor"], "compositional": [],
                           "architecture": surf["architecture"]},
                          {"piguard": M["piguard"]})[0].treatment == "avoid")
+
