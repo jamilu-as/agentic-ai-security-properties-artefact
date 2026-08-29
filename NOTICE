@@ -4,12 +4,13 @@ AutoDojo
   Xinhang Ma, Taoran Li, Chaowei Xiao, Zhiyuan Yu, Ning Zhang, Yevgeniy Vorobeychik (2026)
   "AutoDojo: Adaptive Black-Box Attacks Reveal the Limits of IPI Defenses and
    Task-Specification Effects in LLM Agents", arXiv:2606.15057
-  https://github.com/xhOwenMa/AutoDojo — MIT License, Copyright (c) 2026 the above authors.
+  https://github.com/xhOwenMa/AutoDojo
+  MIT License, Copyright (c) 2026 the above authors.
 
-  Pinned at commit abbcbd8d59ea19115dc874eeb2cf294169ac5e0d and used as distributed.
-  work/w0-baseline/trajectories.csv is the released trajectory grid from that project,
-  redistributed here under the MIT licence so the analyses in work/w0-baseline are
-  reproducible. It is their data, not this study's.
+  Pinned at commit abbcbd8d59ea19115dc874eeb2cf294169ac5e0d, used as distributed.
+  work/w0-baseline/trajectories.csv is that project's released trajectory grid,
+  redistributed under the MIT licence so the analyses in work/w0-baseline reproduce.
+  It is their data, not this study's.
 
 AgentDojo
   Edoardo Debenedetti et al. (2024), vendored within AutoDojo under its own licence.
