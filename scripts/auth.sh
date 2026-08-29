@@ -90,24 +90,42 @@ if [[ "${1:-}" == "--check-gated" ]]; then
   echo "=== gated repo access ==="
   python3 - <<'PY'
 import os, sys
-from huggingface_hub import HfApi
-api = HfApi(token=os.getenv("HF_TOKEN"))
-REPOS = [("meta-llama/Meta-Llama-3-8B-Instruct", "gated — needs licence acceptance"),
-         ("leolee99/PIGuard", "ungated"),
-         ("protectai/deberta-v3-base-prompt-injection-v2", "ungated")]
+from huggingface_hub import HfApi, hf_hub_download, get_token
+
+# model_info() succeeds on a gated repo WITHOUT access: the model card is public and
+# gating restricts file downloads, not metadata. Testing it therefore reports success
+# for a token that cannot fetch a single weight. Only a real file fetch proves access.
+api = HfApi()
+tok = get_token()
+src = "HF_TOKEN env var" if os.getenv("HF_TOKEN") else \
+      "~/.cache/huggingface/token (cached)" if tok else "none"
+print(f"  token source: {src}")
+
+REPOS = [("meta-llama/Meta-Llama-3-8B-Instruct", "config.json", "GATED"),
+         ("leolee99/PIGuard", "config.json", "ungated"),
+         ("protectai/deberta-v3-base-prompt-injection-v2", "config.json", "ungated")]
 bad = 0
-for rid, note in REPOS:
+for rid, probe, note in REPOS:
     try:
-        api.model_info(rid)
-        print(f"  \033[32mok\033[0m    {rid}  ({note})")
+        info = api.model_info(rid)
+        gated = getattr(info, "gated", None)
+    except Exception as e:
+        print(f"  \033[31mFAIL\033[0m  {rid}: not reachable ({type(e).__name__})")
+        bad += 1
+        continue
+    try:
+        hf_hub_download(rid, probe)          # the only test that means anything
+        print(f"  \033[32mok\033[0m    {rid}  ({note}) — file fetch succeeded")
     except Exception as e:
         cls = type(e).__name__
-        hint = ""
-        if "Gated" in cls or "403" in str(e):
-            hint = "  -> accept the licence at https://huggingface.co/" + rid
-        elif "401" in str(e):
-            hint = "  -> token rejected"
-        print(f"  \033[31mFAIL\033[0m  {rid}: {cls}{hint}")
+        print(f"  \033[31mFAIL\033[0m  {rid}  ({note}) — {cls}")
+        if "Gated" in cls:
+            print(f"          gated={gated}. Accept the licence at")
+            print(f"          https://huggingface.co/{rid}")
+            if gated == "manual":
+                print("          NOTE: gated=manual means a human approves it. Not instant.")
+        elif "401" in str(e) or "Unauthorized" in cls:
+            print("          token rejected or expired")
         bad += 1
 sys.exit(1 if bad else 0)
 PY
