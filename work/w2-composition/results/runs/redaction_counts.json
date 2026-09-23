@@ -1,0 +1,28 @@
+{
+  "generated": "2026-08-29T22:47:59+00:00",
+  "source": "redaction_logs/, one trajectory per episode",
+  "note": "Table 4.5. Counts only; trajectories withheld per section 3.11.",
+  "cells": {
+    "spotlighting": {
+      "episodes": 15,
+      "tool_msgs": 54,
+      "redacted": 0,
+      "delimited": 54,
+      "intact": 0
+    },
+    "piguard": {
+      "episodes": 15,
+      "tool_msgs": 81,
+      "redacted": 12,
+      "delimited": 0,
+      "intact": 69
+    },
+    "spotlighting+piguard": {
+      "episodes": 23,
+      "tool_msgs": 146,
+      "redacted": 56,
+      "delimited": 0,
+      "intact": 90
+    }
+  }
+}

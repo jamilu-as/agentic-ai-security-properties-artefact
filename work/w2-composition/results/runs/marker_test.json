@@ -1,0 +1,282 @@
+{
+  "summary": {
+    "messages": 54,
+    "detector_altered_delimited_text": 54,
+    "detector_altered_bare_text": 41,
+    "altered_only_when_delimited": 13,
+    "altered_only_when_bare": 0,
+    "markers_survive_filter": 0
+  },
+  "rows": [
+    {
+      "delimited_changed": true,
+      "bare_changed": true,
+      "marker_survives_delimited": false
+    },
+    {
+      "delimited_changed": true,
+      "bare_changed": false,
+      "marker_survives_delimited": false
+    },
+    {
+      "delimited_changed": true,
+      "bare_changed": true,
+      "marker_survives_delimited": false
+    },
+    {
+      "delimited_changed": true,
+      "bare_changed": true,
+      "marker_survives_delimited": false
+    },
+    {
+      "delimited_changed": true,
+      "bare_changed": true,
+      "marker_survives_delimited": false
+    },
+    {
+      "delimited_changed": true,
+      "bare_changed": true,
+      "marker_survives_delimited": false
+    },
+    {
+      "delimited_changed": true,
+      "bare_changed": false,
+      "marker_survives_delimited": false
+    },
+    {
+      "delimited_changed": true,
+      "bare_changed": true,
+      "marker_survives_delimited": false
+    },
+    {
+      "delimited_changed": true,
+      "bare_changed": false,
+      "marker_survives_delimited": false
+    },
+    {
+      "delimited_changed": true,
+      "bare_changed": true,
+      "marker_survives_delimited": false
+    },
+    {
+      "delimited_changed": true,
+      "bare_changed": true,
+      "marker_survives_delimited": false
+    },
+    {
+      "delimited_changed": true,
+      "bare_changed": false,
+      "marker_survives_delimited": false
+    },
+    {
+      "delimited_changed": true,
+      "bare_changed": true,
+      "marker_survives_delimited": false
+    },
+    {
+      "delimited_changed": true,
+      "bare_changed": true,
+      "marker_survives_delimited": false
+    },
+    {
+      "delimited_changed": true,
+      "bare_changed": true,
+      "marker_survives_delimited": false
+    },
+    {
+      "delimited_changed": true,
+      "bare_changed": true,
+      "marker_survives_delimited": false
+    },
+    {
+      "delimited_changed": true,
+      "bare_changed": true,
+      "marker_survives_delimited": false
+    },
+    {
+      "delimited_changed": true,
+      "bare_changed": true,
+      "marker_survives_delimited": false
+    },
+    {
+      "delimited_changed": true,
+      "bare_changed": true,
+      "marker_survives_delimited": false
+    },
+    {
+      "delimited_changed": true,
+      "bare_changed": true,
+      "marker_survives_delimited": false
+    },
+    {
+      "delimited_changed": true,
+      "bare_changed": false,
+      "marker_survives_delimited": false
+    },
+    {
+      "delimited_changed": true,
+      "bare_changed": true,
+      "marker_survives_delimited": false
+    },
+    {
+      "delimited_changed": true,
+      "bare_changed": true,
+      "marker_survives_delimited": false
+    },
+    {
+      "delimited_changed": true,
+      "bare_changed": true,
+      "marker_survives_delimited": false
+    },
+    {
+      "delimited_changed": true,
+      "bare_changed": false,
+      "marker_survives_delimited": false
+    },
+    {
+      "delimited_changed": true,
+      "bare_changed": true,
+      "marker_survives_delimited": false
+    },
+    {
+      "delimited_changed": true,
+      "bare_changed": false,
+      "marker_survives_delimited": false
+    },
+    {
+      "delimited_changed": true,
+      "bare_changed": true,
+      "marker_survives_delimited": false
+    },
+    {
+      "delimited_changed": true,
+      "bare_changed": false,
+      "marker_survives_delimited": false
+    },
+    {
+      "delimited_changed": true,
+      "bare_changed": true,
+      "marker_survives_delimited": false
+    },
+    {
+      "delimited_changed": true,
+      "bare_changed": true,
+      "marker_survives_delimited": false
+    },
+    {
+      "delimited_changed": true,
+      "bare_changed": false,
+      "marker_survives_delimited": false
+    },
+    {
+      "delimited_changed": true,
+      "bare_changed": true,
+      "marker_survives_delimited": false
+    },
+    {
+      "delimited_changed": true,
+      "bare_changed": false,
+      "marker_survives_delimited": false
+    },
+    {
+      "delimited_changed": true,
+      "bare_changed": true,
+      "marker_survives_delimited": false
+    },
+    {
+      "delimited_changed": true,
+      "bare_changed": true,
+      "marker_survives_delimited": false
+    },
+    {
+      "delimited_changed": true,
+      "bare_changed": false,
+      "marker_survives_delimited": false
+    },
+    {
+      "delimited_changed": true,
+      "bare_changed": true,
+      "marker_survives_delimited": false
+    },
+    {
+      "delimited_changed": true,
+      "bare_changed": false,
+      "marker_survives_delimited": false
+    },
+    {
+      "delimited_changed": true,
+      "bare_changed": true,
+      "marker_survives_delimited": false
+    },
+    {
+      "delimited_changed": true,
+      "bare_changed": true,
+      "marker_survives_delimited": false
+    },
+    {
+      "delimited_changed": true,
+      "bare_changed": true,
+      "marker_survives_delimited": false
+    },
+    {
+      "delimited_changed": true,
+      "bare_changed": true,
+      "marker_survives_delimited": false
+    },
+    {
+      "delimited_changed": true,
+      "bare_changed": true,
+      "marker_survives_delimited": false
+    },
+    {
+      "delimited_changed": true,
+      "bare_changed": true,
+      "marker_survives_delimited": false
+    },
+    {
+      "delimited_changed": true,
+      "bare_changed": false,
+      "marker_survives_delimited": false
+    },
+    {
+      "delimited_changed": true,
+      "bare_changed": true,
+      "marker_survives_delimited": false
+    },
+    {
+      "delimited_changed": true,
+      "bare_changed": true,
+      "marker_survives_delimited": false
+    },
+    {
+      "delimited_changed": true,
+      "bare_changed": true,
+      "marker_survives_delimited": false
+    },
+    {
+      "delimited_changed": true,
+      "bare_changed": true,
+      "marker_survives_delimited": false
+    },
+    {
+      "delimited_changed": true,
+      "bare_changed": true,
+      "marker_survives_delimited": false
+    },
+    {
+      "delimited_changed": true,
+      "bare_changed": true,
+      "marker_survives_delimited": false
+    },
+    {
+      "delimited_changed": true,
+      "bare_changed": true,
+      "marker_survives_delimited": false
+    },
+    {
+      "delimited_changed": true,
+      "bare_changed": true,
+      "marker_survives_delimited": false
+    }
+  ]
+}

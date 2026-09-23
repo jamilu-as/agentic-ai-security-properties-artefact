@@ -1,0 +1,28 @@
+{
+  "total_cost_usd": 1.8970694000000026,
+  "total_calls": 2827,
+  "total_prompt_tokens": 4319072,
+  "total_completion_tokens": 196918,
+  "total_reasoning_tokens": 74346,
+  "total_cached_tokens": 2002048,
+  "by_role_model": {
+    "target_agent|openai/gpt-4o-mini": {
+      "calls": 2785,
+      "cost": 0.5399214000000023,
+      "prompt_tokens": 4157488,
+      "completion_tokens": 110753,
+      "reasoning_tokens": 0,
+      "cached_tokens": 2002048,
+      "no_usage": 0
+    },
+    "optimizer_llm|google/gemini-3.1-pro-preview": {
+      "calls": 42,
+      "cost": 1.3571480000000002,
+      "prompt_tokens": 161584,
+      "completion_tokens": 86165,
+      "reasoning_tokens": 74346,
+      "cached_tokens": 0,
+      "no_usage": 0
+    }
+  }
+}

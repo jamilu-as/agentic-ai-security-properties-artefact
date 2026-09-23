@@ -1,0 +1,144 @@
+{
+  "suite": "banking",
+  "model": "openai/gpt-4o-mini",
+  "cells": {
+    "none": {
+      "axes": [],
+      "executed": {
+        "AgentPipeline": 3,
+        "SystemMessage": 3,
+        "InitQuery": 3,
+        "OpenAILLM": 15,
+        "ToolsExecutionLoop": 3,
+        "ToolsExecutor": 12
+      },
+      "inert_axes": []
+    },
+    "camel": {
+      "axes": [
+        "camel"
+      ],
+      "executed": {
+        "AgentPipeline": 3,
+        "SystemMessage": 3,
+        "InitQuery": 3,
+        "AgentPipeline~2": 3,
+        "InitQuery~2": 3,
+        "PrivilegedLLM": 3,
+        "ToolsExecutionLoop": 3,
+        "ToolsExecutor": 0,
+        "InnerSpotlightPrompt": 0,
+        "InnerDetector": 0,
+        "QuarantinedLLM": 6
+      },
+      "inert_axes": []
+    },
+    "piguard": {
+      "axes": [
+        "piguard"
+      ],
+      "executed": {
+        "AgentPipeline": 5,
+        "SystemMessage": 5,
+        "InitQuery": 5,
+        "OpenAILLM": 59,
+        "ToolsExecutionLoop": 5,
+        "ToolsExecutor": 54,
+        "DefenseFilterElement": 54
+      },
+      "inert_axes": []
+    },
+    "spotlighting": {
+      "axes": [
+        "spotlighting"
+      ],
+      "executed": {
+        "AgentPipeline": 3,
+        "SystemMessage": 3,
+        "InitQuery": 3,
+        "OpenAILLM": 15,
+        "ToolsExecutionLoop": 3,
+        "ToolsExecutor": 12
+      },
+      "inert_axes": []
+    },
+    "piguard+camel": {
+      "axes": [
+        "piguard",
+        "camel"
+      ],
+      "executed": {
+        "AgentPipeline": 4,
+        "SystemMessage": 4,
+        "InitQuery": 4,
+        "AgentPipeline~2": 4,
+        "InitQuery~2": 4,
+        "PrivilegedLLM": 4,
+        "ToolsExecutionLoop": 4,
+        "ToolsExecutor": 0,
+        "InnerSpotlightPrompt": 0,
+        "InnerDetector": 11,
+        "QuarantinedLLM": 11
+      },
+      "inert_axes": []
+    },
+    "spotlighting+camel": {
+      "axes": [
+        "spotlighting",
+        "camel"
+      ],
+      "executed": {
+        "AgentPipeline": 3,
+        "SystemMessage": 3,
+        "InitQuery": 3,
+        "AgentPipeline~2": 3,
+        "InitQuery~2": 3,
+        "PrivilegedLLM": 3,
+        "ToolsExecutionLoop": 3,
+        "ToolsExecutor": 0,
+        "InnerSpotlightPrompt": 3,
+        "InnerDetector": 0,
+        "QuarantinedLLM": 5
+      },
+      "inert_axes": []
+    },
+    "spotlighting+piguard": {
+      "axes": [
+        "spotlighting",
+        "piguard"
+      ],
+      "executed": {
+        "AgentPipeline": 5,
+        "SystemMessage": 5,
+        "InitQuery": 5,
+        "OpenAILLM": 65,
+        "ToolsExecutionLoop": 5,
+        "ToolsExecutor": 60,
+        "DefenseFilterElement": 60
+      },
+      "inert_axes": []
+    },
+    "spotlighting+piguard+camel": {
+      "axes": [
+        "spotlighting",
+        "piguard",
+        "camel"
+      ],
+      "executed": {
+        "AgentPipeline": 4,
+        "SystemMessage": 4,
+        "InitQuery": 4,
+        "AgentPipeline~2": 4,
+        "InitQuery~2": 4,
+        "PrivilegedLLM": 4,
+        "ToolsExecutionLoop": 4,
+        "ToolsExecutor": 0,
+        "InnerSpotlightPrompt": 4,
+        "InnerDetector": 13,
+        "QuarantinedLLM": 13
+      },
+      "inert_axes": []
+    }
+  },
+  "placement": "inner"
+}
